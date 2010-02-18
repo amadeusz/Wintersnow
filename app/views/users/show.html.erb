@@ -1,0 +1,13 @@
+<p>
+  <b>Klucz:</b>
+  <%=h @user.klucz %>
+</p>
+
+<p>
+  <b>Obserwowane:</b>
+  <%=h @user.obserwowane %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

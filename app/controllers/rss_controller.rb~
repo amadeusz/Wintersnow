@@ -1,0 +1,30 @@
+require 'active_record'
+
+def md5(var)
+	return Digest::MD5.hexdigest(var)
+end
+
+def curl(url)
+	return Curl::Easy.perform(url)
+end
+
+
+class RssController < ApplicationController
+	def index
+	
+		headers['Content-type'] = 'text/xml'
+		
+		plik = File.read('domyslne').split "\n"
+		plik.each{ |linia| Address.create(:klucz => md5(linia), :adres => linia, :data_spr => "datetime('now')", :data_mod => "datetime('now')")}
+	
+		adres = "http://www.google.co.uk";
+		c = curl(adres)
+		
+		hash = md5(c.body_str)
+				
+		File.open('db/pobrane/'+ hash, "w") do |f|
+			f << c.body_str
+		end
+		
+	end
+end
