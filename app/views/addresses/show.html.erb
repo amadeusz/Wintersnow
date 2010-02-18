@@ -1,0 +1,28 @@
+<p>
+  <b>Klucz:</b>
+  <%=h @address.klucz %>
+</p>
+
+<p>
+  <b>Adres:</b>
+  <%=h @address.adres %>
+</p>
+
+<p>
+  <b>Data mod:</b>
+  <%=h @address.data_mod %>
+</p>
+
+<p>
+  <b>Data spr:</b>
+  <%=h @address.data_spr %>
+</p>
+
+<p>
+  <b>Opis:</b>
+  <%=h @address.opis %>
+</p>
+
+
+<%= link_to 'Edit', edit_address_path(@address) %> |
+<%= link_to 'Back', addresses_path %>
