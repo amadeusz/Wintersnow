@@ -5,12 +5,12 @@ def md5(var)
 end
 
 def pobierz(adres)
-		Address.update(md5(adres), :data_spr => Time.new )
-		return Curl::Easy.perform(adres).body_str
+	Address.update(md5(adres), :data_spr => Time.new )
+	return Curl::Easy.perform(adres).body_str
 end
 
 def zapisz(adres, zawartosc)
-	File.open('db/pobrane/'+ md5(adres), "w") do |f|
+	File.open(RAILS_ROOT+'/db/pobrane/'+ md5(adres), "w") do |f|
 		f << zawartosc
 	end
 end
@@ -61,8 +61,10 @@ end
 
 def znajdz_roznice(pobrana, pamietana)
 	if (md5(pobrana) != md5(pamietana))
+		pos_body = pobrana =~ /<body>/
+		pobrana.slice!(0..pos_body)
 		pobrana.gsub!(/(\s){2,}/, " ")
-		acceptable_tags = "b|u|i|strong|cite|em";
+		acceptable_tags = "b|u|i|strong|cite|em"
 		# obcięcie tagów
 		pamietana.gsub!(/<(\/)?(?!((#{acceptable_tags})(>|\s[^>]+>)))[a-zA-Z][^>]*>/, "")
 		pobrana.gsub!(/<(\/)?(?!((#{acceptable_tags})(>|\s[^>]+>)))[a-zA-Z][^>]*>/, "")
@@ -92,7 +94,7 @@ def sprawdz_aktualizacje(adres)
 	end
 	
 	begin
-		pamietana = File.open('db/pobrane/'+ md5(adres), 'r').read
+		pamietana = File.open(RAILS_ROOT+'/db/pobrane/'+ md5(adres), 'r').read
 	rescue
 		zapisz(adres, pobrana)
 		return nil  # nie ma kopii na dysku
@@ -109,19 +111,34 @@ def sprawdz_aktualizacje(adres)
 end
 
 class RssController < ApplicationController
-	def index
-	
-		#headers['Content-type'] = 'text/xml'
-		
+#	def index
+#	
+#		#headers['Content-type'] = 'text/xml'
+#		
+#		@out = ''
+#		Address.find(:all, :select => "adres").each { |strona|
+#			roznica = sprawdz_aktualizacje(strona.adres) 
+#			#roznica = 'roznica' # to usunąć
+#			
+#			if roznica != nil
+#				@out += "*** #{strona.adres}  #{md5(strona.adres)}  ***\n" + roznica + "\n\n"
+#			end
+#		}
+#		
+#	end
+	def of
 		@out = ''
-		Address.find(:all, :select => "adres").each { |strona|
-			roznica = sprawdz_aktualizacje(strona.adres) 
-			#roznica = 'roznica' # to usunąć
-			
+		user = User.find(params[:id])
+		#headers['Content-type'] = 'text/xml'
+		user.obserwowane.split.each { |adres_hash|
+			rekord = Address.find(:first, :conditions => "klucz = '#{adres_hash}'") 
+			roznica = sprawdz_aktualizacje(rekord.adres) 
 			if roznica != nil
-				@out += "*** #{strona.adres}  #{md5(strona.adres)}  ***\n" + roznica + "\n\n"
+				@out += "*** #{rekord.adres}  #{md5(rekord.adres)}  ***\n" + roznica + "\n\n"
+			else 
+				@out += "*** #{rekord.adres}  #{md5(rekord.adres)}  ***\n brak roznic \n\n"
 			end
 		}
-		
 	end
 end
+

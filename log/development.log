@@ -18612,3 +18612,1242 @@ Processing RssController#index (for 127.0.0.1 at 2010-02-18 01:10:29) [GET]
   [4;36;1mAddress Update (146.0ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-02-18 00:10:45', "opis" = NULL, "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "data_mod" = '2010-02-14 23:33:32' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
 Rendering rss/index
 Completed in 20748ms (View: 37, DB: 3408) | 200 OK [http://localhost/]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-02-25 17:12:28) [GET]
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 289ms (View: 80, DB: 1) | 200 OK [http://0.0.0.0/users]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-02-25 17:12:41) [GET]
+  Parameters: {"id"=>"kot"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='kot')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 22ms (View: 16, DB: 0) | 200 OK [http://0.0.0.0/users/kot/edit]
+
+
+Processing UsersController#update (for 127.0.0.1 at 2010-02-25 17:14:55) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"1alvFUxfgkwG9r0eSwX0JfkHOulM6i13EW8Pb9FWkXY=", "id"=>"kot", "user"=>{"klucz"=>"littled", "obserwowane"=>"http://www.littled.vroc.pl/wip/"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='kot')) [0m
+  [4;35;1mUser Update (14.0ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-18 00:06:59', "created_at" = '2010-02-18 00:06:59', "id" = 2, "obserwowane" = 'http://www.littled.vroc.pl/wip/' WHERE ("klucz" = 'littled')[0m
+Redirected to http://0.0.0.0:3000/users/littled
+Completed in 24ms (DB: 14) | 302 Found [http://0.0.0.0/users/kot]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-02-25 17:14:55) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+
+ActiveRecord::RecordNotFound (Couldn't find all Users with IDs ([["littled"]])"users"."klucz"='littled'):
+  /home/littled/.gem/ruby/1.8/gems/composite_primary_keys-2.3.5.1/lib/composite_primary_keys/base.rb:298:in `find_from_ids'
+  app/controllers/users_controller.rb:16:in `show'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (70.9ms)
+Rendered rescues/_request_and_response (1.3ms)
+Rendering rescues/layout (not_found)
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-02-25 17:15:34) [GET]
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 12ms (View: 6, DB: 1) | 200 OK [http://0.0.0.0/users/]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-02-25 17:15:39) [GET]
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 12ms (View: 5, DB: 0) | 200 OK [http://0.0.0.0/users/]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-02-25 17:15:41) [GET]
+  Parameters: {"id"=>"kot"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='kot')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 11ms (View: 5, DB: 0) | 200 OK [http://0.0.0.0/users/kot/edit]
+
+
+Processing UsersController#update (for 127.0.0.1 at 2010-02-25 17:15:43) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"1alvFUxfgkwG9r0eSwX0JfkHOulM6i13EW8Pb9FWkXY=", "id"=>"kot", "user"=>{"klucz"=>"kot", "obserwowane"=>"czarnylkl"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='kot')) [0m
+  [4;35;1mUser Update (0.3ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-18 00:06:59', "created_at" = '2010-02-18 00:06:59', "id" = 2, "obserwowane" = 'czarnylkl' WHERE ("klucz" = 'kot')[0m
+Redirected to http://0.0.0.0:3000/users/kot
+Completed in 18ms (DB: 1) | 302 Found [http://0.0.0.0/users/kot]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-02-25 17:15:43) [GET]
+  Parameters: {"id"=>"kot"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='kot')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 20ms (View: 13, DB: 0) | 200 OK [http://0.0.0.0/users/kot]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-02-25 17:15:45) [GET]
+  Parameters: {"id"=>"kot"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='kot')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 12ms (View: 5, DB: 0) | 200 OK [http://0.0.0.0/users/kot/edit]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-02-25 17:15:50) [GET]
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 12ms (View: 5, DB: 0) | 200 OK [http://0.0.0.0/users]
+
+
+Processing UsersController#destroy (for 127.0.0.1 at 2010-02-25 17:15:55) [DELETE]
+  Parameters: {"authenticity_token"=>"1alvFUxfgkwG9r0eSwX0JfkHOulM6i13EW8Pb9FWkXY=", "id"=>"kot"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='kot')) [0m
+  [4;36;1mUser Destroy (0.2ms)[0m   [0;1mDELETE FROM "users" WHERE ("klucz" = 'kot')[0m
+Redirected to http://0.0.0.0:3000/users
+Completed in 12ms (DB: 0) | 302 Found [http://0.0.0.0/users/kot]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-02-25 17:15:55) [GET]
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 7ms (View: 1, DB: 0) | 200 OK [http://0.0.0.0/users]
+
+
+Processing UsersController#new (for 127.0.0.1 at 2010-02-25 17:15:56) [GET]
+Rendering template within layouts/users
+Rendering users/new
+Completed in 73ms (View: 67, DB: 0) | 200 OK [http://0.0.0.0/users/new]
+
+
+Processing UsersController#create (for 127.0.0.1 at 2010-02-25 17:16:07) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"1alvFUxfgkwG9r0eSwX0JfkHOulM6i13EW8Pb9FWkXY=", "user"=>{"klucz"=>"littled", "obserwowane"=>"http://"}}
+  [4;36;1mUser Create (0.3ms)[0m   [0;1mINSERT INTO "users" ("created_at", "updated_at", "id", "obserwowane", "klucz") VALUES (NULL, NULL, NULL, 'http://', 'littled')[0m
+Redirected to http://0.0.0.0:3000/users/littled
+Completed in 13ms (DB: 0) | 302 Found [http://0.0.0.0/users]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-02-25 17:16:07) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 10ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/users/littled]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-02-25 17:16:09) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 12ms (View: 5, DB: 0) | 200 OK [http://0.0.0.0/users/littled/edit]
+
+
+Processing UsersController#update (for 127.0.0.1 at 2010-02-25 17:16:19) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"1alvFUxfgkwG9r0eSwX0JfkHOulM6i13EW8Pb9FWkXY=", "id"=>"littled", "user"=>{"klucz"=>"littled", "obserwowane"=>"http://littled.vroc.pl/wip"}}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mUser Update (0.3ms)[0m   [0;1mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 3, "obserwowane" = 'http://littled.vroc.pl/wip' WHERE ("klucz" = 'littled')[0m
+Redirected to http://0.0.0.0:3000/users/littled
+Completed in 18ms (DB: 0) | 302 Found [http://0.0.0.0/users/littled]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-02-25 17:16:19) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 9ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/users/littled]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-02-25 17:16:20) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 61ms (View: 6, DB: 0) | 200 OK [http://0.0.0.0/users/littled/edit]
+
+
+Processing UsersController#update (for 127.0.0.1 at 2010-02-25 17:16:25) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"1alvFUxfgkwG9r0eSwX0JfkHOulM6i13EW8Pb9FWkXY=", "id"=>"littled", "user"=>{"klucz"=>"littled", "obserwowane"=>"http://littled.vroc.pl/wip/"}}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mUser Update (0.3ms)[0m   [0;1mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 3, "obserwowane" = 'http://littled.vroc.pl/wip/' WHERE ("klucz" = 'littled')[0m
+Redirected to http://0.0.0.0:3000/users/littled
+Completed in 19ms (DB: 0) | 302 Found [http://0.0.0.0/users/littled]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-02-25 17:16:25) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 11ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/users/littled]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-02-25 17:21:36) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+
+ActionView::TemplateError (undefined local variable or method `list_user_path' for #<ActionView::Base:0xb7328a7c>) on line #20 of app/views/users/edit.html.erb:
+17: <% end %>
+18: 
+19: <%= link_to 'Show', @user %> |
+20: <%= link_to 'Back', list_user_path %>
+
+    app/views/users/edit.html.erb:20
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (77.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-02-25 17:23:46) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+
+ActionView::TemplateError (undefined local variable or method `list_user_path' for #<ActionView::Base:0xb743f244>) on line #20 of app/views/users/edit.html.erb:
+17: <% end %>
+18: 
+19: <%= link_to 'Show', @user %> |
+20: <%= link_to 'Back', list_user_path %>
+
+    app/views/users/edit.html.erb:20
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (28.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-02-25 17:23:53) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 9ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/users/littled/]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-02-25 17:23:58) [GET]
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.first):
+  /home/littled/.gem/ruby/1.8/gems/composite_primary_keys-2.3.5.1/lib/composite_primary_keys/base.rb:263:in `find_from_ids'
+  app/controllers/users_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (24.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#dupa (for 127.0.0.1 at 2010-02-25 17:26:46) [GET]
+
+ActionController::UnknownAction (No action responded to dupa. Actions: index):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing RssController#dupa (for 127.0.0.1 at 2010-02-25 17:28:59) [GET]
+
+ActionController::UnknownAction (No action responded to dupa. Actions: index):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing RssController#littled (for 127.0.0.1 at 2010-02-25 17:29:04) [GET]
+
+ActionController::UnknownAction (No action responded to littled. Actions: index):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing RssController#dupa (for 127.0.0.1 at 2010-02-25 17:31:47) [GET]
+
+ActionView::MissingTemplate (Missing template rss/dupa.erb in view path app/views):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#dupa (for 127.0.0.1 at 2010-02-25 17:31:57) [GET]
+  Parameters: {"id"=>"littled"}
+
+ActionView::MissingTemplate (Missing template rss/dupa.erb in view path app/views):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#dupa (for 127.0.0.1 at 2010-02-25 17:33:06) [GET]
+  Parameters: {"id"=>"littled"}
+Rendering rss/dupa
+Completed in 7ms (View: 5, DB: 0) | 200 OK [http://0.0.0.0/rss/dupa/littled]
+
+
+Processing RssController#dupa (for 127.0.0.1 at 2010-02-25 17:33:24) [GET]
+  Parameters: {"id"=>"littled"}
+
+ArgumentError (respond_to takes either types or a block, never both):
+  app/controllers/rss_controller.rb:129:in `dupa'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (22.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#dupa (for 127.0.0.1 at 2010-02-25 17:35:34) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering rss/dupa
+Completed in 7ms (View: 1, DB: 0) | 200 OK [http://0.0.0.0/rss/dupa/littled]
+
+
+Processing RssController#dupa (for 127.0.0.1 at 2010-02-25 17:36:17) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering rss/dupa
+Completed in 8ms (View: 0, DB: 0) | 200 OK [http://0.0.0.0/rss/dupa/littled]
+
+
+Processing RssController#dupa (for 127.0.0.1 at 2010-02-25 17:36:19) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering rss/dupa
+Completed in 8ms (View: 0, DB: 0) | 200 OK [http://0.0.0.0/rss/dupa/littled]
+
+
+Processing ApplicationController#dupa (for 127.0.0.1 at 2010-02-25 17:37:20) [GET]
+  Parameters: {"id"=>"littled"}
+
+SyntaxError (/mnt/dane/Share/maciek/koliber/app/controllers/rss_controller.rb:132: syntax error, unexpected kEND, expecting $end):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (20.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#dupa (for 127.0.0.1 at 2010-02-25 17:37:33) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering rss/dupa
+Completed in 11ms (View: 4, DB: 0) | 200 OK [http://0.0.0.0/rss/dupa/littled]
+
+
+Processing AddressesController#index (for 127.0.0.1 at 2010-02-25 17:45:53) [GET]
+  [4;35;1mAddress Load (1.1ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 271ms (View: 263, DB: 1) | 200 OK [http://0.0.0.0/Addresses]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-02-25 17:46:14) [GET]
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.first):
+  /home/littled/.gem/ruby/1.8/gems/composite_primary_keys-2.3.5.1/lib/composite_primary_keys/base.rb:263:in `find_from_ids'
+  app/controllers/users_controller.rb:6:in `index'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (24.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-02-25 17:46:19) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+
+ActionView::TemplateError (undefined local variable or method `list_user_path' for #<ActionView::Base:0xb5f624fc>) on line #20 of app/views/users/edit.html.erb:
+17: <% end %>
+18: 
+19: <%= link_to 'Show', @user %> |
+20: <%= link_to 'Back', list_user_path %>
+
+    app/views/users/edit.html.erb:20
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (27.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-02-25 17:46:43) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 15ms (View: 8, DB: 0) | 200 OK [http://0.0.0.0/users/littled/edit]
+
+
+Processing UsersController#update (for 127.0.0.1 at 2010-02-25 17:46:54) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"1alvFUxfgkwG9r0eSwX0JfkHOulM6i13EW8Pb9FWkXY=", "id"=>"littled", "user"=>{"klucz"=>"littled", "obserwowane"=>"ab27cdf35b43599b8f1f953ee6608f74 "}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mUser Update (0.3ms)[0m   [0mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 3, "obserwowane" = 'ab27cdf35b43599b8f1f953ee6608f74 ' WHERE ("klucz" = 'littled')[0m
+Redirected to http://0.0.0.0:3000/users/littled
+Completed in 101ms (DB: 1) | 302 Found [http://0.0.0.0/users/littled]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-02-25 17:46:54) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 10ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/users/littled]
+
+
+Processing AddressesController#index (for 127.0.0.1 at 2010-02-25 17:47:01) [GET]
+  [4;35;1mAddress Load (1.1ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 36ms (View: 28, DB: 1) | 200 OK [http://0.0.0.0/Addresses]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-02-25 17:47:19) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 11ms (View: 5, DB: 0) | 200 OK [http://0.0.0.0/users/littled/edit]
+
+
+Processing UsersController#update (for 127.0.0.1 at 2010-02-25 17:47:23) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"1alvFUxfgkwG9r0eSwX0JfkHOulM6i13EW8Pb9FWkXY=", "id"=>"littled", "user"=>{"klucz"=>"littled", "obserwowane"=>"ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2"}}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mUser Update (0.3ms)[0m   [0;1mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 3, "obserwowane" = 'ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2' WHERE ("klucz" = 'littled')[0m
+Redirected to http://0.0.0.0:3000/users/littled
+Completed in 14ms (DB: 0) | 302 Found [http://0.0.0.0/users/littled]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-02-25 17:47:23) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 9ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/users/littled]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-02-25 17:52:46) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 9ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/users/littled]
+
+
+Processing ApplicationController#dupa (for 127.0.0.1 at 2010-02-25 17:52:57) [GET]
+  Parameters: {"id"=>"littled"}
+
+SyntaxError (/mnt/dane/Share/maciek/koliber/app/controllers/rss_controller.rb:130: syntax error, unexpected '|', expecting ')'
+		user.obserwowane.split.each ( |adres_hash|
+		                               ^
+/mnt/dane/Share/maciek/koliber/app/controllers/rss_controller.rb:133: syntax error, unexpected ')', expecting kEND):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (22.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#of (for 127.0.0.1 at 2010-02-25 17:53:32) [GET]
+  Parameters: {"id"=>"littled"}
+
+SyntaxError (/mnt/dane/Share/maciek/koliber/app/controllers/rss_controller.rb:130: syntax error, unexpected '|', expecting ')'
+		user.obserwowane.split.each ( |adres_hash|
+		                               ^
+/mnt/dane/Share/maciek/koliber/app/controllers/rss_controller.rb:133: syntax error, unexpected ')', expecting kEND):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (20.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 17:53:49) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.2ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (adres = 'ab27cdf35b43599b8f1f953ee6608f74') [0m
+
+TypeError (can't convert Array into String):
+  app/controllers/rss_controller.rb:132:in `of'
+  app/controllers/rss_controller.rb:130:in `each'
+  app/controllers/rss_controller.rb:130:in `of'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (23.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 17:54:20) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.2ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (adres = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+
+TypeError (can't convert nil into String):
+  app/controllers/rss_controller.rb:132:in `of'
+  app/controllers/rss_controller.rb:130:in `each'
+  app/controllers/rss_controller.rb:130:in `of'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (24.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 17:54:33) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.2ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (adres = 'ab27cdf35b43599b8f1f953ee6608f74') [0m
+
+TypeError (can't convert nil into String):
+  app/controllers/rss_controller.rb:132:in `of'
+  app/controllers/rss_controller.rb:130:in `each'
+  app/controllers/rss_controller.rb:130:in `of'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (54.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 17:54:40) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.2ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (adres = 'ab27cdf35b43599b8f1f953ee6608f74') [0m
+
+TypeError (can't convert nil into String):
+  app/controllers/rss_controller.rb:132:in `of'
+  app/controllers/rss_controller.rb:130:in `each'
+  app/controllers/rss_controller.rb:130:in `of'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (117.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 17:54:52) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.2ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (adres = 'ab27cdf35b43599b8f1f953ee6608f74') [0m
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.+):
+  app/controllers/rss_controller.rb:132:in `of'
+  app/controllers/rss_controller.rb:130:in `each'
+  app/controllers/rss_controller.rb:130:in `of'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (22.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 17:55:06) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.2ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (adres = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.+):
+  app/controllers/rss_controller.rb:132:in `of'
+  app/controllers/rss_controller.rb:130:in `each'
+  app/controllers/rss_controller.rb:130:in `of'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (22.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 17:55:41) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.2ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (adres = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mAddress Load (0.1ms)[0m   [0mSELECT * FROM "addresses" WHERE (adres = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+Rendering rss/of
+Completed in 99ms (View: 87, DB: 0) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 17:55:56) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.2ms)[0m   [0mSELECT * FROM "addresses" WHERE (adres = 'ab27cdf35b43599b8f1f953ee6608f74') [0m
+  [4;36;1mAddress Load (0.1ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (adres = '12c5ebe285fcba74c012b85021d526a2') [0m
+Rendering rss/of
+Completed in 13ms (View: 1, DB: 1) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 17:56:09) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.2ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (adres = 'ab27cdf35b43599b8f1f953ee6608f74') [0m
+  [4;35;1mAddress Load (0.1ms)[0m   [0mSELECT * FROM "addresses" WHERE (adres = '12c5ebe285fcba74c012b85021d526a2') [0m
+Rendering rss/of
+Completed in 13ms (View: 1, DB: 1) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing AddressesController#index (for 127.0.0.1 at 2010-02-25 17:56:22) [GET]
+  [4;36;1mAddress Load (1.1ms)[0m   [0;1mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 35ms (View: 28, DB: 1) | 200 OK [http://0.0.0.0/Addresses]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 17:56:47) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') [0m
+  [4;35;1mAddress Load (0.3ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') [0m
+Rendering rss/of
+Completed in 17ms (View: 1, DB: 1) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 17:57:13) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') [0m
+
+NoMethodError (undefined method `adres' for #<Array:0xb5dddfa0>):
+  app/controllers/rss_controller.rb:133:in `of'
+  app/controllers/rss_controller.rb:131:in `each'
+  app/controllers/rss_controller.rb:131:in `of'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (110.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#dupa (for 127.0.0.1 at 2010-02-25 17:57:26) [GET]
+  Parameters: {"id"=>"littled"}
+
+ActionController::UnknownAction (No action responded to dupa. Actions: of):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-25 17:57:34) [GET]
+
+ActionController::RoutingError (No route matches "/rss//of/littled" with {:method=>:get}):
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 17:57:37) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') [0m
+
+NameError (undefined local variable or method `adres' for #<RssController:0xb5f1e018>):
+  app/controllers/rss_controller.rb:133:in `of'
+  app/controllers/rss_controller.rb:131:in `each'
+  app/controllers/rss_controller.rb:131:in `of'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (24.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 17:57:50) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') [0m
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') [0m
+Rendering rss/of
+Completed in 16ms (View: 1, DB: 1) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 17:58:18) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') [0m
+
+NoMethodError (undefined method `adres' for #<Array:0xb5ff0630>):
+  app/controllers/rss_controller.rb:133:in `of'
+  app/controllers/rss_controller.rb:131:in `each'
+  app/controllers/rss_controller.rb:131:in `of'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (23.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 17:58:34) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mAddress Load (0.2ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+Rendering rss/of
+Completed in 14ms (View: 1, DB: 1) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 17:59:29) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+Rendering rss/of
+Completed in 15ms (View: 1, DB: 1) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 17:59:31) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.7ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mAddress Load (0.3ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+Rendering rss/of
+Completed in 15ms (View: 1, DB: 1) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 18:05:14) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:05:14', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-17 23:19:54' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+
+Errno::ENOENT (No such file or directory - db/pobrane/ab27cdf35b43599b8f1f953ee6608f74):
+  app/controllers/rss_controller.rb:13:in `initialize'
+  app/controllers/rss_controller.rb:13:in `open'
+  app/controllers/rss_controller.rb:13:in `zapisz'
+  app/controllers/rss_controller.rb:97:in `sprawdz_aktualizacje'
+  app/controllers/rss_controller.rb:133:in `of'
+  app/controllers/rss_controller.rb:131:in `each'
+  app/controllers/rss_controller.rb:131:in `of'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (80.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 18:06:46) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (1.5ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:06:46', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-17 23:19:54' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+
+Errno::ENOENT (No such file or directory - db/pobrane/ab27cdf35b43599b8f1f953ee6608f74):
+  app/controllers/rss_controller.rb:13:in `initialize'
+  app/controllers/rss_controller.rb:13:in `new'
+  app/controllers/rss_controller.rb:13:in `zapisz'
+  app/controllers/rss_controller.rb:97:in `sprawdz_aktualizacje'
+  app/controllers/rss_controller.rb:133:in `of'
+  app/controllers/rss_controller.rb:131:in `each'
+  app/controllers/rss_controller.rb:131:in `of'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (23.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 18:07:36) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:07:36', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-17 23:19:54' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mAddress Load (0.2ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;36;1mAddress Update (0.3ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-02-25 17:07:36', "opis" = NULL, "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "data_mod" = '2010-02-14 23:33:32' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+Rendering rss/of
+Completed in 1648ms (View: 1, DB: 2) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing AddressesController#index (for 127.0.0.1 at 2010-02-25 18:08:02) [GET]
+  [4;35;1mAddress Load (1.1ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 34ms (View: 27, DB: 1) | 200 OK [http://0.0.0.0/Addresses]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 18:08:39) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:08:39', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-17 23:19:54' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mAddress Load (0.2ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;36;1mAddress Update (0.3ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-02-25 17:08:39', "opis" = NULL, "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "data_mod" = '2010-02-14 23:33:32' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+Rendering rss/of
+Completed in 3806ms (View: 1, DB: 2) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 18:10:50) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mAddress Load (0.3ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;36;1mAddress Update (0.3ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:10:50', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-17 23:19:54' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;36;1mAddress Load (0.2ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;35;1mAddress Update (0.2ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-02-25 17:10:51', "opis" = NULL, "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "data_mod" = '2010-02-14 23:33:32' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+Rendering rss/of
+Completed in 749ms (View: 1, DB: 2) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 18:10:54) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.5ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:10:54', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-17 23:19:54' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mAddress Load (0.2ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;36;1mAddress Update (0.2ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-02-25 17:10:54', "opis" = NULL, "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "data_mod" = '2010-02-14 23:33:32' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+Rendering rss/of
+Completed in 618ms (View: 1, DB: 2) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing AddressesController#index (for 127.0.0.1 at 2010-02-25 18:11:15) [GET]
+  [4;35;1mAddress Load (1.1ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 35ms (View: 28, DB: 1) | 200 OK [http://0.0.0.0/Addresses]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 18:12:20) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:12:20', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-17 23:19:54' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+
+NameError (undefined local variable or method `strona' for #<RssController:0xb5dfd878>):
+  app/controllers/rss_controller.rb:137:in `of'
+  app/controllers/rss_controller.rb:131:in `each'
+  app/controllers/rss_controller.rb:131:in `of'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (74.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 18:12:49) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:12:49', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-17 23:19:54' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mAddress Load (0.2ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;36;1mAddress Update (0.2ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-02-25 17:12:49', "opis" = NULL, "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "data_mod" = '2010-02-14 23:33:32' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+Rendering rss/of
+Completed in 736ms (View: 1, DB: 2) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 18:13:06) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mAddress Load (0.3ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;36;1mAddress Update (1.9ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:13:06', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-17 23:19:54' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;35;1mAddress Load (0.3ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;36;1mAddress Load (0.2ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;35;1mAddress Update (0.2ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-02-25 17:13:08', "opis" = NULL, "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "data_mod" = '2010-02-14 23:33:32' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+Rendering rss/of
+Completed in 5980ms (View: 1, DB: 4) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 18:14:05) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:14:05', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-17 23:19:54' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mAddress Load (0.2ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;36;1mAddress Update (0.2ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-02-25 17:14:06', "opis" = NULL, "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "data_mod" = '2010-02-14 23:33:32' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+Rendering rss/of
+Completed in 670ms (View: 1, DB: 2) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 18:14:08) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mAddress Load (0.3ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;36;1mAddress Update (0.3ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:14:08', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-17 23:19:54' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;36;1mAddress Load (0.2ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;35;1mAddress Update (0.2ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-02-25 17:14:09', "opis" = NULL, "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "data_mod" = '2010-02-14 23:33:32' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+Rendering rss/of
+Completed in 618ms (View: 1, DB: 2) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 18:14:30) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:14:31', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-17 23:19:54' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:14:31', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-25 17:14:31' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;36;1mAddress Update (0.3ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-02-25 17:14:31', "opis" = NULL, "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "data_mod" = '2010-02-14 23:33:32' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+Rendering rss/of
+Completed in 987ms (View: 1, DB: 3) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 18:20:42) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.7ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mAddress Load (0.3ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;36;1mAddress Update (0.3ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:20:42', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-25 17:14:31' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+
+ArgumentError (wrong number of arguments (0 for 2)):
+  app/controllers/rss_controller.rb:64:in `gsub'
+  app/controllers/rss_controller.rb:64:in `znajdz_roznice'
+  app/controllers/rss_controller.rb:103:in `sprawdz_aktualizacje'
+  app/controllers/rss_controller.rb:135:in `of'
+  app/controllers/rss_controller.rb:133:in `each'
+  app/controllers/rss_controller.rb:133:in `of'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (24.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 18:20:56) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mAddress Load (0.3ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;36;1mAddress Update (0.3ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:20:56', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-25 17:14:31' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;36;1mAddress Update (0.2ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:20:56', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-25 17:20:56' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;35;1mAddress Load (0.3ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;36;1mAddress Load (0.2ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;35;1mAddress Update (0.2ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-02-25 17:20:56', "opis" = NULL, "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "data_mod" = '2010-02-14 23:33:32' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+Rendering rss/of
+Completed in 1249ms (View: 1, DB: 2) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 18:21:03) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:21:03', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-25 17:20:56' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mAddress Load (0.2ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;36;1mAddress Update (0.2ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-02-25 17:21:03', "opis" = NULL, "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "data_mod" = '2010-02-14 23:33:32' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+Rendering rss/of
+Completed in 617ms (View: 1, DB: 2) | 200 OK [http://0.0.0.0/rss/of/littled]
+
+
+Processing RssController#of (for 127.0.0.1 at 2010-02-25 18:21:45) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mAddress Load (0.3ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;36;1mAddress Update (1.1ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:21:45', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-25 17:20:56' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;36;1mAddress Update (0.3ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-02-25 17:21:45', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "data_mod" = '2010-02-25 17:21:45' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;36;1mAddress Load (0.2ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-02-25 17:21:45', "opis" = NULL, "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "data_mod" = '2010-02-14 23:33:32' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+Rendering rss/of
+Completed in 630ms (View: 1, DB: 4) | 200 OK [http://0.0.0.0/rss/of/littled]
