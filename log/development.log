@@ -23929,3 +23929,29 @@ Processing RssController#of (for 127.0.0.1 at 2010-02-27 22:25:06) [GET]
   [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
 Rendering rss/of
 Completed in 18ms (View: 1, DB: 1) | 200 OK [http://0.0.0.0/rss/of/littled]
+  [4;36;1mSQL (17.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateAddresses (20100212233716)
+Migrating to ZmianaKlucza (20100214201757)
+Migrating to CreateUsers (20100217230823)
+Migrating to ZmianaKluczaUsers (20100217233101)
+Migrating to Haslo (20100227215949)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mALTER TABLE "users" ADD "haslo" varchar(255)[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100227215949')[0m
+  [4;35;1mSQL (0.6ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("addresses")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_info('index_addresses_on_klucz')[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("users")[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mPRAGMA index_info('index_users_on_id')[0m

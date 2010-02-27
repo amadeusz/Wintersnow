@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100217233101) do
+ActiveRecord::Schema.define(:version => 20100227215949) do
 
   create_table "addresses", :force => true do |t|
     t.string   "klucz"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20100217233101) do
     t.text     "obserwowane"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "haslo"
   end
 
   add_index "users", ["id"], :name => "index_users_on_id", :unique => true
