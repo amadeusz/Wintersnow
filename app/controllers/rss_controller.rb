@@ -132,11 +132,15 @@ class RssController < ApplicationController
 		#headers['Content-type'] = 'text/xml'
 		user.obserwowane.split.each { |adres_hash|
 			rekord = Address.find(:first, :conditions => "klucz = '#{adres_hash}'") 
-			roznica = sprawdz_aktualizacje(rekord.adres) 
-			if roznica != nil
-				@out += "*** #{rekord.adres}  #{md5(rekord.adres)}  ***\n" + roznica + "\n\n"
-			else 
-				@out += "*** #{rekord.adres}  #{md5(rekord.adres)}  ***\n brak roznic \n\n"
+			if DateTime.now > (DateTime.parse(rekord.data_spr.to_s) + (1.0 / 24 /60) )
+				roznica = sprawdz_aktualizacje(rekord.adres) 
+				if roznica != nil
+					@out += "*** #{rekord.adres}  #{md5(rekord.adres)}  ***\n" + roznica + "\n\n"
+				else 
+					@out += "*** #{rekord.adres}  #{md5(rekord.adres)}  ***\n brak roznic \n\n"
+				end
+			elsif
+				@out += "*** #{rekord.adres}  #{md5(rekord.adres)}  ***\n brak roznic bo za wczesnie sprawdzasz \n\n"
 			end
 		}
 	end
