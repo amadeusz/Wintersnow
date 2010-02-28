@@ -1,3 +1,22 @@
-<pre><%= @out %></pre>
-<pre><%= kupa(@tablica) %></pre>
-
+<?xml version="1.0"?>
+<rss version="2.0">
+	<channel>
+		<title>hummingbird-ng</title>
+		<language>pl-pl</language>
+	
+	<% @tablica.each do |element| %>
+	
+		<item>
+			<title><%= element[:opis] %></title>
+			<link><%= element[:adres] %></link>
+			<description><![CDATA[
+				<%= element[:komunikat] %>
+			]]></description>
+			<pubDate><%= element[:data_mod] %></pubDate>
+			<guid><%= element[:adres] +", "+ element[:data_mod] %></guid>
+		</item>
+	
+	<% end %>
+		
+	</channel>
+</rss>

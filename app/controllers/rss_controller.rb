@@ -111,7 +111,7 @@ end
 
 class RssController < ApplicationController
 	def of
-		#headers['Content-type'] = 'text/xml'
+		headers['Content-type'] = 'text/xml'
 		@out = ''
 		user = User.find(params[:id])
 		user.obserwowane.split.each { |adres_hash|
@@ -128,6 +128,12 @@ class RssController < ApplicationController
 				@out += "*** #{rekord.adres}  #{md5(rekord.adres)}  ***\n brak roznic bo za wczesnie sprawdzasz \n\n"
 			end
 		}
+		
+		@tablica = [
+			{:adres => "www.wp.pl", :opis => "WP", :data_mod => Time.now.rfc2822, :komunikat => "Dodano <b>stronę</b>"},
+			{:adres => "www.onet.pl", :opis => "Onet", :data_mod => Time.now.rfc2822, :komunikat => "Dodano stronę"},
+			{:adres => "im.pwr.wroc.pl", :opis => "IM", :data_mod => Time.now.rfc2822, :komunikat => "Dodano stronę"}
+		]
 	end
 end
 
