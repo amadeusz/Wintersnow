@@ -5,7 +5,6 @@ def md5(var)
 end
 
 def pobierz(adres)
-	Address.update(md5(adres), :data_spr => Time.new )
 	return Curl::Easy.perform(adres).body_str
 end
 
@@ -68,8 +67,6 @@ def znajdz_roznice(pobrana, pamietana)
 		# obcięcie tagów
 		pamietana.gsub!(/<(\/)?(?!((#{acceptable_tags})(>|\s[^>]+>)))[a-zA-Z][^>]*>/, "")
 		pobrana.gsub!(/<(\/)?(?!((#{acceptable_tags})(>|\s[^>]+>)))[a-zA-Z][^>]*>/, "")
-		# TODO /<([^>]*)((\s)[^>]*)*>[\s]+<\/\1>/ - usuwanie pustych tagów
-		# TODO usuwanie wszystkiego przed <body>
 		
 		Differ.format = :html
 		diff = Differ.diff_by_word(pobrana, pamietana)
@@ -104,34 +101,22 @@ def sprawdz_aktualizacje(adres)
 	if roznica == nil  # nie ma nic nowego
 		return nil
 	else
-		Address.update(md5(adres), :data_mod => Time.new )
+#		Address.update(md5(adres), :data_mod => Time.new )
+		old_komunikaty = Address.find(md5(adres)).komunikaty
+		Address.update(md5(adres), :komunikaty => old_komunikaty + " " + Message.create( :tresc => roznica, :data => Time.now).id.to_s)
 		zapisz(adres, pobrana)
 		return roznica
 	end
 end
 
 class RssController < ApplicationController
-#	def index
-#	
-#		#headers['Content-type'] = 'text/xml'
-#		
-#		@out = ''
-#		Address.find(:all, :select => "adres").each { |strona|
-#			roznica = sprawdz_aktualizacje(strona.adres) 
-#			#roznica = 'roznica' # to usunąć
-#			
-#			if roznica != nil
-#				@out += "*** #{strona.adres}  #{md5(strona.adres)}  ***\n" + roznica + "\n\n"
-#			end
-#		}
-#		
-#	end
 	def of
+		#headers['Content-type'] = 'text/xml'
 		@out = ''
 		user = User.find(params[:id])
-		#headers['Content-type'] = 'text/xml'
 		user.obserwowane.split.each { |adres_hash|
 			rekord = Address.find(:first, :conditions => "klucz = '#{adres_hash}'") 
+			
 			if DateTime.now > (DateTime.parse(rekord.data_spr.to_s) + (1.0 / 24 /60) )
 				roznica = sprawdz_aktualizacje(rekord.adres) 
 				if roznica != nil
