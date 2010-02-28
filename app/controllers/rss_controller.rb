@@ -5,6 +5,7 @@ def md5(var)
 end
 
 def pobierz(adres)
+	Address.update(md5(adres), :data_spr => Time.new )
 	return Curl::Easy.perform(adres).body_str
 end
 
@@ -101,7 +102,6 @@ def sprawdz_aktualizacje(adres)
 	if roznica == nil  # nie ma nic nowego
 		return nil
 	else
-#		Address.update(md5(adres), :data_mod => Time.new )
 		old_komunikaty = Address.find(md5(adres)).komunikaty
 		Address.update(md5(adres), :komunikaty => old_komunikaty + " " + Message.create( :tresc => roznica, :data => Time.now).id.to_s)
 		zapisz(adres, pobrana)
@@ -111,29 +111,40 @@ end
 
 class RssController < ApplicationController
 	def of
-		headers['Content-type'] = 'text/xml'
+		#headers['Content-type'] = 'text/xml'
+		@tablica = []
 		@out = ''
 		user = User.find(params[:id])
 		user.obserwowane.split.each { |adres_hash|
 			rekord = Address.find(:first, :conditions => "klucz = '#{adres_hash}'") 
-			
-			if DateTime.now > (DateTime.parse(rekord.data_spr.to_s) + (1.0 / 24 /60) )
-				roznica = sprawdz_aktualizacje(rekord.adres) 
+				if DateTime.now > (DateTime.parse(rekord.data_spr.to_s) + (1.0 / 24 / 60 / 4) ) and rekord.blokada == false
+				rekord.blokada = true
+				rekord.save
+				roznica = sprawdz_aktualizacje(rekord.adres)
+				rekord.blokada = false
+				rekord.save
 				if roznica != nil
-					@out += "*** #{rekord.adres}  #{md5(rekord.adres)}  ***\n" + roznica + "\n\n"
+					@out += "Roznica: #{rekord.adres}  #{md5(rekord.adres)}  ***\n" + roznica + "\n\n"
 				else 
-					@out += "*** #{rekord.adres}  #{md5(rekord.adres)}  ***\n brak roznic \n\n"
+					@out += "Roznica: #{rekord.adres}  #{md5(rekord.adres)}  ***\n brak roznic \n\n"
 				end
 			elsif
 				@out += "*** #{rekord.adres}  #{md5(rekord.adres)}  ***\n brak roznic bo za wczesnie sprawdzasz \n\n"
 			end
+			komunikaty = rekord.komunikaty
+			if !(komunikaty.nil?) 
+				komunikaty.split.each { |komunikat_id|
+					komunikat = Message.find(:first, :conditions => "id = '#{komunikat_id}'") 
+					@out += "Komunikat: #{komunikat.id} o #{komunikat.data} \n\n"
+					opis = rekord.adres
+					if(!rekord.opis.nil? and rekord.opis != '')
+						opis = rekord.opis
+					end 
+					@tablica << {:adres => rekord.adres, :opis => opis, :data_mod => komunikat.data.rfc2822, :komunikat => komunikat.tresc}
+				}
+			end
+			
 		}
-		
-		@tablica = [
-			{:adres => "www.wp.pl", :opis => "WP", :data_mod => Time.now.rfc2822, :komunikat => "Dodano <b>stronę</b>"},
-			{:adres => "www.onet.pl", :opis => "Onet", :data_mod => Time.now.rfc2822, :komunikat => "Dodano stronę"},
-			{:adres => "im.pwr.wroc.pl", :opis => "IM", :data_mod => Time.now.rfc2822, :komunikat => "Dodano stronę"}
-		]
 	end
 end
 

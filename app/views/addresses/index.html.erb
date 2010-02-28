@@ -8,6 +8,7 @@
     <th>Data spr</th>
     <th>Opis</th>
     <th>Komunikaty</th>
+    <th>Blokada</th>
   </tr>
 
 <% @addresses.each do |address| %>
@@ -18,6 +19,7 @@
     <td><%=h address.data_spr %></td>
     <td><%=h address.opis %></td>
     <td><%=h address.komunikaty %></td>
+    <td><%=h address.blokada %></td> 
     <td><%= link_to 'Show', address %></td>
     <td><%= link_to 'Edit', edit_address_path(address) %></td>
     <td><%= link_to 'Destroy', address, :confirm => 'Are you sure?', :method => :delete %></td>
