@@ -61,8 +61,8 @@ end
 
 def znajdz_roznice(pobrana, pamietana)
 	if (md5(pobrana) != md5(pamietana))
-		pos_body = pobrana =~ /<body>/
-		pobrana.slice!(0..pos_body)
+		pos_body = pobrana =~ /<body[^>]*>/i
+		pobrana.slice!(0..pos_body) if pos_body != nil
 		pobrana.gsub!(/(\s){2,}/, " ")
 		acceptable_tags = "b|u|i|strong|cite|em"
 		# obcięcie tagów
