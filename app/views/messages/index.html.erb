@@ -8,6 +8,7 @@
 
 <% @messages.each do |message| %>
   <tr>
+    <td><%= message.id %></td>
     <td><%=h message.tresc %></td>
     <td><%=h message.data %></td>
     <td><%= link_to 'Show', message %></td>
