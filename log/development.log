@@ -47821,3 +47821,321 @@ ActionController::RoutingError (No route matches "/favicon.ico" with {:method=>:
   
 
 Rendering rescues/layout (not_found)
+
+
+Processing RssController#index (for 192.168.2.5 at 2010-05-03 21:27:14) [GET]
+Rendering rss/index
+Completed in 49ms (View: 47, DB: 0) | 200 OK [http://192.168.2.5/]
+
+
+Processing RssController#of (for 192.168.2.5 at 2010-05-03 21:27:23) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.5ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;36;1mAddress Update (19.5ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-05-01 17:42:14', "blokada" = 't', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "komunikaty" = '', "data_mod" = '2010-02-25 17:21:00' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;36;1mAddress Update (0.3ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-05-03 19:27:23', "blokada" = 't', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "komunikaty" = '', "data_mod" = '2010-02-25 17:21:00' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;36;1mAddress Update (0.2ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-05-03 19:27:23', "blokada" = 'f', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "komunikaty" = '', "data_mod" = '2010-02-25 17:21:00' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;36;1mAddress Update (0.3ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-05-01 17:42:15', "blokada" = 't', "opis" = 'Maciek', "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "komunikaty" = ' 27 28 29 30', "data_mod" = '2010-05-01 17:36:51' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;36;1mAddress Update (0.3ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-05-03 19:27:23', "blokada" = 't', "opis" = 'Maciek', "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "komunikaty" = ' 27 28 29 30', "data_mod" = '2010-05-01 17:36:51' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;36;1mMessage Create (11.2ms)[0m   [0;1mINSERT INTO "messages" ("data", "created_at", "tresc", "updated_at") VALUES('2010-05-03 19:27:24', '2010-05-03 19:27:24', '<del class="differ">
+ pióro </del><ins class="differ">
+ </ins>fizyka 43 22 <ins class="differ">8 </ins>100 52 53 84 88 projekty photodump koli', '2010-05-03 19:27:24')[0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;36;1mAddress Update (0.3ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-05-03 19:27:23', "blokada" = 't', "opis" = 'Maciek', "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "komunikaty" = ' 27 28 29 30 31', "data_mod" = '2010-05-03 19:27:24' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;36;1mAddress Update (0.3ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-05-03 19:27:23', "blokada" = 'f', "opis" = 'Maciek', "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "komunikaty" = ' 27 28 29 30 31', "data_mod" = '2010-05-03 19:27:24' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+  [4;35;1mMessage Load (0.3ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '27') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '28') LIMIT 1[0m
+  [4;35;1mMessage Load (0.2ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '29') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '30') LIMIT 1[0m
+Rendering rss/of
+Completed in 1085ms (View: 5, DB: 37) | 200 OK [http://192.168.2.5/rss/of/littled]
+
+
+Processing RssController#of (for 192.168.2.5 at 2010-05-03 21:27:42) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;36;1mMessage Load (0.3ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '27') LIMIT 1[0m
+  [4;35;1mMessage Load (0.3ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '28') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '29') LIMIT 1[0m
+  [4;35;1mMessage Load (0.2ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '30') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '31') LIMIT 1[0m
+Rendering rss/of
+Completed in 27ms (View: 1, DB: 2) | 200 OK [http://192.168.2.5/rss/of/littled]
+
+
+Processing ApplicationController#of (for 192.168.2.5 at 2010-05-03 21:56:30) [GET]
+  Parameters: {"id"=>"littled"}
+
+SyntaxError (/mnt/old-dane/download/src/ruby_test/kupa/Wintersnow/app/controllers/rss_controller.rb:8: syntax error, unexpected tIDENTIFIER, expecting kEND
+		f << Time.now.strftime("%y%m%d%H%M%S")+" "tresc+"\n"
+		                                               ^):
+  
+
+Rendered rescues/_trace (25.3ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 192.168.2.5 at 2010-05-03 21:56:30) [GET]
+
+ActionController::RoutingError (No route matches "/favicon.ico" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#of (for 192.168.2.5 at 2010-05-03 21:56:43) [GET]
+  Parameters: {"id"=>"littled"}
+
+NameError (undefined local variable or method `pobrana' for main:Object):
+  app/controllers/rss_controller.rb:159
+
+Rendered rescues/_trace (25.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing RssController#of (for 192.168.2.5 at 2010-05-03 21:56:58) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-05-03 19:27:23', "blokada" = 't', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "komunikaty" = '', "data_mod" = '2010-02-25 17:21:00' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-05-03 19:56:58', "blokada" = 't', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "komunikaty" = '', "data_mod" = '2010-02-25 17:21:00' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-05-03 19:56:58', "blokada" = 'f', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "komunikaty" = '', "data_mod" = '2010-02-25 17:21:00' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;35;1mAddress Update (0.2ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-05-03 19:27:23', "blokada" = 't', "opis" = 'Maciek', "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "komunikaty" = ' 27 28 29 30 31', "data_mod" = '2010-05-03 19:27:24' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-05-03 19:57:00', "blokada" = 't', "opis" = 'Maciek', "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "komunikaty" = ' 27 28 29 30 31', "data_mod" = '2010-05-03 19:27:24' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-05-03 19:57:00', "blokada" = 'f', "opis" = 'Maciek', "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "komunikaty" = ' 27 28 29 30 31', "data_mod" = '2010-05-03 19:27:24' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+  [4;36;1mMessage Load (0.3ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '27') LIMIT 1[0m
+  [4;35;1mMessage Load (0.2ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '28') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '29') LIMIT 1[0m
+  [4;35;1mMessage Load (0.2ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '30') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '31') LIMIT 1[0m
+Rendering rss/of
+Completed in 1978ms (View: 1, DB: 6) | 200 OK [http://192.168.2.5/rss/of/littled]
+
+
+Processing RssController#of (for 192.168.2.5 at 2010-05-03 21:57:36) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.5ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;36;1mMessage Load (0.4ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '27') LIMIT 1[0m
+  [4;35;1mMessage Load (0.3ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '28') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '29') LIMIT 1[0m
+  [4;35;1mMessage Load (0.9ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '30') LIMIT 1[0m
+  [4;36;1mMessage Load (0.6ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '31') LIMIT 1[0m
+Rendering rss/of
+Completed in 29ms (View: 2, DB: 4) | 200 OK [http://192.168.2.5/rss/of/littled]
+
+
+Processing RssController#of (for 192.168.2.5 at 2010-05-03 21:58:12) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;36;1mMessage Load (0.3ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '27') LIMIT 1[0m
+  [4;35;1mMessage Load (0.2ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '28') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '29') LIMIT 1[0m
+  [4;35;1mMessage Load (0.2ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '30') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '31') LIMIT 1[0m
+Rendering rss/of
+Completed in 26ms (View: 1, DB: 2) | 200 OK [http://192.168.2.5/rss/of/littled]
+
+
+Processing RssController#of (for 192.168.2.5 at 2010-05-03 21:58:40) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;36;1mMessage Load (0.3ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '27') LIMIT 1[0m
+  [4;35;1mMessage Load (0.3ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '28') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '29') LIMIT 1[0m
+  [4;35;1mMessage Load (0.2ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '30') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '31') LIMIT 1[0m
+Rendering rss/of
+Completed in 27ms (View: 1, DB: 2) | 200 OK [http://192.168.2.5/rss/of/littled]
+
+
+Processing RssController#of (for 192.168.2.5 at 2010-05-03 21:58:49) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;36;1mMessage Load (0.5ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '27') LIMIT 1[0m
+  [4;35;1mMessage Load (0.2ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '28') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '29') LIMIT 1[0m
+  [4;35;1mMessage Load (0.3ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '30') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '31') LIMIT 1[0m
+Rendering rss/of
+Completed in 26ms (View: 1, DB: 2) | 200 OK [http://192.168.2.5/rss/of/littled]
+
+
+Processing RssController#of (for 192.168.2.5 at 2010-05-03 21:59:08) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;36;1mMessage Load (0.4ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '27') LIMIT 1[0m
+  [4;35;1mMessage Load (0.2ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '28') LIMIT 1[0m
+  [4;36;1mMessage Load (0.3ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '29') LIMIT 1[0m
+  [4;35;1mMessage Load (0.4ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '30') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '31') LIMIT 1[0m
+Rendering rss/of
+Completed in 28ms (View: 1, DB: 3) | 200 OK [http://192.168.2.5/rss/of/littled]
+
+
+Processing RssController#of (for 192.168.2.5 at 2010-05-03 21:59:19) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;36;1mMessage Load (0.3ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '27') LIMIT 1[0m
+  [4;35;1mMessage Load (0.2ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '28') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '29') LIMIT 1[0m
+  [4;35;1mMessage Load (0.2ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '30') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '31') LIMIT 1[0m
+Rendering rss/of
+Completed in 27ms (View: 1, DB: 2) | 200 OK [http://192.168.2.5/rss/of/littled]
+
+
+Processing RssController#of (for 192.168.2.5 at 2010-05-03 21:59:26) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;36;1mMessage Load (0.3ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '27') LIMIT 1[0m
+  [4;35;1mMessage Load (0.2ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '28') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '29') LIMIT 1[0m
+  [4;35;1mMessage Load (0.2ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '30') LIMIT 1[0m
+  [4;36;1mMessage Load (0.3ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '31') LIMIT 1[0m
+Rendering rss/of
+Completed in 29ms (View: 1, DB: 2) | 200 OK [http://192.168.2.5/rss/of/littled]
+
+
+Processing RssController#of (for 192.168.2.5 at 2010-05-03 22:23:51) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-05-03 19:56:58', "blokada" = 't', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "komunikaty" = '', "data_mod" = '2010-02-25 17:21:00' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-05-03 20:23:51', "blokada" = 't', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "komunikaty" = '', "data_mod" = '2010-02-25 17:21:00' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.5ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-05-03 20:23:51', "blokada" = 'f', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "komunikaty" = '', "data_mod" = '2010-02-25 17:21:00' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.5ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-05-03 19:57:00', "blokada" = 't', "opis" = 'Maciek', "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "komunikaty" = ' 27 28 29 30 31', "data_mod" = '2010-05-03 19:27:24' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;35;1mAddress Update (0.4ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-05-03 20:23:52', "blokada" = 't', "opis" = 'Maciek', "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "komunikaty" = ' 27 28 29 30 31', "data_mod" = '2010-05-03 19:27:24' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+  [4;36;1mAddress Load (0.5ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-05-03 20:23:52', "blokada" = 'f', "opis" = 'Maciek', "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "komunikaty" = ' 27 28 29 30 31', "data_mod" = '2010-05-03 19:27:24' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+  [4;36;1mMessage Load (0.4ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '27') LIMIT 1[0m
+  [4;35;1mMessage Load (0.3ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '28') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '29') LIMIT 1[0m
+  [4;35;1mMessage Load (0.2ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '30') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '31') LIMIT 1[0m
+Rendering rss/of
+Completed in 1004ms (View: 1, DB: 7) | 200 OK [http://192.168.2.5/rss/of/littled]
+
+
+Processing RssController#of (for 192.168.2.5 at 2010-05-03 22:27:48) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.5ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-05-03 20:23:51', "blokada" = 't', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "komunikaty" = '', "data_mod" = '2010-02-25 17:21:00' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-05-03 20:27:48', "blokada" = 't', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "komunikaty" = '', "data_mod" = '2010-02-25 17:21:00' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mMessage Create (0.3ms)[0m   [0mINSERT INTO "messages" ("data", "created_at", "tresc", "updated_at") VALUES('2010-05-03 20:27:49', '2010-05-03 20:27:49', ' of /wip
+ Name Last modified Size Description Parent Directory - 01-03_0001.jpg 03-Jan-2010 18:29 300K 04_0000.jpg 11-Apr-2010 21:54 249K 04_0001.jpg 11-Apr-2010 21:56 122K 2009/ 03-Jan-2010 18:29 - bleh.jpg 21-Apr-2010 23:57 58K crazy.jpg 16-Apr-2010 01:33 89K hair.jpg 16-Apr-2010 10:31 88K <ins>style.css 25-Apr-2010 17:36 684</ins> 
+
+', '2010-05-03 20:27:49')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.4ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-05-03 20:27:48', "blokada" = 't', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "komunikaty" = ' 32', "data_mod" = '2010-05-03 20:27:49' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-05-03 20:27:48', "blokada" = 'f', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "komunikaty" = ' 32', "data_mod" = '2010-05-03 20:27:49' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-05-03 20:23:52', "blokada" = 't', "opis" = 'Maciek', "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "komunikaty" = ' 27 28 29 30 31', "data_mod" = '2010-05-03 19:27:24' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-05-03 20:27:49', "blokada" = 't', "opis" = 'Maciek', "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "komunikaty" = ' 27 28 29 30 31', "data_mod" = '2010-05-03 19:27:24' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-05-03 20:27:49', "blokada" = 'f', "opis" = 'Maciek', "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "komunikaty" = ' 27 28 29 30 31', "data_mod" = '2010-05-03 19:27:24' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+  [4;36;1mMessage Load (0.3ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '27') LIMIT 1[0m
+  [4;35;1mMessage Load (0.2ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '28') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '29') LIMIT 1[0m
+  [4;35;1mMessage Load (0.2ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '30') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '31') LIMIT 1[0m
+Rendering rss/of
+Completed in 1540ms (View: 1, DB: 8) | 200 OK [http://192.168.2.5/rss/of/littled]
+
+
+Processing RssController#of (for 192.168.2.5 at 2010-05-03 22:28:23) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = 'ab27cdf35b43599b8f1f953ee6608f74') LIMIT 1[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-05-03 20:27:48', "blokada" = 't', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "komunikaty" = ' 32', "data_mod" = '2010-05-03 20:27:49' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.2ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-05-03 20:28:23', "blokada" = 't', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "komunikaty" = ' 32', "data_mod" = '2010-05-03 20:27:49' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;35;1mAddress Update (0.3ms)[0m   [0mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:55', "created_at" = '2010-02-13 00:26:55', "data_spr" = '2010-05-03 20:28:23', "blokada" = 'f', "opis" = '', "id" = 5, "adres" = 'http://littled.vroc.pl/wip/', "komunikaty" = ' 32', "data_mod" = '2010-05-03 20:27:49' WHERE ("klucz" = 'ab27cdf35b43599b8f1f953ee6608f74')[0m
+  [4;36;1mMessage Load (0.3ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '32') LIMIT 1[0m
+  [4;35;1mAddress Load (0.3ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz = '12c5ebe285fcba74c012b85021d526a2') LIMIT 1[0m
+  [4;35;1mAddress Load (0.3ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;36;1mAddress Update (0.2ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-05-03 20:27:49', "blokada" = 't', "opis" = 'Maciek', "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "komunikaty" = ' 27 28 29 30 31', "data_mod" = '2010-05-03 19:27:24' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;36;1mAddress Update (0.3ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-05-03 20:28:24', "blokada" = 't', "opis" = 'Maciek', "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "komunikaty" = ' 27 28 29 30 31', "data_mod" = '2010-05-03 19:27:24' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;36;1mAddress Update (0.2ms)[0m   [0;1mUPDATE "addresses" SET "updated_at" = '2010-02-13 00:26:57', "created_at" = '2010-02-13 00:26:57', "data_spr" = '2010-05-03 20:28:24', "blokada" = 'f', "opis" = 'Maciek', "id" = 11, "adres" = 'http://maciek.wroclaw.pl/', "komunikaty" = ' 27 28 29 30 31', "data_mod" = '2010-05-03 19:27:24' WHERE ("klucz" = '12c5ebe285fcba74c012b85021d526a2')[0m
+  [4;35;1mMessage Load (0.3ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '27') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '28') LIMIT 1[0m
+  [4;35;1mMessage Load (0.2ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '29') LIMIT 1[0m
+  [4;36;1mMessage Load (0.2ms)[0m   [0;1mSELECT * FROM "messages" WHERE (id = '30') LIMIT 1[0m
+  [4;35;1mMessage Load (0.5ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '31') LIMIT 1[0m
+Rendering rss/of
+Completed in 638ms (View: 1, DB: 7) | 200 OK [http://192.168.2.5/rss/of/littled]

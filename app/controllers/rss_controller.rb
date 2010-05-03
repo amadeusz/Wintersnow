@@ -5,7 +5,7 @@ def md5(var)
 end
 def add_log(tresc)
 	File.open(RAILS_ROOT+'/log/log', "a") do |f|
-		f << tresc+"\n"
+		f << Time.now.strftime("[%d| %H:%M:%S] ")+tresc+"\n"
 	end
 end
 
@@ -20,19 +20,19 @@ class Strona
   def pobierz
 		Address.update(@md5key, :data_spr => Time.new )
 		@body = Curl::Easy.perform(@adres).body_str
-		add_log "[#{Time.new}] Pobrano BODY #{@adres}"
+		add_log "Pobrano BODY #{@adres}"
 	end
 	
 	def zapisz
 		File.open(RAILS_ROOT+'/db/pobrane/'+ @md5key, "w") do |f|
 			f << @body
 		end
-		add_log "[#{Time.new}] Zapisano #{@adres} jako #{@md5key}"
+		add_log "Zapisano #{@adres} jako #{@md5key}"
 	end
 
 	def sprawdz_aktualizacje
-		opoznienie = (1.0 / 24 / 60 * 15) # 15 min
-		add_log "[#{Time.new}] [*] Rozpoczynam sprawdzanie adresu #{@adres}"
+		opoznienie = (1.0 / 24 / 60 * 15) *0# 15 min
+		add_log "[*] Rozpoczynam sprawdzanie adresu #{@adres}"
 		rekord = Address.find(:first, :conditions => "klucz = '#{@md5key}'") 
 		if DateTime.now > (DateTime.parse(rekord.data_spr.to_s) + opoznienie ) 
 			if rekord.blokada == false
@@ -42,6 +42,7 @@ class Strona
 					pobierz 
 				rescue
 					add_log "!!!! Nie udało się pobrać adresu #{@adres}"
+					Address.update(@md5key, :blokada => false)
 					return
 				end
 
@@ -54,20 +55,20 @@ class Strona
 				end
 				jest_rozna, roznica = znajdz_roznice(@body, pamietana)
 				if jest_rozna == false  # nie ma nic nowego
-					add_log "[#{Time.new}] Nie znaleziono roznic w #{@adres} "
+					add_log "Nie znaleziono roznic w #{@adres} "
 				else
-					add_log "[#{Time.new}] Znaleziono roznice w #{@adres} "
+					add_log "Znaleziono roznice w #{@adres} "
 					old_komunikaty = Address.find(@md5key).komunikaty
 					Address.update(@md5key, :komunikaty => old_komunikaty + " " + Message.create( :tresc => roznica, :data => Time.now).id.to_s, :data_mod  => Time.now)
-					add_log "[#{Time.new}] Dodano komunikat związany z #{@adres} "
+					add_log "Dodano komunikat związany z #{@adres} "
 					zapisz
 				end
 				Address.update(@md5key, :blokada => false)
 			else
-				add_log "[#{Time.new}] #{@adres} jest ZABLOKOWANY!"
+				add_log "#{@adres} jest ZABLOKOWANY!"
 			end
 		else
-			add_log "[#{Time.new}] Za szybko sprawdzano #{@adres} !"
+			add_log "Za szybko sprawdzano #{@adres} !"
 		end
 	end
 end
@@ -133,11 +134,11 @@ def znajdz_roznice(pobrana, pamietana)
 		# obcięcie tagów
 		pamietana.gsub!(/<(\/)?(?!((#{acceptable_tags})(>|\s[^>]+>)))[a-zA-Z][^>]*>/, "")
 		pobrana.gsub!(/<(\/)?(?!((#{acceptable_tags})(>|\s[^>]+>)))[a-zA-Z][^>]*>/, "")
-		
-		Differ.format = :html
-		diff = Differ.diff_by_word(pobrana, pamietana)
+		zapisz_tymczasowo(pobrana,@md5key)
 
-		start = diff.to_s =~ /<(ins|del)/ 
+		diff = os_wdiff(@md5key)
+
+		start = diff.to_s =~ /<(ins|del)>/ 
 		if (start != nil) # są różnice
 			return true, skroc(diff.to_s)
 		else 
@@ -149,8 +150,33 @@ def znajdz_roznice(pobrana, pamietana)
 	end
 end
 
+def zapisz_tymczasowo(tresc, jako)
+	File.open(RAILS_ROOT+'/db/pobrane/'+ jako +"_temp", "w") do |f|
+		f << tresc
+	end
+	add_log "Zapisano plik tymczasowy : #{jako}_temp"
+end
 
+def usun_temp(file)
+	if File.exist?(file)
+		File.delete(file)
+	else
+		add_log "Blad przy usuwaniu: #{plik}"
+	end
+end
 
+def os_wdiff(md5key)
+	temp = RAILS_ROOT+'/db/pobrane/'+ md5key + "_temp"
+	pamietane = RAILS_ROOT+'/db/pobrane/'+ md5key
+	diff_file = RAILS_ROOT+'/db/pobrane/'+ md5key + "_diff"
+	system  "wdiff --start-delete=\"<del>\" --end-delete=\"</del>\" --start-insert=\"<ins>\" --end-insert=\"</ins>\" #{pamietane} #{temp} >> #{diff_file}"
+	f_diff = File.open(diff_file, 'r')   
+	tresc_diff = f_diff.read   
+	f_diff.close  
+	usun_temp(diff_file)
+	usun_temp(temp)
+	return tresc_diff
+end
 class RssController < ApplicationController
 	def of
 		headers['Content-type'] = 'text/xml'
