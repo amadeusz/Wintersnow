@@ -24,7 +24,7 @@ class AddressesController < ApplicationController
   # GET /addresses/new
   # GET /addresses/new.xml
   def new
-    @address = Address.new
+     @address = Address.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,18 +40,22 @@ class AddressesController < ApplicationController
   # POST /addresses
   # POST /addresses.xml
   def create
+  	if (params[:address][:adres] =~ /^http:\/\//) == nil
+  		params[:address][:adres] = "http://" + params[:address][:adres]
+  	end
+  	params[:address][:klucz] = Digest::MD5.hexdigest(params[:address][:adres])
+  	params[:address][:data_spr] = Time.new
+  	params[:address][:data_mod] = Time.new
+  	params[:address][:blokada] = false
     @address = Address.new(params[:address])
-
-    respond_to do |format|
-      if @address.save
-        flash[:notice] = 'Address was successfully created.'
-        format.html { redirect_to(@address) }
-        format.xml  { render :xml => @address, :status => :created, :location => @address }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @address.errors, :status => :unprocessable_entity }
-      end
-    end
+		respond_to do |format|
+			if @address.save
+				format.html { redirect_to(@address) }
+			 else
+		    format.html { render :action => "new" }
+		    format.xml  { render :xml => @address.errors, :status => :unprocessable_entity }
+		  end
+		 end
   end
 
   # PUT /addresses/1

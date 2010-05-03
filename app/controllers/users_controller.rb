@@ -36,6 +36,13 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+		if @user[:obserwowane] != ""
+			@obserwowane = Address.find(:all, :conditions => ["klucz IN (?)", @user[:obserwowane].split(/ /)])
+			@find = Address.find(:all, :conditions => ["klucz NOT IN (?)", @user[:obserwowane].split(/ /)])
+		else 
+			@obserwowane = []
+			@find = Address.find(:all)
+		end
   end
 
   # POST /users
@@ -59,10 +66,15 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
-
+		@filtry = params[:filters]
+		if @filtry != nil
+			params[:user][:obserwowane] = @filtry.join(" ")
+		else
+			params[:user][:obserwowane] = ""
+		end
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        flash[:notice] = 'User was successfully updated.'
+        #flash[:notice] = 'User was successfully updated.'
         format.html { redirect_to(@user) }
         format.xml  { head :ok }
       else

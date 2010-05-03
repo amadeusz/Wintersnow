@@ -48139,3 +48139,1502 @@ Processing RssController#of (for 192.168.2.5 at 2010-05-03 22:28:23) [GET]
   [4;35;1mMessage Load (0.5ms)[0m   [0mSELECT * FROM "messages" WHERE (id = '31') LIMIT 1[0m
 Rendering rss/of
 Completed in 638ms (View: 1, DB: 7) | 200 OK [http://192.168.2.5/rss/of/littled]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-03 22:52:18) [GET]
+  [4;36;1mAddress Load (1.7ms)[0m   [0;1mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 281ms (View: 200, DB: 2) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing ApplicationController#index (for 192.168.2.5 at 2010-05-03 22:52:18) [GET]
+
+ActionController::RoutingError (No route matches "/favicon.ico" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-03 22:52:21) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+
+ActionView::TemplateError (Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id) on line #3 of app/views/addresses/new.html.erb:
+1: <h1>Dodaj adres</h1>
+2: 
+3: <% form_for(@address) do |f| %>
+4:   <%= f.error_messages %>
+5: 
+6:   <p>
+
+    app/views/addresses/new.html.erb:3
+    app/controllers/addresses_controller.rb:29:in `new'
+
+Rendered rescues/_trace (36.5ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 192.168.2.5 at 2010-05-03 22:52:21) [GET]
+
+ActionController::RoutingError (No route matches "/favicon.ico" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 192.168.2.5 at 2010-05-03 22:52:21) [GET]
+
+ActionController::RoutingError (No route matches "/favicon.ico" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-03 22:53:19) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 70ms (View: 5, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing AddressesController#create (for 192.168.2.5 at 2010-05-03 22:53:24) [POST]
+  Parameters: {"address"=>{"opis"=>"das", "adres"=>"dsa"}, "commit"=>"Create", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y="}
+
+ActionView::MissingTemplate (Missing template addresses/create.erb in view path app/views):
+  
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-03 22:53:57) [GET]
+  [4;35;1mAddress Load (1.3ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 45ms (View: 35, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-03 22:54:11) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 14ms (View: 4, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing AddressesController#create (for 192.168.2.5 at 2010-05-03 22:54:14) [POST]
+  Parameters: {"address"=>{"opis"=>"gdf", "adres"=>"gfd"}, "commit"=>"Create", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y="}
+
+NoMethodError (undefined method `call' for nil:NilClass):
+  app/controllers/addresses_controller.rb:44:in `create'
+
+Rendered rescues/_trace (26.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-03 22:54:40) [GET]
+  [4;36;1mAddress Load (1.3ms)[0m   [0;1mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 96ms (View: 89, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-03 23:00:05) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 12ms (View: 5, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing AddressesController#create (for 192.168.2.5 at 2010-05-03 23:00:08) [POST]
+  Parameters: {"address"=>{"opis"=>"ads", "adres"=>"asd"}, "commit"=>"Create", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y="}
+
+ActionController::ActionControllerError (Cannot redirect to nil!):
+  app/controllers/addresses_controller.rb:46
+  app/controllers/addresses_controller.rb:45:in `create'
+
+Rendered rescues/_trace (30.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-03 23:00:12) [GET]
+  [4;35;1mAddress Load (1.3ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 42ms (View: 33, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#show (for 192.168.2.5 at 2010-05-03 23:00:26) [GET]
+  Parameters: {"id"=>"0c5c16bb65a3c98ab0294d72690359ae"}
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='0c5c16bb65a3c98ab0294d72690359ae')) [0m
+Rendering template within layouts/addresses
+Rendering addresses/show
+Completed in 15ms (View: 7, DB: 0) | 200 OK [http://192.168.2.5/addresses/0c5c16bb65a3c98ab0294d72690359ae]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-03 23:01:23) [GET]
+  [4;35;1mAddress Load (1.4ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 39ms (View: 32, DB: 1) | 200 OK [http://192.168.2.5/addresses/]
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-03 23:02:52) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 12ms (View: 5, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing AddressesController#destroy (for 192.168.2.5 at 2010-05-03 23:02:57) [DELETE]
+  Parameters: {"authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"715e91ed9dbb69be8f9da55d9f1683ef"}
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='715e91ed9dbb69be8f9da55d9f1683ef')) [0m
+  [4;35;1mAddress Destroy (0.4ms)[0m   [0mDELETE FROM "addresses" WHERE ("klucz" = '715e91ed9dbb69be8f9da55d9f1683ef')[0m
+Redirected to http://192.168.2.5:3000/addresses
+Completed in 32ms (DB: 1) | 302 Found [http://192.168.2.5/addresses/715e91ed9dbb69be8f9da55d9f1683ef]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-03 23:02:57) [GET]
+  [4;36;1mAddress Load (1.2ms)[0m   [0;1mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 35ms (View: 28, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-03 23:02:59) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 12ms (View: 4, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing AddressesController#create (for 192.168.2.5 at 2010-05-03 23:03:11) [POST]
+  Parameters: {"address"=>{"opis"=>"", "adres"=>"http://google.pl/"}, "commit"=>"Create", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y="}
+
+ActionController::ActionControllerError (Cannot redirect to nil!):
+  app/controllers/addresses_controller.rb:49
+  app/controllers/addresses_controller.rb:48:in `create'
+
+Rendered rescues/_trace (85.0ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-03 23:03:30) [GET]
+  [4;35;1mAddress Load (1.2ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 40ms (View: 31, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-03 23:03:50) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 12ms (View: 5, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing AddressesController#create (for 192.168.2.5 at 2010-05-03 23:03:59) [POST]
+  Parameters: {"address"=>{"opis"=>"bum", "adres"=>"http://google.pl/ "}, "commit"=>"Create", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y="}
+Redirected to http://192.168.2.5:3000/addresses
+Completed in 12ms (DB: 0) | 302 Found [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-03 23:03:59) [GET]
+  [4;36;1mAddress Load (1.2ms)[0m   [0;1mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 39ms (View: 31, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-03 23:04:06) [GET]
+  [4;35;1mAddress Load (1.2ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 95ms (View: 87, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-03 23:04:14) [GET]
+  [4;36;1mAddress Load (1.5ms)[0m   [0;1mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 38ms (View: 30, DB: 2) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-03 23:05:35) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 12ms (View: 4, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-03 23:05:55) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+
+ActionView::TemplateError (undefined local variable or method `addresses_add_path' for #<ActionView::Base:0xb56c93b8>) on line #19 of app/views/addresses/new.html.erb:
+16:   </p>
+17: <% end %>
+18: 
+19: <%= link_to 'Back', addresses_add_path %>
+
+    app/views/addresses/new.html.erb:19
+    app/controllers/addresses_controller.rb:29:in `new'
+
+Rendered rescues/_trace (37.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-03 23:06:12) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+
+ActionView::TemplateError (undefined local variable or method `address_add_path' for #<ActionView::Base:0xb57fd5e0>) on line #19 of app/views/addresses/new.html.erb:
+16:   </p>
+17: <% end %>
+18: 
+19: <%= link_to 'Back', address_add_path %>
+
+    app/views/addresses/new.html.erb:19
+    app/controllers/addresses_controller.rb:29:in `new'
+
+Rendered rescues/_trace (34.2ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-03 23:08:31) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 16ms (View: 9, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing ApplicationController#index (for 192.168.2.5 at 2010-05-03 23:08:34) [GET]
+
+ActionController::RoutingError (No route matches "/adresses/add" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-03 23:08:52) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 17ms (View: 9, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing ApplicationController#index (for 192.168.2.5 at 2010-05-03 23:08:53) [GET]
+
+ActionController::RoutingError (No route matches "/adresses/new" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-03 23:09:11) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 16ms (View: 9, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing AddressesController#create (for 192.168.2.5 at 2010-05-03 23:09:13) [POST]
+  Parameters: {"address"=>{"opis"=>"", "adres"=>""}, "commit"=>"Create", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y="}
+Redirected to http://192.168.2.5:3000/addresses
+Completed in 10ms (DB: 0) | 302 Found [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-03 23:09:13) [GET]
+  [4;35;1mAddress Load (1.2ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 36ms (View: 28, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-03 23:09:17) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 15ms (View: 6, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-03 23:09:18) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 12ms (View: 5, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing ApplicationController#index (for 192.168.2.5 at 2010-05-03 23:12:47) [GET]
+
+SyntaxError (/mnt/old-dane/download/src/ruby_test/kupa/Wintersnow/app/controllers/addresses_controller.rb:85: syntax error, unexpected $end, expecting kEND):
+  
+
+Rendered rescues/_trace (74.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-03 23:13:13) [GET]
+  [4;36;1mAddress Load (1.2ms)[0m   [0;1mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 36ms (View: 28, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-03 23:13:15) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 16ms (View: 9, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing AddressesController#create (for 192.168.2.5 at 2010-05-03 23:13:32) [POST]
+  Parameters: {"address"=>{"opis"=>"gugl", "adres"=>"http://google.pl/"}, "commit"=>"Create", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y="}
+  [4;35;1mAddress Create (0.3ms)[0m   [0mINSERT INTO "addresses" ("data_spr", "created_at", "data_mod", "opis", "updated_at", "blokada", "id", "komunikaty", "adres", "klucz") VALUES ('2010-05-03 21:13:32', NULL, '2010-05-03 21:13:32', 'gugl', NULL, 'f', NULL, NULL, 'http://google.pl/', '6e1993e645d21bed0853bdaa1f1944bb')[0m
+Redirected to http://192.168.2.5:3000/addresses/6e1993e645d21bed0853bdaa1f1944bb
+Completed in 27ms (DB: 0) | 302 Found [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#show (for 192.168.2.5 at 2010-05-03 23:13:32) [GET]
+  Parameters: {"id"=>"6e1993e645d21bed0853bdaa1f1944bb"}
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='6e1993e645d21bed0853bdaa1f1944bb')) [0m
+Rendering template within layouts/addresses
+Rendering addresses/show
+Completed in 11ms (View: 3, DB: 0) | 200 OK [http://192.168.2.5/addresses/6e1993e645d21bed0853bdaa1f1944bb]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-03 23:13:44) [GET]
+  [4;35;1mAddress Load (1.3ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 39ms (View: 31, DB: 1) | 200 OK [http://192.168.2.5/addresses/]
+
+
+Processing UsersController#index (for 192.168.2.5 at 2010-05-03 23:25:55) [GET]
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 39ms (View: 32, DB: 1) | 200 OK [http://192.168.2.5/users]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:25:58) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+
+ActionView::TemplateError (undefined method `each' for #<ActionView::Base:0xb576d558>) on line #15 of app/views/users/edit.html.erb:
+12:     <%= f.text_area :obserwowane %>
+13:   </p>
+14:   <div style="color:red">
+15:   <% each(@find) do |find_item| %>
+16: 		<p> <%= find_item.to_yaml %></p>
+17: 	<% end %>
+18:   
+
+    app/views/users/edit.html.erb:15
+    app/views/users/edit.html.erb:3
+
+Rendered rescues/_trace (34.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:26:20) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.each) on line #15 of app/views/users/edit.html.erb:
+12:     <%= f.text_area :obserwowane %>
+13:   </p>
+14:   <div style="color:red">
+15:   <% @find.each do |find_item| %>
+16: 		<p> <%= find_item.to_yaml %></p>
+17: 	<% end %>
+18:   
+
+    app/views/users/edit.html.erb:15
+    app/views/users/edit.html.erb:3
+
+Rendered rescues/_trace (33.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:26:57) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.split):
+  app/controllers/users_controller.rb:39:in `edit'
+
+Rendered rescues/_trace (24.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:27:17) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.split):
+  app/controllers/users_controller.rb:39:in `edit'
+
+Rendered rescues/_trace (79.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:27:20) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.split):
+  app/controllers/users_controller.rb:39:in `edit'
+
+Rendered rescues/_trace (27.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:27:56) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (1.1ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz NOT IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+
+ActionView::TemplateError (undefined local variable or method `find' for #<ActionView::Base:0xb56cac2c>) on line #15 of app/views/users/edit.html.erb:
+12:     <%= f.text_area :obserwowane %>
+13:   </p>
+14:   <div style="color:red">
+15: 		<p> <%= find.to_yaml %></p> 
+16:   </div>
+17:   <p>
+18:     <%= f.submit 'Update' %>
+
+    app/views/users/edit.html.erb:15
+    app/views/users/edit.html.erb:3
+
+Rendered rescues/_trace (95.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:28:16) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (1.2ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz NOT IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 32ms (View: 19, DB: 1) | 200 OK [http://192.168.2.5/users/littled/edit]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:29:01) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (1.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz NOT IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+You might have expected an instance of ActiveRecord::Base.
+The error occurred while evaluating nil.[]) on line #16 of app/views/users/edit.html.erb:
+13:   </p>
+14:   <div style="color:red">
+15:     <% @find.each do |find_item| %>
+16: 		<p> <%= @find_item[:klucz] %></p> 
+17: 		<% end %>
+18:   </div>
+19:   <p>
+
+    app/views/users/edit.html.erb:16
+    app/views/users/edit.html.erb:15:in `each'
+    app/views/users/edit.html.erb:15
+    app/views/users/edit.html.erb:3
+
+Rendered rescues/_trace (93.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:29:25) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (1.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz NOT IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 27ms (View: 11, DB: 1) | 200 OK [http://192.168.2.5/users/littled/edit]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:30:44) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (1.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz NOT IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+
+ActionView::TemplateError (undefined method `checkbox' for #<ActionView::Helpers::FormBuilder:0xb57298d0>) on line #16 of app/views/users/edit.html.erb:
+13:   </p>
+14:   <div style="color:red">
+15:     <% @find.each do |find_item| %>
+16: 		<p> <%= f.checkbox find_item[:klucz] %> 
+17: 		<%= find_item[:adres] %> 
+18: 		</p> 
+19: 		<% end %>
+
+    app/views/users/edit.html.erb:16
+    app/views/users/edit.html.erb:15:in `each'
+    app/views/users/edit.html.erb:15
+    app/views/users/edit.html.erb:3
+
+Rendered rescues/_trace (32.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:31:25) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (1.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz NOT IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+
+ActionView::TemplateError (undefined method `0c5c16bb65a3c98ab0294d72690359ae' for #<User:0xb55c90a8>) on line #16 of app/views/users/edit.html.erb:
+13:   </p>
+14:   <div style="color:red">
+15:     <% @find.each do |find_item| %>
+16: 		<p> <%= f.check_box find_item[:klucz] %> 
+17: 		<%= find_item[:adres] %> 
+18: 		</p> 
+19: 		<% end %>
+
+    /home/littled/.gem/ruby/1.8/gems/composite_primary_keys-2.3.5.1/lib/composite_primary_keys/attribute_methods.rb:79:in `method_missing'
+    app/views/users/edit.html.erb:16
+    app/views/users/edit.html.erb:15:in `each'
+    app/views/users/edit.html.erb:15
+    app/views/users/edit.html.erb:3
+
+Rendered rescues/_trace (37.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:31:56) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (1.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz NOT IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 24ms (View: 11, DB: 1) | 200 OK [http://192.168.2.5/users/littled/edit]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:35:01) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (1.1ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz NOT IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 28ms (View: 14, DB: 1) | 200 OK [http://192.168.2.5/users/littled/edit]
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:35:06) [PUT]
+  Parameters: {"c1c3e803eedece17206c822e448b82fe"=>"1", "commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"littled", "0c5c16bb65a3c98ab0294d72690359ae"=>"1", "user"=>{"klucz"=>"littled", "obserwowane"=>"ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2"}, "3403d73f75c9babe51eab7735859e63e"=>"1"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mUser Update (0.3ms)[0m   [0mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 3, "haslo" = NULL, "obserwowane" = 'ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2' WHERE ("klucz" = 'littled')[0m
+Redirected to http://192.168.2.5:3000/users/littled
+Completed in 24ms (DB: 1) | 302 Found [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#show (for 192.168.2.5 at 2010-05-03 23:35:06) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 14ms (View: 6, DB: 0) | 200 OK [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:38:47) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (1.1ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz NOT IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 27ms (View: 14, DB: 1) | 200 OK [http://192.168.2.5/users/littled/edit]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:42:44) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (1.0ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz NOT IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 21ms (View: 8, DB: 1) | 200 OK [http://192.168.2.5/users/littled/edit]
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:42:46) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"littled", "filters"=>["c1c3e803eedece17206c822e448b82fe"], "user"=>{"klucz"=>"littled", "obserwowane"=>"ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2"}}
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+
+NoMethodError (undefined method `join!' for ["c1c3e803eedece17206c822e448b82fe"]:Array):
+  app/controllers/users_controller.rb:64:in `update'
+
+Rendered rescues/_trace (25.6ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:42:58) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"littled", "filters"=>["c1c3e803eedece17206c822e448b82fe", "340dfb8274322bc0b01947a962330cfb"], "user"=>{"klucz"=>"littled", "obserwowane"=>"ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+
+NoMethodError (undefined method `join!' for #<Array:0xb55d5f74>):
+  app/controllers/users_controller.rb:64:in `update'
+
+Rendered rescues/_trace (80.9ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:43:23) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"littled", "filters"=>["c1c3e803eedece17206c822e448b82fe", "340dfb8274322bc0b01947a962330cfb"], "user"=>{"klucz"=>"littled", "obserwowane"=>"ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2"}}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mUser Update (0.3ms)[0m   [0;1mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 3, "haslo" = NULL, "obserwowane" = 'ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2' WHERE ("klucz" = 'littled')[0m
+Redirected to http://192.168.2.5:3000/users/littled
+Completed in 24ms (DB: 1) | 302 Found [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#show (for 192.168.2.5 at 2010-05-03 23:43:23) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 10ms (View: 2, DB: 0) | 200 OK [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#index (for 192.168.2.5 at 2010-05-03 23:43:26) [GET]
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 15ms (View: 8, DB: 1) | 200 OK [http://192.168.2.5/users]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:43:29) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (1.0ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz NOT IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 36ms (View: 23, DB: 1) | 200 OK [http://192.168.2.5/users/littled/edit]
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:43:32) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"littled", "filters"=>["340dfb8274322bc0b01947a962330cfb", "8acf5bf93994aefe68403631a850589e"], "user"=>{"klucz"=>"littled", "obserwowane"=>"ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2"}}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mUser Update (0.3ms)[0m   [0;1mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 3, "haslo" = NULL, "obserwowane" = 'ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2' WHERE ("klucz" = 'littled')[0m
+Redirected to http://192.168.2.5:3000/users/littled
+Completed in 35ms (DB: 0) | 302 Found [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#show (for 192.168.2.5 at 2010-05-03 23:43:32) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 73ms (View: 3, DB: 0) | 200 OK [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:43:47) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"littled", "filters"=>["340dfb8274322bc0b01947a962330cfb", "8acf5bf93994aefe68403631a850589e"], "user"=>{"klucz"=>"littled", "obserwowane"=>"ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mUser Update (0.3ms)[0m   [0mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 3, "haslo" = NULL, "obserwowane" = 'ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2' WHERE ("klucz" = 'littled')[0m
+Redirected to http://192.168.2.5:3000/users/littled
+Completed in 25ms (DB: 1) | 302 Found [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#show (for 192.168.2.5 at 2010-05-03 23:43:47) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (1.3ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 11ms (View: 2, DB: 1) | 200 OK [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:44:25) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"littled", "filters"=>["340dfb8274322bc0b01947a962330cfb", "8acf5bf93994aefe68403631a850589e"], "user"=>{"klucz"=>"littled", "obserwowane"=>"ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2"}}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mUser Update (0.3ms)[0m   [0;1mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 3, "haslo" = NULL, "obserwowane" = 'ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2' WHERE ("klucz" = 'littled')[0m
+Redirected to http://192.168.2.5:3000/users/littled
+Completed in 23ms (DB: 0) | 302 Found [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#show (for 192.168.2.5 at 2010-05-03 23:44:25) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 10ms (View: 2, DB: 0) | 200 OK [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:46:23) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (1.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz NOT IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 21ms (View: 8, DB: 1) | 200 OK [http://192.168.2.5/users/littled/edit]
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:46:26) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"littled", "filters"=>["340dfb8274322bc0b01947a962330cfb", "8acf5bf93994aefe68403631a850589e"], "user"=>{"klucz"=>"littled", "obserwowane"=>"ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mUser Update (1.7ms)[0m   [0mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 3, "haslo" = NULL, "obserwowane" = 'ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2' WHERE ("klucz" = 'littled')[0m
+Redirected to http://192.168.2.5:3000/users/littled
+Completed in 25ms (DB: 2) | 302 Found [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#show (for 192.168.2.5 at 2010-05-03 23:46:26) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 11ms (View: 2, DB: 0) | 200 OK [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:50:02) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.6ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;35;1mAddress Load (0.9ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz NOT IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 27ms (View: 13, DB: 2) | 200 OK [http://192.168.2.5/users/littled/edit]
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:50:06) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"littled", "filters"=>["12c5ebe285fcba74c012b85021d526a2", "ab27cdf35b43599b8f1f953ee6608f74", "0c5c16bb65a3c98ab0294d72690359ae", "3403d73f75c9babe51eab7735859e63e"], "user"=>{"klucz"=>"littled"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mUser Update (0.3ms)[0m   [0mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 3, "haslo" = NULL, "obserwowane" = 'ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2' WHERE ("klucz" = 'littled')[0m
+Redirected to http://192.168.2.5:3000/users/littled
+Completed in 23ms (DB: 1) | 302 Found [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#show (for 192.168.2.5 at 2010-05-03 23:50:06) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 11ms (View: 3, DB: 0) | 200 OK [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#index (for 192.168.2.5 at 2010-05-03 23:50:09) [GET]
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 15ms (View: 8, DB: 1) | 200 OK [http://192.168.2.5/users]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:50:10) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.5ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;36;1mAddress Load (1.1ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz NOT IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 23ms (View: 8, DB: 2) | 200 OK [http://192.168.2.5/users/littled/edit]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:51:56) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.6ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;35;1mAddress Load (1.0ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz NOT IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 23ms (View: 8, DB: 2) | 200 OK [http://192.168.2.5/users/littled/edit]
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:52:01) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"littled", "filters"=>["ab27cdf35b43599b8f1f953ee6608f74"], "user"=>{"klucz"=>"littled"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 3, "haslo" = NULL, "obserwowane" = 'ab27cdf35b43599b8f1f953ee6608f74 ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2' WHERE ("klucz" = 'littled')[0m
+Redirected to http://192.168.2.5:3000/users/littled
+Completed in 75ms (DB: 1) | 302 Found [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#show (for 192.168.2.5 at 2010-05-03 23:52:01) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 11ms (View: 3, DB: 0) | 200 OK [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#index (for 192.168.2.5 at 2010-05-03 23:52:08) [GET]
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 17ms (View: 10, DB: 1) | 200 OK [http://192.168.2.5/users]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:52:09) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.5ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz IN ('ab27cdf35b43599b8f1f953ee6608f74','ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;36;1mAddress Load (0.8ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz NOT IN ('ab27cdf35b43599b8f1f953ee6608f74','ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 21ms (View: 8, DB: 2) | 200 OK [http://192.168.2.5/users/littled/edit]
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:52:16) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"littled", "filters"=>["ab27cdf35b43599b8f1f953ee6608f74"], "user"=>{"klucz"=>"littled"}}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 3, "haslo" = NULL, "obserwowane" = 'ab27cdf35b43599b8f1f953ee6608f74 ab27cdf35b43599b8f1f953ee6608f74 ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2' WHERE ("klucz" = 'littled')[0m
+Redirected to http://192.168.2.5:3000/users/littled
+Completed in 23ms (DB: 1) | 302 Found [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#show (for 192.168.2.5 at 2010-05-03 23:52:16) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 10ms (View: 2, DB: 0) | 200 OK [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:52:40) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"littled", "filters"=>["ab27cdf35b43599b8f1f953ee6608f74"], "user"=>{"klucz"=>"littled"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mUser Update (0.3ms)[0m   [0mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 3, "haslo" = NULL, "obserwowane" = 'ab27cdf35b43599b8f1f953ee6608f74' WHERE ("klucz" = 'littled')[0m
+Redirected to http://192.168.2.5:3000/users/littled
+Completed in 22ms (DB: 1) | 302 Found [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#show (for 192.168.2.5 at 2010-05-03 23:52:40) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 10ms (View: 3, DB: 0) | 200 OK [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#index (for 192.168.2.5 at 2010-05-03 23:52:42) [GET]
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 15ms (View: 8, DB: 1) | 200 OK [http://192.168.2.5/users]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:52:43) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;35;1mAddress Load (0.5ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz IN ('ab27cdf35b43599b8f1f953ee6608f74')) [0m
+  [4;36;1mAddress Load (1.0ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz NOT IN ('ab27cdf35b43599b8f1f953ee6608f74')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 23ms (View: 8, DB: 2) | 200 OK [http://192.168.2.5/users/littled/edit]
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:52:47) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"littled", "filters"=>["ab27cdf35b43599b8f1f953ee6608f74", "12c5ebe285fcba74c012b85021d526a2"], "user"=>{"klucz"=>"littled"}}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mUser Update (0.3ms)[0m   [0;1mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 3, "haslo" = NULL, "obserwowane" = 'ab27cdf35b43599b8f1f953ee6608f74 12c5ebe285fcba74c012b85021d526a2' WHERE ("klucz" = 'littled')[0m
+Redirected to http://192.168.2.5:3000/users/littled
+Completed in 29ms (DB: 0) | 302 Found [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#show (for 192.168.2.5 at 2010-05-03 23:52:47) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 10ms (View: 2, DB: 0) | 200 OK [http://192.168.2.5/users/littled]
+
+
+Processing UsersController#index (for 192.168.2.5 at 2010-05-03 23:52:49) [GET]
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 16ms (View: 9, DB: 1) | 200 OK [http://192.168.2.5/users]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:52:50) [GET]
+  Parameters: {"id"=>"littled"}
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='littled')) [0m
+  [4;36;1mAddress Load (0.5ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+  [4;35;1mAddress Load (0.8ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz NOT IN ('ab27cdf35b43599b8f1f953ee6608f74','12c5ebe285fcba74c012b85021d526a2')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 23ms (View: 8, DB: 2) | 200 OK [http://192.168.2.5/users/littled/edit]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-03 23:53:24) [GET]
+  [4;36;1mAddress Load (1.3ms)[0m   [0;1mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 103ms (View: 95, DB: 1) | 200 OK [http://192.168.2.5/addresses/]
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-03 23:53:26) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 12ms (View: 5, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-03 23:53:29) [GET]
+  [4;35;1mAddress Load (1.4ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 41ms (View: 33, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#destroy (for 192.168.2.5 at 2010-05-03 23:53:34) [DELETE]
+  Parameters: {"authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"6e1993e645d21bed0853bdaa1f1944bb"}
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='6e1993e645d21bed0853bdaa1f1944bb')) [0m
+  [4;35;1mAddress Destroy (0.2ms)[0m   [0mDELETE FROM "addresses" WHERE ("klucz" = '6e1993e645d21bed0853bdaa1f1944bb')[0m
+Redirected to http://192.168.2.5:3000/addresses
+Completed in 30ms (DB: 0) | 302 Found [http://192.168.2.5/addresses/6e1993e645d21bed0853bdaa1f1944bb]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-03 23:53:34) [GET]
+  [4;36;1mAddress Load (1.2ms)[0m   [0;1mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 39ms (View: 30, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-03 23:53:35) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 12ms (View: 5, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing AddressesController#create (for 192.168.2.5 at 2010-05-03 23:53:47) [POST]
+  Parameters: {"address"=>{"opis"=>"googl", "adres"=>"http://google.pl/"}, "commit"=>"Create", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y="}
+  [4;35;1mAddress Create (0.3ms)[0m   [0mINSERT INTO "addresses" ("data_spr", "created_at", "data_mod", "opis", "updated_at", "blokada", "id", "komunikaty", "adres", "klucz") VALUES ('2010-05-03 21:53:47', NULL, '2010-05-03 21:53:47', 'googl', NULL, 'f', NULL, NULL, 'http://google.pl/', '6e1993e645d21bed0853bdaa1f1944bb')[0m
+Redirected to http://192.168.2.5:3000/addresses/6e1993e645d21bed0853bdaa1f1944bb
+Completed in 31ms (DB: 0) | 302 Found [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#show (for 192.168.2.5 at 2010-05-03 23:53:47) [GET]
+  Parameters: {"id"=>"6e1993e645d21bed0853bdaa1f1944bb"}
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='6e1993e645d21bed0853bdaa1f1944bb')) [0m
+Rendering template within layouts/addresses
+Rendering addresses/show
+Completed in 11ms (View: 3, DB: 0) | 200 OK [http://192.168.2.5/addresses/6e1993e645d21bed0853bdaa1f1944bb]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-03 23:53:52) [GET]
+  [4;35;1mAddress Load (1.3ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 41ms (View: 33, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#edit (for 192.168.2.5 at 2010-05-03 23:54:02) [GET]
+  Parameters: {"id"=>"6e1993e645d21bed0853bdaa1f1944bb"}
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='6e1993e645d21bed0853bdaa1f1944bb')) [0m
+Rendering template within layouts/addresses
+Rendering addresses/edit
+Completed in 32ms (View: 24, DB: 0) | 200 OK [http://192.168.2.5/addresses/6e1993e645d21bed0853bdaa1f1944bb/edit]
+
+
+Processing UsersController#index (for 192.168.2.5 at 2010-05-03 23:55:04) [GET]
+  [4;36;1mUser Load (1.0ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 124ms (View: 42, DB: 1) | 200 OK [http://192.168.2.5/users]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:55:06) [GET]
+  Parameters: {"id"=>"maciek"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz IN (NULL)) [0m
+  [4;35;1mAddress Load (0.1ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz NOT IN (NULL)) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 22ms (View: 8, DB: 1) | 200 OK [http://192.168.2.5/users/maciek/edit]
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:55:10) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"maciek", "user"=>{"klucz"=>"maciek"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.join):
+  app/controllers/users_controller.rb:66:in `update'
+
+Rendered rescues/_trace (27.2ms)
+Rendered rescues/_request_and_response (46.8ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:55:24) [GET]
+  Parameters: {"id"=>"maciek"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz IN (NULL)) [0m
+  [4;35;1mAddress Load (0.1ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz NOT IN (NULL)) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 18ms (View: 5, DB: 1) | 200 OK [http://192.168.2.5/users/maciek/edit]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:58:03) [GET]
+  Parameters: {"id"=>"maciek"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+  [4;35;1mAddress Load (1.2ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 24ms (View: 9, DB: 1) | 200 OK [http://192.168.2.5/users/maciek/edit]
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:58:07) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"maciek", "filters"=>["0c5c16bb65a3c98ab0294d72690359ae", "ab27cdf35b43599b8f1f953ee6608f74", "3403d73f75c9babe51eab7735859e63e"], "user"=>{"klucz"=>"maciek"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 4, "haslo" = NULL, "obserwowane" = '0c5c16bb65a3c98ab0294d72690359ae ab27cdf35b43599b8f1f953ee6608f74 3403d73f75c9babe51eab7735859e63e' WHERE ("klucz" = 'maciek')[0m
+Redirected to http://192.168.2.5:3000/users/maciek
+Completed in 52ms (DB: 1) | 302 Found [http://192.168.2.5/users/maciek]
+
+
+Processing UsersController#show (for 192.168.2.5 at 2010-05-03 23:58:07) [GET]
+  Parameters: {"id"=>"maciek"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 13ms (View: 5, DB: 0) | 200 OK [http://192.168.2.5/users/maciek]
+
+
+Processing UsersController#index (for 192.168.2.5 at 2010-05-03 23:58:09) [GET]
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 55ms (View: 49, DB: 1) | 200 OK [http://192.168.2.5/users]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:58:10) [GET]
+  Parameters: {"id"=>"maciek"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+  [4;35;1mAddress Load (0.7ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz IN ('0c5c16bb65a3c98ab0294d72690359ae','ab27cdf35b43599b8f1f953ee6608f74','3403d73f75c9babe51eab7735859e63e')) [0m
+  [4;36;1mAddress Load (0.8ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz NOT IN ('0c5c16bb65a3c98ab0294d72690359ae','ab27cdf35b43599b8f1f953ee6608f74','3403d73f75c9babe51eab7735859e63e')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 23ms (View: 8, DB: 2) | 200 OK [http://192.168.2.5/users/maciek/edit]
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:58:13) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"maciek", "user"=>{"klucz"=>"maciek"}}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.join):
+  app/controllers/users_controller.rb:70:in `update'
+
+Rendered rescues/_trace (27.3ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#show (for 192.168.2.5 at 2010-05-03 23:59:05) [GET]
+  Parameters: {"id"=>"maciek"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 10ms (View: 3, DB: 0) | 200 OK [http://192.168.2.5/users/maciek]
+
+
+Processing UsersController#index (for 192.168.2.5 at 2010-05-03 23:59:09) [GET]
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 17ms (View: 9, DB: 1) | 200 OK [http://192.168.2.5/users]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:59:10) [GET]
+  Parameters: {"id"=>"maciek"}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+  [4;35;1mAddress Load (0.7ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz IN ('0c5c16bb65a3c98ab0294d72690359ae','ab27cdf35b43599b8f1f953ee6608f74','3403d73f75c9babe51eab7735859e63e')) [0m
+  [4;36;1mAddress Load (0.8ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz NOT IN ('0c5c16bb65a3c98ab0294d72690359ae','ab27cdf35b43599b8f1f953ee6608f74','3403d73f75c9babe51eab7735859e63e')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 22ms (View: 8, DB: 2) | 200 OK [http://192.168.2.5/users/maciek/edit]
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:59:13) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"maciek", "user"=>{"klucz"=>"maciek"}}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+  [4;36;1mUser Update (0.3ms)[0m   [0;1mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 4, "haslo" = NULL, "obserwowane" = '0c5c16bb65a3c98ab0294d72690359ae ab27cdf35b43599b8f1f953ee6608f74 3403d73f75c9babe51eab7735859e63e' WHERE ("klucz" = 'maciek')[0m
+Redirected to http://192.168.2.5:3000/users/maciek
+Completed in 32ms (DB: 1) | 302 Found [http://192.168.2.5/users/maciek]
+
+
+Processing UsersController#show (for 192.168.2.5 at 2010-05-03 23:59:13) [GET]
+  Parameters: {"id"=>"maciek"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 10ms (View: 2, DB: 0) | 200 OK [http://192.168.2.5/users/maciek]
+
+
+Processing UsersController#index (for 192.168.2.5 at 2010-05-03 23:59:15) [GET]
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 15ms (View: 9, DB: 1) | 200 OK [http://192.168.2.5/users]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:59:17) [GET]
+  Parameters: {"id"=>"maciek"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+  [4;36;1mAddress Load (0.7ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz IN ('0c5c16bb65a3c98ab0294d72690359ae','ab27cdf35b43599b8f1f953ee6608f74','3403d73f75c9babe51eab7735859e63e')) [0m
+  [4;35;1mAddress Load (1.2ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz NOT IN ('0c5c16bb65a3c98ab0294d72690359ae','ab27cdf35b43599b8f1f953ee6608f74','3403d73f75c9babe51eab7735859e63e')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 24ms (View: 9, DB: 2) | 200 OK [http://192.168.2.5/users/maciek/edit]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:59:47) [GET]
+  Parameters: {"id"=>"maciek"}
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+  [4;35;1mAddress Load (0.7ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz IN ('0c5c16bb65a3c98ab0294d72690359ae','ab27cdf35b43599b8f1f953ee6608f74','3403d73f75c9babe51eab7735859e63e')) [0m
+  [4;36;1mAddress Load (0.8ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz NOT IN ('0c5c16bb65a3c98ab0294d72690359ae','ab27cdf35b43599b8f1f953ee6608f74','3403d73f75c9babe51eab7735859e63e')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 28ms (View: 8, DB: 2) | 200 OK [http://192.168.2.5/users/maciek/edit]
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:59:52) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"maciek", "user"=>{"klucz"=>"maciek"}}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+  [4;36;1mUser Update (0.3ms)[0m   [0;1mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 4, "haslo" = NULL, "obserwowane" = '' WHERE ("klucz" = 'maciek')[0m
+Redirected to http://192.168.2.5:3000/users/maciek
+Completed in 32ms (DB: 0) | 302 Found [http://192.168.2.5/users/maciek]
+
+
+Processing UsersController#show (for 192.168.2.5 at 2010-05-03 23:59:52) [GET]
+  Parameters: {"id"=>"maciek"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 10ms (View: 2, DB: 0) | 200 OK [http://192.168.2.5/users/maciek]
+
+
+Processing UsersController#index (for 192.168.2.5 at 2010-05-03 23:59:54) [GET]
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 15ms (View: 8, DB: 1) | 200 OK [http://192.168.2.5/users]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-03 23:59:55) [GET]
+  Parameters: {"id"=>"maciek"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+  [4;36;1mAddress Load (1.1ms)[0m   [0;1mSELECT * FROM "addresses" [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 24ms (View: 11, DB: 1) | 200 OK [http://192.168.2.5/users/maciek/edit]
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-03 23:59:58) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"maciek", "filters"=>["0c5c16bb65a3c98ab0294d72690359ae", "ab27cdf35b43599b8f1f953ee6608f74", "3403d73f75c9babe51eab7735859e63e"], "user"=>{"klucz"=>"maciek"}}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+  [4;36;1mUser Update (0.3ms)[0m   [0;1mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 4, "haslo" = NULL, "obserwowane" = '0c5c16bb65a3c98ab0294d72690359ae ab27cdf35b43599b8f1f953ee6608f74 3403d73f75c9babe51eab7735859e63e' WHERE ("klucz" = 'maciek')[0m
+Redirected to http://192.168.2.5:3000/users/maciek
+Completed in 32ms (DB: 1) | 302 Found [http://192.168.2.5/users/maciek]
+
+
+Processing UsersController#show (for 192.168.2.5 at 2010-05-03 23:59:58) [GET]
+  Parameters: {"id"=>"maciek"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 11ms (View: 2, DB: 0) | 200 OK [http://192.168.2.5/users/maciek]
+
+
+Processing UsersController#index (for 192.168.2.5 at 2010-05-03 23:59:59) [GET]
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 15ms (View: 9, DB: 1) | 200 OK [http://192.168.2.5/users]
+
+
+Processing UsersController#edit (for 192.168.2.5 at 2010-05-04 00:00:00) [GET]
+  Parameters: {"id"=>"maciek"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+  [4;36;1mAddress Load (0.7ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (klucz IN ('0c5c16bb65a3c98ab0294d72690359ae','ab27cdf35b43599b8f1f953ee6608f74','3403d73f75c9babe51eab7735859e63e')) [0m
+  [4;35;1mAddress Load (0.8ms)[0m   [0mSELECT * FROM "addresses" WHERE (klucz NOT IN ('0c5c16bb65a3c98ab0294d72690359ae','ab27cdf35b43599b8f1f953ee6608f74','3403d73f75c9babe51eab7735859e63e')) [0m
+Rendering template within layouts/users
+Rendering users/edit
+Completed in 22ms (View: 8, DB: 2) | 200 OK [http://192.168.2.5/users/maciek/edit]
+
+
+Processing UsersController#update (for 192.168.2.5 at 2010-05-04 00:00:03) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"maciek", "user"=>{"klucz"=>"maciek"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+  [4;35;1mUser Update (0.3ms)[0m   [0mUPDATE "users" SET "updated_at" = NULL, "created_at" = NULL, "id" = 4, "haslo" = NULL, "obserwowane" = '' WHERE ("klucz" = 'maciek')[0m
+Redirected to http://192.168.2.5:3000/users/maciek
+Completed in 32ms (DB: 1) | 302 Found [http://192.168.2.5/users/maciek]
+
+
+Processing UsersController#show (for 192.168.2.5 at 2010-05-04 00:00:03) [GET]
+  Parameters: {"id"=>"maciek"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (("users"."klucz"='maciek')) [0m
+Rendering template within layouts/users
+Rendering users/show
+Completed in 10ms (View: 3, DB: 0) | 200 OK [http://192.168.2.5/users/maciek]
+
+
+Processing UsersController#index (for 192.168.2.5 at 2010-05-04 00:00:04) [GET]
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 15ms (View: 8, DB: 1) | 200 OK [http://192.168.2.5/users]
+
+
+Processing ApplicationController#index (for 192.168.2.5 at 2010-05-04 00:05:00) [GET]
+
+ActionController::RoutingError (No route matches "/adresses" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 192.168.2.5 at 2010-05-04 00:05:07) [GET]
+
+SyntaxError (/mnt/old-dane/download/src/ruby_test/kupa/Wintersnow/app/controllers/addresses_controller.rb:88: syntax error, unexpected $end, expecting kEND):
+  
+
+Rendered rescues/_trace (67.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-04 00:05:25) [GET]
+  [4;36;1mAddress Load (1.5ms)[0m   [0;1mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 165ms (View: 156, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#destroy (for 192.168.2.5 at 2010-05-04 00:05:29) [DELETE]
+  Parameters: {"authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"6e1993e645d21bed0853bdaa1f1944bb"}
+  [4;35;1mAddress Load (0.4ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='6e1993e645d21bed0853bdaa1f1944bb')) [0m
+  [4;36;1mAddress Destroy (0.2ms)[0m   [0;1mDELETE FROM "addresses" WHERE ("klucz" = '6e1993e645d21bed0853bdaa1f1944bb')[0m
+Redirected to http://192.168.2.5:3000/addresses
+Completed in 43ms (DB: 1) | 302 Found [http://192.168.2.5/addresses/6e1993e645d21bed0853bdaa1f1944bb]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-04 00:05:29) [GET]
+  [4;35;1mAddress Load (1.3ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 36ms (View: 28, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-04 00:05:30) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 15ms (View: 8, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing AddressesController#create (for 192.168.2.5 at 2010-05-04 00:05:41) [POST]
+  Parameters: {"address"=>{"opis"=>"googl", "adres"=>"google.pl/"}, "commit"=>"Create", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y="}
+  [4;36;1mAddress Create (0.3ms)[0m   [0;1mINSERT INTO "addresses" ("data_spr", "created_at", "data_mod", "opis", "updated_at", "blokada", "id", "komunikaty", "adres", "klucz") VALUES ('2010-05-03 22:05:41', NULL, '2010-05-03 22:05:41', 'googl', NULL, 'f', NULL, NULL, 'http://google.pl/', '6e1993e645d21bed0853bdaa1f1944bb')[0m
+Redirected to http://192.168.2.5:3000/addresses/6e1993e645d21bed0853bdaa1f1944bb
+Completed in 32ms (DB: 0) | 302 Found [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#show (for 192.168.2.5 at 2010-05-04 00:05:41) [GET]
+  Parameters: {"id"=>"6e1993e645d21bed0853bdaa1f1944bb"}
+  [4;35;1mAddress Load (0.3ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='6e1993e645d21bed0853bdaa1f1944bb')) [0m
+Rendering template within layouts/addresses
+Rendering addresses/show
+Completed in 14ms (View: 7, DB: 0) | 200 OK [http://192.168.2.5/addresses/6e1993e645d21bed0853bdaa1f1944bb]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-04 00:05:45) [GET]
+  [4;36;1mAddress Load (1.3ms)[0m   [0;1mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 91ms (View: 83, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#destroy (for 192.168.2.5 at 2010-05-04 00:05:49) [DELETE]
+  Parameters: {"authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"6e1993e645d21bed0853bdaa1f1944bb"}
+  [4;35;1mAddress Load (0.3ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='6e1993e645d21bed0853bdaa1f1944bb')) [0m
+  [4;36;1mAddress Destroy (0.2ms)[0m   [0;1mDELETE FROM "addresses" WHERE ("klucz" = '6e1993e645d21bed0853bdaa1f1944bb')[0m
+Redirected to http://192.168.2.5:3000/addresses
+Completed in 33ms (DB: 0) | 302 Found [http://192.168.2.5/addresses/6e1993e645d21bed0853bdaa1f1944bb]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-04 00:05:49) [GET]
+  [4;35;1mAddress Load (1.2ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 40ms (View: 31, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#edit (for 192.168.2.5 at 2010-05-04 00:06:01) [GET]
+  Parameters: {"id"=>"12c5ebe285fcba74c012b85021d526a2"}
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='12c5ebe285fcba74c012b85021d526a2')) [0m
+Rendering template within layouts/addresses
+Rendering addresses/edit
+Completed in 32ms (View: 24, DB: 0) | 200 OK [http://192.168.2.5/addresses/12c5ebe285fcba74c012b85021d526a2/edit]
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-04 00:06:05) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 12ms (View: 5, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing AddressesController#create (for 192.168.2.5 at 2010-05-04 00:06:18) [POST]
+  Parameters: {"address"=>{"opis"=>"gugiel", "adres"=>"http://google.pl/"}, "commit"=>"Create", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y="}
+  [4;35;1mAddress Create (0.4ms)[0m   [0mINSERT INTO "addresses" ("data_spr", "created_at", "data_mod", "opis", "updated_at", "blokada", "id", "komunikaty", "adres", "klucz") VALUES ('2010-05-03 22:06:18', NULL, '2010-05-03 22:06:18', 'gugiel', NULL, 'f', NULL, NULL, 'http://http://google.pl/', '4d9da76f736595394e2d6cff453b49b7')[0m
+Redirected to http://192.168.2.5:3000/addresses/4d9da76f736595394e2d6cff453b49b7
+Completed in 33ms (DB: 0) | 302 Found [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#show (for 192.168.2.5 at 2010-05-04 00:06:18) [GET]
+  Parameters: {"id"=>"4d9da76f736595394e2d6cff453b49b7"}
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='4d9da76f736595394e2d6cff453b49b7')) [0m
+Rendering template within layouts/addresses
+Rendering addresses/show
+Completed in 11ms (View: 3, DB: 0) | 200 OK [http://192.168.2.5/addresses/4d9da76f736595394e2d6cff453b49b7]
+
+
+Processing AddressesController#edit (for 192.168.2.5 at 2010-05-04 00:06:29) [GET]
+  Parameters: {"id"=>"4d9da76f736595394e2d6cff453b49b7"}
+  [4;35;1mAddress Load (0.3ms)[0m   [0mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='4d9da76f736595394e2d6cff453b49b7')) [0m
+Rendering template within layouts/addresses
+Rendering addresses/edit
+Completed in 29ms (View: 21, DB: 0) | 200 OK [http://192.168.2.5/addresses/4d9da76f736595394e2d6cff453b49b7/edit]
+
+
+Processing AddressesController#update (for 192.168.2.5 at 2010-05-04 00:06:35) [PUT]
+  Parameters: {"address"=>{"data_spr(1i)"=>"2010", "data_spr(2i)"=>"5", "opis"=>"gugiel", "data_spr(3i)"=>"3", "data_mod(1i)"=>"2010", "klucz"=>"4d9da76f736595394e2d6cff453b49b7", "data_spr(4i)"=>"22", "data_mod(2i)"=>"5", "blokada"=>"0", "data_spr(5i)"=>"06", "data_mod(3i)"=>"3", "data_mod(4i)"=>"22", "komunikaty"=>"", "data_mod(5i)"=>"06", "adres"=>"http://google.pl/"}, "commit"=>"Update", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"4d9da76f736595394e2d6cff453b49b7"}
+  [4;36;1mAddress Load (0.6ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='4d9da76f736595394e2d6cff453b49b7')) [0m
+  [4;35;1mAddress Update (0.4ms)[0m   [0mUPDATE "addresses" SET "updated_at" = NULL, "created_at" = NULL, "data_spr" = '2010-05-03 22:06:00', "blokada" = 'f', "opis" = 'gugiel', "id" = 16, "adres" = 'http://google.pl/', "komunikaty" = '', "data_mod" = '2010-05-03 22:06:00' WHERE ("klucz" = '4d9da76f736595394e2d6cff453b49b7')[0m
+Redirected to http://192.168.2.5:3000/addresses/4d9da76f736595394e2d6cff453b49b7
+Completed in 31ms (DB: 1) | 302 Found [http://192.168.2.5/addresses/4d9da76f736595394e2d6cff453b49b7]
+
+
+Processing AddressesController#show (for 192.168.2.5 at 2010-05-04 00:06:35) [GET]
+  Parameters: {"id"=>"4d9da76f736595394e2d6cff453b49b7"}
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='4d9da76f736595394e2d6cff453b49b7')) [0m
+Rendering template within layouts/addresses
+Rendering addresses/show
+Completed in 11ms (View: 3, DB: 0) | 200 OK [http://192.168.2.5/addresses/4d9da76f736595394e2d6cff453b49b7]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-04 00:09:35) [GET]
+  [4;35;1mAddress Load (1.3ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 41ms (View: 33, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#destroy (for 192.168.2.5 at 2010-05-04 00:09:39) [DELETE]
+  Parameters: {"authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"4d9da76f736595394e2d6cff453b49b7"}
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='4d9da76f736595394e2d6cff453b49b7')) [0m
+  [4;35;1mAddress Destroy (0.2ms)[0m   [0mDELETE FROM "addresses" WHERE ("klucz" = '4d9da76f736595394e2d6cff453b49b7')[0m
+Redirected to http://192.168.2.5:3000/addresses
+Completed in 28ms (DB: 0) | 302 Found [http://192.168.2.5/addresses/4d9da76f736595394e2d6cff453b49b7]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-04 00:09:39) [GET]
+  [4;36;1mAddress Load (1.2ms)[0m   [0;1mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 35ms (View: 28, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-04 00:09:42) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 12ms (View: 5, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing AddressesController#create (for 192.168.2.5 at 2010-05-04 00:09:47) [POST]
+  Parameters: {"address"=>{"opis"=>"dsaf", "adres"=>"http://google.pl/"}, "commit"=>"Create", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y="}
+  [4;35;1mAddress Create (0.3ms)[0m   [0mINSERT INTO "addresses" ("data_spr", "created_at", "data_mod", "opis", "updated_at", "blokada", "id", "komunikaty", "adres", "klucz") VALUES ('2010-05-03 22:09:47', NULL, '2010-05-03 22:09:47', 'dsaf', NULL, 'f', NULL, NULL, 'http://google.pl/', '6e1993e645d21bed0853bdaa1f1944bb')[0m
+Redirected to http://192.168.2.5:3000/addresses/6e1993e645d21bed0853bdaa1f1944bb
+Completed in 32ms (DB: 0) | 302 Found [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#show (for 192.168.2.5 at 2010-05-04 00:09:47) [GET]
+  Parameters: {"id"=>"6e1993e645d21bed0853bdaa1f1944bb"}
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='6e1993e645d21bed0853bdaa1f1944bb')) [0m
+Rendering template within layouts/addresses
+Rendering addresses/show
+Completed in 12ms (View: 3, DB: 0) | 200 OK [http://192.168.2.5/addresses/6e1993e645d21bed0853bdaa1f1944bb]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-04 00:09:49) [GET]
+  [4;35;1mAddress Load (1.3ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 39ms (View: 31, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#destroy (for 192.168.2.5 at 2010-05-04 00:09:51) [DELETE]
+  Parameters: {"authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"6e1993e645d21bed0853bdaa1f1944bb"}
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='6e1993e645d21bed0853bdaa1f1944bb')) [0m
+  [4;35;1mAddress Destroy (0.2ms)[0m   [0mDELETE FROM "addresses" WHERE ("klucz" = '6e1993e645d21bed0853bdaa1f1944bb')[0m
+Redirected to http://192.168.2.5:3000/addresses
+Completed in 41ms (DB: 0) | 302 Found [http://192.168.2.5/addresses/6e1993e645d21bed0853bdaa1f1944bb]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-04 00:09:51) [GET]
+  [4;36;1mAddress Load (1.2ms)[0m   [0;1mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 40ms (View: 31, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#new (for 192.168.2.5 at 2010-05-04 00:09:53) [GET]
+Rendering template within layouts/addresses
+Rendering addresses/new
+Completed in 66ms (View: 5, DB: 0) | 200 OK [http://192.168.2.5/addresses/new]
+
+
+Processing AddressesController#create (for 192.168.2.5 at 2010-05-04 00:09:57) [POST]
+  Parameters: {"address"=>{"opis"=>"sdf", "adres"=>"gds.fd"}, "commit"=>"Create", "authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y="}
+  [4;35;1mAddress Create (0.4ms)[0m   [0mINSERT INTO "addresses" ("data_spr", "created_at", "data_mod", "opis", "updated_at", "blokada", "id", "komunikaty", "adres", "klucz") VALUES ('2010-05-03 22:09:57', NULL, '2010-05-03 22:09:57', 'sdf', NULL, 'f', NULL, NULL, 'http://gds.fd', '69764e084db4d70fe2ee7b043f00704d')[0m
+Redirected to http://192.168.2.5:3000/addresses/69764e084db4d70fe2ee7b043f00704d
+Completed in 34ms (DB: 0) | 302 Found [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#show (for 192.168.2.5 at 2010-05-04 00:09:57) [GET]
+  Parameters: {"id"=>"69764e084db4d70fe2ee7b043f00704d"}
+  [4;36;1mAddress Load (0.4ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='69764e084db4d70fe2ee7b043f00704d')) [0m
+Rendering template within layouts/addresses
+Rendering addresses/show
+Completed in 13ms (View: 3, DB: 0) | 200 OK [http://192.168.2.5/addresses/69764e084db4d70fe2ee7b043f00704d]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-04 00:10:04) [GET]
+  [4;35;1mAddress Load (1.3ms)[0m   [0mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 42ms (View: 32, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing AddressesController#destroy (for 192.168.2.5 at 2010-05-04 00:10:08) [DELETE]
+  Parameters: {"authenticity_token"=>"hUg843z+11KEaOAulsdynyxjTJKnI4LXb/BI3HhM++Y=", "id"=>"69764e084db4d70fe2ee7b043f00704d"}
+  [4;36;1mAddress Load (0.3ms)[0m   [0;1mSELECT * FROM "addresses" WHERE (("addresses"."klucz"='69764e084db4d70fe2ee7b043f00704d')) [0m
+  [4;35;1mAddress Destroy (0.2ms)[0m   [0mDELETE FROM "addresses" WHERE ("klucz" = '69764e084db4d70fe2ee7b043f00704d')[0m
+Redirected to http://192.168.2.5:3000/addresses
+Completed in 29ms (DB: 0) | 302 Found [http://192.168.2.5/addresses/69764e084db4d70fe2ee7b043f00704d]
+
+
+Processing AddressesController#index (for 192.168.2.5 at 2010-05-04 00:10:08) [GET]
+  [4;36;1mAddress Load (1.3ms)[0m   [0;1mSELECT * FROM "addresses" [0m
+Rendering template within layouts/addresses
+Rendering addresses/index
+Completed in 35ms (View: 28, DB: 1) | 200 OK [http://192.168.2.5/addresses]
