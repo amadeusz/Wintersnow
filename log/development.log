@@ -49638,3 +49638,13 @@ Processing AddressesController#index (for 192.168.2.5 at 2010-05-04 00:10:08) [G
 Rendering template within layouts/addresses
 Rendering addresses/index
 Completed in 35ms (View: 28, DB: 1) | 200 OK [http://192.168.2.5/addresses]
+
+
+Processing RssController#index (for 127.0.0.1 at 2010-07-12 18:22:01) [GET]
+Rendering rss/index
+Completed in 34ms (View: 28, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing RssController#index (for 127.0.0.1 at 2010-07-12 18:22:22) [GET]
+Rendering rss/index
+Completed in 8ms (View: 2, DB: 0) | 200 OK [http://localhost/]
