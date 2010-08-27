@@ -7,20 +7,19 @@
     <%= f.label :klucz %><br />
     <%= f.text_field :klucz %>
   </p>
+  
   <div style="color:blue">
     <% @obserwowane.each do |find_item| %>
-		<p> <%= check_box_tag 'filters[]',find_item[:klucz], true %> 
-		<%= find_item[:adres] %> 
-		</p> 
+		<label><%= check_box_tag 'filters[]', find_item[:klucz], true %> <%= find_item[:adres] %> </label>
 		<% end %>
   </div>
+  
   <div style="color:cyan">
     <% @find.each do |find_item| %>
-		<p> <%= check_box_tag 'filters[]',find_item[:klucz] %> 
-		<%= find_item[:adres] %> 
-		</p> 
+		<label><%= check_box_tag 'filters[]', find_item[:klucz] %> <%= find_item[:adres] %> </label>
 		<% end %>
   </div>
+  
   <p>
     <%= f.submit 'Update' %>
   </p>

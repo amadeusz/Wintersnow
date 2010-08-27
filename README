@@ -1,0 +1,37 @@
+Piotrek: miałem taki pomysl
+Piotrek: by po ściągnięciu sprawdzał typ pliku
+Piotrek: i txt/html dostawałby diffa
+Piotrek: a binarne dostawałyby tylko porównanie md5
+Piotrek: druga sprawa to dodanie regexpów do wpisów z adresami
+Piotrek: wtedy, gdy na jednej stronie byłoby kilka grup, możnaby śledzić jedną
+Piotrek: to w sumie taka opcja dla PRO, ale przewidujemy przecież bazę gotowców
+Piotrek: binarne w sensie pdf
+Piotrek: ale tak jak mówiłeś - możemy trackować zmiany w czymkolwiek :P
+Piotrek: jest sens młócić procka skryptem za każdym razem?
+Piotrek: do przerabiania pdf2txt?
+Piotrek: no dobra... ale nas nie zaskoczą
+Piotrek: a robota żadna
+Piotrek: przynajmniej w moim rozwiązaniu... a właściwie twoim starym - sprawdzaniu kluczy
+Piotrek: yyy
+Piotrek: znaczy sum
+Piotrek: nie no, wywali się wszystkie tagi z tekstu
+Piotrek: i powinno być ok
+Piotrek: bo ja widzę to tak - user dostaje maila
+Piotrek: z linkiem zawierającym poprawny genotyp do wyklucia kolibra
+Piotrek: klika w linka... ludzie nie lubią przepisywać jakichś bezsensownych ciągów 
+Piotrek: user/wykluj/genotyp
+Piotrek: skrypt sprawdza czy genotyp jest w bazie poprawnych
+Piotrek: jak jest, to pokazuje userowi formularz z wyborem imienia kolibra
+Piotrek: i hasła dostępu do gniazda ;P
+Piotrek: trzeba w końcu jakoś poblokować swobodny dostęp do localhost/Users|Messages|Rss
+Piotrek: no i na końcu dopracować frontend użytkownika i jakieś przekładki dla nas
+Piotrek: znaczy trzeba będzie zmigrować kot... bazę ;)
+Piotrek: w bazie adresów będzie trzeba dodać pole regexp
+Piotrek: tak na przyszłość
+Piotrek: no zostawię ci to, bo nie chcę zepsuć ;)
+Piotrek: i jeszcze jeden pomysł
+Piotrek: obok rssa zrobić podgląd w htmlu
+Piotrek: ludzie, którzy nie lubią się z technologią będą mieli prymitywniejsze rozwiązanie
+Piotrek: zawsze to jedna strona do odwiedzenia w miejsce 10-ciu
+Piotrek: z drugiej strony łatwiej będzie debugować
+Piotrek: bo pamiętasz, że opera miała jakieś jazdy czasem z odświeżaniem kanału rss

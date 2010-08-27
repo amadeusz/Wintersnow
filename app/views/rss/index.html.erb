@@ -10,6 +10,12 @@
 </head>
 <body>
 
+<%= ActionController::Routing::possible_controllers.inspect %>
+
+<% Module.class_eval("RssController").action_methods.each do |action_method| %>
+	<%= action_method.to_s %>
+<% end %>
+
 <img src="images/koliber.png" />
 
 </body>
