@@ -32,6 +32,28 @@ class UsersController < ApplicationController
       format.xml  { render :xml => @user }
     end
   end
+  
+  
+  def wykluj
+#     @genotyp = params[:id]
+
+    valid_genotyp = "dobry"
+    if params[:id] == nil
+      @genotyp = "Podaj genotyp (i tu pole)"
+    else
+		  if params[:id] == valid_genotyp
+		    @genotyp = "dobry"
+		  else
+		    @genotyp = "zly"
+	#    @user = User.new
+	#    respond_to do |format|
+	#      format.html # new.html.erb
+	#      format.xml  { render :xml => @user }
+	#    end
+			end
+    end
+  end
+  
 
   # GET /users/1/edit
   def edit

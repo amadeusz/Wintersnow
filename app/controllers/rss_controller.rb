@@ -3,6 +3,7 @@ require 'active_record'
 def md5(var)
 	return Digest::MD5.hexdigest(var)
 end
+
 def add_log(tresc)
 	File.open(RAILS_ROOT+'/log/log', "a") do |f|
 		f << Time.now.strftime("[%d| %H:%M:%S] ")+tresc+"\n"
@@ -77,8 +78,6 @@ end
 #	Address.update(md5(adres), :data_spr => Time.new )
 #	return Curl::Easy.perform(adres).body_str
 #end
-
-
 
 def skroc(string)
 	out = ""
@@ -177,12 +176,43 @@ def os_wdiff(md5key)
 	usun_temp(temp)
 	return tresc_diff
 end
+
+def generuj_zawartosc_rss(user)
+	tablica = []
+	user.obserwowane.split.each { |adres_hash|
+		rekord = Address.find(:first, :conditions => "klucz = '#{adres_hash}'") 
+			cos = Strona.new(rekord.adres)
+#				roznica = sprawdz_aktualizacje()
+#				rekord.blokada = false
+#				rekord.save
+#				if roznica != nil
+#					@out += "Roznica: #{rekord.adres}  #{md5(rekord.adres)}  ***\n" + roznica + "\n\n"
+#				else 
+#					@out += "Roznica: #{rekord.adres}  #{md5(rekord.adres)}  ***\n brak roznic \n\n"
+#				end
+#			elsif
+#				@out += "*** #{rekord.adres}  #{md5(rekord.adres)}  ***\n brak roznic bo za wczesnie sprawdzasz \n\n"
+#			end
+		komunikaty = rekord.komunikaty
+		if !(komunikaty.nil?) 
+			komunikaty.split.each { |komunikat_id|
+				komunikat = Message.find(:first, :conditions => "id = '#{komunikat_id}'") 
+				opis = rekord.adres
+				if(!rekord.opis.nil? and rekord.opis != '')
+					opis = rekord.opis
+				end 
+				tablica << {:id => komunikat.id, :adres => rekord.adres, :opis => opis, :data_mod => komunikat.data.rfc2822, :komunikat => komunikat.tresc}
+			}
+		end
+	}
+	return tablica
+end
+
 class RssController < ApplicationController
 	def of
 		headers['Content-type'] = 'text/xml'
-		@tablica = []
-		@out = ''
-		user = User.find(params[:id])
+		tablica = []
+		out = ''
 		user.obserwowane.split.each { |adres_hash|
 			rekord = Address.find(:first, :conditions => "klucz = '#{adres_hash}'") 
 				cos = Strona.new(rekord.adres)
@@ -201,20 +231,20 @@ class RssController < ApplicationController
 			if !(komunikaty.nil?) 
 				komunikaty.split.each { |komunikat_id|
 					komunikat = Message.find(:first, :conditions => "id = '#{komunikat_id}'") 
-					@out += "Komunikat: #{komunikat.id} o #{komunikat.data} \n\n"
+					out += "Komunikat: #{komunikat.id} o #{komunikat.data} \n\n"
 					opis = rekord.adres
 					if(!rekord.opis.nil? and rekord.opis != '')
 						opis = rekord.opis
 					end 
-					@tablica << {:adres => rekord.adres, :opis => opis, :data_mod => komunikat.data.rfc2822, :komunikat => komunikat.tresc}
+					tablica << {:adres => rekord.adres, :opis => opis, :data_mod => komunikat.data.rfc2822, :komunikat => komunikat.tresc}
 				}
 			end
-			
 		}
 	end
- def test
- 		cos = Strona.new("http://maciek.wroclaw.pl/")
- 		@out = cos.body+"kupa"
- end
+	def test
+			@tablica = generuj_zawartosc_rss(User.find(params[:id])).sort! { |a,b| a[:data_mod] <=> b[:data_mod] }
+
+
+	end
 end
 
