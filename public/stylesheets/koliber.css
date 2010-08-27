@@ -1,4 +1,32 @@
 body {
+	margin: 0; padding: 0;
+	background-color: #f0fcff;
+}
+
+.nawigacja div {
+	background-color: #dde9ec;
+	text-align: center;
+	margin: 0; padding: 6px;
+}
+
+.nawigacja a {
+	margin: 0 2px; padding: 4px 16px;
+	text-decoration: none;
+}
+
+.nawigacja div a {
+	background-color: #add8e6;
+}
+
+.nawigacja span a {
+	background-color: #ffc0cb;
+}
+
+.reszta {
+	margin: 2px; padding: 2px;
+}
+
+#rss_controller {
 	margin: auto;
 	text-align: center;
 	padding: 15%;
