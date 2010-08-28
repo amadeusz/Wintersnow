@@ -7,7 +7,17 @@
 </head>
 <body>
 <ul>
-
+	<% @tablica.each do |element| %>
+		<li>
+			<p>Opis : <%= element[:opis] %></p>
+			<p>Adres : <%= element[:adres] %></p>
+			<p style="color:gray">
+				<%= element[:komunikat] %>
+			</p>
+			<p>Data mod<%= element[:data_mod] %></p>
+			<p style="font-size:70%"><%= element[:adres] +", "+ element[:data_mod] %> ID:<%= element[:id] %></p>
+		</li>
+	<% end %>
 </ul>
 </body>
 </html>

@@ -5,27 +5,31 @@ def md5(var)
 end
 
 def add_log(tresc)
-	File.open(RAILS_ROOT+'/log/log', "a") do |f|
-		f << Time.now.strftime("[%d| %H:%M:%S] ")+tresc+"\n"
+	File.open("#{RAILS_ROOT}/log/log", "a") do |f|
+		f << "#{Time.now.strftime("[%d| %H:%M:%S]")} #{tresc}\n"
 	end
 end
 
 class Strona
-  attr_accessor :adres,:body
+  attr_accessor :adres,:body,:typ
   def initialize(adres)
     @adres = adres
     @md5key = md5(adres)
     sprawdz_aktualizacje
   end
-  
+  def binarny?
+  	return (@typ =~ /html|text/) != nil
+  end
   def pobierz
 		Address.update(@md5key, :data_spr => Time.new )
-		@body = Curl::Easy.perform(@adres).body_str
+		temp = Curl::Easy.perform(@adres)
+		@body = temp.body_str
+		@typ = temp.content_type
 		add_log "Pobrano BODY #{@adres}"
 	end
 	
 	def zapisz
-		File.open(RAILS_ROOT+'/db/pobrane/'+ @md5key, "w") do |f|
+		File.open("#{RAILS_ROOT}/db/pobrane/#{@md5key}", "w") do |f|
 			f << @body
 		end
 		add_log "Zapisano #{@adres} jako #{@md5key}"
@@ -48,7 +52,7 @@ class Strona
 				end
 
 				begin
-					pamietana = File.open(RAILS_ROOT+'/db/pobrane/'+ @md5key, 'r').read
+					pamietana = File.open("#{RAILS_ROOT}/db/pobrane/#{@md5key}", 'r').read
 				rescue
 					zapisz
 					Address.update(@md5key, :blokada => false)
@@ -60,7 +64,7 @@ class Strona
 				else
 					add_log "Znaleziono roznice w #{@adres} "
 					old_komunikaty = Address.find(@md5key).komunikaty
-					Address.update(@md5key, :komunikaty => old_komunikaty + " " + Message.create( :tresc => roznica, :data => Time.now).id.to_s, :data_mod  => Time.now)
+					Address.update(@md5key, :komunikaty => "#{old_komunikaty} #{Message.create(:tresc => roznica, :data => Time.now).id.to_s}", :data_mod  => Time.now)
 					add_log "Dodano komunikat związany z #{@adres} "
 					zapisz
 				end
@@ -125,14 +129,16 @@ end
 
 def znajdz_roznice(pobrana, pamietana)
 	if (md5(pobrana) != md5(pamietana))
-		pos_body = pobrana =~ /\<[bB][oO][dD][yY][^>]*\>/i
+		pos_body = pobrana =~ /<body|BODY[A-Za-z0-9]+>/i
 		pobrana.slice!(0..pos_body-1) if pos_body != nil
 		pobrana.gsub!(/(\s){2,}/, " ")
 		pobrana.gsub!(/<script[^>]*>.*<\/script>/, "")
-		acceptable_tags = "b|u|i|strong|cite|em"
+#		acceptable_tags = "b|u|i|strong|cite|em"
 		# obcięcie tagów
-		pamietana.gsub!(/<(\/)?(?!((#{acceptable_tags})(>|\s[^>]+>)))[a-zA-Z][^>]*>/, "")
-		pobrana.gsub!(/<(\/)?(?!((#{acceptable_tags})(>|\s[^>]+>)))[a-zA-Z][^>]*>/, "")
+#		pamietana.gsub!(/<(\/)?(?!((#{acceptable_tags})(>|\s[^>]+>)))[a-zA-Z][^>]*>/, "")
+#		pobrana.gsub!(/<(\/)?(?!((#{acceptable_tags})(>|\s[^>]+>)))[a-zA-Z][^>]*>/, "")
+		pamietana.gsub!(/<(.|\n)*?>/, "")
+		pobrana.gsub!(/<(.|\n)*?>/, "")
 		zapisz_tymczasowo(pobrana,@md5key)
 
 		diff = os_wdiff(@md5key)
@@ -150,7 +156,7 @@ def znajdz_roznice(pobrana, pamietana)
 end
 
 def zapisz_tymczasowo(tresc, jako)
-	File.open(RAILS_ROOT+'/db/pobrane/'+ jako +"_temp", "w") do |f|
+	File.open("#{RAILS_ROOT}/db/pobrane/#{jako}_temp", "w") do |f|
 		f << tresc
 	end
 	add_log "Zapisano plik tymczasowy : #{jako}_temp"
@@ -165,9 +171,9 @@ def usun_temp(file)
 end
 
 def os_wdiff(md5key)
-	temp = RAILS_ROOT+'/db/pobrane/'+ md5key + "_temp"
-	pamietane = RAILS_ROOT+'/db/pobrane/'+ md5key
-	diff_file = RAILS_ROOT+'/db/pobrane/'+ md5key + "_diff"
+	temp = "#{RAILS_ROOT}/db/pobrane/#{md5key}_temp"
+	pamietane = "#{RAILS_ROOT}/db/pobrane/#{md5key}"
+	diff_file = "#{RAILS_ROOT}/db/pobrane/#{md5key}_diff"
 	system  "wdiff --start-delete=\"<del>\" --end-delete=\"</del>\" --start-insert=\"<ins>\" --end-insert=\"</ins>\" #{pamietane} #{temp} >> #{diff_file}"
 	f_diff = File.open(diff_file, 'r')   
 	tresc_diff = f_diff.read   
@@ -181,18 +187,7 @@ def generuj_zawartosc_rss(user)
 	tablica = []
 	user.obserwowane.split.each { |adres_hash|
 		rekord = Address.find(:first, :conditions => "klucz = '#{adres_hash}'") 
-			cos = Strona.new(rekord.adres)
-#				roznica = sprawdz_aktualizacje()
-#				rekord.blokada = false
-#				rekord.save
-#				if roznica != nil
-#					@out += "Roznica: #{rekord.adres}  #{md5(rekord.adres)}  ***\n" + roznica + "\n\n"
-#				else 
-#					@out += "Roznica: #{rekord.adres}  #{md5(rekord.adres)}  ***\n brak roznic \n\n"
-#				end
-#			elsif
-#				@out += "*** #{rekord.adres}  #{md5(rekord.adres)}  ***\n brak roznic bo za wczesnie sprawdzasz \n\n"
-#			end
+		cos = Strona.new(rekord.adres)
 		komunikaty = rekord.komunikaty
 		if !(komunikaty.nil?) 
 			komunikaty.split.each { |komunikat_id|
@@ -211,40 +206,14 @@ end
 class RssController < ApplicationController
 	def of
 		headers['Content-type'] = 'text/xml'
-		tablica = []
-		out = ''
-		user.obserwowane.split.each { |adres_hash|
-			rekord = Address.find(:first, :conditions => "klucz = '#{adres_hash}'") 
-				cos = Strona.new(rekord.adres)
-#				roznica = sprawdz_aktualizacje()
-#				rekord.blokada = false
-#				rekord.save
-#				if roznica != nil
-#					@out += "Roznica: #{rekord.adres}  #{md5(rekord.adres)}  ***\n" + roznica + "\n\n"
-#				else 
-#					@out += "Roznica: #{rekord.adres}  #{md5(rekord.adres)}  ***\n brak roznic \n\n"
-#				end
-#			elsif
-#				@out += "*** #{rekord.adres}  #{md5(rekord.adres)}  ***\n brak roznic bo za wczesnie sprawdzasz \n\n"
-#			end
-			komunikaty = rekord.komunikaty
-			if !(komunikaty.nil?) 
-				komunikaty.split.each { |komunikat_id|
-					komunikat = Message.find(:first, :conditions => "id = '#{komunikat_id}'") 
-					out += "Komunikat: #{komunikat.id} o #{komunikat.data} \n\n"
-					opis = rekord.adres
-					if(!rekord.opis.nil? and rekord.opis != '')
-						opis = rekord.opis
-					end 
-					tablica << {:adres => rekord.adres, :opis => opis, :data_mod => komunikat.data.rfc2822, :komunikat => komunikat.tresc}
-				}
-			end
-		}
+		@tablica = generuj_zawartosc_rss(User.find(params[:id])).sort! { |a,b| a[:data_mod] <=> b[:data_mod] }
+	end
+	def web
+		@tablica = generuj_zawartosc_rss(User.find(params[:id])).sort! { |a,b| a[:data_mod] <=> b[:data_mod] }
 	end
 	def test
-			@tablica = generuj_zawartosc_rss(User.find(params[:id])).sort! { |a,b| a[:data_mod] <=> b[:data_mod] }
-
-
+		stronatest = Strona.new("http://littled.vroc.pl/wip/")
+		@wynik = stronatest.typ
 	end
 end
 
