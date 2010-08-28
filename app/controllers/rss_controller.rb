@@ -18,7 +18,7 @@ class Strona
     sprawdz_aktualizacje
   end
   def binarny?
-  	return (@typ =~ /html|text/) != nil
+  	return (@typ =~ /html|text/) == nil
   end
   def pobierz
 		Address.update(@md5key, :data_spr => Time.new )
@@ -58,7 +58,7 @@ class Strona
 					Address.update(@md5key, :blokada => false)
 					return nil  # nie ma kopii na dysku
 				end
-				jest_rozna, roznica = znajdz_roznice(@body, pamietana)
+				jest_rozna, roznica = porownaj_z(pamietana)
 				if jest_rozna == false  # nie ma nic nowego
 					add_log "Nie znaleziono roznic w #{@adres} "
 				else
@@ -76,7 +76,39 @@ class Strona
 			add_log "Za szybko sprawdzano #{@adres} !"
 		end
 	end
-end
+
+	def porownaj_z(pamietana)
+		if (md5(@body) != md5(pamietana))
+			if binarny?
+				return true,"Pojawiły się zmiany w pliku"
+			else
+				pos_body = @body =~ /<body|BODY[A-Za-z0-9]+>/i
+				@body.slice!(0..pos_body-1) if pos_body != nil
+				@body.gsub!(/(\s){2,}/, " ")
+				@body.gsub!(/<script[^>]*>.*<\/script>/, "")
+		#		acceptable_tags = "b|u|i|strong|cite|em"
+				# obcięcie tagów
+		#		pamietana.gsub!(/<(\/)?(?!((#{acceptable_tags})(>|\s[^>]+>)))[a-zA-Z][^>]*>/, "")
+		#		@body.gsub!(/<(\/)?(?!((#{acceptable_tags})(>|\s[^>]+>)))[a-zA-Z][^>]*>/, "")
+				pamietana.gsub!(/<(.|\n)*?>/, "")
+				@body.gsub!(/<(.|\n)*?>/, "")
+				zapisz_tymczasowo(@body,@md5key)
+
+				diff = os_wdiff(@md5key)
+
+				start = diff.to_s =~ /<(ins|del)>/ 
+				if (start != nil) # są różnice
+					return true, skroc(diff.to_s)
+				else 
+					#out = "Strona się nie zmieniła"
+					return false, nil
+				end
+			end
+		else
+			return false,nil
+		end
+	end
+end # Strona.class
 
 #def pobierz(adres)
 #	Address.update(md5(adres), :data_spr => Time.new )
@@ -127,33 +159,6 @@ def skroc(string)
 	out
 end
 
-def znajdz_roznice(pobrana, pamietana)
-	if (md5(pobrana) != md5(pamietana))
-		pos_body = pobrana =~ /<body|BODY[A-Za-z0-9]+>/i
-		pobrana.slice!(0..pos_body-1) if pos_body != nil
-		pobrana.gsub!(/(\s){2,}/, " ")
-		pobrana.gsub!(/<script[^>]*>.*<\/script>/, "")
-#		acceptable_tags = "b|u|i|strong|cite|em"
-		# obcięcie tagów
-#		pamietana.gsub!(/<(\/)?(?!((#{acceptable_tags})(>|\s[^>]+>)))[a-zA-Z][^>]*>/, "")
-#		pobrana.gsub!(/<(\/)?(?!((#{acceptable_tags})(>|\s[^>]+>)))[a-zA-Z][^>]*>/, "")
-		pamietana.gsub!(/<(.|\n)*?>/, "")
-		pobrana.gsub!(/<(.|\n)*?>/, "")
-		zapisz_tymczasowo(pobrana,@md5key)
-
-		diff = os_wdiff(@md5key)
-
-		start = diff.to_s =~ /<(ins|del)>/ 
-		if (start != nil) # są różnice
-			return true, skroc(diff.to_s)
-		else 
-			#out = "Strona się nie zmieniła"
-			return false, nil
-		end
-	else
-		return nil,nil
-	end
-end
 
 def zapisz_tymczasowo(tresc, jako)
 	File.open("#{RAILS_ROOT}/db/pobrane/#{jako}_temp", "w") do |f|
@@ -213,7 +218,7 @@ class RssController < ApplicationController
 	end
 	def test
 		stronatest = Strona.new("http://littled.vroc.pl/wip/")
-		@wynik = stronatest.typ
+		@wynik = stronatest.binarny?
 	end
 end
 
