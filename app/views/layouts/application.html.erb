@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <link href="stylesheets/koliber.css" rel="stylesheet" />
-    <link rel="alternate" type="application/rss+xml" href="rss/of/maciek" title="Hummingbird (Maciek)" />
-    <link rel="alternate" type="application/rss+xml" href="rss/of/littled" title="Hummingbird (Piotrek)" />
-    <link rel="alternate" type="application/rss+xml" href="rss/of/tomek" title="Hummingbird (Tomek)" />
-
-
-    <link rel="shortcut icon" type="image/png" href="images/favico.png" />
-    <title>Hummingbird</title>
-  </head>
-  <body>
-    <p style="color: green"><%= flash[:notice] %></p>
-    <div class="nawigacja">
-      <div>
-        <% (ActionController::Routing::possible_controllers - ["application", "rails/info", "rails_info"]).each do |controller| %>
-          <a href="<%= controller.to_s %>"><%= controller %></a>
-          <% if controller == params[:controller] %>
-          <span>
-            <% Module.class_eval((params[:controller] + "Controller").camelize).action_methods.each do |action_method| %>
-              <a href="<%= params[:controller].to_s %>/<%= action_method.to_s %>"><%= action_method.to_s %></a>
-            <% end %>
-          </span>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-    <div class="tresc">
-      <%= yield %>
-    </div>
-  </body>
+	<head>
+		<link rel="alternate" type="application/rss+xml" href="rss/of/maciek" title="Hummingbird (Maciek)" />
+		<link rel="alternate" type="application/rss+xml" href="rss/of/littled" title="Hummingbird (Piotrek)" />
+		<link rel="alternate" type="application/rss+xml" href="rss/of/tomek" title="Hummingbird (Tomek)" />
+		<link rel="shortcut icon" type="image/png" href="images/favico.png" />
+		<%= stylesheet_link_tag 'koliber' %>
+		<%= stylesheet_link_tag 'temp' %>
+		<title>Hummingbird</title>
+	</head>
+	<body>
+		<p style="color: green"><%= flash[:notice] %></p>
+		<div class="nawigacja">
+			<div>
+			<% (ActionController::Routing::possible_controllers - ["application", "rails/info", "rails_info"]).each do |kontroler| %>
+				<a href="/<%= kontroler %>"><%= kontroler %></a>
+				<% if kontroler == params[:controller] %>
+					<span>
+					<% Module.class_eval((params[:controller] + "Controller").camelize).action_methods.each do |action_method| %>
+						<a href="/<%= params[:controller].to_s %>/<%= action_method.to_s %>"><%= action_method.to_s %></a>
+					<% end %>
+					</span>
+				<% end %>
+			<% end %>
+			</div>
+		</div>
+		<div class="tresc">
+			<%= yield %>
+		</div>
+	</body>
 </html>
 
