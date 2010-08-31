@@ -30,6 +30,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
+
     end
   end
   
@@ -64,6 +65,10 @@ class UsersController < ApplicationController
 		else 
 			@obserwowane = []
 			@find = Address.find(:all)
+		end
+    respond_to do |format|
+      format.html 
+			format.js {render :layout => false}
 		end
   end
 

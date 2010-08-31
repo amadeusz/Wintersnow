@@ -25,7 +25,8 @@ class Strona
 		temp = Curl::Easy.perform(@adres)
 		@body = temp.body_str
 		@typ = temp.content_type
-		add_log "Pobrano BODY #{@adres}"
+		add_log "[#{@adres}] Pobrano BODY"
+		add_log "[#{@adres}][i] jest binarny \"#{@typ}\"" if binarny?
 	end
 	
 	def zapisz
@@ -37,7 +38,7 @@ class Strona
 
 	def sprawdz_aktualizacje
 		opoznienie = (1.0 / 24 / 60 * 15) *0# 15 min
-		add_log "[*] Rozpoczynam sprawdzanie adresu #{@adres}"
+		add_log "[#{@adres}] Rozpoczynam sprawdzanie"
 		rekord = Address.find(:first, :conditions => "klucz = '#{@md5key}'") 
 		if DateTime.now > (DateTime.parse(rekord.data_spr.to_s) + opoznienie ) 
 			if rekord.blokada == false
@@ -46,7 +47,7 @@ class Strona
 				begin
 					pobierz 
 				rescue
-					add_log "!!!! Nie udało się pobrać adresu #{@adres}"
+					add_log "[#{@adres}][!!] Nie udało się pobrać adresu"
 					Address.update(@md5key, :blokada => false)
 					return
 				end
@@ -60,20 +61,20 @@ class Strona
 				end
 				jest_rozna, roznica = porownaj_z(pamietana)
 				if jest_rozna == false  # nie ma nic nowego
-					add_log "Nie znaleziono roznic w #{@adres} "
+					add_log "[#{@adres}] Nie znaleziono roznic"
 				else
-					add_log "Znaleziono roznice w #{@adres} "
+					add_log "[#{@adres}] Znaleziono roznice"
 					old_komunikaty = Address.find(@md5key).komunikaty
 					Address.update(@md5key, :komunikaty => "#{old_komunikaty} #{Message.create(:tresc => roznica, :data => Time.now).id.to_s}", :data_mod  => Time.now)
-					add_log "Dodano komunikat związany z #{@adres} "
+					add_log "[#{@adres}] Dodano komunikat"
 					zapisz
 				end
 				Address.update(@md5key, :blokada => false)
 			else
-				add_log "#{@adres} jest ZABLOKOWANY!"
+				add_log "[#{@adres}][!!] ZABLOKOWANY!"
 			end
 		else
-			add_log "Za szybko sprawdzano #{@adres} !"
+			add_log "[#{@adres}][i] Za szybko sprawdzano ponownie."
 		end
 	end
 
@@ -214,11 +215,11 @@ class RssController < ApplicationController
 		@tablica = generuj_zawartosc_rss(User.find(params[:id])).sort! { |a,b| a[:data_mod] <=> b[:data_mod] }
 	end
 	def web
-		@tablica = generuj_zawartosc_rss(User.find(params[:id])).sort! { |a,b| a[:data_mod] <=> b[:data_mod] }
+		@tablica = generuj_zawartosc_rss(User.find(params[:id])).sort! { |a,b| Time.parse(b[:data_mod]) <=> Time.parse(a[:data_mod]) }
 	end
 	def test
-		stronatest = Strona.new("http://littled.vroc.pl/wip/")
-		@wynik = stronatest.binarny?
+#	  if session[:dupa] == 'kot'
+#	  redirect_to 'public/404.html'
 	end
 end
 

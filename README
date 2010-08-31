@@ -1,21 +1,15 @@
-Piotrek: miałem taki pomysl
-Piotrek: by po ściągnięciu sprawdzał typ pliku
-Piotrek: i txt/html dostawałby diffa
-Piotrek: a binarne dostawałyby tylko porównanie md5
-Piotrek: druga sprawa to dodanie regexpów do wpisów z adresami
-Piotrek: wtedy, gdy na jednej stronie byłoby kilka grup, możnaby śledzić jedną
-Piotrek: to w sumie taka opcja dla PRO, ale przewidujemy przecież bazę gotowców
-Piotrek: binarne w sensie pdf
-Piotrek: ale tak jak mówiłeś - możemy trackować zmiany w czymkolwiek :P
-Piotrek: jest sens młócić procka skryptem za każdym razem?
-Piotrek: do przerabiania pdf2txt?
-Piotrek: no dobra... ale nas nie zaskoczą
-Piotrek: a robota żadna
-Piotrek: przynajmniej w moim rozwiązaniu... a właściwie twoim starym - sprawdzaniu kluczy
-Piotrek: yyy
-Piotrek: znaczy sum
-Piotrek: nie no, wywali się wszystkie tagi z tekstu
-Piotrek: i powinno być ok
+DONE
+
+: by po ściągnięciu sprawdzał typ pliku
+: i txt/html dostawałby diffa
+: a binarne dostawałyby tylko porównanie md5
+
+TODO
+
+
+: dodanie regexpów do wpisów z adresami
+: w trybie web najpierw pojawia się obecna tablica komunikatów, po sprawdzeniu różnic ładuje się aktualna
+
 Piotrek: bo ja widzę to tak - user dostaje maila
 Piotrek: z linkiem zawierającym poprawny genotyp do wyklucia kolibra
 Piotrek: klika w linka... ludzie nie lubią przepisywać jakichś bezsensownych ciągów 
