@@ -1,0 +1,20 @@
+<h1>Listing genotypes</h1>
+
+<table>
+  <tr>
+    <th>Genotyp</th>
+  </tr>
+
+<% @genotypes.each do |genotype| %>
+  <tr>
+    <td><%=h genotype.genotyp %></td>
+    <td><%= link_to 'Show', genotype %></td>
+    <td><%= link_to 'Edit', edit_genotype_path(genotype) %></td>
+    <td><%= link_to 'Destroy', genotype, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New genotype', new_genotype_path %>

@@ -3,10 +3,12 @@ DONE
 : by po ściągnięciu sprawdzał typ pliku
 : i txt/html dostawałby diffa
 : a binarne dostawałyby tylko porównanie md5
+: migracja genotypów
 
 TODO
 
-
+:  hack związany z naszym grzebaniem przy kluczach (możliwe rozwiązanie?)--> http://stackoverflow.com/questions/401241/adding-an-action-to-an-existing-controller-ruby-on-rails.
+   try: .../Users/wykluj i .../users/wykluj
 : dodanie regexpów do wpisów z adresami
 : w trybie web najpierw pojawia się obecna tablica komunikatów, po sprawdzeniu różnic ładuje się aktualna
 

@@ -1,2 +1,7 @@
-<h1><%= @genotyp %></h1>
+<h1></h1>
+<% form_tag(:controller => 'Users', :action => 'wykluj') do %>
+	<%= label_tag(:q, "Genotyp:") %>
+	<%= text_field_tag(:q) %>
+	<%= submit_tag("Wykluj") %>
+<% end %> 
 

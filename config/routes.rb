@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :genotypes
+
+  map.resources :genotypes
+
   map.resources :messages
 
   map.resources :users
@@ -37,6 +41,7 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   map.root :controller => "rss"
+
 
   # See how all your routes lay out with "rake routes"
 

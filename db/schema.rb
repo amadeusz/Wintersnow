@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100228160100) do
+ActiveRecord::Schema.define(:version => 20100831162413) do
 
   create_table "addresses", :force => true do |t|
     t.string   "klucz"
@@ -24,6 +24,12 @@ ActiveRecord::Schema.define(:version => 20100228160100) do
   end
 
   add_index "addresses", ["klucz"], :name => "index_addresses_on_klucz", :unique => true
+
+  create_table "genotypes", :force => true do |t|
+    t.string   "genotyp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "messages", :force => true do |t|
     t.text     "tresc"
