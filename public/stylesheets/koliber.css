@@ -29,7 +29,8 @@ body {
 #rss_controller {
 	margin: auto;
 	text-align: center;
-	padding: 15%;
+	padding: 13%;
+	padding-bottom: 0;
 }
 
 
