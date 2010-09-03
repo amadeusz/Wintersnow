@@ -5,26 +5,38 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :klucz %><br />
+    <%= f.label "Nazwa kolibra:" %><br />
+		<% if session[:logged_as] == "admin" %>
     <%= f.text_field :klucz %>
+   	<% else %>
+   	<%= @user.klucz %>
+	  <% end %>
+
   </p>
-  
-  <div style="color:blue">
-    <% @obserwowane.each do |find_item| %>
-		<label><%= check_box_tag 'filters[]', find_item[:klucz], true %> <%= find_item[:adres] %> </label>
-		<% end %>
-  </div>
-  <div id="dodaj_adres" style="color:cyan">
+   <p>
+    <%= f.label :haslo %><br />
+    <%= f.text_field :haslo %>
+  </p>
+  <% if @obserwowane != [] %>
+		<div class="group" style="color:blue">
+		  <% @obserwowane.each do |find_item| %>
+			<label><%= check_box_tag 'filters[]', find_item[:klucz], true %> <%= find_item[:adres] %> </label>
+			<% end %>
+		</div>
+	<% end %>
+  <div id="dodaj_adres" class="group" style="color:cyan">
     <% form_tag 'dupa' do -%>
-	   <%= text_field "item", "search" %>
+	   <%= text_field "item", "filtr", :class => 'filtr' %>
     <% end -%>
+    <ul style="list-style: none;padding:0">
     <% @find.each do |find_item| %>
-		<p >
+		<li >
 			<%= check_box_tag 'filters[]', find_item[:klucz] %> 
 			<span class="opis"><%= find_item[:opis] %></span>
 			<span class="adres" style="font-size:80%"><%= find_item[:adres] %></span> 
-		</p>
+		</li>
 		<% end %>
+		</ul>
   </div>
   
   <p>

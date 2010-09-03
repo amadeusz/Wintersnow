@@ -92,3 +92,20 @@ a:hover { color: #fff; background-color:#000; }
 label {
 	display: block;
 }
+
+.filtr {border:0; background-color:white}
+.group {
+background-color:#DFEBEF;
+padding:10px 20px;
+margin-bottom: 10px;
+}
+.smaller{
+font-size:80%;
+}
+.smaller2{
+font-size:60%;
+}
+.notice{
+font-size:150%;
+text-align:center;
+}

@@ -10,7 +10,6 @@
 		<title>Hummingbird</title>
 	</head>
 	<body>
-		<p style="color: green"><%= flash[:notice] %></p>
 		<div class="nawigacja">
 			<div>
 			<% (ActionController::Routing::possible_controllers - ["application", "rails/info", "rails_info"]).each do |kontroler| %>
@@ -23,14 +22,16 @@
 					</span>
 				<% end %>
 			<% end %>
-			<% if session[:logged_as] == "admin" %>
-				<a href="/Users/logout">logout</a>
+			<% if session[:logged_as].nil? %>
+				<a href="/Users/login">login</a>
+				<a href="/Users/login_admin">admin</a>
 			<% else %>
-				<a href="/Users/login_admin">login</a>
+				<a href="/Users/logout">logout</a>
 			<% end %>
 			</div>
 		</div>
 		<div class="tresc">
+		<p class="notice" style="color: green"><%= flash[:notice] %></p>
 			<%= yield %>
 		</div>
 	</body>

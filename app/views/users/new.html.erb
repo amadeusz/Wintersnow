@@ -1,10 +1,11 @@
 
 <% form_for(@user) do |f| %>
   <%= f.error_messages %>
-
+	uzyty:<%= session[:uzyty_genotyp] %>
   <p>Teraz nazwij swojego małego kolibra:</p>
   <p><%= f.text_field :klucz %></p>
   <p>...i podaj hasło, które uchroni go przed drapieżnikami.<br />
-  <span style="font-size:80%">Dzięki hasłu dostęp do kolibra będziesz mieć tylko ty.</span></p>
+  <span class="smaller">Dzięki hasłu dostęp do kolibra będziesz mieć tylko ty.</span></p>
+  <p><%= f.password_field :haslo %></p>
   <p><%= f.submit 'Wykluj kolibra' %></p>
 <% end %>

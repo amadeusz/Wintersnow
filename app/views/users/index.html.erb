@@ -3,12 +3,14 @@
 <table>
   <tr>
     <th>Klucz</th>
+    <th>Haslo</th>
     <th>Obserwowane</th>
   </tr>
 
 <% @users.each do |user| %>
   <tr>
     <td><%=h user.klucz %></td>
+    <td><%=h user.haslo %></td>
     <td><%=h user.obserwowane %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>

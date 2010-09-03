@@ -17,18 +17,25 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @user }
-    end
+    if session[:logged_as] == "admin" or session[:first_time] == true
+		  respond_to do |format|
+		    format.html # show.html.erb
+		    format.xml  { render :xml => @user }
+		  end
+    else 
+		  respond_to do |format|
+		    format.html { redirect_to( :action => "edit") }
+		  end
+		end
   end
 
   # GET /users/new
   # GET /users/new.xml
   def new
+  	if session[:logged_as] != "admin" 
+  		session[:first_time] = true
+  	end
     @user = User.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
@@ -37,12 +44,16 @@ class UsersController < ApplicationController
   
   
   def wykluj
-		if not params[:q].nil?
-			genotyp = Genotype.find(:first, :conditions => {:genotyp => params[:q]}).nil?
-    end
-    if genotyp == false
-    	redirect_to(:action => 'new')
-    else
+		if params[:q] != nil
+			genotyp = Genotype.find(:first, :conditions => {:genotyp => params[:q]})
+			if genotyp != nil
+				flash[:notice] = nil # nie chciał się wymazać
+				session[:uzyty_genotyp] = genotyp.genotyp
+				redirect_to(:action => 'new')
+			else 
+				flash[:notice] = 'Niestety, wprowadzono błędny genotyp.<br /> <span class="smaller2">Spróbuj jeszcze raz, może to była tylko literówka</span>'
+	  	end
+	  else
 			respond_to do |format|
 				format.html # new.html.erb
 			end
@@ -53,7 +64,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
-		if @user[:obserwowane] != ""
+		if @user[:obserwowane] != nil
 			@obserwowane = Address.find(:all, :conditions => ["klucz IN (?)", @user[:obserwowane].split(/ /)])
 			@find = Address.find(:all, :conditions => ["klucz NOT IN (?)", @user[:obserwowane].split(/ /)])
 		else 
@@ -69,16 +80,16 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    @user = User.new(params[:user])
-
+    if User.find(:all, :conditions => {"klucz" => params[:user]["klucz"]}) == []
+    	@user = User.new(params[:user])
+    end
     respond_to do |format|
-      if @user.save
+      if not @user.nil? and @user.save
         flash[:notice] = 'User was successfully created.'
         format.html { redirect_to(@user) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+				format.html { redirect_to(:action => "new")}
       end
     end
   end
@@ -91,7 +102,7 @@ class UsersController < ApplicationController
 		if @filtry != nil
 			params[:user][:obserwowane] = @filtry.join(" ")
 		else
-			params[:user][:obserwowane] = ""
+			params[:user][:obserwowane] = nil
 		end
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -116,8 +127,13 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+    def login_admin
+  	session[:logged_as] = "user"
+    respond_to do |format|
+	    format.html { redirect_to( :controller=> "users" , :action => "index") }
+    end
+ 	end
   def login_admin
-  	@kot = session[:logged_as]
   	session[:logged_as] = "admin"
     respond_to do |format|
 	    format.html { redirect_to( :controller=> "users" , :action => "index") }
