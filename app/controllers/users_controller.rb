@@ -1,13 +1,15 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
-  
   def index
-    @users = User.all
-
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @users }
+    	if session[:logged_as] == "admin"
+				@users = User.all
+	      format.html # index.html.erb
+	      format.xml  { render :xml => @users }
+	    else
+	      format.html { redirect_to( :controller=> "rss" , :action => "index") }
+	    end
     end
   end
 
@@ -114,4 +116,18 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  def login_admin
+  	@kot = session[:logged_as]
+  	session[:logged_as] = "admin"
+    respond_to do |format|
+	    format.html { redirect_to( :controller=> "users" , :action => "index") }
+    end
+ 	end
+  def logout
+  	session[:logged_as] = nil
+    respond_to do |format|
+	    format.html { redirect_to( :controller=> "users" , :action => "index") }
+    end
+  end
+
 end
