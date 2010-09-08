@@ -1,36 +1,38 @@
+<p id="notice"><%= notice %></p>
+
 <p>
   <b>Klucz:</b>
-  <%=h @address.klucz %>
+  <%= @address.klucz %>
 </p>
 
 <p>
   <b>Adres:</b>
-  <%=h @address.adres %>
+  <%= @address.adres %>
 </p>
 
 <p>
   <b>Data mod:</b>
-  <%=h @address.data_mod %>
+  <%= @address.data_mod %>
 </p>
 
 <p>
   <b>Data spr:</b>
-  <%=h @address.data_spr %>
+  <%= @address.data_spr %>
 </p>
 
 <p>
   <b>Opis:</b>
-  <%=h @address.opis %>
+  <%= @address.opis %>
 </p>
 
 <p>
   <b>Komunikaty:</b>
-  <%=h @address.komunikaty %>
+  <%= @address.komunikaty %>
 </p>
 
 <p>
   <b>Blokada:</b>
-  <%=h @address.blokada %>
+  <%= @address.blokada %>
 </p>
 
 <%= link_to 'Edit', edit_address_path(@address) %> |

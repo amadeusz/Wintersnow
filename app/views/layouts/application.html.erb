@@ -1,39 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<link rel="alternate" type="application/rss+xml" href="rss/of/maciek" title="Hummingbird (Maciek)" />
-		<link rel="alternate" type="application/rss+xml" href="rss/of/littled" title="Hummingbird (Piotrek)" />
-		<link rel="alternate" type="application/rss+xml" href="rss/of/tomek" title="Hummingbird (Tomek)" />
-		<link rel="shortcut icon" type="image/png" href="images/favico.png" />
-		<%= stylesheet_link_tag 'koliber' %>
-		<%= stylesheet_link_tag 'temp' %>
-		<title>Hummingbird</title>
-	</head>
-	<body>
-		<div class="nawigacja">
-			<div>
-			<% (ActionController::Routing::possible_controllers - ["application", "rails/info", "rails_info"]).each do |kontroler| %>
-				<a href="/<%= kontroler %>"><%= kontroler %></a>
-				<% if kontroler == params[:controller] %>
-					<span>
-					<% Module.class_eval((params[:controller] + "Controller").camelize).action_methods.each do |action_method| %>
-						<a href="/<%= params[:controller].to_s %>/<%= action_method.to_s %>"><%= action_method.to_s %></a>
+<!DOCTYPE html>
+<html>
+<head>
+	<%= csrf_meta_tag %>
+	
+	<%= auto_discovery_link_tag(:rss, "/rss/of/koliber", {:title => "Koliber (komunikaty)"}) %>
+	<%= auto_discovery_link_tag(:rss, "/rss/of/kot", {:title => "kot"}) %>
+	<%= javascript_include_tag :defaults %>
+	
+	<%= stylesheet_link_tag :all %>	
+	<%= favicon_link_tag 'icons/koliber.png', :type => 'image/png' %>
+	<title>Koliber</title>
+</head>
+<body>
+
+	<div id="nawigacja">
+		<div>
+			<a href="/addresses">Adresy</a>
+			<% if params[:controller].to_s == 'addresses' %>
+				<span><a href="/addresses/new"><%= image_tag('icons/add.png') %></a></span>
+			<% end %>
+			<a href="/genotypes">Genotypy</a>
+			<a href="/users">Użytkownicy</a>
+			<% if params[:controller].to_s == 'users' %>
+				<span>
+					<%= link_to image_tag('icons/add.png'), new_user_path %>
+					<a href="/users/wykluj">wykluj</a>
+					<% if session[:logged_as].nil? %>
+						<a href="/users/login">su user</a>
+						<a href="/users/login_admin">su</a>
+					<% else %>
+						<a href="/users/logout">Ctrl+D</a>
 					<% end %>
-					</span>
-				<% end %>
+				</span>
 			<% end %>
-			<% if session[:logged_as].nil? %>
-				<a href="/Users/login">login</a>
-				<a href="/Users/login_admin">admin</a>
-			<% else %>
-				<a href="/Users/logout">logout</a>
+			<a href="/messages">Wiadomości</a>
+			<% if params[:controller].to_s == 'messages' %>
+				<span><a href="/messages/new"><%= image_tag('icons/add.png') %></a></span>
 			<% end %>
-			</div>
 		</div>
-		<div class="tresc">
-		<p class="notice" style="color: green"><%= flash[:notice] %></p>
-			<%= yield %>
-		</div>
-	</body>
+	</div>
+		
+	<div id="tresc">
+		<%= yield %>
+	</div>
+	
+</body>
 </html>
 

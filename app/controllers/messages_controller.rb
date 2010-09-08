@@ -44,8 +44,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        flash[:notice] = 'Message was successfully created.'
-        format.html { redirect_to(@message) }
+        format.html { redirect_to(@message, :notice => 'Message was successfully created.') }
         format.xml  { render :xml => @message, :status => :created, :location => @message }
       else
         format.html { render :action => "new" }
@@ -61,8 +60,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.update_attributes(params[:message])
-        flash[:notice] = 'Message was successfully updated.'
-        format.html { redirect_to(@message) }
+        format.html { redirect_to(@message, :notice => 'Message was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

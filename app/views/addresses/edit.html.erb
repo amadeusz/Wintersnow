@@ -1,40 +1,6 @@
 <h1>Editing address</h1>
 
-<% form_for(@address) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :klucz %><br />
-    <%= f.text_field :klucz %>
-  </p>
-  <p>
-    <%= f.label :adres %><br />
-    <%= f.text_field :adres %>
-  </p>
-  <p>
-    <%= f.label :data_mod %><br />
-    <%= f.datetime_select :data_mod %>
-  </p>
-  <p>
-    <%= f.label :data_spr %><br />
-    <%= f.datetime_select :data_spr %>
-  </p>
-  <p>
-    <%= f.label :opis %><br />
-    <%= f.text_field :opis %>
-  </p>
-  <p>
-    <%= f.label :komunikaty %><br />
-    <%= f.text_field :komunikaty %>
-  </p>
-  <p>
-    <%= f.label :blokada %><br />
-    <%= f.check_box :blokada %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+<%= render 'form' %>
 
 <%= link_to 'Show', @address %> |
 <%= link_to 'Back', addresses_path %>

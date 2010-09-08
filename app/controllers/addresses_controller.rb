@@ -13,7 +13,7 @@ class AddressesController < ApplicationController
   # GET /addresses/1
   # GET /addresses/1.xml
   def show
-    @address = Address.find(params[:id])
+    @address = Address.where(:klucz => params[:klucz]).first
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,39 +34,41 @@ class AddressesController < ApplicationController
 
   # GET /addresses/1/edit
   def edit
-    @address = Address.find(params[:id])
+    @address = Address.where(:klucz => params[:klucz]).first
   end
 
-  # POST /addresses
-  # POST /addresses.xml
-  def create
-  	if (params[:address][:adres] =~ /^http:\/\//) == nil
-  		params[:address][:adres] = "http://" + params[:address][:adres]
-  	end
-  	params[:address][:klucz] = Digest::MD5.hexdigest(params[:address][:adres])
-  	params[:address][:data_spr] = Time.new
-  	params[:address][:data_mod] = Time.new
-  	params[:address][:blokada] = false
-    @address = Address.new(params[:address])
+	# POST /addresses
+	# POST /addresses.xml
+	def create
+
+		if (params[:address][:adres] =~ /^http:\/\//) == nil
+			params[:address][:adres] = "http://" + params[:address][:adres]
+		end
+		params[:address][:klucz] = Digest::MD5.hexdigest(params[:address][:adres])
+		params[:address][:data_spr] = Time.new
+		params[:address][:data_mod] = Time.new
+		params[:address][:blokada] = false
+		
+		@address = Address.new(params[:address])
 		respond_to do |format|
 			if @address.save
 				format.html { redirect_to(@address) }
-			 else
-		    format.html { render :action => "new" }
-		    format.xml  { render :xml => @address.errors, :status => :unprocessable_entity }
-		  end
-		 end
-  end
+			else
+				format.html { render :action => "new" }
+				format.xml  { render :xml => @address.errors, :status => :unprocessable_entity }
+			end
+		end
+	end
 
   # PUT /addresses/1
   # PUT /addresses/1.xml
   def update
-    @address = Address.find(params[:id])
+    @address = Address.where(:klucz => params[:klucz]).first
 
     respond_to do |format|
       if @address.update_attributes(params[:address])
-        flash[:notice] = 'Address was successfully updated.'
-        format.html { redirect_to(@address) }
+        
+        format.html { redirect_to(@address, :notice => 'Message was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -75,15 +77,18 @@ class AddressesController < ApplicationController
     end
   end
 
-  # DELETE /addresses/1
-  # DELETE /addresses/1.xml
-  def destroy
-    @address = Address.find(params[:id])
-    @address.destroy
+	# DELETE /addresses/1
+	# DELETE /addresses/1.xml
+	def destroy
+		#@address = Address.find(params[:id]) Address.where(:klucz => params[:klucz]).first
+		
+		@address = Address.where(:klucz => params[:klucz]).first
+		@address.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(addresses_url) }
-      format.xml  { head :ok }
-    end
-  end
+		respond_to do |format|
+			format.html { redirect_to(addresses_url) }
+			format.xml  { head :ok }
+		end
+	end
+  
 end

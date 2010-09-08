@@ -1,19 +1,5 @@
 <h1>Dodaj adres</h1>
 
-<% form_for(@address) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :adres %><br />
-    <%= f.text_field :adres %>
-  </p>
-  <p>
-    <%= f.label :opis %><br />
-    <%= f.text_field :opis %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
+<%= render 'form' %>
 
 <%= link_to 'Back', addresses_path %>

@@ -1,13 +1,14 @@
+<p id="notice"><%= notice %></p>
+
 <p>
   <b>Tresc:</b>
-  <%=h @message.tresc %>
+  <%= @message.tresc %>
 </p>
 
 <p>
   <b>Data:</b>
-  <%=h @message.data %>
+  <%= @message.data %>
 </p>
-
 
 <%= link_to 'Edit', edit_message_path(@message) %> |
 <%= link_to 'Back', messages_path %>

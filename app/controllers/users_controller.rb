@@ -3,13 +3,13 @@ class UsersController < ApplicationController
   # GET /users.xml
   def index
     respond_to do |format|
-    	if session[:logged_as] == "admin"
-				@users = User.all
+#    	if session[:logged_as] == "admin"
+			@users = User.all
 	      format.html # index.html.erb
 	      format.xml  { render :xml => @users }
-	    else
-	      format.html { redirect_to( :controller=> "rss" , :action => "index") }
-	    end
+#	    else
+#	      format.html { redirect_to( :controller=> "rss" , :action => "index") }
+#	    end
     end
   end
 
@@ -17,16 +17,16 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     @user = User.find(params[:id])
-    if session[:logged_as] == "admin" or session[:first_time] == true
+#    if session[:logged_as] == "admin" or session[:first_time] == true
 		  respond_to do |format|
 		    format.html # show.html.erb
 		    format.xml  { render :xml => @user }
 		  end
-    else 
-		  respond_to do |format|
-		    format.html { redirect_to( :action => "edit") }
-		  end
-		end
+#    else 
+#		  respond_to do |format|
+#		    format.html { redirect_to( :action => "edit") }
+#		  end
+#		end
   end
 
   # GET /users/new
@@ -116,34 +116,37 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.xml
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
+	# DELETE /users/1
+	# DELETE /users/1.xml
+	def destroy
+		@user = User.find(params[:id])
+		@user.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(users_url) }
-      format.xml  { head :ok }
-    end
-  end
-    def login_admin
-  	session[:logged_as] = "user"
-    respond_to do |format|
-	    format.html { redirect_to( :controller=> "users" , :action => "index") }
-    end
- 	end
-  def login_admin
-  	session[:logged_as] = "admin"
-    respond_to do |format|
-	    format.html { redirect_to( :controller=> "users" , :action => "index") }
-    end
- 	end
-  def logout
-  	session[:logged_as] = nil
-    respond_to do |format|
-	    format.html { redirect_to( :controller=> "users" , :action => "index") }
-    end
-  end
+		respond_to do |format|
+			format.html { redirect_to(users_url) }
+			format.xml  { head :ok }
+		end
+	end
+	
+	def login
+		session[:logged_as] = "user"
+		respond_to do |format|
+			format.html { redirect_to( :controller=> "users" , :action => "index") }
+		end
+	end
+	
+	def login_admin
+		session[:logged_as] = "admin"
+		respond_to do |format|
+			format.html { redirect_to( :controller=> "users" , :action => "index") }
+		end
+	end
+	
+	def logout
+		session[:logged_as] = nil
+		respond_to do |format|
+			format.html { redirect_to( :controller=> "users" , :action => "index") }
+		end
+	end
 
 end

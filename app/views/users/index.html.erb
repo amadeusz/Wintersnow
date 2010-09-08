@@ -1,24 +1,20 @@
-<h1>Listing users</h1>
+<h1>Użytkownicy</h1>
 
 <table>
-  <tr>
-    <th>Klucz</th>
-    <th>Haslo</th>
-    <th>Obserwowane</th>
-  </tr>
-
+<!--
+	<tr>
+		<th></th>
+		<th><%= image_tag 'icons/key.png' %></th>
+		<th></th>
+		<th></th>
+	</tr>
+-->
 <% @users.each do |user| %>
-  <tr>
-    <td><%=h user.klucz %></td>
-    <td><%=h user.haslo %></td>
-    <td><%=h user.obserwowane %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+	<tr>
+		<td style="width: 1px; white-space: nowrap"><%= user.klucz %></td>
+		<td style="min-width: 150px"><%= user.haslo %></td>
+		<td><%= user.obserwowane %></td>
+		<td style="width: 1px; white-space: nowrap"><%= link_to image_tag('icons/eye.png'), user %> <%= link_to image_tag('icons/keyboard.png'), edit_user_path(user) %> <%= link_to image_tag('icons/bomb.png'), user, :confirm => 'Are you sure?', :method => :delete %></td>
+	</tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New user', new_user_path %>

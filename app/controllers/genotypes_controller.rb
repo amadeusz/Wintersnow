@@ -2,6 +2,7 @@ class GenotypesController < ApplicationController
   # GET /genotypes
   # GET /genotypes.xml
   def index
+    @new_genotype = Genotype.new
     @genotypes = Genotype.all
 
     respond_to do |format|
@@ -44,8 +45,7 @@ class GenotypesController < ApplicationController
 
     respond_to do |format|
       if @genotype.save
-        flash[:notice] = 'Genotype was successfully created.'
-        format.html { redirect_to(@genotype) }
+        format.html { redirect_to('/genotypes', :notice => 'Genotype was successfully created.') }
         format.xml  { render :xml => @genotype, :status => :created, :location => @genotype }
       else
         format.html { render :action => "new" }
@@ -61,8 +61,7 @@ class GenotypesController < ApplicationController
 
     respond_to do |format|
       if @genotype.update_attributes(params[:genotype])
-        flash[:notice] = 'Genotype was successfully updated.'
-        format.html { redirect_to(@genotype) }
+        format.html { redirect_to('/genotypes', :notice => 'Genotype was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

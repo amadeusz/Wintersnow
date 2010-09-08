@@ -1,16 +1,6 @@
 <h1>Editing genotype</h1>
 
-<% form_for(@genotype) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :genotyp %><br />
-    <%= f.text_field :genotyp %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+<%= render 'form' %>
 
 <%= link_to 'Show', @genotype %> |
 <%= link_to 'Back', genotypes_path %>

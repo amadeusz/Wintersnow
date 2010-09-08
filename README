@@ -4,13 +4,20 @@ DONE
 : i txt/html dostawałby diffa
 : a binarne dostawałyby tylko porównanie md5
 : migracja genotypów
+: przeportowanie programu do Rails 3.0.0
+	script/server => rails s, script/generate => rails g, jQuery 1.4.2 + jQuery-UI 1.8.4, poprzednia wersja 'db/koliber-2.3.5'
+	kontrolery domyślnie nie są dostępne z paska adresu przeglądarki, dostęp do nich ustala się w config/routes.rb
+	lista potrzebnych gemów w Gemfile, # bundle install, u mnie nie działa ;), chyba potrzebny gem bundler, ja instalowałem ręcznie
+: zlikwidowany hack związany z naszym grzebaniem przy kluczach
+: porządki w tabelach, może trochę przesadziłem. w razie potrzeby można dodać kilka rzeczy.
 
 TODO
 
-:  hack związany z naszym grzebaniem przy kluczach (możliwe rozwiązanie?)--> http://stackoverflow.com/questions/401241/adding-an-action-to-an-existing-controller-ruby-on-rails.
-   try: .../Users/wykluj i .../users/wykluj
 : dodanie regexpów do wpisów z adresami
 : w trybie web najpierw pojawia się obecna tablica komunikatów, po sprawdzeniu różnic ładuje się aktualna
+: przetestować w WebKit'cie
+: uporządkować routing
+: przeportować widoki ['users', 'addresses'] do Rails 3.0.0
 
 Piotrek: bo ja widzę to tak - user dostaje maila
 Piotrek: z linkiem zawierającym poprawny genotyp do wyklucia kolibra

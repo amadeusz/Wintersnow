@@ -1,20 +1,21 @@
-<h1>Listing genotypes</h1>
+<div id="genotypy">
 
-<table>
-  <tr>
-    <th>Genotyp</th>
-  </tr>
+	<h1>Genotypy</h1>
 
-<% @genotypes.each do |genotype| %>
-  <tr>
-    <td><%=h genotype.genotyp %></td>
-    <td><%= link_to 'Show', genotype %></td>
-    <td><%= link_to 'Edit', edit_genotype_path(genotype) %></td>
-    <td><%= link_to 'Destroy', genotype, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+	<p id="notice"><%= notice %></p>
 
-<br />
+	<% @genotypes.each do |@genotype| %>
+		<div>
+			<%= form_for(@genotype) do |f| %>
+			<%= f.text_field :genotyp %> <% if false %><%= f.submit '', :class => 'zapisz' %><% end %>
+			<% end %>
+			<%= link_to image_tag('icons/bomb.png'), @genotype, :confirm => 'Are you sure?', :method => :delete %>
+		</div>
+	<% end %>
 
-<%= link_to 'New genotype', new_genotype_path %>
+	
+	<%= form_for(@new_genotype) do |f| %>
+		<div><%= f.text_field :genotyp %><% if false %> <%= f.submit '', :class => 'dodaj' %><% end %></div>
+	<% end %>
+
+</div>

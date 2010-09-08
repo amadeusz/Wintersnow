@@ -215,9 +215,11 @@ class RssController < ApplicationController
 		@tablica = generuj_zawartosc_rss(User.find(params[:id])).sort! { |a,b| a[:data_mod] <=> b[:data_mod] }
 		render :layout => false
 	end
+	
 	def web
 		@tablica = generuj_zawartosc_rss(User.find(params[:id])).sort! { |a,b| Time.parse(b[:data_mod]) <=> Time.parse(a[:data_mod]) }
 	end
+	
 	def test
 #	  if session[:dupa] == 'kot'
 #	  redirect_to 'public/404.html'
