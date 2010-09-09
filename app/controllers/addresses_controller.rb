@@ -3,7 +3,7 @@ class AddressesController < ApplicationController
   # GET /addresses.xml
   def index
     @addresses = Address.all
-
+    @messages = Message.all
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @addresses }

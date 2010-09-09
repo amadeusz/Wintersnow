@@ -1,7 +1,6 @@
 <div id="adresy">
 
 <h1>Adresy</h1>
-
 <table>
   <tr>
     <th></th>
@@ -12,7 +11,6 @@
     <th></th>
     <th></th>
   </tr>
-
 <% @addresses.each do |address| %>
   <tr>
     <td style="width: 1px; white-space: nowrap"><strong><%= address.opis %></strong><% if address.opis.to_s.length > 0 %><br /><% end %>
@@ -31,7 +29,18 @@
 
     	
     </td>
-    <td style="min-width: 100px"><%= address.komunikaty %></td>
+    <td style="min-width: 100px">
+    <% if !address.komunikaty.nil?  %>
+		  <% address.komunikaty.split.each do |komunikat| %> 
+		  	<%  @base_komunikat = @messages.find{|x| x.id == komunikat.to_i} %> 
+		  	<span class="komunikat_id"><%= link_to @base_komunikat.id,"/messages/#{@base_komunikat.id}/edit" %>
+		  	<div class="ad_message">
+		  		<%= @base_komunikat.tresc[0..256] %><%= "..." if @base_komunikat.tresc.length > 256 %>
+		  		<%= link_to image_tag('icons/bomb.png'), "/messages/#{@base_komunikat.id}", :confirm => 'Are you sure?', :method => :delete %> 
+		  	</div></span>
+	    <% end %> 
+    <% end %> 
+    </td>
     <td style="width: 1px; white-space: nowrap"><%= address.data_mod.to_s[2, address.data_mod.to_s.length-11] %></td>
     <td style="width: 1px; white-space: nowrap"><%= address.data_spr.to_s[2, address.data_spr.to_s.length-11] %></td>
     <td style="width: 1px; white-space: nowrap"><% if address.blokada %><%= image_tag "icons/exclamation.png" %><% end %></td> 
@@ -40,5 +49,16 @@
   </tr>
 <% end %>
 </table>
-
+<script type="text/javascript">
+$(".komunikat_id").hover(	
+	function(){
+	$(this).css({backgroundColor:"#FFC0CB"});
+	$(this).children("div").show();
+	},
+	function(){
+	$(this).css({backgroundColor:"transparent"});
+	$(this).children("div").fadeOut(300);
+	}
+	);
+</script>
 </div>
