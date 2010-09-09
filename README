@@ -5,32 +5,31 @@ DONE
 : a binarne dostawałyby tylko porównanie md5
 : migracja genotypów
 : przeportowanie programu do Rails 3.0.0
-	script/server => rails s, script/generate => rails g, jQuery 1.4.2 + jQuery-UI 1.8.4, poprzednia wersja 'db/koliber-2.3.5'
-	kontrolery domyślnie nie są dostępne z paska adresu przeglądarki, dostęp do nich ustala się w config/routes.rb
-	lista potrzebnych gemów w Gemfile, # bundle install, u mnie nie działa ;), chyba potrzebny gem bundler, ja instalowałem ręcznie
+	- script/server => rails s, script/generate => rails g, jQuery 1.4.2 + jQuery-UI 1.8.4,
+	- skrypty proponuję umieszczać jednym pliku 'javascript/appliaction.js'
+	- poprzednia wersja 'db/koliber-2.3.5'
+	- kontrolery domyślnie nie są dostępne z paska adresu przeglądarki,
+	- dostęp do nich ustala się w config/routes.rb
 : zlikwidowany hack związany z naszym grzebaniem przy kluczach
 : porządki w tabelach, może trochę przesadziłem. w razie potrzeby można dodać kilka rzeczy.
+: uporządkować routing
 
 TODO
 
 : dodanie regexpów do wpisów z adresami
+	-> idea: gem nokogiri, już zainstalowany
 : w trybie web najpierw pojawia się obecna tablica komunikatów, po sprawdzeniu różnic ładuje się aktualna
 : przetestować w WebKit'cie
-: uporządkować routing
 : przeportować widoki ['users', 'addresses'] do Rails 3.0.0
 
 Piotrek: bo ja widzę to tak - user dostaje maila
 Piotrek: z linkiem zawierającym poprawny genotyp do wyklucia kolibra
-Piotrek: klika w linka... ludzie nie lubią przepisywać jakichś bezsensownych ciągów 
-Piotrek: user/wykluj/genotyp
 Piotrek: skrypt sprawdza czy genotyp jest w bazie poprawnych
 Piotrek: jak jest, to pokazuje userowi formularz z wyborem imienia kolibra
 Piotrek: i hasła dostępu do gniazda ;P
 Piotrek: trzeba w końcu jakoś poblokować swobodny dostęp do localhost/Users|Messages|Rss
 Piotrek: no i na końcu dopracować frontend użytkownika i jakieś przekładki dla nas
 Piotrek: znaczy trzeba będzie zmigrować kot... bazę ;)
-Piotrek: w bazie adresów będzie trzeba dodać pole regexp
-Piotrek: tak na przyszłość
 Piotrek: no zostawię ci to, bo nie chcę zepsuć ;)
 Piotrek: i jeszcze jeden pomysł
 Piotrek: obok rssa zrobić podgląd w htmlu
