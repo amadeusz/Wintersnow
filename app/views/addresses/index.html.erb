@@ -45,20 +45,11 @@
     <td style="width: 1px; white-space: nowrap"><%= address.data_spr.to_s[2, address.data_spr.to_s.length-11] %></td>
     <td style="width: 1px; white-space: nowrap"><% if address.blokada %><%= image_tag "icons/exclamation.png" %><% end %></td> 
     
-    <td style="width: 1px; white-space: nowrap"><%= link_to image_tag('icons/keyboard.png'), '/addresses/'.concat(address.klucz).concat('/edit') %> <%= link_to image_tag('icons/bomb.png'), '/addresses/'.concat(address.klucz), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td style="width: 1px; white-space: nowrap"><%= link_to image_tag('icons/eye.png'), address_path(address.klucz) %>
+    	<%= link_to image_tag('icons/keyboard.png'), edit_address_path(address.klucz) %>
+    	<%= link_to image_tag('icons/bomb.png'), address_path(address.klucz), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
-<script type="text/javascript">
-$(".komunikat_id").hover(	
-	function(){
-	$(this).css({backgroundColor:"#FFC0CB"});
-	$(this).children("div").show();
-	},
-	function(){
-	$(this).css({backgroundColor:"transparent"});
-	$(this).children("div").fadeOut(300);
-	}
-	);
-</script>
+
 </div>
