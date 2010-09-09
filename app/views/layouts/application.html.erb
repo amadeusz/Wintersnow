@@ -25,19 +25,22 @@
 			<% if params[:controller].to_s == 'users' %>
 				<span>
 					<%= link_to image_tag('icons/add.png'), new_user_path %>
-					<a href="/users/wykluj">wykluj</a>
-					<% if session[:logged_as].nil? %>
-						<a href="/users/login">su user</a>
-						<a href="/users/login_admin">su</a>
-					<% else %>
-						<a href="/users/logout">Ctrl+D</a>
-					<% end %>
 				</span>
 			<% end %>
 			<a href="/messages">Wiadomości</a>
 			<% if params[:controller].to_s == 'messages' %>
 				<span><a href="/messages/new"><%= image_tag('icons/add.png') %></a></span>
 			<% end %>
+			
+			<span style="margin-left: 10%">
+				<a href="/users/wykluj">wykluj</a>
+				<% if session[:logged_as].nil? %>
+					<a href="/users/login">su user</a>
+					<a href="/users/login_admin">su</a>
+				<% else %>
+					<a href="/users/logout">Ctrl+D</a>
+				<% end %>
+			</span>
 		</div>
 	</div>
 		

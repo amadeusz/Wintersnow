@@ -3,13 +3,13 @@ class UsersController < ApplicationController
   # GET /users.xml
   def index
     respond_to do |format|
-#    	if session[:logged_as] == "admin"
+    	if session[:logged_as] == "admin"
 			@users = User.all
 	      format.html # index.html.erb
 	      format.xml  { render :xml => @users }
-#	    else
-#	      format.html { redirect_to( :controller=> "rss" , :action => "index") }
-#	    end
+	    else
+	      format.html { redirect_to( :controller=> "rss" , :action => "index") }
+	    end
     end
   end
 
@@ -17,16 +17,16 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     @user = User.find(params[:id])
-#    if session[:logged_as] == "admin" or session[:first_time] == true
+    if session[:logged_as] == "admin" or session[:first_time] == true
 		  respond_to do |format|
 		    format.html # show.html.erb
 		    format.xml  { render :xml => @user }
 		  end
-#    else 
-#		  respond_to do |format|
-#		    format.html { redirect_to( :action => "edit") }
-#		  end
-#		end
+    else 
+		  respond_to do |format|
+		    format.html { redirect_to( :action => "edit") }
+		  end
+		end
   end
 
   # GET /users/new

@@ -2,14 +2,6 @@ Koliber::Application.routes.draw do
 
 	# najwyższy priorytet mają wpisy umieszczone od góry
 
-#	match 'addresses', :to => 'addresses#index', :via => 'get'
-#	match 'addresses(/:klucz(/:action(.:format)))', :to => 'addresses#destroy', :via => 'delete'
-#	match 'addresses(/:klucz(/:action(.:format)))', :to => 'addresses#:action'
-#	
-#	
-##	match 'addresses/:klucz/:action' => 'addresses#:action'
-##	
-
 	match 'users/login' => 'users#login'
 	match 'users/login_admin' => 'users#login_admin'
 	match 'users/logout' => 'users#logout'
@@ -19,24 +11,24 @@ Koliber::Application.routes.draw do
 	match 'rss/test/:id' => 'rss#test'
 	match 'rss' => 'rss#index'
 	
-	match "/addresses(.:format)" => "addresses#index", :as => 'addresses'
-	match "/addresses(.:format)" => "addresses#create", :as => 'addresses'
-	match "/addresses/new(.:format)" => "addresses#new", :as => 'new_address'
-	match "/addresses/:klucz/edit(.:format)" => "addresses#edit", :as => 'edit_address'
-	match "/addresses/:klucz(.:format)" => "addresses#show", :as => 'address'
-	match "/addresses/:klucz(.:format)" => "addresses#update", :as => 'address'
-	match "/addresses/:klucz(.:format)" => "addresses#destroy", :as => 'address'
-	match "/users(.:format)" => "users#index", :as => 'users'
-	match "/users(.:format)" => "users#create", :as => 'users'
-	match "/users/new(.:format)" => "users#new", :as => 'new_user'
-	match "/users/:id/edit(.:format)" => "users#edit", :as => 'edit_user'
-	match "/users/:id(.:format)" => "users#show", :as => 'user'
-	match "/users/:id(.:format)" => "users#update", :as => 'user'
-	match "/users/:id(.:format)" => "users#destroy", :as => 'user'
+#	match "/addresses(.:format)" => "addresses#index", :as => 'addresses', :via => 'get'
+#	match "/addresses(.:format)" => "addresses#create", :as => 'addresses', :via => 'post'
+#	match "/addresses/new(.:format)" => "addresses#new", :as => 'new_address', :via => 'get'
+#	match "/addresses/:klucz/edit(.:format)" => "addresses#edit", :as => 'edit_address', :via => 'get'
+#	match "/addresses/:klucz(.:format)" => "addresses#show", :as => 'address', :via => 'get'
+#	match "/addresses/:klucz(.:format)" => "addresses#update", :as => 'address', :via => 'put'
+#	match "/addresses/:klucz(.:format)" => "addresses#destroy", :as => 'address', :via => 'delete'
+#	match "/users(.:format)" => "users#index", :as => 'users', :via => 'get'
+#	match "/users(.:format)" => "users#create", :as => 'users', :via => 'post'
+#	match "/users/new(.:format)" => "users#new", :as => 'new_user', :via => 'get'
+#	match "/users/:id/edit(.:format)" => "users#edit", :as => 'edit_user', :via => 'get'
+#	match "/users/:id(.:format)" => "users#show", :as => 'user', :via => 'get'
+#	match "/users/:id(.:format)" => "users#update", :as => 'user', :via => 'put'
+#	match "/users/:id(.:format)" => "users#destroy", :as => 'user', :via => 'delete'
 	
+	resources :addresses, :genotypes, :messages, :users
+
 	root :to => "rss#index"
-	
-	resources :messages, :genotypes
 
 	# Sample of regular route:
 	#   match 'products/:id' => 'catalog#view'

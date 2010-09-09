@@ -45,7 +45,7 @@ class GenotypesController < ApplicationController
 
     respond_to do |format|
       if @genotype.save
-        format.html { redirect_to('/genotypes', :notice => 'Genotype was successfully created.') }
+        format.html { redirect_to(genotypes_url, :notice => 'Genotype was successfully created.') }
         format.xml  { render :xml => @genotype, :status => :created, :location => @genotype }
       else
         format.html { render :action => "new" }

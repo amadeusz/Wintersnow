@@ -17,7 +17,7 @@ input[type="text"]:focus { background-color: #bdf5bd; }
 
 #tresc { margin: 5px; padding: 15px; }
 
-#nawigacja div { background-color: #dde9ec; text-align: center; padding: 6px; }
+#nawigacja div { text-align: center; padding: 6px; } /* background-color: #dde9ec; */
 #nawigacja a { margin: 0 2px; padding: 4px 16px; text-decoration: none; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
 #nawigacja div a { background-color: #add8e6; }
 #nawigacja span a { background-color: #ffc0cb; }
