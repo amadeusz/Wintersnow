@@ -14,7 +14,7 @@
 	</tr>
 <% @addresses.each do |address| %>
 	<tr>
-		<td style="width: 1px; white-space: nowrap"><strong><%= address.opis %></strong><% if address.opis.to_s.length > 0 %><br /><% end %>
+		<td><strong><%= address.opis %></strong><% if address.opis.to_s.length > 0 %><br /><% end %>
 			<%= address.klucz %><br />
 			
 			<% if !address.adres.index('/', 10).nil? %>
@@ -28,9 +28,8 @@
 			<a href="<%= address.adres %>"><%= address.adres %></a> <%= address.xpath %> <%= address.regexp %> <%= address.css %>
 			<% end %>
 
-			
 		</td>
-		<td style="min-width: 100px">
+		<td>
 		<% if !address.komunikaty.nil?	%>
 			<% address.komunikaty.split.each do |komunikat| %> 
 				<%	@base_komunikat = @messages.find{|x| x.id == komunikat.to_i} %> 
@@ -42,11 +41,11 @@
 			<% end %> 
 		<% end %> 
 		</td>
-		<td style="width: 1px; white-space: nowrap"><%= address.data_mod.to_s[2, address.data_mod.to_s.length-11] %></td>
-		<td style="width: 1px; white-space: nowrap"><%= address.data_spr.to_s[2, address.data_spr.to_s.length-11] %></td>
-		<td style="width: 12px; white-space: nowrap"><% if address.blokada %><%= image_tag "icons/exclamation.png" %><% end %></td> 
+		<td><%= address.data_mod.to_s[2, address.data_mod.to_s.length-11] %></td>
+		<td><%= address.data_spr.to_s[2, address.data_spr.to_s.length-11] %></td>
+		<td><% if address.blokada %><%= image_tag "icons/exclamation.png" %><% end %></td> 
 		
-		<td style="width: 1px; white-space: nowrap"><%= link_to image_tag('icons/keyboard.png'), edit_address_path(address) %>
+		<td><%= link_to image_tag('icons/keyboard.png'), edit_address_path(address) %>
 			<%= link_to image_tag('icons/destroy.png'), address_path(address), :confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>
 <% end %>

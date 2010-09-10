@@ -1,10 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Genotyp:</b>
-  <%= @genotype.genotyp %>
+	<b>Genotyp:</b>
+	<%= @genotype.genotyp %>
 </p>
 
-
-<%= link_to 'Edit', edit_genotype_path(@genotype) %> |
-<%= link_to 'Back', genotypes_path %>
+<div class="actions">
+	<%= link_to 'Edit', edit_genotype_path(@genotype) %> |
+	<%= link_to 'Back', genotypes_path %>
+</div>

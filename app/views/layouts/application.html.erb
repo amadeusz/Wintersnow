@@ -7,17 +7,14 @@
 	<%= auto_discovery_link_tag(:rss, "/rss/of/koliber", {:title => "Koliber (komunikaty)"}) %>
 	<%= auto_discovery_link_tag(:rss, "/rss/of/kot", {:title => "kot"}) %>
 	<%= javascript_include_tag :defaults %>
-	
+
 	<%= stylesheet_link_tag :all %>	
 	<%= favicon_link_tag 'icons/koliber.png', :type => 'image/png' %>
 	<title>Koliber</title>
 </head>
 <%
 	id = params[:controller]
-	if params[:action] != 'index'
-		id << '_'
-		id << params[:action]
-	end
+	( id << '_' << params[:action] ) if params[:action] != 'index'
 %>
 <body id="<%= id %>">
 
