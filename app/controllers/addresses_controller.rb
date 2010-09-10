@@ -1,26 +1,31 @@
+def sklejenie_warunkowe(elementy)
+	elementy = elementy.find_all{ |element| element != '' }
+	return str = elementy.join(' ')
+end
+
 class AddressesController < ApplicationController
-  # GET /addresses
-  # GET /addresses.xml
-  def index
-    @addresses = Address.all
-    @messages = Message.all
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @addresses }
-    end
-  end
+	# GET /addresses
+	# GET /addresses.xml
+	def index
+		@addresses = Address.all
+		@messages = Message.all
+		
+		respond_to do |format|
+			format.html # index.html.erb
+			format.xml	{ render :xml => @addresses }
+		end
+	end
 
-  # GET /addresses/1
-  # GET /addresses/1.xml
-  def show
-    @address = Address.find(params[:id])
+	# GET /addresses/1
+	# GET /addresses/1.xml
+	def show
+		@address = Address.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @address }
-    end
-  end
+		respond_to do |format|
+			format.html # show.html.erb
+			format.xml	{ render :xml => @address }
+		end
+	end
 
 	# GET /addresses/new
 	# GET /addresses/new.xml
@@ -29,7 +34,7 @@ class AddressesController < ApplicationController
 
 		respond_to do |format|
 			format.html # new.html.erb
-			format.xml  { render :xml => @address }
+			format.xml	{ render :xml => @address }
 		end
 	end
 
@@ -41,24 +46,28 @@ class AddressesController < ApplicationController
 	# POST /addresses
 	# POST /addresses.xml
 	def create
-		puts params[:address].inspect.to_yaml
-		if (params[:address][:adres] =~ /^http:\/\//) == nil
-			params[:address][:adres] = "http://" + params[:address][:adres]
+
+		if params[:address][:adres] != ''
+			if(params[:address][:adres] =~ /^http:\/\//) == nil
+				params[:address][:adres] = "http://" + params[:address][:adres]
+			end
+			
+			# klucz obliczany na podstawie adresu, xpath'a, css'a oraz regexp'a
+			params[:address][:klucz] = Digest::MD5.hexdigest(sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]))
+			params[:address][:data_spr] = Time.new
+			params[:address][:data_mod] = Time.new
+			params[:address][:blokada] = false
 		end
-		params[:address][:klucz] = Digest::MD5.hexdigest(params[:address][:adres])
-		params[:address][:data_spr] = Time.new
-		params[:address][:data_mod] = Time.new
-		params[:address][:blokada] = false
 
 		@address = Address.new(params[:address])
 
 		respond_to do |format|
 			if @address.save
-				format.html { redirect_to (@address, :notice => 'Message was successfully created.') }
-				format.xml  { head :ok }
+				format.html { redirect_to(addresses_path, :notice => 'Message was successfully created.') }
+				format.xml	{ head :ok }
 			else
 				format.html { render :action => "new" }
-				format.xml  { render :xml => @address.errors, :status => :unprocessable_entity }
+				format.xml	{ render :xml => @address.errors, :status => :unprocessable_entity }
 			end
 		end
 	end
@@ -66,16 +75,26 @@ class AddressesController < ApplicationController
 	# PUT /addresses/1
 	# PUT /addresses/1.xml
 	def update
+	
+		if params[:address][:adres] != ''
+			if(params[:address][:adres] =~ /^http:\/\//) == nil
+				params[:address][:adres] = "http://" + params[:address][:adres]
+			end
+			
+			# klucz obliczany na podstawie adresu, xpath'a, css'a oraz regexp'a
+			params[:address][:klucz] = Digest::MD5.hexdigest(sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]))
+		end
+		
 		@address = Address.find(params[:id])
 
 		respond_to do |format|
 			if @address.update_attributes(params[:address])
 
-				format.html { redirect_to(@address, :notice => 'Message was successfully updated.') }
-				format.xml  { head :ok }
+				format.html { redirect_to(addresses_path, :notice => 'Message was successfully updated.') }
+				format.xml	{ head :ok }
 			else
 				format.html { render :action => "edit" }
-				format.xml  { render :xml => @address.errors, :status => :unprocessable_entity }
+				format.xml	{ render :xml => @address.errors, :status => :unprocessable_entity }
 			end
 		end
 	end
@@ -88,8 +107,8 @@ class AddressesController < ApplicationController
 
 		respond_to do |format|
 			format.html { redirect_to addresses_url }
-			format.xml  { head :ok }
+			format.xml	{ head :ok }
 		end
 	end
-  
+	
 end

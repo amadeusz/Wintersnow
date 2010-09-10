@@ -1,7 +1,12 @@
 $(document).ready( function() {
-	$("#genotypy input[type=text]:last").focus();
+	$("#genotypes input[type=text]:last").focus();
 
-	$("#adresy .komunikat_id").hover(	
+	$("#addresses_new input[type=text]:first").focus();
+	$("#addresses_create input[type=text]:first").focus();
+	$("#addresses_update input[type=text]:first").focus();
+	$("#addresses_edit input[type=text]:first").focus();
+
+	$("#addresses .komunikat_id").hover(	
 		function(){
 			$(this).css({backgroundColor:"#FFC0CB"});
 			$(this).children("div").show();

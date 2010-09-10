@@ -11,16 +11,16 @@ def add_log(tresc)
 end
 
 class Strona
-  attr_accessor :adres,:body,:typ
-  def initialize(adres)
-    @adres = adres
-    @md5key = md5(adres)
-    sprawdz_aktualizacje
-  end
-  def binarny?
-  	return (@typ =~ /html|text/) == nil
-  end
-  def pobierz
+	attr_accessor :adres,:body,:typ
+	def initialize(adres)
+		@adres = adres
+		@md5key = md5(adres)
+		sprawdz_aktualizacje
+	end
+	def binarny?
+		return (@typ =~ /html|text/) == nil
+	end
+	def pobierz
 		Address.update(@md5key, :data_spr => Time.new )
 		temp = Curl::Easy.perform(@adres)
 		@body = temp.body_str
@@ -57,15 +57,15 @@ class Strona
 				rescue
 					zapisz
 					Address.update(@md5key, :blokada => false)
-					return nil  # nie ma kopii na dysku
+					return nil	# nie ma kopii na dysku
 				end
 				jest_rozna, roznica = porownaj_z(pamietana)
-				if jest_rozna == false  # nie ma nic nowego
+				if jest_rozna == false	# nie ma nic nowego
 					add_log "[#{@adres}] Nie znaleziono roznic"
 				else
 					add_log "[#{@adres}] Znaleziono roznice"
 					old_komunikaty = Address.find(@md5key).komunikaty
-					Address.update(@md5key, :komunikaty => "#{old_komunikaty} #{Message.create(:tresc => roznica, :data => Time.now).id.to_s}", :data_mod  => Time.now)
+					Address.update(@md5key, :komunikaty => "#{old_komunikaty} #{Message.create(:tresc => roznica, :data => Time.now).id.to_s}", :data_mod	=> Time.now)
 					add_log "[#{@adres}] Dodano komunikat"
 					zapisz
 				end
@@ -144,7 +144,7 @@ def skroc(string)
 			if nastepny == nil
 				out += string[0..koniec+limit]
 				szukaj = false
-			elsif nastepny > 2*limit #    [0___s####k_ (>2l) _n]
+			elsif nastepny > 2*limit #		[0___s####k_ (>2l) _n]
 				out += string[0..(koniec + limit)] + '...'
 				string.slice!(0..(koniec + nastepny)-limit)
 				nastepny = limit
@@ -180,10 +180,10 @@ def os_wdiff(md5key)
 	temp = "#{RAILS_ROOT}/db/pobrane/#{md5key}_temp"
 	pamietane = "#{RAILS_ROOT}/db/pobrane/#{md5key}"
 	diff_file = "#{RAILS_ROOT}/db/pobrane/#{md5key}_diff"
-	system  "wdiff --start-delete=\"<del>\" --end-delete=\"</del>\" --start-insert=\"<ins>\" --end-insert=\"</ins>\" #{pamietane} #{temp} >> #{diff_file}"
-	f_diff = File.open(diff_file, 'r')   
-	tresc_diff = f_diff.read   
-	f_diff.close  
+	system	"wdiff --start-delete=\"<del>\" --end-delete=\"</del>\" --start-insert=\"<ins>\" --end-insert=\"</ins>\" #{pamietane} #{temp} >> #{diff_file}"
+	f_diff = File.open(diff_file, 'r')	 
+	tresc_diff = f_diff.read	 
+	f_diff.close	
 	usun_temp(diff_file)
 	usun_temp(temp)
 	return tresc_diff
@@ -221,8 +221,8 @@ class RssController < ApplicationController
 	end
 	
 	def test
-#	  if session[:dupa] == 'kot'
-#	  redirect_to 'public/404.html'
+#		if session[:dupa] == 'kot'
+#		redirect_to 'public/404.html'
 	end
 end
 

@@ -12,25 +12,22 @@
 	<%= favicon_link_tag 'icons/koliber.png', :type => 'image/png' %>
 	<title>Koliber</title>
 </head>
-<body>
+<%
+	id = params[:controller]
+	if params[:action] != 'index'
+		id << '_'
+		id << params[:action]
+	end
+%>
+<body id="<%= id %>">
 
 	<div id="nawigacja">
 		<%= link_to 'Adresy', addresses_path %> 
 		<%= link_to 'Genotypy', genotypes_path %> 
 		<%= link_to 'Użytkownicy', users_path %> 
 		<%= link_to 'Wiadomości', messages_path %> 
-			
-<!--			<span style="margin-left: 10%">-->
-<!--				<a href="/users/wykluj">wykluj</a>-->
-<!--				<% if session[:logged_as].nil? %>-->
-<!--					<a href="/users/login">su user</a>-->
-<!--					<a href="/users/login_admin">su</a>-->
-<!--				<% else %>-->
-<!--					<a href="/users/logout">Ctrl+D</a>-->
-<!--				<% end %>-->
-<!--			</span>-->
 	</div>
-		
+
 	<div id="tresc">
 		<%= yield %>
 	</div>

@@ -1,18 +1,25 @@
-<% if session[:logged_as] == "admin" %>
+<p id="notice"><%= notice %></p>
+
 <p>
-  <b>Klucz:</b>
-  <%=h @user.klucz %>
+	<b>Klucz:</b>
+	<%= @user.klucz %>
 </p>
 
 <p>
-  <b>Obserwowane:</b>
-  <%=h @user.obserwowane %>
+	<b>Hasło:</b>
+	<%= @user.haslo %>
 </p>
 
+<p>
+	<b>Administrator:</b>
+	<%= @user.admin %>
+</p>
+
+<p>
+	<b>Obserwowane:</b>
+	<%= @user.obserwowane %>
+</p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
-<% else %>
-<p>Oto Twój nowy koliber: <span id="name"> <%= @user.klucz %></span>.</p> <p>Od teraz jego zadaniem jest dostarczać Ci wiadomości o zmianach na stronie. <a href="/users/<%= @user.klucz %>/edit"> Powiedz mu, na które strony ma zwrócić uwagę <a></p>
-<% session[:first_time] = nil %>
-<% end %>
+

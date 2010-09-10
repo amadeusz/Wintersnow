@@ -1,49 +1,56 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Klucz:</b>
-  <%= @address.klucz %>
+	<b>Opis:</b>
+	<%= @address.opis %>
 </p>
 
 <p>
-  <b>Adres:</b>
-  <%= @address.adres %>
+	<b>Klucz:</b>
+	<%= @address.klucz %>
 </p>
 
 <p>
-  <b>Xpath:</b>
-  <%= @address.xpath %>
+	<b>Adres:</b>
+	<%= @address.adres %>
 </p>
 
 <p>
-  <b>Regexp:</b>
-  <%= @address.regexp %>
+	<b>Xpath:</b>
+	<%= @address.xpath %>
 </p>
 
 <p>
-  <b>Data mod:</b>
-  <%= @address.data_mod %>
+	<b>Css:</b>
+	<%= @address.css %>
 </p>
 
 <p>
-  <b>Data spr:</b>
-  <%= @address.data_spr %>
+	<b>Regexp:</b>
+	<%= @address.regexp %>
 </p>
 
 <p>
-  <b>Opis:</b>
-  <%= @address.opis %>
+	<b>Data mod:</b>
+	<%= @address.data_mod %>
 </p>
 
 <p>
-  <b>Komunikaty:</b>
-  <%= @address.komunikaty %>
+	<b>Data spr:</b>
+	<%= @address.data_spr %>
 </p>
 
 <p>
-  <b>Blokada:</b>
-  <%= @address.blokada %>
+	<b>Komunikaty:</b>
+	<%= @address.komunikaty %>
 </p>
 
-<%= link_to 'Edit', edit_address_path(@address) %> |
-<%= link_to 'Back', addresses_path %>
+<p>
+	<b>Blokada:</b>
+	<%= @address.blokada %>
+</p>
+
+<div class="actions">
+	<%= link_to 'Edit', edit_address_path(@address) %> |
+	<%= link_to 'Back', addresses_path %>
+</div>
