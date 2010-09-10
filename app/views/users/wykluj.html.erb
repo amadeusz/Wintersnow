@@ -1,7 +1,11 @@
 <h1></h1>
-<% form_tag(:controller => 'Users', :action => 'wykluj') do %>
+
+<% form_tag(:controller => 'users', :action => 'wykluj') do %>
 	<%= label_tag(:q, "Genotyp:") %>
 	<%= text_field_tag(:q) %>
 	<%= submit_tag("Wykluj") %>
 <% end %> 
+
+<br />
+<br />
 <%= image_tag("kot.plain.svg", :style => "width: 500px") %>

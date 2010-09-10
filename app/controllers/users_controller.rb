@@ -42,8 +42,8 @@ class UsersController < ApplicationController
     end
   end
   
-  
-  def wykluj
+   # GET /users/wykluj
+	def wykluj
 		if params[:q] != nil
 			genotyp = Genotype.find(:first, :conditions => {:genotyp => params[:q]})
 			if genotyp != nil
@@ -52,13 +52,13 @@ class UsersController < ApplicationController
 				redirect_to(:action => 'new')
 			else 
 				flash[:notice] = 'Niestety, wprowadzono błędny genotyp.<br /> <span class="smaller2">Spróbuj jeszcze raz, może to była tylko literówka</span>'
-	  	end
-	  else
+			end
+		else
 			respond_to do |format|
 				format.html # new.html.erb
 			end
-	  end
-  end
+		end
+	end
   
 
   # GET /users/1/edit

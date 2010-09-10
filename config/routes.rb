@@ -2,6 +2,7 @@ Koliber::Application.routes.draw do
 
 	# najwyższy priorytet mają wpisy umieszczone od góry
 
+	match 'users/wykluj' => 'users#wykluj'
 	match 'users/login' => 'users#login'
 	match 'users/login_admin' => 'users#login_admin'
 	match 'users/logout' => 'users#logout'

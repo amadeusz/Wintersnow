@@ -1,3 +1,3 @@
 class Message < ActiveRecord::Base
-#	belongs_to :addresses
+	#belongs_to :addresses
 end

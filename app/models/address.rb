@@ -1,5 +1,4 @@
 class Address < ActiveRecord::Base
 	#has_many :messages
-	#validates :address, :presence => true, :uniqueness => true
-	#validates :klucz, :uniqueness => true
+	validates :adres, :presence => true, :uniqueness => true, :length => { :within => 8..255 }
 end

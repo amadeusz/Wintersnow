@@ -1,4 +1,3 @@
 class Genotype < ActiveRecord::Base
-  validates_presence_of :genotyp
-  validates_uniqueness_of :genotyp
+	validates :genotyp, :presence => true, :uniqueness => true
 end
