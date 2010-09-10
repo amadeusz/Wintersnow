@@ -13,10 +13,11 @@ DONE
 : zlikwidowany hack związany z naszym grzebaniem przy kluczach
 : porządki w tabelach, może trochę przesadziłem. w razie potrzeby można dodać kilka rzeczy.
 : uporządkować routing
+: trzeba będzie zmigrować kot... bazę ;)
 
 TODO
 
-: dodanie regexpów do wpisów z adresami
+: dodanie regexpów i xpath do wpisów z adresami
 	-> idea: gem nokogiri, już zainstalowany
 : w trybie web najpierw pojawia się obecna tablica komunikatów, po sprawdzeniu różnic ładuje się aktualna
 : przetestować w WebKit'cie
@@ -29,9 +30,6 @@ Piotrek: jak jest, to pokazuje userowi formularz z wyborem imienia kolibra
 Piotrek: i hasła dostępu do gniazda ;P
 Piotrek: trzeba w końcu jakoś poblokować swobodny dostęp do localhost/Users|Messages|Rss
 Piotrek: no i na końcu dopracować frontend użytkownika i jakieś przekładki dla nas
-Piotrek: znaczy trzeba będzie zmigrować kot... bazę ;)
-Piotrek: no zostawię ci to, bo nie chcę zepsuć ;)
-Piotrek: i jeszcze jeden pomysł
 Piotrek: obok rssa zrobić podgląd w htmlu
 Piotrek: ludzie, którzy nie lubią się z technologią będą mieli prymitywniejsze rozwiązanie
 Piotrek: zawsze to jedna strona do odwiedzenia w miejsce 10-ciu

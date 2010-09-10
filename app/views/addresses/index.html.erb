@@ -19,12 +19,12 @@
     	<% if !address.adres.index('/', 10).nil? %>
 		 	<% if address.adres.to_s.length > 50 %>	
 		 		<a href="<%= address.adres %>"><%= address.adres[0, address.adres.index('/', 10)] %>/<br />
-		 		<span style="color: #999"><%= address.adres[address.adres.index('/', 10)+1, address.adres.length] %></span></a>
+		 		<span style="color: #999"><%= address.adres[address.adres.index('/', 10)+1, address.adres.length] %></span></a> <%= address.xpath %> <%= address.regexp %>
 			<% else %>
-				 <a href="<%= address.adres.to_s %>"><%= address.adres.to_s[0, address.adres.to_s.index('/', 10)] %>/<span style="color: #999"><%= address.adres.to_s[address.adres.to_s.index('/', 10)+1, address.adres.to_s.length] %></span></a>
+				 <a href="<%= address.adres %>"><%= address.adres.to_s[0, address.adres.to_s.index('/', 10)] %>/<span style="color: #999"><%= address.adres.to_s[address.adres.to_s.index('/', 10)+1, address.adres.to_s.length] %></span></a> <%= address.xpath %> <%= address.regexp %>
 		 	<% end %>
 		<% else %>
-			<a href="<%= address.adres.to_s %>"><%= address.adres.to_s %></a>
+			<a href="<%= address.adres %>"><%= address.adres %></a> <%= address.xpath %> <%= address.regexp %>
     	<% end %>
 
     	
