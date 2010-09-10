@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100910111841) do
+ActiveRecord::Schema.define(:version => 20100910153604) do
 
   create_table "addresses", :force => true do |t|
     t.string   "klucz"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20100910111841) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "haslo"
+    t.boolean  "admin"
   end
 
   add_index "users", ["id"], :name => "index_users_on_id", :unique => true

@@ -17,9 +17,9 @@ input[type="text"]:focus { background-color: #bdf5bd; }
 
 #tresc { margin: 5px; padding: 15px; }
 
-#nawigacja div { text-align: center; padding: 6px; } /* background-color: #dde9ec; */
-#nawigacja a { margin: 0 2px; padding: 4px 16px; text-decoration: none; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
-#nawigacja div a { background-color: #add8e6; }
+.akcje { text-align: right; margin: 20px; margin-bottom: 8px; margin-right: 30px; } 
+#nawigacja { text-align: center; padding: 6px; } /* background-color: #dde9ec; */
+#nawigacja a, .przycisk { background-color: #add8e6; margin: 0 2px; padding: 4px 16px; text-decoration: none; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
 #nawigacja span a { background-color: #ffc0cb; }
 
 #genotypy { margin: auto; width: 44em; }
@@ -32,9 +32,14 @@ table td { padding: 2px 7px; background-color: #f0ffff; vertical-align: top; -we
 #wiadomosci, #adresy { margin: 3px; }
 
 #adresy table { margin-top: -20px; }
-.komunikat_id a { padding:5px; }
-.ad_message { color:white ;z-index:99; padding: 10px 20px; background-color: #FFC0CB; display:none; position:absolute; opacity:1; -moz-opacity: 1; width:400px;}
-.ad_message a {position:absolute; top:10px; right:10px;}
+
+#nawigacja img:first-child { margin-left: -6px }
+#nawigacja img:last-child { margin-right: -6px }
+
+.komunikat_id a { padding: 5px; }
+.ad_message { color: white; z-index: 99; padding: 10px 20px; background-color: #FFC0CB; display: none; position: absolute; opacity: 1; -moz-opacity: 1; width: 400px;}
+.ad_message a {position: absolute; top: 10px; right: 10px;}
+
 #rss_controller {
 	margin: auto;
 	text-align: center;

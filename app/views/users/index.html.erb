@@ -1,3 +1,5 @@
+<div id="uzytkownicy">
+
 <h1>Użytkownicy</h1>
 
 <table>
@@ -6,7 +8,15 @@
 		<td style="width: 1px; white-space: nowrap"><%= user.klucz %></td>
 		<td style="min-width: 150px"><%= user.haslo %></td>
 		<td><%= user.obserwowane %></td>
-		<td style="width: 1px; white-space: nowrap"><%= link_to image_tag('icons/eye.png'), user %> <%= link_to image_tag('icons/keyboard.png'), edit_user_path(user) %> <%= link_to image_tag('icons/bomb.png'), user, :confirm => 'Are you sure?', :method => :delete %></td>
+		<td style="width: 12px; white-space: nowrap"><% if user.admin %><%= image_tag 'icons/wrench_orange.png' %><% end %></td>
+		<td style="width: 1px; white-space: nowrap"><%= link_to image_tag('icons/eye.png'), user %> <%= link_to image_tag('icons/keyboard.png'), edit_user_path(user) %> <%= link_to image_tag('icons/destroy.png'), user, :confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>
 <% end %>
 </table>
+
+			<% if params[:controller].to_s == 'addresses' %>
+				<span><a href="/addresses/new">dodaj</a></span>
+			<% end %>
+
+	<div class="akcje"><%= link_to 'dodaj', new_user_path, :class => 'przycisk' %></div>
+</div>

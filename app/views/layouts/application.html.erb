@@ -15,33 +15,20 @@
 <body>
 
 	<div id="nawigacja">
-		<div>
-			<a href="/addresses">Adresy</a>
-			<% if params[:controller].to_s == 'addresses' %>
-				<span><a href="/addresses/new"><%= image_tag('icons/add.png') %></a></span>
-			<% end %>
-			<a href="/genotypes">Genotypy</a>
-			<a href="/users">Użytkownicy</a>
-			<% if params[:controller].to_s == 'users' %>
-				<span>
-					<%= link_to image_tag('icons/add.png'), new_user_path %>
-				</span>
-			<% end %>
-			<a href="/messages">Wiadomości</a>
-			<% if params[:controller].to_s == 'messages' %>
-				<span><a href="/messages/new"><%= image_tag('icons/add.png') %></a></span>
-			<% end %>
+		<%= link_to 'Adresy', addresses_path %> 
+		<%= link_to 'Genotypy', genotypes_path %> 
+		<%= link_to 'Użytkownicy', users_path %> 
+		<%= link_to 'Wiadomości', messages_path %> 
 			
-			<span style="margin-left: 10%">
-				<a href="/users/wykluj">wykluj</a>
-				<% if session[:logged_as].nil? %>
-					<a href="/users/login">su user</a>
-					<a href="/users/login_admin">su</a>
-				<% else %>
-					<a href="/users/logout">Ctrl+D</a>
-				<% end %>
-			</span>
-		</div>
+<!--			<span style="margin-left: 10%">-->
+<!--				<a href="/users/wykluj">wykluj</a>-->
+<!--				<% if session[:logged_as].nil? %>-->
+<!--					<a href="/users/login">su user</a>-->
+<!--					<a href="/users/login_admin">su</a>-->
+<!--				<% else %>-->
+<!--					<a href="/users/logout">Ctrl+D</a>-->
+<!--				<% end %>-->
+<!--			</span>-->
 	</div>
 		
 	<div id="tresc">
