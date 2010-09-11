@@ -53,16 +53,15 @@ class UsersController < ApplicationController
 	# POST /users
 	# POST /users.xml
 	def create
-		if User.find(:all, :conditions => {"klucz" => params[:user]["klucz"]}) == []
-			@user = User.new(params[:user])
-		end
+		@user = User.new(params[:user])
 		
 		respond_to do |format|
-			if not @user.nil? and @user.save
-				format.html { redirect_to(@user, :notice => 'User was successfully created.') }
+			if @user.save
+				format.html { redirect_to(users_path, :notice => 'User was successfully created.') }
 				format.xml	{ render :xml => @user, :status => :created, :location => @user }
 			else
-				format.html { redirect_to(:action => "new")}
+				format.html { render :action => "new" }
+				format.xml	{ render :xml => @user.errors, :status => :unprocessable_entity }
 			end
 		end
 	end
@@ -71,17 +70,17 @@ class UsersController < ApplicationController
 	# PUT /users/1.xml
 	def update
 		@user = User.find(params[:id])
-		@filtry = params[:filters]
 		
-		if @filtry != nil
-			params[:user][:obserwowane] = @filtry.join(" ")
-		else
-			params[:user][:obserwowane] = nil
-		end
+#		@filtry = params[:filters]
+#		if @filtry != nil
+#			params[:user][:obserwowane] = @filtry.join(" ")
+#		else
+#			params[:user][:obserwowane] = nil
+#		end
 		
 		respond_to do |format|
 			if @user.update_attributes(params[:user])
-				format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+				format.html { redirect_to(users_path, :notice => 'User was successfully updated.') }
 				format.xml	{ head :ok }
 			else
 				format.html { render :action => "edit" }
@@ -122,26 +121,12 @@ class UsersController < ApplicationController
 	
 	# GET /users/login
 	def login
-		session[:logged_as] = "user"
-		respond_to do |format|
-			format.html { redirect_to( :controller=> "users" , :action => "index") }
-		end
-	end
-	
-	# GET /users/login_admin
-	def login_admin
-		session[:logged_as] = "admin"
-		respond_to do |format|
-			format.html { redirect_to( :controller=> "users" , :action => "index") }
-		end
+
 	end
 	
 	# GET /users/logout
 	def logout
-		session[:logged_as] = nil
-		respond_to do |format|
-			format.html { redirect_to( :controller=> "users" , :action => "index") }
-		end
+
 	end
 
 end

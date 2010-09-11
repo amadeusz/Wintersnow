@@ -1,7 +1,7 @@
 /* Fundamenty */
 html, body, form, div, p, input, h1, h2, table, th, tr, td, input { margin: 0; padding: 0; }
 form, label { display: inline; }
-input[type="text"], input[type="submit"], input[type="checkbox"] { border: none; background: transparent; }
+input[type="text"], input[type="submit"], input[type="checkbox"], textarea { border: none; background: transparent; }
 a img { border: none; }
 a, a:link, a:visited, a:active { text-decoration: none; }
 table, table td, table tr, table th { border: none; }
@@ -15,10 +15,10 @@ h1:first-child { margin-top: 0; }
 h2 { margin-top: 16px; margin-bottom: 10px; }
 h2:first-child { margin-top: 0; }
 table { width: 100%; }
-.actions a, .actions input, #nawigacja a, input[type="text"], table td { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+.actions a, .actions input, #nawigacja a, input[type="text"], table td, textarea { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
 .actions a, .actions input, #nawigacja a { background-color: #add8e6; margin: 0 2px; padding: 4px 16px; }
-input[type="text"] { background-color: #cfe9ef; padding: 5px 7px 3px 7px; width: 40em;  }
-input[type="text"]:focus { background-color: #bdf5bd; }
+input[type="text"], textarea { background-color: #cfe9ef; padding: 5px 7px 3px 7px; width: 40em;  }
+input[type="text"]:focus, textarea:focus, .actions a:focus, .actions input:focus, #nawigacja a:focus { background-color: #bdf5bd; }
 .actions { text-align: right; margin: 20px 30px 8px 20px; }
 #nawigacja { text-align: center; padding: 6px; }
 #nawigacja img:only-child { margin-left: -6px; margin-right: -6px }
@@ -35,15 +35,18 @@ div.field_with_errors input { border: 1px solid red; }
 /* Szczególne */
 #addresses table { margin-top: -20px; }
 #addresses .komunikat_id a { padding: 5px; }
-#addresses .ad_message { color: white; z-index: 99; padding: 10px 20px; background-color: #FFC0CB; display: none; position: absolute; opacity: 1; -moz-opacity: 1; width: 400px;}
+#addresses .ad_message { color: white; z-index: 99; padding: 10px 20px; background-color: #FFC0CB; display: none; position: absolute; opacity: 1; -moz-opacity: 1; width: 400px; }
 #addresses .ad_message a { position: absolute; top: 10px; right: 10px; }
+#addresses .dodatki { color: green; }
 
-#genotypes { margin: auto; max-width: 44em; }
+#genotypes { margin: auto; max-width: 47em; }
 #genotypes div div { margin: 5px 0; }
 #genotypes input, #genotypy img { vertical-align: middle; }
 
-#addresses_edit, #addresses_new, #addresses_show, #addresses_create, #addresses_update,
-#genotypes_edit, #genotypes_new, #genotypes_show, #genotypes_create, #genotypes_update
+#addresses_new, #addresses_create, #addresses_edit, #addresses_update, #addresses_show,
+#genotypes_new, #genotypes_create, #genotypes_edit, #genotypes_update, #genotypes_show,
+#messages_new, #messages_create, #messages_edit, #messages_update, #messages_show,
+#users_new, #users_create, #users_edit, #users_update, #users_show
 { max-width: 44em; margin: auto; }
 
 

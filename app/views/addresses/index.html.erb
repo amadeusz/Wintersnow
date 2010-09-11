@@ -14,35 +14,41 @@
 	</tr>
 <% @addresses.each do |address| %>
 	<tr>
-		<td><strong><%= address.opis %></strong><% if address.opis.to_s.length > 0 %><br /><% end %>
+		<td>
+			<% if address.opis != ''%><strong><%= address.opis %></strong><br /><% end %>
 			<%= address.klucz %><br />
 			
-			<% if !address.adres.index('/', 10).nil? %>
-			<% if address.adres.to_s.length > 50 %>	
-				<a href="<%= address.adres %>"><%= address.adres[0, address.adres.index('/', 10)] %>/<br />
-				<span style="color: #999"><%= address.adres[address.adres.index('/', 10)+1, address.adres.length] %></span></a> <%= address.xpath %> <%= address.regexp %> <%= address.css %>
+			<%
+				dodatki = [address.xpath, address.css, address.regexp].join(" ")
+				( dodatki = dodatki[0, 17] + '...' ) if dodatki.length > 20
+			%>
+			
+			<% if !(address.adres.index('/', 10).nil?) %>
+				<% if address.adres.length > 50 %>
+					<a href="<%= address.adres %>"><%= przed_slashem(address.adres) %>/<br />
+					<span style="color: #999"><%= po_slashu(address.adres) %></span></a> <span class="dodatki"><%= dodatki %></span>
+				<% else %>
+					<a href="<%= address.adres %>"><%= przed_slashem(address.adres) %>/<span style="color: #999"><%= po_slashu(address.adres) %></span></a> <span class="dodatki"><%= dodatki %></span>
+				<% end %>
 			<% else %>
-				<a href="<%= address.adres %>"><%= address.adres.to_s[0, address.adres.to_s.index('/', 10)] %>/<span style="color: #999"><%= address.adres.to_s[address.adres.to_s.index('/', 10)+1, address.adres.to_s.length] %></span></a> <%= address.xpath %> <%= address.regexp %> <%= address.css %>
+				<a href="<%= address.adres %>"><%= address.adres %></a> <span class="dodatki"><%= dodatki %></span>
 			<% end %>
-		<% else %>
-			<a href="<%= address.adres %>"><%= address.adres %></a> <%= address.xpath %> <%= address.regexp %> <%= address.css %>
-			<% end %>
-
 		</td>
+		
 		<td>
-		<% if !address.komunikaty.nil?	%>
-			<% address.komunikaty.split.each do |komunikat| %> 
-				<%	@base_komunikat = @messages.find{|x| x.id == komunikat.to_i} %> 
-				<span class="komunikat_id"><%= link_to @base_komunikat.id,	edit_message_path(@base_komunikat) %>
-				<div class="ad_message">
-					<%= @base_komunikat.tresc[0..256] %><%= "..." if @base_komunikat.tresc.length > 256 %>
-					<%= link_to image_tag('icons/destroy.png'), @base_komunikat, :confirm => 'Are you sure?', :method => :delete %> 
-				</div></span>
-			<% end %> 
-		<% end %> 
+			<% if !(address.komunikaty.nil?)	%>
+				<% address.komunikaty.split.each do |komunikat| %> 
+					<%	@base_komunikat = @messages.find { |x| x.id == komunikat.to_i } %> 
+					<span class="komunikat_id"><%= link_to @base_komunikat.id,	edit_message_path(@base_komunikat) %><div class="ad_message">
+						<%= @base_komunikat.tresc[0..256] %><%= "..." if @base_komunikat.tresc.length > 256 %>
+						<%= link_to image_tag('icons/destroy.png'), @base_komunikat, :confirm => 'Are you sure?', :method => :delete %>
+					</div></span>
+				<% end %>
+			<% end %>
 		</td>
-		<td><%= address.data_mod.to_s[2, address.data_mod.to_s.length-11] %></td>
-		<td><%= address.data_spr.to_s[2, address.data_spr.to_s.length-11] %></td>
+		
+		<td><%= skroc_date(address.data_mod) %></td>
+		<td><%= skroc_date(address.data_spr) %></td>
 		<td><% if address.blokada %><%= image_tag "icons/exclamation.png" %><% end %></td> 
 		
 		<td><%= link_to image_tag('icons/keyboard.png'), edit_address_path(address) %>
@@ -51,4 +57,4 @@
 <% end %>
 </table>
 
-<div class="actions"><%= link_to 'dodaj', new_address_path, :class => 'przycisk' %></div>
+<div class="actions"><%= link_to 'dodaj', new_address_path %></div>

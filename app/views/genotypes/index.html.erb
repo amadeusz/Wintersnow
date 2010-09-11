@@ -4,13 +4,9 @@
 
 <% @genotypes.each do |@genotype| %>
 	<div>
-		<%= form_for(@genotype) do |f| %>
-		<%= f.text_field :genotyp %> <% if false %><%= f.submit '', :class => 'zapisz' %><% end %>
-		<% end %>
+		<%= form_for(@genotype) do |f| %><%= f.text_field :genotyp %><% end %>
 		<%= link_to image_tag('icons/destroy.png'), @genotype, :confirm => 'Are you sure?', :method => :delete %>
 	</div>
 <% end %>
 
-<%= form_for(@new_genotype) do |f| %>
-	<div><%= f.text_field :genotyp %><% if false %> <%= f.submit '', :class => 'dodaj' %><% end %></div>
-<% end %>
+<%= form_for(@new_genotype) do |f| %><div><%= f.text_field :genotyp %></div><% end %>

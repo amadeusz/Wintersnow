@@ -14,14 +14,15 @@ DONE
 : porządki w tabelach, może trochę przesadziłem. w razie potrzeby można dodać kilka rzeczy.
 : uporządkować routing
 : trzeba będzie zmigrować kot... bazę ;)
+: przeportować widoki ['users', 'addresses'] do Rails 3.0.0
 
 TODO
 
 : dodanie regexpów i xpath do wpisów z adresami
-	-> idea: gem nokogiri, już zainstalowany
+: zlikwidować regresję, odzyskać część skryptów z db/koliber 2.3.5 - logowanie.rb
+	-> idea: gem nokogiri
 : w trybie web najpierw pojawia się obecna tablica komunikatów, po sprawdzeniu różnic ładuje się aktualna
 : przetestować w WebKit'cie
-: przeportować widoki ['users', 'addresses'] do Rails 3.0.0
 
 Piotrek: bo ja widzę to tak - user dostaje maila
 Piotrek: z linkiem zawierającym poprawny genotyp do wyklucia kolibra

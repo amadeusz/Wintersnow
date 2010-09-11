@@ -1,4 +1,3 @@
 class User < ActiveRecord::Base
-	#set_primary_key :klucz
-	validates :klucz, :presence => true
+	validates :klucz, :uniqueness => true, :presence => true
 end

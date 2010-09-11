@@ -1,11 +1,5 @@
+<h1>New user</h1>
 
-<% form_for(@user) do |f| %>
-  <%= f.error_messages %>
-	uzyty:<%= session[:uzyty_genotyp] %>
-  <p>Teraz nazwij swojego małego kolibra:</p>
-  <p><%= f.text_field :klucz %></p>
-  <p>...i podaj hasło, które uchroni go przed drapieżnikami.<br />
-  <span class="smaller">Dzięki hasłu dostęp do kolibra będziesz mieć tylko ty.</span></p>
-  <p><%= f.password_field :haslo %></p>
-  <p><%= f.submit 'Wykluj kolibra' %></p>
-<% end %>
+<%= render 'form' %>
+
+<div class="actions"><%= link_to 'Back', users_path %></div>

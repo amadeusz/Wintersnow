@@ -64,7 +64,7 @@ class AddressesController < ApplicationController
 		respond_to do |format|
 			if @address.save
 				format.html { redirect_to(addresses_path, :notice => 'Message was successfully created.') }
-				format.xml	{ head :ok }
+				format.xml	{ render :xml => @address, :status => :created, :location => @address }
 			else
 				format.html { render :action => "new" }
 				format.xml	{ render :xml => @address.errors, :status => :unprocessable_entity }
