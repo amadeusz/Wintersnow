@@ -15,8 +15,8 @@
 <% @addresses.each do |address| %>
 	<tr>
 		<td>
-			<% if address.opis != ''%><strong><%= address.opis %></strong><br /><% end %>
-			<%= address.klucz %><br />
+			<strong>[<%= link_to " #{address.id} ", edit_address_path(address)%>] <% if address.opis != ''%><%= address.opis %><% end %></strong>
+			<br />
 			
 			<%
 				dodatki = [address.xpath, address.css, address.regexp].join(" ")
@@ -26,22 +26,21 @@
 			<% if !(address.adres.index('/', 10).nil?) %>
 				<% if address.adres.length > 50 %>
 					<a href="<%= address.adres %>"><%= przed_slashem(address.adres) %>/<br />
-					<span style="color: #999"><%= po_slashu(address.adres) %></span></a> <span class="dodatki"><%= dodatki %></span>
+					<span style="color: #999"><%= po_slashu(address.adres) %></span></a> <p class="dodatki"><%= dodatki %></p>
 				<% else %>
-					<a href="<%= address.adres %>"><%= przed_slashem(address.adres) %>/<span style="color: #999"><%= po_slashu(address.adres) %></span></a> <span class="dodatki"><%= dodatki %></span>
+					<a href="<%= address.adres %>"><%= przed_slashem(address.adres) %>/<span style="color: #999"><%= po_slashu(address.adres) %></span></a> <p class="dodatki"><%= dodatki %></p>
 				<% end %>
 			<% else %>
-				<a href="<%= address.adres %>"><%= address.adres %></a> <span class="dodatki"><%= dodatki %></span>
+				<a href="<%= address.adres %>"><%= address.adres %></a> <p class="dodatki"><%= dodatki %></p>
 			<% end %>
 		</td>
 		
 		<td>
-			<% if !(address.komunikaty.nil?)	%>
-				<% address.komunikaty.split.each do |komunikat| %> 
-					<%	@base_komunikat = @messages.find { |x| x.id == komunikat.to_i } %> 
-					<span class="komunikat_id"><%= link_to @base_komunikat.id,	edit_message_path(@base_komunikat) %><div class="ad_message">
-						<%= @base_komunikat.tresc[0..256] %><%= "..." if @base_komunikat.tresc.length > 256 %>
-						<%= link_to image_tag('icons/destroy.png'), @base_komunikat, :confirm => 'Are you sure?', :method => :delete %>
+			<% if address.messages != [] %>
+				<% address.messages.each do |komunikat| %> 
+					<span class="komunikat_id"><%= link_to komunikat.id, edit_message_path(komunikat) %><div class="ad_message">
+						<%= komunikat.tresc[0..256] %><%= "..." if komunikat.tresc.length > 256 %>
+						</strong> image_tag('icons/destroy.png'), komunikat, :confirm => 'Are you sure?', :method => :delete %>
 					</div></span>
 				<% end %>
 			<% end %>

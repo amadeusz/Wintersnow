@@ -1,5 +1,6 @@
 DONE
 
+: dodanie regexpów i xpath do wpisów z adresami
 : by po ściągnięciu sprawdzał typ pliku
 : i txt/html dostawałby diffa
 : a binarne dostawałyby tylko porównanie md5
@@ -18,7 +19,7 @@ DONE
 
 TODO
 
-: dodanie regexpów i xpath do wpisów z adresami
+
 : zlikwidować regresję, odzyskać część skryptów z db/koliber 2.3.5 - logowanie.rb
 	-> idea: gem nokogiri
 : w trybie web najpierw pojawia się obecna tablica komunikatów, po sprawdzeniu różnic ładuje się aktualna

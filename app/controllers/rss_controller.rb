@@ -1,79 +1,97 @@
 require 'active_record'
 require 'nokogiri'
 
-
+# Skrót do liczenia sumy md5
+# @param [String] Ciąg znaków z którego będzie liczona suma
+# @return [String] suma md5
 def md5(var)
 	return Digest::MD5.hexdigest(var)
 end
 
+# Dopisuje string poprzedzony timestampem do logu w Rails.root.to_s/log/log
+# @param [String] Ciąg znaków zawierający komunikat dopisywany do logu
 def add_log(tresc)
-	File.open("#{RAILS_ROOT}/log/log", "a") do |f|
+	File.open("#{Rails.root.to_s}/log/log", "a") do |f|
 		f << "#{Time.now.strftime("[%d| %H:%M:%S]")} #{tresc}\n"
 	end
 end
 
+# Klasa obsługująca pobieranie stron i sprawdzanie aktualizacji
 class Strona
-	attr_accessor :adres,:body,:typ
-	def initialize(adres)
-		@adres = adres
-		@md5key = md5(adres)
-		@rekord = Address.where({:klucz => @md5key}).first
+# @param [String] String zawierający ciało sprawdzanego dokumentu
+	attr_accessor :body
+# @param [Address] obiekt ActiveRecord zawierający dane o adresie
+	attr_accessor :rekord
+# @param [String] String zawierający content_type
+	attr_accessor :typ
+	
+# @param [Address] obiekt ActiveRecord zawierający dane o adresie
+	def initialize(rekord)
+		@rekord = rekord 
+		@body = ""
+		@adres = @rekord.adres
+		@id = @rekord.id
 		sprawdz_aktualizacje
 		@rekord.save
 	end
 	
+	# Sprawdza, czy pobrany plik jest "binarny" (nie jest typu html/txt)
+	# @return [bool] 
 	def binarny?
 		return (@typ =~ /html|text/) == nil
 	end
 	
+	# Pobiera plik z podanego adresu, aktualizuje czas w bazie, zapisuje dane do @body, @typ
 	def pobierz
 		temp = Curl::Easy.perform(@adres)
-		@rekord.data_spr = Time.new 
+		@rekord.data_spr = Time.new
 		@body = temp.body_str
 		@typ = temp.content_type
 		add_log "[#{@adres}] Pobrano BODY"
 		add_log "[#{@adres}][i] jest binarny \"#{@typ}\"" if binarny?
 	end
 	
+	# Zapisuje @body do pliku @id
 	def zapisz
-		File.open("#{RAILS_ROOT}/db/pobrane/#{@md5key}", "w") do |f|
+		File.open("#{Rails.root.to_s}/db/pobrane/#{@id}", "w") do |f|
 			f << @body
 		end
-		add_log "Zapisano #{@adres} jako #{@md5key}"
+		add_log "Zapisano #{@adres} jako #{@id}"
 	end
 
+	# Sprawdza aktualizacje z podanym opóźnieniem
 	def sprawdz_aktualizacje
 		opoznienie = (1.0 / 24 / 60 * 15) *0 # 15 min
 		add_log "[#{@adres}] Rozpoczynam sprawdzanie"
 		if DateTime.now > (DateTime.parse(@rekord.data_spr.to_s) + opoznienie ) 
-			if @rekord.blokada == false
+			if !@rekord.blokada
 				Address.update(@rekord.id, :blokada => true)
 				begin
 					pobierz 
 				rescue
 					add_log "[#{@adres}][!!] Nie udało się pobrać adresu"
 					Address.update(@rekord.id, :blokada => false)
-					return
-				end
-
-				begin
-					pamietana = File.open("#{RAILS_ROOT}/db/pobrane/#{@md5key}", 'r').read
-				rescue
-					zapisz
-					Address.update(@rekord.id, :blokada => false)
-					return nil	# nie ma kopii na dysku
-				end
-				roznica = porownaj_z(pamietana)
-				if roznica != nil	# nie ma nic nowego
-					add_log "[#{@adres}] Nie znaleziono roznic"
 				else
-					add_log "[#{@adres}] Znaleziono roznice"
-					@rekord.messages.create(:tresc => roznica, :data => Time.now)
-					@rekord.data_mod = Time.now
-					add_log "[#{@adres}] Dodano komunikat"
-					zapisz
+					begin
+						pamietana = File.open("#{Rails.root.to_s}/db/pobrane/#{@id}", 'r').read
+					rescue
+						okroj
+						zapisz
+						Address.update(@rekord.id, :blokada => false)
+					else
+						roznica = porownaj_z(pamietana)
+						if roznica == nil	# nie ma nic nowego
+							add_log "[#{@adres}] Nie znaleziono roznic"
+						else
+							add_log "[#{@adres}] Znaleziono roznice"
+							@rekord.messages.create(:tresc => roznica, :data => Time.now)
+							@rekord.data_mod = Time.now
+							add_log "[#{@adres}] Dodano komunikat"
+							zapisz
+						end
+						Address.update(@rekord.id, :blokada => false)
+					end
 				end
-				Address.update(@rekord.id, :blokada => false)
 			else
 				add_log "[#{@adres}][!!] ZABLOKOWANY!"
 			end
@@ -82,36 +100,45 @@ class Strona
 		end
 	end
 
+	# Obcina z @body niepotrzebne spacje, korzysta z regexpa, xpatha, css, skraca do pierwszego wystąpienia body, usuwa <script> a później tagi HTML
+	def okroj
+		@body.gsub!(/\s+/, " ")
+		if @rekord.regexp != ""
+			add_log "[#{@adres}][i] Sprawdzanie regexpa."
+			@body = @body.scan(@rekord.regexp).join(" ... ")
+		end
+		if @rekord.xpath != ""
+			add_log "[#{@adres}][i] Sprawdzanie xpatha."
+			@body = Nokogiri::HTML(@body).xpath(@rekord.xpath).text
+		end
+		if @rekord.css != ""
+			add_log "[#{@adres}][i] Sprawdzanie css"
+			@body = Nokogiri::HTML(@body).css(@rekord.css).text
+		end
+		body_index = @body.index(/<[Bb][Oo][dD][Yy].*/m)
+		@body.slice!(0..body_index) if body_index != nil
+		@body.gsub!(/<script[^>]*>.*<\/script>/, "")
+#			pamietana.gsub!(/<(.|\n)*?>/, "")
+		@body.gsub!(/<(.|\n)*?>/, "")
+	end
+	
+	# Porównuje zawartość @body z podanym stringiem
+	# @param [String] String z którym porównywane będzie @body
+	# @return [String,nil] różnica między @body a stringiem
 	def porownaj_z(pamietana)
 		if binarny?
 			if (md5(@body) != md5(pamietana))
 				return "Pojawiły się zmiany w pliku"
 			end
 		else
-			@body.gsub!(/(\s){2,}/, " ")
-			if @rekord.regexp != ""
-				@body = @body.scan(@rekord.regexp).join(" ... ")
-			end
-			if @rekord.xpath != ""
-				@body = Nokogiri::HTML(@body).xpath(@rekord.xpath).text
-			end
-			if @rekord.css != ""
-				@body = Nokogiri::HTML(@body).css(@rekord.css).text
-			end
-			body_index = @body.index(/<[Bb][Oo][dD][Yy].*/m)
-			@body.slice!(0..pos_body) if pos_body != []
-			@body.gsub!(/<script[^>]*>.*<\/script>/, "")
-#			pamietana.gsub!(/<(.|\n)*?>/, "")
-			@body.gsub!(/<(.|\n)*?>/, "")
-			zapisz_tymczasowo(@body,@md5key)
-
-			diff = os_wdiff(@md5key)
-
+			okroj
+			zapisz_tymczasowo(@body,@id)
+			diff = os_wdiff(@id)
 			start = diff.to_s =~ /<(ins|del)>/ 
 			if (start != nil) # są różnice
 				return skroc(diff.to_s)
 			else 
-				#out = "Strona się nie zmieniła"
+				#Strona się nie zmieniła
 				return nil
 			end
 		end
@@ -123,6 +150,9 @@ end # Strona.class
 #	return Curl::Easy.perform(adres).body_str
 #end
 
+# Funkcja skraca output diffa (obcina przerwy między <del>/<ins> dłuższe niż 50 znaków) 
+# @param [String] String do skrócenia
+# @return [String] Skrócony string 
 def skroc(string)
 	out 			= ""
 	limit 		= 50
@@ -131,7 +161,7 @@ def skroc(string)
 
 	while szukaj
 		if nastepny == nil
-			start = string.to_s =~ /<(ins|del)/ 
+			start = string.to_s.index(/<(ins|del)/)
 		else 
 			start = nastepny 
 		end
@@ -142,7 +172,7 @@ def skroc(string)
 				#string = string[pierwsza_spacja..string.length]
 				string.slice!(0..pierwsza_spacja)
 			end
-			koniec = string.to_s =~ /<\/(ins|del)/
+			koniec = string.to_s.index(/<\/(ins|del)/)
 			if koniec != nil
 				nastepny = string[koniec..-1].index(/<(ins|del)/)
 			else
@@ -168,14 +198,18 @@ def skroc(string)
 	out
 end
 
-
+# Funkcja zapisuje w /db/pobrane/ plik tymczasowy (wykorzystywane do zapisania @body przy porównywaniu diffem z pamiętaną stroną)
+# @param [String] Treść pliku temp
+# @param [String] Nazwa pliku (zostanie dodane do niej _tmp)
 def zapisz_tymczasowo(tresc, jako)
-	File.open("#{RAILS_ROOT}/db/pobrane/#{jako}_temp", "w") do |f|
+	File.open("#{Rails.root.to_s}/db/pobrane/#{jako}_temp", "w") do |f|
 		f << tresc
 	end
 	add_log "Zapisano plik tymczasowy : #{jako}_temp"
 end
 
+# Usuwanie pliku
+# @param [String] nazwa pliku
 def usun_temp(file)
 	if File.exist?(file)
 		File.delete(file)
@@ -184,10 +218,13 @@ def usun_temp(file)
 	end
 end
 
+# Funkcja wywołuje polecenie systemowe diff. Wykorzystuje podany parametr by wiedzieć jakie pliki porównać (<nazwa> i <nazwa>_tmp). Tworzy tymczasowo plik <nazwa>_diff, po czym usuwa go, wraz z <nazwa>_tmp
+# @param [String] nazwa pliku
+# @return [String] Różnica między plikami ubrana w HTML
 def os_wdiff(md5key)
-	temp = "#{RAILS_ROOT}/db/pobrane/#{md5key}_temp"
-	pamietane = "#{RAILS_ROOT}/db/pobrane/#{md5key}"
-	diff_file = "#{RAILS_ROOT}/db/pobrane/#{md5key}_diff"
+	temp = "#{Rails.root.to_s}/db/pobrane/#{md5key}_temp"
+	pamietane = "#{Rails.root.to_s}/db/pobrane/#{md5key}"
+	diff_file = "#{Rails.root.to_s}/db/pobrane/#{md5key}_diff"
 	system	"wdiff --start-delete=\"<del>\" --end-delete=\"</del>\" --start-insert=\"<ins>\" --end-insert=\"</ins>\" #{pamietane} #{temp} >> #{diff_file}"
 	f_diff = File.open(diff_file, 'r')	 
 	tresc_diff = f_diff.read	 
@@ -197,15 +234,17 @@ def os_wdiff(md5key)
 	return tresc_diff
 end
 
+# Funkcja tworzy tablicę komunikatów RSS dla użytkownika
+# @param [User] ActiveRecord zawierający dane o użytkowniku
+# @return [Array] Tablica komunikatów rss
 def generuj_zawartosc_rss(user)
 	rss = []
-	user.obserwowane.split.each { |adres_hash|
-		strona_w_db = Address.find(:first, :conditions => "klucz = '#{adres_hash}'") 
-		polecenie_aktualizacji = Strona.new strona_w_db.adres
-		komunikaty = strona_w_db.komunikaty
-		if komunikaty.nil? == false
-			komunikaty.split.each { |komunikat_id|
-				komunikat = Message.find(:first, :conditions => "id = '#{komunikat_id}'") 
+	user.obserwowane.split.each { |id_adresu|
+		strona_w_db = Address.find(id_adresu) 
+		polecenie_aktualizacji = Strona.new(strona_w_db)
+		komunikaty = strona_w_db.messages
+		if komunikaty != []
+			komunikaty.each { |komunikat|
 				if ( strona_w_db.opis.nil? == false and strona_w_db.opis != '')
 					opis = strona_w_db.opis
 				else
