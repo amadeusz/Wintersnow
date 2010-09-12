@@ -1,4 +1,6 @@
 require 'active_record'
+require 'nokogiri'
+
 
 def md5(var)
 	return Digest::MD5.hexdigest(var)
@@ -15,14 +17,18 @@ class Strona
 	def initialize(adres)
 		@adres = adres
 		@md5key = md5(adres)
+		@rekord = Address.where({:klucz => @md5key}).first
 		sprawdz_aktualizacje
+		@rekord.save
 	end
+	
 	def binarny?
 		return (@typ =~ /html|text/) == nil
 	end
+	
 	def pobierz
-		Address.update(@md5key, :data_spr => Time.new )
 		temp = Curl::Easy.perform(@adres)
+		@rekord.data_spr = Time.new 
 		@body = temp.body_str
 		@typ = temp.content_type
 		add_log "[#{@adres}] Pobrano BODY"
@@ -37,18 +43,16 @@ class Strona
 	end
 
 	def sprawdz_aktualizacje
-		opoznienie = (1.0 / 24 / 60 * 15) *0# 15 min
+		opoznienie = (1.0 / 24 / 60 * 15) *0 # 15 min
 		add_log "[#{@adres}] Rozpoczynam sprawdzanie"
-		rekord = Address.find(:first, :conditions => "klucz = '#{@md5key}'") 
-		if DateTime.now > (DateTime.parse(rekord.data_spr.to_s) + opoznienie ) 
-			if rekord.blokada == false
-			#if true
-				Address.update(@md5key, :blokada => true)
+		if DateTime.now > (DateTime.parse(@rekord.data_spr.to_s) + opoznienie ) 
+			if @rekord.blokada == false
+				Address.update(@rekord.id, :blokada => true)
 				begin
 					pobierz 
 				rescue
 					add_log "[#{@adres}][!!] Nie udało się pobrać adresu"
-					Address.update(@md5key, :blokada => false)
+					Address.update(@rekord.id, :blokada => false)
 					return
 				end
 
@@ -56,20 +60,20 @@ class Strona
 					pamietana = File.open("#{RAILS_ROOT}/db/pobrane/#{@md5key}", 'r').read
 				rescue
 					zapisz
-					Address.update(@md5key, :blokada => false)
+					Address.update(@rekord.id, :blokada => false)
 					return nil	# nie ma kopii na dysku
 				end
-				jest_rozna, roznica = porownaj_z(pamietana)
-				if jest_rozna == false	# nie ma nic nowego
+				roznica = porownaj_z(pamietana)
+				if roznica != nil	# nie ma nic nowego
 					add_log "[#{@adres}] Nie znaleziono roznic"
 				else
 					add_log "[#{@adres}] Znaleziono roznice"
-					old_komunikaty = Address.find(@md5key).komunikaty
-					Address.update(@md5key, :komunikaty => "#{old_komunikaty} #{Message.create(:tresc => roznica, :data => Time.now).id.to_s}", :data_mod	=> Time.now)
+					@rekord.messages.create(:tresc => roznica, :data => Time.now)
+					@rekord.data_mod = Time.now
 					add_log "[#{@adres}] Dodano komunikat"
 					zapisz
 				end
-				Address.update(@md5key, :blokada => false)
+				Address.update(@rekord.id, :blokada => false)
 			else
 				add_log "[#{@adres}][!!] ZABLOKOWANY!"
 			end
@@ -79,34 +83,37 @@ class Strona
 	end
 
 	def porownaj_z(pamietana)
-		if (md5(@body) != md5(pamietana))
-			if binarny?
-				return true,"Pojawiły się zmiany w pliku"
-			else
-				pos_body = @body =~ /<body|BODY[A-Za-z0-9]+>/i
-				@body.slice!(0..pos_body-1) if pos_body != nil
-				@body.gsub!(/(\s){2,}/, " ")
-				@body.gsub!(/<script[^>]*>.*<\/script>/, "")
-		#		acceptable_tags = "b|u|i|strong|cite|em"
-				# obcięcie tagów
-		#		pamietana.gsub!(/<(\/)?(?!((#{acceptable_tags})(>|\s[^>]+>)))[a-zA-Z][^>]*>/, "")
-		#		@body.gsub!(/<(\/)?(?!((#{acceptable_tags})(>|\s[^>]+>)))[a-zA-Z][^>]*>/, "")
-				pamietana.gsub!(/<(.|\n)*?>/, "")
-				@body.gsub!(/<(.|\n)*?>/, "")
-				zapisz_tymczasowo(@body,@md5key)
-
-				diff = os_wdiff(@md5key)
-
-				start = diff.to_s =~ /<(ins|del)>/ 
-				if (start != nil) # są różnice
-					return true, skroc(diff.to_s)
-				else 
-					#out = "Strona się nie zmieniła"
-					return false, nil
-				end
+		if binarny?
+			if (md5(@body) != md5(pamietana))
+				return "Pojawiły się zmiany w pliku"
 			end
 		else
-			return false,nil
+			@body.gsub!(/(\s){2,}/, " ")
+			if @rekord.regexp != ""
+				@body = @body.scan(@rekord.regexp).join(" ... ")
+			end
+			if @rekord.xpath != ""
+				@body = Nokogiri::HTML(@body).xpath(@rekord.xpath).text
+			end
+			if @rekord.css != ""
+				@body = Nokogiri::HTML(@body).css(@rekord.css).text
+			end
+			body_index = @body.index(/<[Bb][Oo][dD][Yy].*/m)
+			@body.slice!(0..pos_body) if pos_body != []
+			@body.gsub!(/<script[^>]*>.*<\/script>/, "")
+#			pamietana.gsub!(/<(.|\n)*?>/, "")
+			@body.gsub!(/<(.|\n)*?>/, "")
+			zapisz_tymczasowo(@body,@md5key)
+
+			diff = os_wdiff(@md5key)
+
+			start = diff.to_s =~ /<(ins|del)>/ 
+			if (start != nil) # są różnice
+				return skroc(diff.to_s)
+			else 
+				#out = "Strona się nie zmieniła"
+				return nil
+			end
 		end
 	end
 end # Strona.class
@@ -117,10 +124,11 @@ end # Strona.class
 #end
 
 def skroc(string)
-	out = ""
-	limit = 50
-	szukaj = true
-	nastepny = nil
+	out 			= ""
+	limit 		= 50
+	szukaj 		= true
+	nastepny 	= nil
+
 	while szukaj
 		if nastepny == nil
 			start = string.to_s =~ /<(ins|del)/ 
@@ -190,34 +198,35 @@ def os_wdiff(md5key)
 end
 
 def generuj_zawartosc_rss(user)
-	tablica = []
+	rss = []
 	user.obserwowane.split.each { |adres_hash|
-		rekord = Address.find(:first, :conditions => "klucz = '#{adres_hash}'") 
-		cos = Strona.new(rekord.adres)
-		komunikaty = rekord.komunikaty
-		if !(komunikaty.nil?) 
+		strona_w_db = Address.find(:first, :conditions => "klucz = '#{adres_hash}'") 
+		polecenie_aktualizacji = Strona.new strona_w_db.adres
+		komunikaty = strona_w_db.komunikaty
+		if komunikaty.nil? == false
 			komunikaty.split.each { |komunikat_id|
 				komunikat = Message.find(:first, :conditions => "id = '#{komunikat_id}'") 
-				opis = rekord.adres
-				if(!rekord.opis.nil? and rekord.opis != '')
-					opis = rekord.opis
+				if ( strona_w_db.opis.nil? == false and strona_w_db.opis != '')
+					opis = strona_w_db.opis
+				else
+					opis = strona_w_db.adres
 				end 
-				tablica << {:id => komunikat.id, :adres => rekord.adres, :opis => opis, :data_mod => komunikat.data.rfc2822, :komunikat => komunikat.tresc}
+				rss << {:id => komunikat.id, :adres => strona_w_db.adres, :opis => opis, :data_mod => komunikat.data.rfc2822, :komunikat => komunikat.tresc}
 			}
 		end
 	}
-	return tablica
+	return rss
 end
 
 class RssController < ApplicationController
 	def of
 		headers['Content-type'] = 'text/xml'
-		@tablica = generuj_zawartosc_rss(User.find(params[:id])).sort! { |a,b| a[:data_mod] <=> b[:data_mod] }
+		@tablica = generuj_zawartosc_rss(User.where({:klucz => params[:id]}).first).sort! { |a,b| a[:data_mod] <=> b[:data_mod] }
 		render :layout => false
 	end
 	
 	def web
-		@tablica = generuj_zawartosc_rss(User.find(params[:id])).sort! { |a,b| Time.parse(b[:data_mod]) <=> Time.parse(a[:data_mod]) }
+		@tablica = generuj_zawartosc_rss(User.where({:klucz => params[:id]}).first).sort! { |a,b| Time.parse(b[:data_mod]) <=> Time.parse(a[:data_mod]) }
 	end
 	
 	def test
