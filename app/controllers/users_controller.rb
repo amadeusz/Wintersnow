@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+
+	skip_before_filter :require_login, :only => [:wykluj]
+	skip_before_filter :require_admin_login, :only => [:wykluj]
+
 	# GET /users
 	# GET /users.xml
 	def index

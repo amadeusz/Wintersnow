@@ -1,7 +1,8 @@
-<h1></h1>
+<div>
+	<img src="/images/koliber.png" />
+</div>
 
 <% form_tag(:controller => 'users', :action => 'wykluj') do %>
-	<%= label_tag(:q, "Genotyp:") %>
-	<%= text_field_tag(:q) %>
-	<%= submit_tag("Wykluj") %>
-<% end %> 
+	<%= text_field_tag(:zaklecie) %>
+	<div class="actions"><%= submit_tag("Wykluj") %></div>
+<% end %>

@@ -24,6 +24,8 @@ $(document).ready( function() {
 	$("#genotypes input[type=text]:last").focus();
 	$("#messages_new textarea").focus();
 	$("#users_new input[type=text]:first").focus();
+	$("#users_wykluj input[type=text]:first").focus();
+	$("#login input[type=text]:first").focus();
 	$(".field_with_errors input[type=text]:first").focus(function() { setCaretToPos(this, this.value.length); });
 	$(".field_with_errors input[type=text]:first").focus();
 
