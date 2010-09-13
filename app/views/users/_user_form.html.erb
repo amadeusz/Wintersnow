@@ -1,0 +1,25 @@
+<%= form_for(@user) do |f| %>
+	<% if @user.errors.any? || flash[:notice] || flash[:error] %>
+		<div id="error_explanation">
+		
+			<% if flash[:notice] %>
+				<p id="notice"><%= flash[:notice] %></p>
+			<% end %>
+
+			<% if flash[:error] %>
+				<p id="error"><%= flash[:error] %></p>
+			<% end %>
+			
+			<% @user.errors.full_messages.each do |msg| %>
+				<p id="error"><%= msg %></p>
+			<% end %>
+		</div>
+	<% end %>
+
+	<%= text_field_tag :genotyp, params[:genotyp] %>
+	<div class="inline_form"><%= f.label(:klucz, "Nazwa:") %> <%= f.text_field :klucz %> <%= f.label(:haslo, "Hasło:") %> <%= f.text_field :haslo %></div>
+
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>
