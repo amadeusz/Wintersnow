@@ -51,7 +51,7 @@ div.field_with_errors input { border: 1px solid red; }
 #messages_new #tresc, #messages_create #tresc, #messages_edit #tresc, #messages_update #tresc, #messages_show #tresc,
 #users_new #tresc, #users_create #tresc, #users_edit #tresc, #users_update #tresc, #users_show #tresc,
 #login #tresc, #login_create #tresc, #login_destroy #tresc, #users_wykluj #tresc
-{ max-width: 44em; margin: auto; }
+{ max-width: 40em; margin: auto; }
 #rss_web ul{ margin: auto; width: 600px; }
 #rss_web li {margin: 5px}
 #rss_web li p:nth-child(3) {margin: 15px 0}
