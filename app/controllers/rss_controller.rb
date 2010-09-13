@@ -258,6 +258,8 @@ def generuj_zawartosc_rss(user)
 end
 
 class RssController < ApplicationController
+	skip_before_filter :require_admin_login, :only => [:web, :of]
+	skip_before_filter :require_login, :only => [:of]
 	def of
 		headers['Content-type'] = 'text/xml'
 		@tablica = generuj_zawartosc_rss(User.where({:klucz => params[:id]}).first).sort! { |a,b| a[:data_mod] <=> b[:data_mod] }
@@ -265,7 +267,7 @@ class RssController < ApplicationController
 	end
 	
 	def web
-		@tablica = generuj_zawartosc_rss(User.where({:klucz => params[:id]}).first).sort! { |a,b| Time.parse(b[:data_mod]) <=> Time.parse(a[:data_mod]) }
+		@tablica = generuj_zawartosc_rss(current_user).sort! { |a,b| Time.parse(b[:data_mod]) <=> Time.parse(a[:data_mod]) }
 	end
 	
 	def test

@@ -21,7 +21,8 @@ table { width: 100%; }
 .actions a, .actions input { background-color: #cfe9ef; margin: 0 2px; padding: 4px 16px; }
 #nawigacja a {background-color: #666; padding: 15px 16px 7px 16px; margin: 0 2px; color: white }
 input[type="text"], input[type="password"], textarea { background-color: #cfe9ef; padding: 5px 7px 3px 7px; width: 42em;  }
-input[type="text"]:focus, input[type="password"]:focus, textarea:focus, .actions a:focus, .actions input:focus, #nawigacja a:focus { color:white; background-color: #BD004C; }
+.actions a:focus, .actions input:focus, #nawigacja a:focus { color:white; background-color: #BD004C; }
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus {background-color: rgba(255, 255, 255, 0.7); }
 .actions { text-align: right; margin: 20px 30px 8px 20px; }
 #nawigacja { text-align: center; padding:10px; border-top: 4px solid #666}
 #nawigacja img:only-child { margin-left: -6px; margin-right: -6px }

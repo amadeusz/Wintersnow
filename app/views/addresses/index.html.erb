@@ -41,7 +41,7 @@
 				<% address.messages.each do |komunikat| %> 
 					<span class="komunikat_id"><%= link_to komunikat.id, edit_message_path(komunikat) %><div class="ad_message">
 						<%= komunikat.tresc[0..256] %><%= "..." if komunikat.tresc.length > 256 %>
-						</strong> image_tag('icons/destroy.png'), komunikat, :confirm => 'Are you sure?', :method => :delete %>
+						<%= link_to image_tag('icons/destroy.png'), message_path(komunikat), :confirm => 'Are you sure?', :method => :delete %>
 					</div></span>
 				<% end %>
 			<% end %>

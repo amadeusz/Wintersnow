@@ -11,7 +11,7 @@ Koliber::Application.routes.draw do
 	match 'users/logout' => 'users#logout'
 
 	match 'rss/of/:id' => 'rss#of'
-	match 'rss/web/:id' => 'rss#web'
+	match 'rss/web' => 'rss#web'
 	match 'rss/test/:id' => 'rss#test'
 	match 'rss' => 'rss#index'
 	
