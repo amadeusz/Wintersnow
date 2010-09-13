@@ -1,5 +1,8 @@
 class LoginController < ApplicationController
 
+	skip_before_filter :require_login
+	skip_before_filter :require_admin_login
+
 	def authenticate(nazwa, haslo)
 		return User.where(:klucz => nazwa, :haslo => haslo).first
 	end
