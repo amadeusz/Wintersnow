@@ -19,7 +19,6 @@ DONE
 
 TODO
 
-
 : zlikwidować regresję, odzyskać część skryptów z db/koliber 2.3.5 - logowanie.rb
 	-> idea: gem nokogiri
 : w trybie web najpierw pojawia się obecna tablica komunikatów, po sprawdzeniu różnic ładuje się aktualna

@@ -5,8 +5,6 @@ class ApplicationController < ActionController::Base
 	
 	protect_from_forgery
 
-	private
-
 	def require_login
 		unless logged_in?
 			flash[:error] = "Musisz się zalogować"
@@ -22,7 +20,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def admin_logged_in?
-		!!current_user.admin
+		!!current_user.admin if !!current_user
 	end
 
 	def logged_in?

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-	skip_before_filter :require_login, :only => [:wykluj]
-	skip_before_filter :require_admin_login, :only => [:wykluj]
+	skip_before_filter :require_login, :only => [:new, :create]
+	skip_before_filter :require_admin_login, :only => [:new, :create]
 
 	# GET /users
 	# GET /users.xml
@@ -30,8 +30,11 @@ class UsersController < ApplicationController
 	def new
 		@user = User.new
 		
+		widok = 'new'
+		widok = 'user_new' if !(admin_logged_in?)
+		
 		respond_to do |format|
-			format.html # new.html.erb
+			format.html { render widok } # new.html.erb
 			format.xml	{ render :xml => @user }
 		end
 	end
@@ -57,14 +60,35 @@ class UsersController < ApplicationController
 	# POST /users
 	# POST /users.xml
 	def create
+
+		genotyp = nil
+		genotyp = Genotype.find(:first, :conditions => { :genotyp => params[:genotyp] }) if params[:genotyp] != nil
+		
+		autoryzowane = false		
+		autoryzowane = true if admin_logged_in?
+		autoryzowane = true if !admin_logged_in? && !genotyp.nil?
+
+		widok = 'new'
+		widok = 'user_new' if !(admin_logged_in?)
+		
+		przekierowanie = users_path
+		przekierowanie = root_path if !(admin_logged_in?)
+		
+		if !admin_logged_in? && !genotyp
+			flash[:error] = "Nieprawidłowy genotyp."
+		else
+			flash[:error] = nil
+		end
+		
 		@user = User.new(params[:user])
 		
 		respond_to do |format|
-			if @user.save
-				format.html { redirect_to(users_path, :notice => 'User was successfully created.') }
+			if autoryzowane && @user.save
+				genotyp.destroy
+				format.html { redirect_to(przekierowanie, :notice => 'Możesz się teraz zalogować') }
 				format.xml	{ render :xml => @user, :status => :created, :location => @user }
 			else
-				format.html { render :action => "new" }
+				format.html { render widok, :action => "new" }
 				format.xml	{ render :xml => @user.errors, :status => :unprocessable_entity }
 			end
 		end
@@ -103,34 +127,6 @@ class UsersController < ApplicationController
 			format.html { redirect_to(users_url) }
 			format.xml	{ head :ok }
 		end
-	end
-	
-	# GET /users/wykluj
-	def wykluj
-		if params[:q] != nil
-			genotyp = Genotype.find(:first, :conditions => {:genotyp => params[:q]})
-			if genotyp != nil
-				flash[:notice] = nil # nie chciał się wymazać
-				session[:uzyty_genotyp] = genotyp.genotyp
-				redirect_to(:action => 'new')
-			else 
-				flash[:notice] = 'Niestety, wprowadzono błędny genotyp.<br /> <span class="smaller2">Spróbuj jeszcze raz, może to była tylko literówka</span>'
-			end
-		else
-			respond_to do |format|
-				format.html # new.html.erb
-			end
-		end
-	end
-	
-	# GET /users/login
-	def login
-
-	end
-	
-	# GET /users/logout
-	def logout
-
 	end
 
 end

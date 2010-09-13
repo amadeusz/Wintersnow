@@ -20,20 +20,18 @@ table { width: 100%; }
 
 .actions a, .actions input { background-color: #cfe9ef; margin: 0 2px; padding: 4px 16px; }
 #nawigacja a {background-color: #666; padding: 15px 16px 7px 16px; margin: 0 2px; color: white }
-input[type="text"], input[type="password"], textarea { background-color: #cfe9ef; padding: 5px 7px 3px 7px; width: 40em;  }
+input[type="text"], input[type="password"], textarea { background-color: #cfe9ef; padding: 5px 7px 3px 7px; width: 42em;  }
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus, .actions a:focus, .actions input:focus, #nawigacja a:focus { color:white; background-color: #BD004C; }
 .actions { text-align: right; margin: 20px 30px 8px 20px; }
 #nawigacja { text-align: center; padding:10px; border-top: 4px solid #666}
 #nawigacja img:only-child { margin-left: -6px; margin-right: -6px }
 #tresc { margin: 5px; padding: 15px; }
-#notice, #error { color: green; font-size: 16px; margin: 20px; } #error { color: red; }
+#notice, #error, .public #error_explanation p { font-size: 16px; margin: 20px; } #notice { color: green; } #error, #error_explanation { color: red; } #error_explanation h2 { display: none; }
 table td, #rss_web li { padding: 2px 7px; background-color: rgba(240, 255, 255, 0.8); vertical-align: top; }
 pre { background-color: #eee; padding: 10px; font-size: 11px; }
 div.field_with_errors { display: inline; }
 div.field_with_errors input { border: 1px solid red; }
-#error_explanation { color: red; }
-#error_explanation ul { background: url(/images/guard.gif) no-repeat 20px 40px; min-height: 80px; padding-left: 130px; padding-top: 70px; }
-#error_explanation h2 { display: none; }
+.admin #error_explanation { background: url(/images/guard.gif) no-repeat 20px 40px; min-height: 80px; padding-left: 130px; padding-top: 70px; }
 
 /* Szczególne */
 #addresses table { margin-top: -20px; }
@@ -43,25 +41,27 @@ div.field_with_errors input { border: 1px solid red; }
 #addresses .dodatki { color: green; }
 
 #genotypes #tresc { max-width: 44em; margin: auto; }
-#genotypes div div { margin: 5px 0; }
+#genotypes div div { margin: 5px 0; white-space: nowrap}
 #genotypes input, #genotypy img { vertical-align: middle; }
 
 #addresses_new #tresc, #addresses_create #tresc, #addresses_edit #tresc, #addresses_update #tresc, #addresses_show #tresc,
 #genotypes_new #tresc, #genotypes_create #tresc, #genotypes_edit #tresc, #genotypes_update #tresc, #genotypes_show #tresc,
 #messages_new #tresc, #messages_create #tresc, #messages_edit #tresc, #messages_update #tresc, #messages_show #tresc,
 #users_new #tresc, #users_create #tresc, #users_edit #tresc, #users_update #tresc, #users_show #tresc,
-#login #tresc, #login_create #tresc, #login_destroy #tresc, #users_wykluj #tresc
+#login #tresc, #login_create #tresc, #login_destroy #tresc
 { max-width: 40em; margin: auto; }
-#rss_web ul{ margin: auto; width: 600px; }
+
+#rss_web ul { margin: auto; width: 600px; }
 #rss_web li {margin: 5px}
 #rss_web li p:nth-child(3) {margin: 15px 0}
 
 #addresses tr td:nth-child(1) a:first-child { float: right; visibility: hidden; color: green; }
 #addresses tr td:nth-child(1):hover a:first-child { visibility: visible; }
-#login #tresc img, #users_wykluj #tresc img { margin: auto; padding: 11%; }
-#login #tresc form, #users_wykluj #tresc form { max-width: 44em; margin: auto; display: block; text-align: center; }
-#login #tresc form input { max-width: 6em; }
-#login #tresc form input + label { margin-left: 10px; }
+#login #tresc img, .wykluj img { padding: 11% 5%; }
+#login #tresc form, .wykluj form { max-width: 48em; margin: auto; display: block; text-align: center; }
+.inline_form { text-align: center; padding: 10px; }
+#login #tresc form input, .inline_form input { max-width: 8em; }
+#login #tresc form input + label, .inline_form input + label { margin-left: 10px; }
 #login #tresc form input[type="submit"] { display: none; }
 #login #error, #login #notice { text-align: center; }
 

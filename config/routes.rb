@@ -6,8 +6,7 @@ Koliber::Application.routes.draw do
 	match '/login/destroy(.:format)' => 'login#destroy', :via => 'get'
 	match '/login(.:format)' => 'login#index', :via => 'get'
 
-
-	match 'users/wykluj' => 'users#wykluj'
+	match 'wykluj' => 'users#new'
 	match 'users/login' => 'users#login'
 	match 'users/logout' => 'users#logout'
 

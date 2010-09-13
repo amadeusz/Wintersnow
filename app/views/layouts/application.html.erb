@@ -16,12 +16,12 @@
 	id = controller_name
 	( id << '_' << action_name ) if params[:action] != 'index'
 %>
-<body id="<%= id %>">
+<body id="<%= id %>"<% if controller.admin_logged_in? %> class="admin"<% else %> class="public"<% end %>>
 
 	<div id="nawigacja">
-	<% if !(@controller.current_user.nil?) %>
+	<% if controller.logged_in? %>
 	
-		<% if @controller.current_user.admin %>
+		<% if controller.admin_logged_in? %>
 			<%= link_to 'Start', root_path %>
 			<%= link_to 'Adresy', addresses_path %>
 			<%= link_to 'Genotypy', genotypes_path %>
@@ -29,7 +29,7 @@
 			<%= link_to 'Wiadomości', messages_path %>
 		<% end %>
 	
-		<%= link_to 'Wyloguj ('+ @controller.current_user.klucz + ')', login_destroy_path %>
+		<%= link_to 'Wyloguj ('+ controller.current_user.klucz + ')', login_destroy_path %>
 	<% end %>
 	</div>
 
