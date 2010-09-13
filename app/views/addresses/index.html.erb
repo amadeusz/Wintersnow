@@ -15,7 +15,8 @@
 <% @addresses.each do |address| %>
 	<tr>
 		<td>
-			<strong>[<%= link_to " #{address.id} ", edit_address_path(address)%>] <% if address.opis != ''%><%= address.opis %><% end %></strong>
+			<%= link_to " #{address.id} ", edit_address_path(address)%>
+			<strong> <% if address.opis != ''%><%= address.opis %><% end %></strong>
 			<br />
 			
 			<%

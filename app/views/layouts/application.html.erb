@@ -8,21 +8,29 @@
 	<%= auto_discovery_link_tag(:rss, "/rss/of/kot", {:title => "kot"}) %>
 	<%= javascript_include_tag :defaults %>
 
-	<%= stylesheet_link_tag :all %>	
+	<%= stylesheet_link_tag ['koliber', 'tabele'] %>
 	<%= favicon_link_tag 'icons/koliber.png', :type => 'image/png' %>
 	<title>Koliber</title>
 </head>
 <%
-	id = params[:controller]
-	( id << '_' << params[:action] ) if params[:action] != 'index'
+	id = controller_name
+	( id << '_' << action_name ) if params[:action] != 'index'
 %>
 <body id="<%= id %>">
 
 	<div id="nawigacja">
-		<%= link_to 'Adresy', addresses_path %> 
-		<%= link_to 'Genotypy', genotypes_path %> 
-		<%= link_to 'Użytkownicy', users_path %> 
-		<%= link_to 'Wiadomości', messages_path %> 
+	<% if !(@controller.current_user.nil?) %>
+	
+		<% if @controller.current_user.admin %>
+			<%= link_to 'Start', root_path %>
+			<%= link_to 'Adresy', addresses_path %>
+			<%= link_to 'Genotypy', genotypes_path %>
+			<%= link_to 'Użytkownicy', users_path %>
+			<%= link_to 'Wiadomości', messages_path %>
+		<% end %>
+	
+		<%= link_to 'Wyloguj ('+ @controller.current_user.klucz + ')', login_destroy_path %>
+	<% end %>
 	</div>
 
 	<div id="tresc">

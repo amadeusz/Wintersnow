@@ -1,0 +1,15 @@
+<div>
+	<img src="images/koliber.png" />
+</div>
+
+<%= form_tag(login_create_path, :method => "post") do %>
+	<%= label_tag(:nazwa, "Nazwa:") %> <%= text_field_tag(:nazwa) %> <%= label_tag(:haslo, "Hasło:") %> <%= password_field_tag(:haslo) %> <%= submit_tag("Zaloguj") %>
+<% end %>
+
+<% if flash[:notice] %>
+	<div id="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<% if flash[:error] %>
+	<div id="error"><%= flash[:error] %></div>
+<% end %>
