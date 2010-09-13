@@ -26,7 +26,7 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus, .actions
 #nawigacja { text-align: center; padding:10px; border-top: 4px solid #666}
 #nawigacja img:only-child { margin-left: -6px; margin-right: -6px }
 #tresc { margin: 5px; padding: 15px; }
-#notice, #error { color: #44df44; font-size: 16px; margin: 20px; } #error { color: red; }
+#notice, #error { color: green; font-size: 16px; margin: 20px; } #error { color: red; }
 table td, #rss_web li { padding: 2px 7px; background-color: rgba(240, 255, 255, 0.8); vertical-align: top; }
 pre { background-color: #eee; padding: 10px; font-size: 11px; }
 div.field_with_errors { display: inline; }
