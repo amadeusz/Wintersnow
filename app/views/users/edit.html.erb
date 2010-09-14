@@ -1,5 +1,10 @@
-<h1>Editing user</h1>
 
 <%= render 'form' %>
 
-<div class="actions"><%= link_to 'Back', users_path %></div>
+<div class="actions">
+<% if controller.admin_logged_in? %>
+<%= link_to 'Powrót', users_path %>
+<% else %>
+<%= link_to 'Powrót', root_path %>
+<% end %>
+</div>

@@ -61,7 +61,7 @@ class Strona
 
 	# Sprawdza aktualizacje z podanym opóźnieniem
 	def sprawdz_aktualizacje
-		opoznienie = (1.0 / 24 / 60 * 15) *0 # 15 min
+		opoznienie = (1.0 / 24 / 60 * 15) * 0# 15 min
 		add_log "[#{@adres}] Rozpoczynam sprawdzanie"
 		if DateTime.now > (DateTime.parse(@rekord.data_spr.to_s) + opoznienie ) 
 			if !@rekord.blokada
@@ -239,8 +239,7 @@ end
 # @return [Array] Tablica komunikatów rss
 def generuj_zawartosc_rss(user)
 	rss = []
-	user.obserwowane.split.each { |id_adresu|
-		strona_w_db = Address.find(id_adresu) 
+	user.addresses.each { |strona_w_db|
 		polecenie_aktualizacji = Strona.new(strona_w_db)
 		komunikaty = strona_w_db.messages
 		if komunikaty != []
@@ -251,14 +250,14 @@ def generuj_zawartosc_rss(user)
 					opis = strona_w_db.adres
 				end 
 				rss << {:id => komunikat.id, :adres => strona_w_db.adres, :opis => opis, :data_mod => komunikat.data.rfc2822, :komunikat => komunikat.tresc}
-			}
+			} 
 		end
-	}
+	} if user.addresses.empty? == false
 	return rss
 end
 
 class RssController < ApplicationController
-	skip_before_filter :require_admin_login, :only => [:web, :of]
+	skip_before_filter :require_admin_login, :only => [:web, :of, :update]
 	skip_before_filter :require_login, :only => [:of]
 	def of
 		headers['Content-type'] = 'text/xml'
@@ -266,13 +265,20 @@ class RssController < ApplicationController
 		render :layout => false
 	end
 	
-	def web
+	def update
 		@tablica = generuj_zawartosc_rss(current_user).sort! { |a,b| Time.parse(b[:data_mod]) <=> Time.parse(a[:data_mod]) }
+		render :layout => false
+		respond_to do |format|
+			format.html {}
+			format.xml	{ head :ok }
+		end
 	end
 	
-	def test
-#		if session[:dupa] == 'kot'
-#		redirect_to 'public/404.html'
+	def web
+		respond_to do |format|
+			format.html {}
+			format.xml	{ head :ok }
+		end
 	end
 end
 

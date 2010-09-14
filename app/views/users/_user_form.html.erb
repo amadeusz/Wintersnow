@@ -17,7 +17,7 @@
 	<% end %>
 
 	<%= text_field_tag :genotyp, params[:genotyp] %>
-	<div class="inline_form"><%= f.label(:klucz, "Nazwa:") %> <%= f.text_field :klucz %> <%= f.label(:haslo, "Hasło:") %> <%= f.text_field :haslo %></div>
+	<div class="inline_form"><%= f.label(:klucz, "Nazwa:") %> <%= f.text_field :klucz %> <%= f.label(:haslo, "Hasło:") %> <%= f.password_field :haslo %></div>
 
 	<div class="actions">
 		<%= f.submit %>

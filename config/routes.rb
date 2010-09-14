@@ -12,8 +12,9 @@ Koliber::Application.routes.draw do
 
 	match 'rss/of/:id' => 'rss#of'
 	match 'rss/web' => 'rss#web'
-	match 'rss/test/:id' => 'rss#test'
+	match 'rss/update' => 'rss#update'
 	match 'rss' => 'rss#index'
+	match 'panel' => 'users#edit'
 	
 #	match '/addresses(.:format)' => 'addresses#index', :as => 'addresses', :via => 'get'
 #	match '/addresses(.:format)' => 'addresses#create', :as => 'addresses', :via => 'post'

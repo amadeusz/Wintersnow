@@ -8,7 +8,13 @@
 		<td><%= user.klucz %></td>
 		<td><% if user.admin %><%= image_tag 'icons/weather_sun.png' %><% end %></td>
 		<td><%= user.haslo %></td>
-		<td><%= user.obserwowane %></td>
+		<td> <%= user.addresses.length %>
+		<div>
+			<% user.addresses.each do |adres| %>
+			<p> <%= adres.adres[0..50] %> </p>
+			<% end %>
+		</div>
+		</td>
 		<td><%= link_to image_tag('icons/keyboard.png'), edit_user_path(user) %>
 			<%= link_to image_tag('icons/destroy.png'), user, :confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>

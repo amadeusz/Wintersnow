@@ -1,6 +1,6 @@
 #addresses tr td:nth-child(1) { white-space: nowrap; width: 1px; }
-#addresses tr td:nth-child(2) { min-width: 100px; }
-#addresses tr td:nth-child(3) { white-space: nowrap; width: 1px; }
+#addresses tr td:nth-child(2) { width: 1px; }
+#addresses tr td:nth-child(3) { white-space: nowrap; min-width: 1px; }
 #addresses tr td:nth-child(4) { white-space: nowrap; width: 1px; }
 #addresses tr td:nth-child(5) { white-space: nowrap; width: 12px; }
 #addresses tr td:nth-child(6) { white-space: nowrap; width: 1px; }
@@ -13,6 +13,6 @@
 
 #users tr td:nth-child(1) { white-space: nowrap; width: 1px; }
 #users tr td:nth-child(2) { white-space: nowrap; width: 12px; }
-#users tr td:nth-child(3) { min-width: 100px; }
-#users tr td:nth-child(4) { min-width: 500px; }
-#users tr td:nth-child(5) { white-space: nowrap; width: 1px; }
+#users tr td:nth-child(3) { width: 100px; }
+#users tr td:nth-child(4) { width: 10px; }
+#users tr td:nth-child(5) { white-space: nowrap; min-width: 100px; }

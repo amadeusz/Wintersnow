@@ -41,6 +41,23 @@ $(document).ready( function() {
 			$(this).children("div").fadeOut(300);
 		}
 	);
+	$("#users table tr :nth-child(4)").click(	
+		function(){
+			$(this).children("div").toggle();
+		}
+	);
+	$("#addresses table tr :nth-child(2)").click(	
+		function(){
+			$(this).children("div").toggle();
+		}
+	);
+	$("#rss_web .tog_ins").click( function(){
+		$(this).parent().siblings(".msg").children("ins").toggle();
+	});
+	$("#rss_web .tog_del").click( function(){
+		$(this).parent().siblings(".msg").children("del").toggle();
+	});
+		
 	
 	
 });

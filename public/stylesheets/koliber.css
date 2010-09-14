@@ -15,12 +15,12 @@ h1:first-child { margin-top: 0; }
 h2 { margin-top: 16px; margin-bottom: 10px; }
 h2:first-child { margin-top: 0; }
 table { width: 100%; }
-.actions a, .actions input, input[type="text"], input[type="password"], table td, textarea, #rss_web li { -webkit-border-radius:  5px; -moz-border-radius: 5px; border-radius: 5px; }
+.actions a, .actions input, input[type="text"], input[type="password"], table td, textarea, #rss_web li, #subscribed, div#my_addresses { -webkit-border-radius:  5px; -moz-border-radius: 5px; border-radius: 5px; }
 #nawigacja a {-webkit-border-radius:  0 0 5px 5px; -moz-border-radius: 0 0 5px 5px; border-radius:  0 0 5px 5px; }
 
 .actions a, .actions input { background-color: #cfe9ef; margin: 0 2px; padding: 4px 16px; }
 #nawigacja a {background-color: #666; padding: 15px 16px 7px 16px; margin: 0 2px; color: white }
-input[type="text"], input[type="password"], textarea { background-color: #cfe9ef; padding: 5px 7px 3px 7px; width: 42em;  }
+div#my_addresses , #subscribed , input[type="text"], input[type="password"], textarea { background-color: #cfe9ef; padding: 5px 7px 3px 7px; width: 42em;  }
 .actions a:focus, .actions input:focus, #nawigacja a:focus { color:white; background-color: #BD004C; }
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus {background-color: rgba(255, 255, 255, 0.7); }
 .actions { text-align: right; margin: 20px 30px 8px 20px; }
@@ -37,9 +37,11 @@ div.field_with_errors input { border: 1px solid red; }
 /* Szczególne */
 #addresses table { margin-top: -20px; }
 #addresses .komunikat_id a { padding: 5px; }
-#addresses .ad_message { color: white; z-index: 99; padding: 10px 20px; background-color: #FFC0CB; display: none; position: absolute; opacity: 1; -moz-opacity: 1; width: 400px; }
+#addresses .ad_message { color: white; z-index: 99; padding: 10px 20px; background-color: #FFC0CB; display: none; position: absolute; width: 400px; }
 #addresses .ad_message a { position: absolute; top: 10px; right: 10px; }
 #addresses .dodatki { color: green; }
+
+#users table tr :nth-child(4) div , #addresses table tr :nth-child(2) div {display:none; position:absolute; padding: 10px 20px; background-color: #FFC0CB;}
 
 #genotypes #tresc { max-width: 44em; margin: auto; }
 #genotypes div div { margin: 5px 0; white-space: nowrap}
@@ -52,9 +54,18 @@ div.field_with_errors input { border: 1px solid red; }
 #login #tresc, #login_create #tresc, #login_destroy #tresc
 { max-width: 40em; margin: auto; }
 
+#my_addresses , #subscribed { margin:5px 0; overflow:hidden}
+#my_addresses div, #subscribed div { margin:5px 0; border-bottom:1px solid #9ACEDB; padding: 5px 0; overflow:hidden}
+#my_addresses input[type=text] { border:1px solid white; width:90% !important}
+#my_addresses input[type=checkbox], #subscribed input[type=checkbox] {margin-top:10px; margin-left:5px; margin-right:10px; float:left;clear:left;}
+#my_addresses p.adres, #subscribed p.adres {float:left; font-size: 80%; color:  #006666;}
+
 #rss_web ul { margin: auto; width: 600px; }
 #rss_web li {margin: 5px}
-#rss_web li p:nth-child(3) {margin: 15px 0}
+#rss_web li p:nth-child(4) {margin: 15px 0}
+#rss_web ins {color:#60B302}
+#rss_web del {color:#CE4641}
+#rss_web #loading {text-align:center}
 
 #addresses tr td:nth-child(1) a:first-child { float: right; visibility: hidden; color: green; }
 #addresses tr td:nth-child(1):hover a:first-child { visibility: visible; }
@@ -65,4 +76,5 @@ div.field_with_errors input { border: 1px solid red; }
 #login #tresc form input + label, .inline_form input + label { margin-left: 10px; }
 #login #tresc form input[type="submit"] { display: none; }
 #login #error, #login #notice { text-align: center; }
+
 

@@ -27,6 +27,8 @@
 			<%= link_to 'Genotypy', genotypes_path %>
 			<%= link_to 'Użytkownicy', users_path %>
 			<%= link_to 'Wiadomości', messages_path %>
+		<% else %>
+			<%= link_to 'Ustawienia', panel_path %>	
 		<% end %>
 		<%= link_to 'WebRSS', "rss/web" %>
 		<%= link_to 'Wyloguj ('+ controller.current_user.klucz + ')', login_destroy_path %>

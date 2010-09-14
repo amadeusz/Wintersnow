@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
 	skip_before_filter :require_login, :only => [:new, :create]
-	skip_before_filter :require_admin_login, :only => [:new, :create]
+	skip_before_filter :require_admin_login, :only => [:new, :create, :edit, :update]
 
 	# GET /users
 	# GET /users.xml
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 	# GET /users/new.xml
 	def new
 		@user = User.new
-		
+		@addresses = Address.all
 		widok = 'new'
 		widok = 'user_new' if !(admin_logged_in?)
 		
@@ -41,15 +41,12 @@ class UsersController < ApplicationController
 	
 	# GET /users/1/edit
 	def edit
-		@user = User.find(params[:id])
-		
-		if @user[:obserwowane] != nil
-			@obserwowane = Address.find(:all, :conditions => ["klucz IN (?)", @user[:obserwowane].split(/ /)])
-			@find = Address.find(:all, :conditions => ["klucz NOT IN (?)", @user[:obserwowane].split(/ /)])
-		else 
-			@obserwowane = []
-			@find = Address.find(:all)
+		if admin_logged_in? and params[:id].nil? == false
+			@user = User.find(params[:id])
+		else
+			@user = current_user
 		end
+		@addresses = Address.all
 		
 		respond_to do |format|
 			format.html 
@@ -81,10 +78,11 @@ class UsersController < ApplicationController
 		end
 		
 		@user = User.new(params[:user])
-		
+		@addresses = Address.all
+
 		respond_to do |format|
 			if autoryzowane && @user.save
-				genotyp.destroy
+				agenotyp.destroy if !admin_logged_in?
 				format.html { redirect_to(przekierowanie, :notice => 'Możesz się teraz zalogować') }
 				format.xml	{ render :xml => @user, :status => :created, :location => @user }
 			else
@@ -105,10 +103,12 @@ class UsersController < ApplicationController
 #		else
 #			params[:user][:obserwowane] = nil
 #		end
-		
+		przekierowanie = users_path
+		przekierowanie = root_path if !(admin_logged_in?)
+
 		respond_to do |format|
 			if @user.update_attributes(params[:user])
-				format.html { redirect_to(users_path, :notice => 'User was successfully updated.') }
+				format.html { redirect_to(przekierowanie, :notice => 'Ustawienia pomyślnie zapisane') }
 				format.xml	{ head :ok }
 			else
 				format.html { render :action => "edit" }
@@ -122,6 +122,7 @@ class UsersController < ApplicationController
 	def destroy
 		@user = User.find(params[:id])
 		@user.destroy
+		
 
 		respond_to do |format|
 			format.html { redirect_to(users_url) }

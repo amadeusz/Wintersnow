@@ -7,7 +7,7 @@
 	<tr>
 		<td><%= link_to message.id, message_path(message) %></td>
 		<td><%= message.address_id %></td>
-		<td><%= message.tresc %></td>
+		<td><%= message.tresc[0..100] %><%= "..." if message.tresc.length > 100 %></td>
 		<td><%= skroc_date(message.data) %></td>
 		<td><%= link_to image_tag('icons/keyboard.png'), edit_message_path(message) %>
 			<%= link_to image_tag('icons/destroy.png'), message, :confirm => 'Are you sure?', :method => :delete %></td>

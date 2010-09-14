@@ -6,9 +6,9 @@
 	<tr>
 		<th></th>
 		<th></th>
+		<th></th>
 		<th>M</th>
 		<th>S</th>
-		<th></th>
 		<th></th>
 		<th></th>
 	</tr>
@@ -18,12 +18,10 @@
 			<%= link_to " #{address.id} ", edit_address_path(address)%>
 			<strong> <% if address.opis != ''%><%= address.opis %><% end %></strong>
 			<br />
-			
 			<%
 				dodatki = [address.xpath, address.css, address.regexp].join(" ")
 				( dodatki = dodatki[0, 17] + '...' ) if dodatki.length > 20
 			%>
-			
 			<% if !(address.adres.index('/', 10).nil?) %>
 				<% if address.adres.length > 50 %>
 					<a href="<%= address.adres %>"><%= przed_slashem(address.adres) %>/<br />
@@ -35,7 +33,14 @@
 				<a href="<%= address.adres %>"><%= address.adres %></a> <p class="dodatki"><%= dodatki %></p>
 			<% end %>
 		</td>
-		
+
+		<td> <%= address.users.length %>
+			<div>
+				<% address.users.each do |user| %>
+				<p> <%= user.klucz %> </p>
+				<% end %>
+			</div>
+		</td>
 		<td>
 			<% if address.messages != [] %>
 				<% address.messages.each do |komunikat| %> 

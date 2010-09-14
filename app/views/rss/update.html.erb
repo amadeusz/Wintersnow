@@ -1,4 +1,3 @@
-<ul>
 	<% @tablica.each do |element| %>
 		<li>
 			<p style="color:#ccc">Opis : <%= element[:opis] %></p>
@@ -13,4 +12,4 @@
 			<p style="color:#ccc;font-size:70%"><%= element[:adres] +", "+ element[:data_mod] %> ID:<%= element[:id] %></p>
 		</li>
 	<% end %>
-</ul>
+

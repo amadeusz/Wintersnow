@@ -16,23 +16,18 @@ DONE
 : uporządkować routing
 : trzeba będzie zmigrować kot... bazę ;)
 : przeportować widoki ['users', 'addresses'] do Rails 3.0.0
+: trzeba w końcu jakoś poblokować swobodny dostęp do localhost/Users|Messages|Rss
+: addresses_index : subscribers
+: users_index: addreses
+: #rss_web ins/del toggle
+: w trybie web najpierw pojawia się obecna tablica komunikatów, po sprawdzeniu różnic ładuje się aktualna
 
 TODO
-
-: zlikwidować regresję, odzyskać część skryptów z db/koliber 2.3.5 - logowanie.rb
+: bug:userowi zostaje zawsze jedna subskrybcja
+:? zlikwidować regresję, odzyskać część skryptów z db/koliber 2.3.5 - logowanie.rb
 	-> idea: gem nokogiri
-: w trybie web najpierw pojawia się obecna tablica komunikatów, po sprawdzeniu różnic ładuje się aktualna
 : przetestować w WebKit'cie
-
-Piotrek: bo ja widzę to tak - user dostaje maila
-Piotrek: z linkiem zawierającym poprawny genotyp do wyklucia kolibra
-Piotrek: skrypt sprawdza czy genotyp jest w bazie poprawnych
-Piotrek: jak jest, to pokazuje userowi formularz z wyborem imienia kolibra
-Piotrek: i hasła dostępu do gniazda ;P
-Piotrek: trzeba w końcu jakoś poblokować swobodny dostęp do localhost/Users|Messages|Rss
-Piotrek: no i na końcu dopracować frontend użytkownika i jakieś przekładki dla nas
-Piotrek: obok rssa zrobić podgląd w htmlu
-Piotrek: ludzie, którzy nie lubią się z technologią będą mieli prymitywniejsze rozwiązanie
-Piotrek: zawsze to jedna strona do odwiedzenia w miejsce 10-ciu
-Piotrek: z drugiej strony łatwiej będzie debugować
-Piotrek: bo pamiętasz, że opera miała jakieś jazdy czasem z odświeżaniem kanału rss
+: dodawanie adresów dla usera
+: address: publiczne i prywatne (niewidoczne w wyszukiwarce)
+: custom names
+: /rss/of/krzak

@@ -10,25 +10,28 @@
 			</ul>
 		</div>
 	<% end %>
+	<div class="field">
+		<%= f.label :klucz %>
+		<% if controller.admin_logged_in? %>
+		<br />
+		<%= f.text_field :klucz %>
+		<% else %>
+		 : <%= @user.klucz %>
+		<% end %>
+	</div>
 
 	<div class="field">
-		<%= f.label :klucz %><br />
-		<%= f.text_field :klucz %>
-	</div>
-	<div class="field">
 		<%= f.label :haslo %><br />
-		<%= f.text_field :haslo %>
+		<%= f.password_field :haslo %>
 	</div>
-	<div class="field">
-		<%= f.label :obserwowane %><br />
-		<%= f.text_area :obserwowane %>
-	</div>
+	<%= render 'form_subscribe' %>
+	<% if controller.admin_logged_in? %>
 	<div class="field">
 		<%= f.label :admin %><br />
 		<%= f.check_box :admin %>
 	</div>	
-
+	<% end %>
 	<div class="actions">
-		<%= f.submit %>
+		<%= f.submit "Zapisz" %>
 	</div>
 <% end %>
