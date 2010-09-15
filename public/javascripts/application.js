@@ -46,7 +46,7 @@ $(document).ready( function() {
 			$(this).children("div").toggle();
 		}
 	);
-	$("#addresses table tr :nth-child(2)").click(	
+	$("#addresses table tr :nth-child(3)").click(	
 		function(){
 			$(this).children("div").toggle();
 		}

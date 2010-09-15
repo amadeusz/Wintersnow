@@ -19,20 +19,37 @@
 <body id="<%= id %>"<% if controller.admin_logged_in? %> class="admin"<% else %> class="public"<% end %>>
 
 	<div id="nawigacja">
-	<% if controller.logged_in? %>
-	
-		<% if controller.admin_logged_in? %>
-			<%= link_to 'Start', root_path %>
-			<%= link_to 'Adresy', addresses_path %>
-			<%= link_to 'Genotypy', genotypes_path %>
-			<%= link_to 'Użytkownicy', users_path %>
-			<%= link_to 'Wiadomości', messages_path %>
-		<% else %>
-			<%= link_to 'Ustawienia', panel_path %>	
-		<% end %>
-		<%= link_to 'WebRSS', "rss/web" %>
-		<%= link_to 'Wyloguj ('+ controller.current_user.klucz + ')', login_destroy_path %>
-	<% end %>
+		<%
+			if controller.logged_in?
+		
+				nawigacja = {}
+		
+				if controller.admin_logged_in?
+					nawigacja.merge!( {
+						'Adresy' => addresses_path,
+						'Genotypy' => genotypes_path,
+						'Użytkownicy' => users_path,
+						'Wiadomości' => messages_path } )
+				end
+		
+				if (controller.current_user && controller.current_user.addresses.length != 0)
+					nawigacja.merge!( {
+						'RSS' => '/rss/of/'+ controller.current_user.klucz,
+						'WebRSS' => '/rss/web' } )
+				end
+		
+				nawigacja.merge!( {
+					'Ustawienia' => panel_path,
+					'Wyloguj ('+ controller.current_user.klucz + ')' => login_destroy_path } )
+
+				nawigacja.sort.each do |opis, adres|
+					klasa = nil
+					klasa = 'aktywny' if (request.env['REQUEST_URI'] != '/' && (adres =~ /#{request.env['REQUEST_URI']}[\/a-z]*/) != nil)
+					%><%= link_to opis, adres, { :class => klasa } %> <%
+				end
+			end
+		%>
+		
 	</div>
 
 	<div id="tresc">

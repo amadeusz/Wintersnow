@@ -11,5 +11,5 @@ module ApplicationHelper
 	def po_slashu(str)
 		return str[str.index('/', 10) +1, str.length]
 	end
-	
+
 end

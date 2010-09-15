@@ -1,14 +1,17 @@
-<div id="uzytkownicy">
-
-<h1>Użytkownicy</h1>
-
 <table>
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
 <% @users.each do |user| %>
 	<tr>
 		<td><%= user.klucz %></td>
 		<td><% if user.admin %><%= image_tag 'icons/weather_sun.png' %><% end %></td>
 		<td><%= user.haslo %></td>
-		<td> <%= user.addresses.length %>
+		<td><%= user.addresses.length %>
 		<div>
 			<% user.addresses.each do |adres| %>
 			<p> <%= adres.adres[0..50] %> </p>
@@ -21,5 +24,4 @@
 <% end %>
 </table>
 
-	<div class="actions"><%= link_to 'dodaj', new_user_path %></div>
-</div>
+<div class="actions"><%= link_to 'dodaj', new_user_path %></div>

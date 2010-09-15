@@ -4,8 +4,7 @@
 		});
 	});
 </script>
-<ul id="update">
-<p id="loading"> <%= image_tag '/images/loading.gif' %> ładowanie... </p>
+<ul id="update"><p id="loading"> <%= image_tag '/images/loading.gif' %> ładowanie... </p>
 <% old_news(controller.current_user).each do |news|  %>
 	<li>
 		<p style="color:#ccc">Opis : <%= news.address.opis %></p>

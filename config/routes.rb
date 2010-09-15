@@ -2,6 +2,7 @@ Koliber::Application.routes.draw do
 
 	# najwyższy priorytet mają wpisy umieszczone od góry
 
+
 	match '/login/create(.:format)' => 'login#create', :via => 'post'
 	match '/login/destroy(.:format)' => 'login#destroy', :via => 'get'
 	match '/login(.:format)' => 'login#index', :via => 'get'

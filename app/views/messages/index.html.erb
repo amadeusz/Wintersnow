@@ -1,8 +1,13 @@
-<h1>Wiadomości</h1>
-
 <p id="notice"><%= notice %></p>
 
 <table>
+	<tr>
+		<th><%= image_tag 'icons/key.png' %></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
 <% @messages.each do |message| %>
 	<tr>
 		<td><%= link_to message.id, message_path(message) %></td>

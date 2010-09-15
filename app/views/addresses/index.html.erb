@@ -1,37 +1,29 @@
-<h1>Adresy</h1>
-
 <p id="notice"><%= notice %></p>
 
 <table>
 	<tr>
+		<th><%= image_tag 'icons/key.png' %></th>
 		<th></th>
+		<th><%= image_tag 'icons/user.png' %></th>
+		<th><%= image_tag 'icons/comments.png' %></th>
 		<th></th>
-		<th></th>
-		<th>M</th>
-		<th>S</th>
 		<th></th>
 		<th></th>
 	</tr>
 <% @addresses.each do |address| %>
 	<tr>
+		<td><%= link_to " #{address.id} ", edit_address_path(address)%></td>
 		<td>
-			<%= link_to " #{address.id} ", edit_address_path(address)%>
-			<strong> <% if address.opis != ''%><%= address.opis %><% end %></strong>
-			<br />
-			<%
-				dodatki = [address.xpath, address.css, address.regexp].join(" ")
-				( dodatki = dodatki[0, 17] + '...' ) if dodatki.length > 20
-			%>
-			<% if !(address.adres.index('/', 10).nil?) %>
-				<% if address.adres.length > 50 %>
-					<a href="<%= address.adres %>"><%= przed_slashem(address.adres) %>/<br />
-					<span style="color: #999"><%= po_slashu(address.adres) %></span></a> <p class="dodatki"><%= dodatki %></p>
-				<% else %>
-					<a href="<%= address.adres %>"><%= przed_slashem(address.adres) %>/<span style="color: #999"><%= po_slashu(address.adres) %></span></a> <p class="dodatki"><%= dodatki %></p>
-				<% end %>
-			<% else %>
-				<a href="<%= address.adres %>"><%= address.adres %></a> <p class="dodatki"><%= dodatki %></p>
-			<% end %>
+		<%
+			opis = nil, dodatki = nil
+			opis = address.opis.limit(50) if address.opis != ''
+			dodatki = [address.xpath, address.css, address.regexp].join(" ").limit(50)
+			adres = address.adres.limit(50)
+		
+		%>
+			<% if opis %><p><strong><%= opis %></strong></p><% end %>
+			<p><a href="<%= adres %>"><%= adres  %></a></p>
+			<% if dodatki %><p class="dodatki"><%= dodatki  %></p><% end %>
 		</td>
 
 		<td> <%= address.users.length %>
@@ -52,8 +44,7 @@
 			<% end %>
 		</td>
 		
-		<td><%= skroc_date(address.data_mod) %></td>
-		<td><%= skroc_date(address.data_spr) %></td>
+		<td><%= skroc_date(address.data_mod) %><br/><span style="color: #999"><%= skroc_date(address.data_spr) %></span></td>
 		<td><% if address.blokada %><%= image_tag "icons/exclamation.png" %><% end %></td> 
 		
 		<td><%= link_to image_tag('icons/keyboard.png'), edit_address_path(address) %>
