@@ -249,7 +249,7 @@ class RssController < ApplicationController
 	skip_before_filter :require_login, :only => [:of]
 	def of
 		headers['Content-type'] = 'text/xml'
-		@tablica = generuj_zawartosc_rss(User.where({:klucz => params[:id]}).first).sort! { |a,b| a[:data_mod] <=> b[:data_mod] }
+		sprawdz_zawartosc_rss(current_user)
 		render :layout => false
 	end
 	

@@ -4,16 +4,16 @@
 		<title>hummingbird-ng</title>
 		<language>pl-pl</language>
 	
-	<% @tablica.each do |element| %>
+	<% news(controller.current_user).each do |news| %>
 	
 		<item>
-			<title><%= element[:opis] %></title>
-			<link><%= element[:adres] %></link>
+			<title><%= news.address.opis %></title>
+			<link><%= news.address.adres %></link>
 			<description><![CDATA[
-				<%= element[:komunikat] %>
+				<%= news.tresc.html_safe %>
 			]]></description>
-			<pubDate><%= element[:data_mod] %></pubDate>
-			<guid><%= element[:adres] +", "+ element[:data_mod] %></guid>
+			<pubDate><%= news.address.data_mod.to_s %></pubDate>
+			<guid><%= news.address.adres.concat(", ").concat(news.address.data_mod.to_s) %></guid>
 		</item>
 	
 	<% end %>
