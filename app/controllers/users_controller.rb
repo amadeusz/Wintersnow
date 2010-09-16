@@ -82,8 +82,13 @@ class UsersController < ApplicationController
 
 		respond_to do |format|
 			if autoryzowane && @user.save
-				genotyp.destroy if !admin_logged_in?
-				format.html { redirect_to(przekierowanie, :notice => 'Możesz się teraz zalogować') }
+				if !admin_logged_in?
+					notice = "Możesz się teraz zalogować"
+					genotyp.destroy
+				else
+					notice = "Pomyślnie dodano nowego użytkownika #{@user.klucz} => #{@user.id}"
+				end
+				format.html { redirect_to(przekierowanie, :notice => notice) }
 				format.xml	{ render :xml => @user, :status => :created, :location => @user }
 			else
 				format.html { render widok, :action => "new" }
@@ -105,7 +110,8 @@ class UsersController < ApplicationController
 #		end
 		przekierowanie = users_path
 		przekierowanie = root_path if !(admin_logged_in?)
-
+		params[:user][:address_ids] = [] if out = params[:user][:address_ids].nil?
+		
 		respond_to do |format|
 			if @user.update_attributes(params[:user])
 				format.html { redirect_to(przekierowanie, :notice => 'Ustawienia pomyślnie zapisane') }
@@ -122,7 +128,7 @@ class UsersController < ApplicationController
 	def destroy
 		@user = User.find(params[:id])
 		@user.destroy
-		
+		Site.where(:user_id => params[:id]).each {|site| site.destroy}
 
 		respond_to do |format|
 			format.html { redirect_to(users_url) }

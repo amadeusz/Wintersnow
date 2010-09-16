@@ -231,6 +231,8 @@ def os_wdiff(md5key)
 	f_diff.close	
 	usun_temp(diff_file)
 	usun_temp(temp)
+	tresc_diff.gsub!(/<del>/, '<del color="#CE4641">')
+	tresc_diff.gsub!(/<ins>/, '<ins color="#60B302">')
 	return tresc_diff
 end
 

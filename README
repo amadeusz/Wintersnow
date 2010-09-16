@@ -19,11 +19,14 @@ DONE
 : trzeba w końcu jakoś poblokować swobodny dostęp do localhost/Users|Messages|Rss
 : addresses_index : subscribers
 : users_index: addreses
-: #rss_web ins/del toggle
 : w trybie web najpierw pojawia się obecna tablica komunikatów, po sprawdzeniu różnic ładuje się aktualna
+: hardcoded <ins/del color=""> w generowanym RSSie
+: #rss_web ins/del toggle - nie działa po przeładowaniu strony
+: po usunięciu usera, usuwane są pozostałości w Sites
+: fixed:userowi zostaje zawsze jedna subskrybcja
 
 TODO
-: bug:userowi zostaje zawsze jedna subskrybcja
+
 :? zlikwidować regresję, odzyskać część skryptów z db/koliber 2.3.5 - logowanie.rb
 	-> idea: gem nokogiri
 : przetestować w WebKit'cie
@@ -31,3 +34,5 @@ TODO
 : address: publiczne i prywatne (niewidoczne w wyszukiwarce)
 : custom names
 : /rss/of/krzak
+: zrobienie wersji mobilnej
+: bugtracker?

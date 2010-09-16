@@ -52,7 +52,7 @@ div.field_with_errors { display: inline; } div.field_with_errors input { border:
 
 /* Addresses */
 #addresses .komunikat_id a { padding: 5px; }
-#addresses .ad_message { color: white; z-index: 99; padding: 10px 20px; background-color: #FFC0CB; display: none; position: absolute; width: 400px; }
+#addresses .ad_message { text-align:left; color: white; z-index: 99; padding: 10px 20px; background-color: #FFC0CB; display: none; position: absolute; width: 400px; }
 #addresses .ad_message a { position: absolute; top: 10px; right: 10px; }
 #addresses .dodatki { color: green; }
 
@@ -74,7 +74,10 @@ div#my_addresses, #subscribed { background-color: #cfe9ef; padding: 5px 7px 3px 
 #rss_web li { margin: 5px; }
 #rss_web li p:nth-child(4) { margin: 15px 0; }
 #rss_web ins { color: #60B302; } #rss_web del { color: #CE4641; }
-#rss_web #loading { text-align: center; }
+#rss_web #loading { text-align: center;}
+#rss_web #loading p {display:table-cell;}
+#rss_web #loading img { vertical-align:middle; margin-right:15px;}
+
 
 /* Login, Wykluj */
 #login #tresc img, .wykluj img { padding: 11% 5%; }

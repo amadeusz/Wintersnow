@@ -1,6 +1,6 @@
 class CreateSites < ActiveRecord::Migration 
   def self.up 
-    create_table :sites, :id => false do |t| 
+    create_table :sites do |t| 
       t.references :address
       t.string :opis 
       t.references :user
