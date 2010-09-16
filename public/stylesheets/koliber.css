@@ -8,7 +8,7 @@ li { list-style: none; }
 p:empty { display: none; }
 
 /* Globalne */
-html { color: #333; background: #9ACEDB url(/images/tlo.png) no-repeat; font-size: 13px; line-height: 18px; font-family: verdana, arial, helvetica, sans-serif; height: 100%; }
+html { color: #333; background: #9ACEDB url(/images/tlo.png) no-repeat; font-size: 14px; line-height: 18px; font-family: verdana, arial, helvetica, sans-serif; height: 100%; }
 a { color: #000; } a:visited { color: #000; } a > img { vertical-align: text-top; }
 h1 { margin-top: 20px; margin-bottom: 12px; } h1:first-child { margin-top: 0; } h2 { margin-top: 16px; margin-bottom: 10px; } h2:first-child { margin-top: 0; }
 pre { background-color: #eee; padding: 10px; font-size: 11px; }
@@ -20,11 +20,11 @@ pre { background-color: #eee; padding: 10px; font-size: 11px; }
 #nawigacja a { background-color: #666; padding: 16px 16px 7px 16px; margin: 0 2px; color: white; -webkit-border-radius: 0 0 5px 5px; -moz-border-radius: 0 0 5px 5px; border-radius:  0 0 5px 5px; }
 #nawigacja a.aktywny { padding-top: 30px; position: relative; top: 0; background-color: black; }
 
-.actions { text-align: right; margin: 20px 20px 8px 20px; }
-.actions a, .actions input, input[type="text"], input[type="password"], textarea, #rss_web li, #subscribed, div#my_addresses { -webkit-border-radius:  5px; -moz-border-radius: 5px; border-radius: 5px; }
+.actions { text-align: right; margin:10px 0}
+.actions a, .actions input, input[type="text"], input[type="password"], textarea, #rss_web li, #subscribed, #my_addresses, .rounded { -webkit-border-radius:  5px; -moz-border-radius: 5px; border-radius: 5px; }
 .actions a, .actions input { background-color: #cfe9ef; margin: 0 2px; padding: 4px 16px; }
 
-input[type="text"], input[type="password"], textarea { background-color: #cfe9ef; padding: 5px 7px 3px 7px; width: 96%;  }
+input[type="text"], input[type="password"], textarea { background-color: #cfe9ef; padding: 5px 7px 3px 7px; width: 97%;  }
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus { background-color: rgba(255, 255, 255, 0.7); }
 
 .actions a:focus, .actions input:focus, #nawigacja a:focus { color: white; background-color: #BD004C; }
@@ -50,11 +50,15 @@ table td { padding: 2px 7px; background-color: rgba(240, 255, 255, 0.8); vertica
 .admin #error_explanation { background: url(/images/guard.gif) no-repeat 20px 40px; min-height: 80px; padding-left: 130px; padding-top: 70px; }
 div.field_with_errors { display: inline; } div.field_with_errors input { border: 1px solid red; }
 
+#messages td:nth-child(3) { font-size: 12px; }
+
 /* Addresses */
 #addresses .komunikat_id a { padding: 5px; }
 #addresses .ad_message { text-align:left; color: white; z-index: 99; padding: 10px 20px; background-color: #FFC0CB; display: none; position: absolute; width: 400px; }
 #addresses .ad_message a { position: absolute; top: 10px; right: 10px; }
+#addresses td a, #addresses tr :nth-child(5), #addresses tr :nth-child(4), #addresses .dodatki { font-size: 12px; }
 #addresses .dodatki { color: green; }
+
 
 /* Genotypes */
 #genotypes #tresc div { margin: 5px 0; white-space: nowrap; }
@@ -62,22 +66,38 @@ div.field_with_errors { display: inline; } div.field_with_errors input { border:
 
 /* Users */
 #users table tr :nth-child(4) div, #addresses table tr :nth-child(3) div {display:none; position:absolute; padding: 10px 20px; background-color: #FFC0CB;}
-#my_addresses, #subscribed { margin: 5px 0; overflow: hidden}
-#my_addresses div, #subscribed div { margin: 5px 0; border-bottom: 1px solid #9ACEDB; padding: 5px 0; overflow: hidden}
-#my_addresses input[type=text] { border: 1px solid white; }
-#my_addresses input[type=checkbox], #subscribed input[type=checkbox] { margin-top: 10px; margin-left: 5px; margin-right: 10px; float: left; clear: left; }
-#my_addresses p.adres, #subscribed p.adres { float: left; font-size: 80%; color: #006666; }
-#update li { padding: 2px 7px; background-color: rgba(240, 255, 255, 0.8); }
-div#my_addresses, #subscribed { background-color: #cfe9ef; padding: 5px 7px 3px 7px;  }
+
+#my_addresses li, #subscribed div { margin: 5px 0; border-bottom: 1px solid #9ACEDB; padding: 5px 0; overflow: hidden}
+#my_addresses {min-height:32px}
+#users_edit .field {margin-bottom:15px;}
+
+
+#users_edit label {display:block; margin-bottom:5px;}
+#subscribed { margin: 0; overflow: hidden}
+#filter {background-color:#9ACEDB; width:480px; padding:5px;}
+#filter input[type=text] { width:430px; margin-left:8px; border: 1px solid white; }
+#filter img {margin-top:5px; margin-left:5px; float:left;}
+#my_addresses ul {overflow: hidden}
+#my_addresses input[type=checkbox], #subscribed input[type=checkbox] { margin:10px 10px 10px 10px; float: left; clear: left; }
+#my_addresses p.adres, #subscribed p.adres { float: left; font-size: 12px; color: #006666; }
+#my_addresses, #subscribed, #rss_web .msg  { background-color: #cfe9ef; padding: 5px 7px 3px 7px;  }
 
 /* RSS */
-#rss_web li { margin: 5px; }
-#rss_web li p:nth-child(4) { margin: 15px 0; }
+#rss_web li { margin: 5px;  }
 #rss_web ins { color: #60B302; } #rss_web del { color: #CE4641; }
 #rss_web #loading { text-align: center;}
 #rss_web #loading p {display:table-cell;}
 #rss_web #loading img { vertical-align:middle; margin-right:15px;}
-
+#rss_web .boxdate { width:114px; padding:10px 10px 0 10px; text-align:center; margin-left:-50px; margin-right:5px; float:left;}
+#rss_web .box_msg { overflow:hidden; border-left: 1px solid #ddf0ff; padding-left: 10px; margin-bottom:15px;width:420px; position:relative;}
+#rss_web .boxdate span {}
+#rss_web .boxdate .day {font-size:28px;}
+#rss_web .boxdate .month {font-size:28px;}
+#rss_web .boxdate .time { display:block;color:white;}
+#rss_web h1 { font-size:16px; margin:2px 0 2px 0;}
+#rss_web h2 { font-size:12px; margin:0;width:50%}
+#rss_web .switcher { position:absolute; top:5px; right:5px;font-size:12px;}
+#rss_web .msg { margin:15px 0;font-size:12px; clear:right; }
 
 /* Login, Wykluj */
 #login #tresc img, .wykluj img { padding: 11% 5%; }

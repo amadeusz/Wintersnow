@@ -1,5 +1,5 @@
 module RssHelper
-	def old_news (user)
+	def news(user)
 		news = []
 		User.find(user).addresses.each {|adres|
 			news += adres.messages

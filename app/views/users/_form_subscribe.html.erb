@@ -1,28 +1,32 @@
-<p>Subskrybowane: 
+<div class="field">
+	<label> Subskrybowane: 
 <% if @user.addresses == [] %>
-	Nic </p>
+		Nic </label>
 <% else %>
-</p>
-<div id="subscribed" class="field">
+</label>
+	<div id="subscribed">
 	<% @user.addresses.each do |address| %>
-	<div>
-		<%= check_box_tag :address_ids, address.id, true, :name => 'user[address_ids][]' %>
-		<p class="opis"><%= label_tag :address_ids, get_opis(address, @user.id) %></p>
-		<p class="adres"> <%= address.adres %> </p>
-	</div>
+		<div>
+		<%= check_box_tag :address_id, address.id, true, :name => 'user[address_ids][]' %>
+			<p class="opis"><%= label_tag :address_ids, get_opis(address, @user.id) %></p>
+			<p class="adres"> <%= address.adres %> </p>
+		</div>
 	<% end %>
-</div>
+	</div>
 <% end %>
-<p>Wyszukiwarka: </p>
-<div id="my_addresses" class="field">
-<input id="filtr" type="text" />
+</div>
+<div class="field">
+	<label>Wyszukiwarka: </label>
+	<div id="filter"><%= image_tag "icons/zoom.png" %><input id="filtr" type="text" /></div>
+	<ul id="my_addresses">
 <% @addresses.each do |address| %>
 	<% if !@user.addresses.include?(address) %>
-	<div>
-		<%= check_box_tag :address_ids, address.id, @user.addresses.include?(address), :name => 'user[address_ids][]' %>
-		<p class="opis"><%= label_tag :address_ids, get_opis(address, @user.id) %></p>
-		<p class="adres"> <%= address.adres %> </p>
-	</div> 
- 	<% end %>
+		<li class="result">
+		<%= check_box_tag :address_id, address.id, @user.addresses.include?(address), :name => 'user[address_ids][]' %>
+			<p class="opis"><%= label_tag :address_ids, get_opis(address, @user.id) %></p>
+			<p class="adres"> <%= address.adres %> </p>
+		</li> 
+	<% end %>
 <% end %>
+	</ul>
 </div>

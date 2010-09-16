@@ -1,17 +1,4 @@
 <ul id="update"><p id="loading"> <%= image_tag '/images/loading.gif' %> ładowanie... </p>
-<% old_news(controller.current_user).each do |news|  %>
-	<li>
-		<p style="color:#ccc">Opis : <%= news.address.opis %></p>
-		<p style="color:#ccc">Adres : <%= news.address.adres %></p>
-		<p> Przełącz widoczość: 
-		<%= image_tag 'icons/add.png', :class => "tog_ins" %>
-		<%= image_tag 'icons/destroy.png', :class => "tog_del" %></p>
-		<p class="msg">
-			<%= news.tresc.html_safe %> 
-		</p>
-		<p style="color:#ccc">Data mod<%= news.data.rfc2822 %></p>
-	</li>
-<% end %>
+<%= render 'webcontent' %>
 </ul>
-
 

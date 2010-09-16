@@ -13,7 +13,7 @@
 	<div class="field">
 		<%= f.label :klucz %>
 		<% if controller.admin_logged_in? %>
-		<br />
+		
 		<%= f.text_field :klucz %>
 		<% else %>
 		 : <%= @user.klucz %>
@@ -21,13 +21,13 @@
 	</div>
 
 	<div class="field">
-		<%= f.label :haslo %><br />
+		<%= f.label :haslo %>
 		<%= f.password_field :haslo %>
 	</div>
 	<%= render 'form_subscribe' %>
 	<% if controller.admin_logged_in? %>
 	<div class="field">
-		<%= f.label :admin %><br />
+		<%= f.label :admin %>
 		<%= f.check_box :admin %>
 	</div>	
 	<% end %>

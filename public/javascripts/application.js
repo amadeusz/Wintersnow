@@ -68,38 +68,37 @@ $(document).ready( function() {
 	$("#filtr").keypress(function(e) {
 		$('#filtr').css({color:"black"})
 		var key = e.which;
-
-		if (key == 27) {	
-			$(this).val('');	
-			$('#my_addresses div').css({display: "block"});
-		} 
-		else if (key > 31 && key < 126 || key == 8) { 
+		if (key > 31 && key < 126 || key == 8) { 
 			if (key != 8) 
 				var filter = $(this).val() + String.fromCharCode(key);
 			else 
 				var filter = $(this).val().slice(0, -1);
 			filtruj(filter);
 		}
+		else if (e.keyCode == 27) {	
+			$('#my_addresses li').show();
+			$('#filtr').val('');
+		} 
 	});
 
 	function filtruj(filter) {
 		var hide_them = new Array();
-		$("#my_addresses div ").each(function () {
+		$("#my_addresses li").each(function () {
 			if (($(this).children('p.opis').text().search(new RegExp(filter, "i")) < 0) && ($(this).children('p.adres').text().search(new RegExp(filter, "i")) < 0)) {
 				hide_them.push($(this));
 			} else {
 				$(this).show();
 			}
 		});
-		if ( hide_them.length == $("#my_addresses div").length) {
-			$("#my_addresses div").each(function () {
+		if ( hide_them.length == $("#my_addresses li").length) {
+			$("#my_addresses li").each(function () {
 				$(this).show();
 			});
 			$('#filtr').css({color:"red"});
 		}
 		else {
 			$.each(hide_them, function (index,value) {
-				value.hide();
+				value.fadeOut();
 			});
 		}
 	}

@@ -238,24 +238,10 @@ end
 
 # Funkcja tworzy tablicę komunikatów RSS dla użytkownika
 # @param [User] ActiveRecord zawierający dane o użytkowniku
-# @return [Array] Tablica komunikatów rss
-def generuj_zawartosc_rss(user)
-	rss = []
+def sprawdz_zawartosc_rss(user)
 	user.addresses.each { |strona_w_db|
 		polecenie_aktualizacji = Strona.new(strona_w_db)
-		komunikaty = strona_w_db.messages
-		if komunikaty != []
-			komunikaty.each { |komunikat|
-				if ( strona_w_db.opis.nil? == false and strona_w_db.opis != '')
-					opis = strona_w_db.opis
-				else
-					opis = strona_w_db.adres
-				end 
-				rss << {:id => komunikat.id, :adres => strona_w_db.adres, :opis => opis, :data_mod => komunikat.data.rfc2822, :komunikat => komunikat.tresc}
-			} 
-		end
 	} if user.addresses.empty? == false
-	return rss
 end
 
 class RssController < ApplicationController
@@ -268,7 +254,7 @@ class RssController < ApplicationController
 	end
 	
 	def update
-		@tablica = generuj_zawartosc_rss(current_user).sort! { |a,b| Time.parse(b[:data_mod]) <=> Time.parse(a[:data_mod]) }
+		sprawdz_zawartosc_rss(current_user)
 		render :layout => false
 		respond_to do |format|
 			format.html {}

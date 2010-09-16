@@ -1,0 +1,21 @@
+<% news(controller.current_user).each do |news|  %>
+	<li>
+		<div class="boxdate ">
+			<span class="day"><%= news.data.day %></span>
+			<span class="month"><%= Time::RFC2822_MONTH_NAME[news.data.month] %></span>
+			<span class="time"><%= news.data.strftime("%I:%M") %></span>
+		</div>
+		<div class="box_msg">
+		<h1><%= news.address.opis %></h1>
+		<h2><%= news.address.adres %></h2>
+		<p class="switcher">
+		<%= image_tag 'icons/add.png', :class => "tog_ins" %>
+		<%= image_tag 'icons/destroy.png', :class => "tog_del" %>
+		</p>
+		<p class="msg rounded">
+			<%= news.tresc.html_safe %> 
+		</p>
+		</div>
+	</li>
+<% end %>
+
