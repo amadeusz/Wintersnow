@@ -58,7 +58,8 @@ $(document).ready( function() {
 		$(this).parent().siblings(".msg").children("del").toggle();
 	});
 		
-	
-	
 });
 
+$(document).ready(function() {
+	$("#rss_web #update").load("/rss/update", function() { });
+});

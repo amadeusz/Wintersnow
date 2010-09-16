@@ -4,10 +4,10 @@
 	<div>
 		<%= check_box_tag :address_ids, address.id, true, :name => 'user[address_ids][]' %>
 		<p class="opis"><%= label_tag :address_ids, get_opis(address, @user.id) %></p>
-    <p class="adres"> <%= address.adres %> </p>
-  </div> 
+		<p class="adres"> <%= address.adres %> </p>
+	</div>
 <% end %>
-</div> 
+</div>
 <p>Wyszukiwarka: </p>
 <div id="my_addresses" class="field">
 <input id="filtr" type="text" />
@@ -16,8 +16,8 @@ $("#filtr").keypress(function(e) {
 	$('#filtr').css({color:"black"})
 	var key = e.which;
 
-	if (key == 27) {  
-		$(this).val('');  
+	if (key == 27) {	
+		$(this).val('');	
 		$('#my_addresses div').css({display: "block"});
 	} 
 	else if (key > 31 && key < 126 || key == 8) { 
@@ -52,14 +52,13 @@ function filtruj(filter) {
 }
 </script>
 
-
 <% @addresses.each do |address| %>
 	<% if !@user.addresses.include?(address) %>
 	<div>
 		<%= check_box_tag :address_ids, address.id, @user.addresses.include?(address), :name => 'user[address_ids][]' %>
 		<p class="opis"><%= label_tag :address_ids, get_opis(address, @user.id) %></p>
-    <p class="adres"> <%= address.adres %> </p>
-  </div> 
+		<p class="adres"> <%= address.adres %> </p>
+	</div> 
  	<% end %>
 <% end %>
 </div>

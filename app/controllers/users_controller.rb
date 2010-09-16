@@ -82,7 +82,7 @@ class UsersController < ApplicationController
 
 		respond_to do |format|
 			if autoryzowane && @user.save
-				agenotyp.destroy if !admin_logged_in?
+				genotyp.destroy if !admin_logged_in?
 				format.html { redirect_to(przekierowanie, :notice => 'Możesz się teraz zalogować') }
 				format.xml	{ render :xml => @user, :status => :created, :location => @user }
 			else

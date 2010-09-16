@@ -1,9 +1,11 @@
+<p id="notice"><%= notice %></p>
+
 <table>
 	<tr>
 		<th></th>
 		<th></th>
 		<th></th>
-		<th></th>
+		<th><%= image_tag 'icons/world.png' %></th>
 		<th></th>
 	</tr>
 <% @users.each do |user| %>
@@ -14,7 +16,7 @@
 		<td><%= user.addresses.length %>
 		<div>
 			<% user.addresses.each do |adres| %>
-			<p> <%= adres.adres[0..50] %> </p>
+				<p><%= adres.adres.limit(50) %></p>
 			<% end %>
 		</div>
 		</td>

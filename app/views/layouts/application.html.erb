@@ -4,8 +4,10 @@
 <head>
 	<%= csrf_meta_tag %>
 	
-	<%= auto_discovery_link_tag(:rss, "/rss/of/koliber", {:title => "Koliber (komunikaty)"}) %>
-	<%= auto_discovery_link_tag(:rss, "/rss/of/kot", {:title => "kot"}) %>
+	<% if (controller.logged_in? && controller.current_user.addresses.length != 0) %>
+		<%= auto_discovery_link_tag(:rss, '/rss/of/'+ controller.current_user.klucz, {:title => controller.current_user.klucz.camelize}) %>
+	<% end %>
+	
 	<%= javascript_include_tag :defaults %>
 
 	<%= stylesheet_link_tag ['koliber', 'tabele'] %>
@@ -22,30 +24,29 @@
 		<%
 			if controller.logged_in?
 		
-				nawigacja = {}
+				nawigacja = []
 		
 				if controller.admin_logged_in?
-					nawigacja.merge!( {
-						'Adresy' => addresses_path,
-						'Genotypy' => genotypes_path,
-						'Użytkownicy' => users_path,
-						'Wiadomości' => messages_path } )
+					nawigacja << ['Adresy', addresses_path]
+					nawigacja << ['Genotypy', genotypes_path]
+					nawigacja << ['Użytkownicy', users_path]
+					nawigacja << ['Wiadomości', messages_path]
 				end
-		
-				if (controller.current_user && controller.current_user.addresses.length != 0)
-					nawigacja.merge!( {
-						'RSS' => '/rss/of/'+ controller.current_user.klucz,
-						'WebRSS' => '/rss/web' } )
-				end
-		
-				nawigacja.merge!( {
-					'Ustawienia' => panel_path,
-					'Wyloguj ('+ controller.current_user.klucz + ')' => login_destroy_path } )
+				
+				nawigacja << ['Ustawienia', panel_path]
 
-				nawigacja.sort.each do |opis, adres|
+				if (controller.current_user.addresses.length != 0)
+					nawigacja << ['WebRSS', '/rss/web']
+				end
+
+				nawigacja << ['Wyloguj ('+ controller.current_user.klucz + ')', login_destroy_path]
+
+				puts nawigacja.inspect
+
+				nawigacja.each do |element|
 					klasa = nil
-					klasa = 'aktywny' if (request.env['REQUEST_URI'] != '/' && (adres =~ /#{request.env['REQUEST_URI']}[\/a-z]*/) != nil)
-					%><%= link_to opis, adres, { :class => klasa } %> <%
+					klasa = 'aktywny' if (request.env['REQUEST_URI'] != '/' && (element[1] =~ /#{request.env['REQUEST_URI']}[\/a-z]*/) != nil)
+					%><%= link_to element[0], element[1], { :class => klasa } %> <%
 				end
 			end
 		%>
