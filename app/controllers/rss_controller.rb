@@ -115,7 +115,7 @@ class Strona
 			add_log "[#{@adres}][i] Sprawdzanie css"
 			@body = Nokogiri::HTML(@body).css(@rekord.css).text
 		end
-		body_index = @body.index(/<[Bb][Oo][dD][Yy].*/m)
+		body_index = @body.index(/<[Bb][Oo][dD][Yy].*/m) -1
 		@body.slice!(0..body_index) if body_index != nil
 		@body.gsub!(/<script[^>]*>.*<\/script>/, "")
 #			pamietana.gsub!(/<(.|\n)*?>/, "")
@@ -134,8 +134,10 @@ class Strona
 			okroj
 			zapisz_tymczasowo(@body,@id)
 			diff = os_wdiff(@id)
-			start = diff.to_s =~ /<(ins|del)>/ 
+			add_log diff
+			start = diff.to_s =~ /<(ins|del)/ 
 			if (start != nil) # są różnice
+
 				return skroc(diff.to_s)
 			else 
 				#Strona się nie zmieniła
