@@ -135,10 +135,9 @@ class Strona
 			zapisz_tymczasowo(@body,@id)
 			diff = os_wdiff(@id)
 			add_log diff
-			start = diff.to_s =~ /<(ins|del)/ 
+			start = diff =~ /<(ins|del)/ 
 			if (start != nil) # są różnice
-
-				return skroc(diff.to_s)
+				return skroc(diff)
 			else 
 				#Strona się nie zmieniła
 				return nil
@@ -155,30 +154,37 @@ end # Strona.class
 # Funkcja skraca output diffa (obcina przerwy między <del>/<ins> dłuższe niż 50 znaków) 
 # @param [String] String do skrócenia
 # @return [String] Skrócony string 
-def skroc(string)
+def skroc(s)
+	string = s
 	out 			= ""
 	limit 		= 50
 	szukaj 		= true
 	nastepny 	= nil
-
+	
 	while szukaj
 		if nastepny == nil
-			start = string.to_s.index(/<(ins|del)/)
+			start = string.index(/<(ins|del)>/)
 		else 
 			start = nastepny 
 		end
 		# koniec = string.to_s =~ /<\/(ins|del)/
 		if start != nil
-			if start - limit > 0
-				pierwsza_spacja = string.index(/ /) -1 
+			pierwsza_spacja = string.index(/ /)
+			until start - limit < 0 or pierwsza_spacja == nil
+				pierwsza_spacja = string[0..start-1].index(/ /)
 				#string = string[pierwsza_spacja..string.length]
-				string.slice!(0..pierwsza_spacja)
+				if !pierwsza_spacja.nil?
+					string.slice!(0..pierwsza_spacja) 
+					start = string.index(/<(ins|del)>/)
+				end
 			end
-			koniec = string.to_s.index(/<\/(ins|del)/)
+			start = string.index(/<(ins|del)>/)
+			koniec = string.index(/<\/(ins|del)>/)
 			if koniec != nil
-				nastepny = string[koniec..-1].index(/<(ins|del)/)
+				koniec += 6
+				nastepny = string[koniec..-1].index(/<(ins|del)>/)
 			else
-				add_log 'error!'
+				puts "add_log 'error!'"
 				break
 			end
 			if nastepny == nil
@@ -194,9 +200,12 @@ def skroc(string)
 				nastepny = 0
 			end
 		else 
+			szukaj = false
 			out = nil
 		end
 	end
+	out.gsub!(/<del>/, '<del color="#CE4641">') if !out.nil?
+	out.gsub!(/<ins>/, '<ins color="#60B302">') if !out.nil?
 	out
 end
 
@@ -233,8 +242,6 @@ def os_wdiff(md5key)
 	f_diff.close	
 	usun_temp(diff_file)
 	usun_temp(temp)
-	tresc_diff.gsub!(/<del>/, '<del color="#CE4641">')
-	tresc_diff.gsub!(/<ins>/, '<ins color="#60B302">')
 	return tresc_diff
 end
 
