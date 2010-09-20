@@ -15,7 +15,15 @@ Koliber::Application.routes.draw do
 	match 'rss/web' => 'rss#web'
 	match 'rss/update' => 'rss#update'
 	match 'rss' => 'rss#index'
-	match 'panel' => 'users#edit'
+	match 'ustawienia' => 'users#edit'
+	
+	match '/sites(.:format)' => 'sites#index', :as => 'sites', :via => 'get'
+#	match '/sites(.:format)' => 'sites#create', :as => 'sites', :via => 'post'
+#	match '/sites/new(.:format)' => 'sites#new', :as => 'new_site', :via => 'get'
+	match '/sites/:id/edit(.:format)' => 'sites#edit', :as => 'edit_site', :via => 'get'
+#	match '/sites/:id(.:format)' => 'sites#show', :as => 'site', :via => 'get'
+	match '/sites/:id(.:format)' => 'sites#update', :as => 'site', :via => 'put'
+	match '/sites/:id(.:format)' => 'sites#destroy', :as => 'site', :via => 'delete'
 	
 #	match '/addresses(.:format)' => 'addresses#index', :as => 'addresses', :via => 'get'
 #	match '/addresses(.:format)' => 'addresses#create', :as => 'addresses', :via => 'post'

@@ -5,13 +5,13 @@
 		<th></th>
 		<th></th>
 		<th></th>
-		<th><%= image_tag 'icons/world.png' %></th>
+		<th><%= image_tag 'icons/world.png', :width => 16, :height => 16 %></th>
 		<th></th>
 	</tr>
 <% @users.each do |user| %>
 	<tr>
 		<td><%= user.klucz %></td>
-		<td><% if user.admin %><%= image_tag 'icons/weather_sun.png' %><% end %></td>
+		<td><% if user.admin %><%= image_tag 'icons/weather_sun.png', :width => 16, :height => 16 %><% end %></td>
 		<td><%= user.haslo %></td>
 		<td><%= user.addresses.length %>
 		<div>
@@ -20,8 +20,8 @@
 			<% end %>
 		</div>
 		</td>
-		<td><%= link_to image_tag('icons/keyboard.png'), edit_user_path(user) %>
-			<%= link_to image_tag('icons/destroy.png'), user, :confirm => 'Are you sure?', :method => :delete %></td>
+		<td><%= link_to image_tag('icons/keyboard.png', :width => 16, :height => 16), edit_user_path(user) %>
+			<%= link_to image_tag('icons/destroy.png', :width => 16, :height => 16), user, :confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>
 <% end %>
 </table>

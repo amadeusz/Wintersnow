@@ -9,7 +9,7 @@ table tr:last-child td:last-child { -webkit-border-bottom-right-radius: 5px; -mo
 #addresses table td { vertical-align: middle; }
 #addresses table a, #addresses table a:visited { color: #999; }
 
-#addresses tr td:nth-child(1) { white-space: nowrap; width: 12px; text-align: center; }
+#addresses tr td:nth-child(1) { white-space: nowrap; width: 12px; text-align: right; }
 #addresses tr td:nth-child(2) { white-space: nowrap; width: 1px; }
 #addresses tr td:nth-child(3) { white-space: nowrap; width: 12px; text-align: center; }
 #addresses tr td:nth-child(4) { min-width: 100px; text-align: center; }
@@ -19,8 +19,8 @@ table tr:last-child td:last-child { -webkit-border-bottom-right-radius: 5px; -mo
 #addresses tr td:nth-child(8) { white-space: nowrap; width: 1px; }
 
 #messages table { width: 100%; }
-#messages tr td:nth-child(1) { width: 1px; text-align: center; }
-#messages tr td:nth-child(2) { width: 1px; text-align: center; }
+#messages tr td:nth-child(1) { width: 1px; text-align: right; }
+#messages tr td:nth-child(2) { width: 1px; text-align: right; }
 #messages tr td:nth-child(3) {  }
 #messages tr td:nth-child(4) { white-space: nowrap; width: 1px; text-align: center; }
 #messages tr td:nth-child(5) { white-space: nowrap; width: 1px; text-align: center; }
@@ -29,5 +29,11 @@ table tr:last-child td:last-child { -webkit-border-bottom-right-radius: 5px; -mo
 #users tr td:nth-child(1) { min-width: 100px; }
 #users tr td:nth-child(2) { white-space: nowrap; width: 12px; }
 #users tr td:nth-child(3) { min-width: 100px; }
-#users tr td:nth-child(4) { white-space: nowrap; width: 1px; }
+#users tr td:nth-child(4) { white-space: nowrap; width: 1px; text-align: right}
 #users tr td:nth-child(5) { white-space: nowrap; width: 1px; }
+
+#sites table { }
+#sites tr td:nth-child(1) { width: 1px; text-align: right; }
+#sites tr td:nth-child(2) { min-width: 300px; }
+#sites tr td:nth-child(3) { width: 1px; text-align: right; }
+#sites tr td:nth-child(4) { white-space: nowrap; width: 1px; }

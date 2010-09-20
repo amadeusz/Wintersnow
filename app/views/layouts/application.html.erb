@@ -28,12 +28,13 @@
 		
 				if controller.admin_logged_in?
 					nawigacja << ['Adresy', addresses_path]
+					nawigacja << ['Aliasy', sites_path]
 					nawigacja << ['Genotypy', genotypes_path]
 					nawigacja << ['Użytkownicy', users_path]
 					nawigacja << ['Wiadomości', messages_path]
 				end
 				
-				nawigacja << ['Ustawienia', panel_path]
+				nawigacja << ['Ustawienia', ustawienia_path]
 
 				if (controller.current_user.addresses.length != 0)
 					nawigacja << ['WebRSS', '/rss/web']

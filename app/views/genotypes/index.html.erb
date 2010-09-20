@@ -3,7 +3,7 @@
 <% @genotypes.each do |@genotype| %>
 	<div>
 		<%= form_for(@genotype) do |f| %><%= f.text_field :genotyp %><% end %>
-		<%= link_to image_tag('icons/destroy.png'), @genotype, :confirm => 'Are you sure?', :method => :delete %>
+		<%= link_to image_tag('icons/destroy.png', :width => 16, :height => 16), @genotype, :confirm => 'Are you sure?', :method => :delete %>
 	</div>
 <% end %>
 

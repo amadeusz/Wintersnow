@@ -8,6 +8,7 @@
 	<% @user.addresses.each do |address| %>
 		<div>
 		<%= check_box_tag :address_id, address.id, true, :name => 'user[address_ids][]' %>
+			<span style="float: right"><%= link_to image_tag('icons/keyboard.png', :width => 16, :height => 16), ('/sites/'+ Site.where(:address_id => address.id, 'user_id' => @user.id).first.id.to_s + '/edit') %></span>
 			<p class="opis"><%= label_tag :address_ids, get_opis(address, @user.id) %></p>
 			<p class="adres"> <%= address.adres %> </p>
 		</div>

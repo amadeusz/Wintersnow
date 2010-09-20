@@ -2,17 +2,17 @@
 
 <table>
 	<tr>
-		<th><%= image_tag 'icons/key.png' %></th>
+		<th><%= image_tag 'icons/key.png', :width => 16, :height => 16 %></th>
 		<th></th>
-		<th><%= image_tag 'icons/user.png' %></th>
-		<th><%= image_tag 'icons/comments.png' %></th>
+		<th><%= image_tag 'icons/user.png', :width => 16, :height => 16 %></th>
+		<th><%= image_tag 'icons/comments.png', :width => 16, :height => 16 %></th>
 		<th></th>
 		<th></th>
 		<th></th>
 	</tr>
 <% @addresses.each do |address| %>
 	<tr>
-		<td><%= link_to " #{address.id} ", edit_address_path(address)%></td>
+		<td><%= link_to address.id.to_s + '.', edit_address_path(address)%></td>
 		<td>
 		<%
 			opis = nil, dodatki = nil
@@ -36,19 +36,19 @@
 		<td>
 			<% if address.messages != [] %>
 				<% address.messages.each do |komunikat| %> 
-					<span class="komunikat_id"><%= link_to komunikat.id, edit_message_path(komunikat) %><div class="ad_message">
+					<span class="komunikat_id"><%= link_to komunikat.id.to_s + '.', edit_message_path(komunikat) %><div class="ad_message">
 						<%= komunikat.tresc[0..256] %><%= "..." if komunikat.tresc.length > 256 %>
-						<%= link_to image_tag('icons/destroy.png'), message_path(komunikat), :confirm => 'Are you sure?', :method => :delete %>
+						<%= link_to image_tag('icons/destroy.png', :width => 16, :height => 16), message_path(komunikat), :confirm => 'Are you sure?', :method => :delete %>
 					</div></span>
 				<% end %>
 			<% end %>
 		</td>
 		
 		<td><%= skroc_date(address.data_mod) %><br/><span style="color: #999"><%= skroc_date(address.data_spr) %></span></td>
-		<td><% if address.blokada %><%= image_tag "icons/exclamation.png" %><% end %></td> 
+		<td><% if address.blokada %><%= image_tag('icons/exclamation.png', :width => 16, :height => 16) %><% end %></td> 
 		
-		<td><%= link_to image_tag('icons/keyboard.png'), edit_address_path(address) %>
-			<%= link_to image_tag('icons/destroy.png'), address_path(address), :confirm => 'Are you sure?', :method => :delete %></td>
+		<td><%= link_to image_tag('icons/keyboard.png', :width => 16, :height => 16), edit_address_path(address) %>
+			<%= link_to image_tag('icons/destroy.png', :width => 16, :height => 16), address_path(address), :confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>
 <% end %>
 </table>

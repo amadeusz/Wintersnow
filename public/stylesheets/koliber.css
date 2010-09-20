@@ -2,13 +2,14 @@
 html, body, form, div, p, input, h1, h2, table, th, tr, td, input, ul, ol, li { margin: 0; padding: 0; }
 form, label { display: inline; }
 input[type="text"], input[type="submit"], input[type="password"], input[type="checkbox"], textarea { border: none; background: transparent; }
+input[type="submit"] { font-size: 14px; color: black; }
 a img { border: none; } a, a:link, a:visited, a:active { text-decoration: none; }
 table, table td, table tr, table th { border: none; }
 li { list-style: none; }
 p:empty { display: none; }
 
 /* Globalne */
-html { color: #333; background: #9ACEDB url(/images/tlo.png) no-repeat; font-size: 14px; line-height: 18px; font-family: verdana, arial, helvetica, sans-serif; height: 100%; }
+html, input { color: #333; background: #9ACEDB url(/images/tlo.png) no-repeat; font-size: 14px; line-height: 18px; font-family: verdana, arial, helvetica, sans-serif; height: 100%; }
 a { color: #000; } a:visited { color: #000; } a > img { vertical-align: text-top; }
 h1 { margin-top: 20px; margin-bottom: 12px; } h1:first-child { margin-top: 0; } h2 { margin-top: 16px; margin-bottom: 10px; } h2:first-child { margin-top: 0; }
 pre { background-color: #eee; padding: 10px; font-size: 11px; }
@@ -39,6 +40,7 @@ table td { padding: 2px 7px; background-color: rgba(240, 255, 255, 0.8); vertica
 #messages_new #tresc, #messages_create #tresc, #messages_edit #tresc, #messages_update #tresc, #messages_show #tresc,
 #users_new #tresc, #users_create #tresc, #users_edit #tresc, #users_update #tresc, #users_show #tresc,
 #login #tresc, #login_create #tresc, #login_destroy #tresc,
+#sites #tresc, #sites_edit #tresc, #sites_update #tresc,
 #genotypes #tresc, #users #tresc
 { width: 35em; margin-left: auto; margin-right: auto; }
 

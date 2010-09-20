@@ -1,3 +1,11 @@
 <%= form_for(@site) do |f| %>
+
+	<div class="field">
 		<%= f.label :opis %><%= f.text_field :opis %>
+	</div>
+	
+	<div class="actions">
+		<%= f.submit "Zapisz" %>
+	</div>
+	
 <% end %>
