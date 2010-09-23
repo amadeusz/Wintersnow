@@ -1,7 +1,3 @@
-def licz_alternatywy(tablica)
-	(tablica.inject(Hash.new(0)) { |h, i| h[i] += 1; h }).to_a
-end
-
 class UsersController < ApplicationController
 
 	skip_before_filter :require_login, :only => [:new, :create]
@@ -81,6 +77,7 @@ class UsersController < ApplicationController
 			flash[:error] = nil
 		end
 		
+		params[:user].delete(:address_opises)
 		@user = User.new(params[:user])
 		@addresses = Address.all
 
@@ -133,8 +130,9 @@ class UsersController < ApplicationController
 						alternatywy << site.opis
 					end
 					
-					liczby_alternatyw = licz_alternatywy(alternatywy)
-					max = 0, best_opis = ''
+					liczby_alternatyw = (alternatywy.inject(Hash.new(0)) { |h, i| h[i] += 1; h }).to_a
+					max = 0
+					best_opis = ''
 					liczby_alternatyw.each do |opis, liczba|
 						if liczba > max
 							max = liczba

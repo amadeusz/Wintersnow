@@ -10,15 +10,13 @@
 			</ul>
 		</div>
 	<% end %>
+	
+	<% if controller.admin_logged_in? %>
 	<div class="field">
 		<%= f.label :klucz %>
-		<% if controller.admin_logged_in? %>
-		
 		<%= f.text_field :klucz %>
-		<% else %>
-		 : <%= @user.klucz %>
-		<% end %>
 	</div>
+	<% end %>
 
 	<div class="field">
 		<%= f.label :haslo %>

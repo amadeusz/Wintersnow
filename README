@@ -24,14 +24,19 @@ DONE
 : #rss_web ins/del toggle - nie działa po przeładowaniu strony
 : po usunięciu usera, usuwane są pozostałości w Sites
 : fixed:userowi zostaje zawsze jedna subskrybcja
+: kalkulacja opisu z aliasów
 
 TODO
 
 : dodawanie adresów dla usera
 : address: publiczne i prywatne (niewidoczne w wyszukiwarce)
 : /rss/of/krzak
-: usunięcie opisu z tabeli adresy, kalkulacja opisu z aliasów
 : css nie jest interpretowany poprawnie przez Chromium
+: poprawienie bardzo dziwnych przekierowań
+: instrukcja odbierania rss
+
+Nakarmić kota
+
 : zrobienie wersji mobilnej
 : bugtracker?
 : przepisac rss/skroc
