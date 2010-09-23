@@ -7,15 +7,15 @@
 	<div id="subscribed">
 	<% @user.addresses.each do |address| %>
 		<div>
-		<%= check_box_tag :address_id, address.id, true, :name => 'user[address_ids][]' %>
-			<span style="float: right"><%= link_to image_tag('icons/keyboard.png', :width => 16, :height => 16), ('/sites/'+ Site.where(:address_id => address.id, 'user_id' => @user.id).first.id.to_s + '/edit') %></span>
-			<p class="opis"><%= label_tag :address_ids, get_opis(address, @user.id) %></p>
-			<p class="adres"> <%= address.adres %> </p>
+			<%= check_box_tag :address_id, address.id, true, :name => 'user[address_ids][]' %>
+			<p class="opis"><%= text_field_tag :address_id, get_opis(address, @user.id), :name => "user[address_opises][#{address.id}]" %></p>
+			<p class="adres"><%= label_tag :address_ids, address.adres %></p>
 		</div>
 	<% end %>
 	</div>
 <% end %>
 </div>
+
 <div class="field">
 	<label>Wyszukiwarka: </label>
 	<div id="filter"><%= image_tag "icons/zoom.png" %><input id="filtr" type="text" /></div>
@@ -23,9 +23,10 @@
 <% @addresses.each do |address| %>
 	<% if !@user.addresses.include?(address) %>
 		<li class="result">
-		<%= check_box_tag :address_id, address.id, @user.addresses.include?(address), :name => 'user[address_ids][]' %>
-			<p class="opis"><%= label_tag :address_ids, get_opis(address, @user.id) %></p>
-			<p class="adres"> <%= address.adres %> </p>
+			<p class="opis"><%= check_box_tag :address_id, address.id, @user.addresses.include?(address), :name => 'user[address_ids][]' %></p>
+			<%= text_field_tag :address_id, get_opis(address, @user.id), :name => "user[address_opises][#{address.id}]" %>
+			<p class="opis" style="visibility: hidden; height: 0; width: 0"><%= get_opis(address, @user.id) %></p>
+			<p class="adres"><%= address.adres %></p>
 		</li> 
 	<% end %>
 <% end %>

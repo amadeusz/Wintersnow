@@ -42,8 +42,6 @@
 
 				nawigacja << ['Wyloguj ('+ controller.current_user.klucz + ')', login_destroy_path]
 
-				puts nawigacja.inspect
-
 				nawigacja.each do |element|
 					klasa = nil
 					klasa = 'aktywny' if (request.env['REQUEST_URI'] != '/' && (element[1] =~ /#{request.env['REQUEST_URI']}[\/a-z]*/) != nil)

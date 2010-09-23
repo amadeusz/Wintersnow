@@ -111,9 +111,20 @@ class UsersController < ApplicationController
 		przekierowanie = users_path
 		przekierowanie = root_path if !(admin_logged_in?)
 		params[:user][:address_ids] = [] if out = params[:user][:address_ids].nil?
+		params[:user][:address_opises] = [] if out = params[:user][:address_opises].nil?
+		
+		identyfikatory = params[:user][:address_ids]
+		opisy = params[:user][:address_opises]
+		
+		params[:user].delete(:address_opises)
 		
 		respond_to do |format|
 			if @user.update_attributes(params[:user])
+
+				identyfikatory.each do |id|
+					Site.where(:address_id => id, 'user_id' => @user.id).first.update_attributes(:opis => opisy[id])
+				end
+
 				format.html { redirect_to(przekierowanie, :notice => 'Ustawienia pomyślnie zapisane') }
 				format.xml	{ head :ok }
 			else

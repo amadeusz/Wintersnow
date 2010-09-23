@@ -103,5 +103,27 @@ $(document).ready( function() {
 		}
 	}
 	
+	// checkCheckbox.onClick
+	
+	$('#my_addresses input[type=text]').click( function() {
+		opis = $(this).val();
+		checkbox = $(this).parent().find('input[type=checkbox]');
+		checkbox.attr('checked', true);
+		if(!checkbox.attr('title')) checkbox.attr('title', opis);
+	} );
+
+	$('#my_addresses input[type=checkbox]').click( function() {
+		
+		if($(this).attr('title') && !$(this).is(':checked'))
+			$(this).parent().parent().find('input[type=text]').attr('value', $(this).attr('title'))
+		
+//		checkbox.attr('title', opis);
+//		
+//		opis = $(this).val();
+//		checkbox = $(this).parent().find('input[type=checkbox]');
+//		checkbox.attr('checked', true);
+		
+	} );	
+	
 });
 
