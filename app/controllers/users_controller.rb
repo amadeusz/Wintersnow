@@ -122,7 +122,7 @@ class UsersController < ApplicationController
 			if @user.update_attributes(params[:user])
 
 				identyfikatory.each do |id|
-					Site.where(:address_id => id, 'user_id' => @user.id).first.update_attributes(:opis => opisy[id])
+					@user.sites.find_by_address_id(id).update_attributes(:opis => opisy[id])
 				end
 
 				format.html { redirect_to(przekierowanie, :notice => 'Ustawienia pomyślnie zapisane') }
