@@ -1,3 +1,7 @@
+def licz_alternatywy(tablica)
+	(tablica.inject(Hash.new(0)) { |h, i| h[i] += 1; h }).to_a
+end
+
 class UsersController < ApplicationController
 
 	skip_before_filter :require_login, :only => [:new, :create]
@@ -123,6 +127,24 @@ class UsersController < ApplicationController
 
 				identyfikatory.each do |id|
 					@user.sites.find_by_address_id(id).update_attributes(:opis => opisy[id])
+					@adres = Address.find(id)
+					alternatywy = []
+					@adres.sites.each do |site|
+						alternatywy << site.opis
+					end
+					
+					liczby_alternatyw = licz_alternatywy(alternatywy)
+					max = 0, best_opis = ''
+					liczby_alternatyw.each do |opis, liczba|
+						if liczba > max
+							max = liczba
+							( best_opis = opis) if opis != ''
+						end
+					end
+					
+					( best_opis = 'brak opisu' ) if (best_opis == '')
+					poprzedni_opis = @adres.opis
+					@adres.update_attributes(:opis => best_opis) if max != 1 || poprzedni_opis == 'brak_opisu'
 				end
 
 				format.html { redirect_to(przekierowanie, :notice => 'Ustawienia pomyślnie zapisane') }
