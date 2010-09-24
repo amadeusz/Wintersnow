@@ -1,5 +1,10 @@
 <%= render 'form' %>
 
 <div class="actions">
-	<%= link_to 'Back', addresses_path %>
+<% if controller.admin_logged_in? %>
+	<%= link_to 'Powrót', addresses_path %>
+<% else %>
+	<%= link_to 'Powrót', ustawienia_path %>
+<% end %>
+
 </div>

@@ -1,9 +1,8 @@
 <div class="field">
-	<label> Subskrybowane: 
-<% if @user.addresses == [] %>
-		Nic </label>
+	<label> Subskrybowane: </label>
+<% if @user.addresses == [] %> 
+		Nic  
 <% else %>
-</label>
 	<div id="subscribed">
 	<% @user.addresses.each do |address| %>
 		<div>
@@ -14,6 +13,7 @@
 	<% end %>
 	</div>
 <% end %>
+<%= link_to 'Nowy', new_address_path, {:class => 'button'} %>
 </div>
 
 <div class="field">

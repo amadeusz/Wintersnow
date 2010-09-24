@@ -12,44 +12,49 @@
 	<% end %>
 
 	<div class="field">
-		<%= f.label :opis %><br />
+		<%= f.label :opis %>
 		<%= f.text_field :opis %>
 	</div>
 	<div class="field">
-		<%= f.label :adres %><br />
+		<%= f.label :adres %>
 		<%= f.text_field :adres %>
 	</div>
-	<div class="field">
-		<%= f.label :xpath %><br />
-		<%= f.text_field :xpath %>
+	<div id="expert">
+		Zaawansowane <%= image_tag 'icons/add.png' %>
+		<div class="info">Uwaga! Dopisywanie tutaj czegokolwiek, bez świadomości co się w ogóle robi grozi nieprawidłowym działaniem kolibra (przedwczesnym wypadaniem piór, ewentualnym brakiem połysku i wyblakłymi kolorami, w skrajnych przypadkach grozi zwyrodnieniem dzioba). Ostrzegaliśmy.</div>
+		<div class="field">
+			<%= f.label :xpath %>
+			<%= f.text_field :xpath %>
+		</div>
+		<div class="field">
+			<%= f.label :css %>
+			<%= f.text_field :css %>
+		</div>
+		<div class="field">
+			<%= f.label :regexp %>
+			<%= f.text_field :regexp %>
+		</div>
 	</div>
-	<div class="field">
-		<%= f.label :css %><br />
-		<%= f.text_field :css %>
-	</div>
-	<div class="field">
-		<%= f.label :regexp %><br />
-		<%= f.text_field :regexp %>
-	</div>
-	<div class="field">
-		<%= f.label :data_mod %><br />
-		<%= f.datetime_select :data_mod %>
-	</div>
-	<div class="field">
-		<%= f.label :data_spr %><br />
-		<%= f.datetime_select :data_spr %>
-	</div>
-	<div class="field">
-		<%= f.label :komunikaty %><br />
-		<%= f.text_field :komunikaty %>
-	</div>
-	<div class="field">
-		<%= f.label :blokada %><br />
-		<%= f.check_box :blokada %>
-	</div>
-	
+	<% if controller.admin_logged_in? %>
+		<div class="field">
+			<%= f.label :data_mod %>
+			<%= f.datetime_select :data_mod %>
+		</div>
+		<div class="field">
+			<%= f.label :data_spr %>
+			<%= f.datetime_select :data_spr %>
+		</div>
+		<div class="field">
+			<%= f.label :komunikaty %>
+			<%= f.text_field :komunikaty %>
+		</div>
+		<div class="field">
+			<%= f.label :blokada %>
+			<%= f.check_box :blokada %>
+		</div>
+	<% end %>
 	<div class="actions">
-		<%= f.submit %>
+		<%= f.submit 'Dodaj' %>
 	</div>
 <% end %>
 

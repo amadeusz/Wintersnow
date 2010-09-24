@@ -23,13 +23,13 @@ pre { background-color: #eee; padding: 10px; font-size: 11px; }
 #nawigacja a.aktywny { padding-top: 30px; position: relative; top: 0; background-color: black; }
 
 .actions { text-align: right; margin:10px 0}
-.actions a, .actions input, input[type="text"], input[type="password"], textarea, #rss_web li, #subscribed, #my_addresses, .rounded { -webkit-border-radius:  5px; -moz-border-radius: 5px; border-radius: 5px; }
-.actions a, .actions input { background-color: #cfe9ef; margin: 0 2px; padding: 4px 16px; }
+a.button, .actions a, .actions input, input[type="text"], input[type="password"], textarea, #rss_web li, #subscribed, #my_addresses, .rounded { -webkit-border-radius:  5px; -moz-border-radius: 5px; border-radius: 5px; }
+a.button, .actions a, .actions input { background-color: #cfe9ef; margin: 0 2px; padding: 4px 16px; }
 
 input[type="text"], input[type="password"], textarea { background-color: #cfe9ef; padding: 5px 7px 3px 7px; width: 97%;  }
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus { background-color: rgba(255, 255, 255, 0.7); }
 
-.actions a:focus, .actions input:focus, #nawigacja a:focus { color: white; background-color: #BD004C; }
+a.button:focus, .actions a:focus, .actions input:focus, #nawigacja a:focus { color: white; background-color: #BD004C; }
 
 /* Tabele, listy */
 table { margin-left: auto; margin-right: auto; margin-top: -20px; }
@@ -70,18 +70,16 @@ div.field_with_errors { display: inline; } div.field_with_errors input { border:
 /* Users */
 #users table tr :nth-child(4) div, #addresses table tr :nth-child(3) div {display:none; position:absolute; padding: 10px 20px; background-color: #FFC0CB;}
 
-#my_addresses li, #subscribed div { margin: 5px 0; border-bottom: 1px solid #9ACEDB; padding: 5px 0; overflow: hidden}
+#my_addresses li, #subscribed div { margin: 5px 0; border-bottom: 1px solid #9ACEDB; padding: 0 0 10px 0; overflow: hidden}
 #my_addresses {min-height:32px}
-#users_edit .field {margin-bottom:15px;}
-
-
-#users_edit label {display:block; margin-bottom:5px;}
+.field {margin-bottom:15px;}
+label {display:block; margin-bottom:5px;}
 #subscribed { margin: 0; overflow: hidden}
-#filter {background-color:#9ACEDB; width:480px; padding:5px;}
-#filter input[type=text] { width:430px; margin-left:8px; border: 1px solid white; }
-#filter img {margin-top:5px; margin-left:5px; float:left;}
+#filter {background-color:#9ACEDB; width:480px; padding:5px; overflow:hidden}
+#filter input[type=text] { float:right; width:420px; margin-left:8px; border: 1px solid white; }
+#filter img {margin-top:7px; margin-left:11px; float:left;}
 #my_addresses ul {overflow: hidden}
-#my_addresses input[type=checkbox], #subscribed input[type=checkbox] { margin: 10px 10px 0px 10px; float: left; }
+#my_addresses input[type=checkbox], #subscribed input[type=checkbox] { margin: 14px 10px 0px 10px; float: left; }
 #my_addresses p.adres, #subscribed p.adres { font-size: 12px; color: #006666; margin-left:42px}
 #my_addresses, #subscribed, #rss_web .msg  { background-color: #cfe9ef; padding: 5px 7px 3px 7px;  }
 #my_addresses input[type=text], #subscribed input[type=text] { width: 420px; }

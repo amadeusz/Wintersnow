@@ -61,8 +61,13 @@ $(document).ready( function() {
 		$(this).parent().siblings(".msg").children("del").toggle();
 	});
 	}
+	$("#new_address #expert").children('div').hide();
+	$("#new_address #expert").click( function(){
+		$(this).children('div').toggle()
+	});
+	
 	insdel();
-	$("#rss_web #update").load("/rss/update", function() {insdel();});
+	$("#new_addr #update").load("/rss/update", function() {insdel();});
 	
 	// Filtr w user/edit
 	$("#filtr").keydown(function(e) {
