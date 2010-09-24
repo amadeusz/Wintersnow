@@ -6,10 +6,11 @@ input[type="submit"] { font-size: 14px; color: black; }
 a img { border: none; } a, a:link, a:visited, a:active { text-decoration: none; }
 table, table td, table tr, table th { border: none; }
 li { list-style: none; }
-p:empty { display: none; }
 
 /* Globalne */
-html, input { color: #333; background: #9ACEDB url(/images/tlo.png) no-repeat; font-size: 14px; line-height: 18px; font-family: verdana, arial, helvetica, sans-serif; height: 100%; }
+
+html, input { color: #333; background: #9ACEDB; font-size: 14px; line-height: 18px; font-family: verdana, arial, helvetica, sans-serif; }
+html { background-image:url(/images/tlo.png); background-repeat: no-repeat; height:100% }
 a { color: #000; } a:visited { color: #000; } a > img { vertical-align: text-top; }
 h1 { margin-top: 20px; margin-bottom: 12px; } h1:first-child { margin-top: 0; } h2 { margin-top: 16px; margin-bottom: 10px; } h2:first-child { margin-top: 0; }
 pre { background-color: #eee; padding: 10px; font-size: 11px; }
