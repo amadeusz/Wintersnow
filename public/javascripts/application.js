@@ -65,20 +65,17 @@ $(document).ready( function() {
 	$("#rss_web #update").load("/rss/update", function() {insdel();});
 	
 	// Filtr w user/edit
-	$("#filtr").keypress(function(e) {
-		$('#filtr').css({color:"black"})
-		var key = e.which;
-		if (key > 31 && key < 126 || key == 8) { 
-			if (key != 8) 
-				var filter = $(this).val() + String.fromCharCode(key);
-			else 
-				var filter = $(this).val().slice(0, -1);
-			filtruj(filter);
-		}
-		else if (e.keyCode == 27) {	
+	$("#filtr").keydown(function(e) {
+		if (e.which == 27) {	
 			$('#my_addresses li').show();
-			$('#filtr').val('');
+			$('[id=filtr]').val('');
 		} 
+		else {
+			setInterval(function() {
+				var filter = $("#filtr").val();
+				filtruj(filter);
+			}, 1000);
+		}
 	});
 
 	function filtruj(filter) {
@@ -98,8 +95,9 @@ $(document).ready( function() {
 		}
 		else {
 			$.each(hide_them, function (index,value) {
-				value.fadeOut();
+				value.slideUp();
 			});
+			$('#filtr').css({color:"black"});
 		}
 	}
 	

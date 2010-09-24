@@ -81,8 +81,8 @@ div.field_with_errors { display: inline; } div.field_with_errors input { border:
 #filter input[type=text] { width:430px; margin-left:8px; border: 1px solid white; }
 #filter img {margin-top:5px; margin-left:5px; float:left;}
 #my_addresses ul {overflow: hidden}
-#my_addresses input[type=checkbox], #subscribed input[type=checkbox] { margin: 10px 10px 10px 10px; float: left; }
-#my_addresses p.adres, #subscribed p.adres { font-size: 12px; color: #006666; }
+#my_addresses input[type=checkbox], #subscribed input[type=checkbox] { margin: 10px 10px 0px 10px; float: left; }
+#my_addresses p.adres, #subscribed p.adres { font-size: 12px; color: #006666; margin-left:42px}
 #my_addresses, #subscribed, #rss_web .msg  { background-color: #cfe9ef; padding: 5px 7px 3px 7px;  }
 #my_addresses input[type=text], #subscribed input[type=text] { width: 420px; }
 
@@ -110,4 +110,4 @@ div.field_with_errors { display: inline; } div.field_with_errors input { border:
 #login #tresc form input + label, .inline_form input + label { margin-left: 10px; }
 #login #tresc form input[type="submit"] { visibility: hidden; max-width: 0 }
 #login #error, #login #notice { text-align: center; }
-
+input[type="checkbox"] { border:1px solid red;}
