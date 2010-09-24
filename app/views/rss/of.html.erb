@@ -4,7 +4,8 @@
 		<title>Koliber</title>
 		<language>pl-pl</language>
 	
-	<% news(controller.current_user).each do |news| %>
+	<% puts User.find_by_klucz(params[:id]).inspect %>
+	<% news(User.find_by_klucz(params[:id])).each do |news| %>
 	
 		<item>
 			<title><%= news.address.opis %></title>

@@ -258,7 +258,7 @@ class RssController < ApplicationController
 	skip_before_filter :require_login, :only => [:of]
 	def of
 		headers['Content-type'] = 'text/xml'
-		sprawdz_zawartosc_rss(current_user)
+		sprawdz_zawartosc_rss(User.find_by_klucz(params[:id]))
 		render :layout => false
 	end
 	
