@@ -62,8 +62,8 @@ $(document).ready( function() {
 	});
 	}
 	$("#new_address #expert").children('div').hide();
-	$("#new_address #expert").click( function(){
-		$(this).children('div').toggle()
+	$("#new_address #expert img").click( function(){
+		$('#new_address #expert').children('div').toggle()
 	});
 	
 	insdel();
@@ -100,7 +100,7 @@ $(document).ready( function() {
 		}
 		else {
 			$.each(hide_them, function (index,value) {
-				value.slideUp();
+				value.fadeOut();
 			});
 			$('#filtr').css({color:"black"});
 		}
