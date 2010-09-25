@@ -7,8 +7,8 @@
 	<% @user.addresses.each do |address| %>
 		<div>
 			<%= check_box_tag :address_id, address.id, true, :name => 'user[address_ids][]' %>
-			<p class="opis"><%= text_field_tag :address_id, get_opis(address, @user.id), :name => "user[address_opises][#{address.id}]" %></p>
-			<p class="adres"><%= label_tag :address_ids, address.adres %></p>
+			<div class="opis"><%= text_field_tag :address_id, get_opis(address, @user.id), :name => "user[address_opises][#{address.id}]" %></div>
+			<div class="adres"><%= label_tag :address_ids, address.adres %></div>
 		</div>
 	<% end %>
 	</div>
@@ -23,10 +23,10 @@
 <% @addresses.each do |address| %>
 	<% if !@user.addresses.include?(address) && !address.private? %>
 		<li class="result">
-			<p class="opis"><%= check_box_tag :address_id, address.id, @user.addresses.include?(address), :name => 'user[address_ids][]' %></p>
+			<div class="opis"><%= check_box_tag :address_id, address.id, @user.addresses.include?(address), :name => 'user[address_ids][]' %></div>
 			<%= text_field_tag :address_id, get_opis(address, @user.id), :name => "user[address_opises][#{address.id}]" %>
-			<p class="opis" style="visibility: hidden; height: 0; width: 0"><%= get_opis(address, @user.id) %></p>
-			<p class="adres"><%= address.adres %></p>
+			<div class="opis" style="visibility: hidden; height: 0; width: 0"><%= get_opis(address, @user.id) %></div>
+			<div class="adres"><%= address.adres %></div>
 		</li> 
 	<% end %>
 <% end %>

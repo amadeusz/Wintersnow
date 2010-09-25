@@ -14,11 +14,7 @@
 	<%= favicon_link_tag 'icons/koliber.png', :type => 'image/png' %>
 	<title>Koliber</title>
 </head>
-<%
-	id = controller_name
-	( id << '_' << action_name ) if params[:action] != 'index'
-%>
-<body id="<%= id %>"<% if controller.admin_logged_in? %> class="admin"<% else %> class="public"<% end %>>
+<body id="<%= controller_name %>"<% if controller.admin_logged_in? %> class="admin"<% else %> class="public"<% end %>>
 
 	<div id="nawigacja">
 		<%
@@ -52,7 +48,7 @@
 		
 	</div>
 
-	<div id="tresc">
+	<div id="<%= params[:action] %>" class="tresc">
 		<%= yield %>
 	</div>
 	

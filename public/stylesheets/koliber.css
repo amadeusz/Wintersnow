@@ -14,8 +14,9 @@ html { background-image:url(/images/tlo.png); background-repeat: no-repeat; heig
 a { color: #000; } a:visited { color: #000; } a > img { vertical-align: text-top; }
 h1 { margin-top: 20px; margin-bottom: 12px; } h1:first-child { margin-top: 0; } h2 { margin-top: 16px; margin-bottom: 10px; } h2:first-child { margin-top: 0; }
 pre { background-color: #eee; padding: 10px; font-size: 11px; }
-#tresc { margin: 10px; padding: 20px; }
+.tresc { margin: 10px; padding: 20px; }
 .inline_form { text-align: center; padding: 10px; }
+p:empty { display: none; }
 
 /* Nawigacja, przyciski, formularze */
 #nawigacja { text-align: center; padding: 10px; border-top: 4px solid #666; }
@@ -36,16 +37,16 @@ table { margin-left: auto; margin-right: auto; margin-top: -20px; }
 table td { padding: 2px 7px; background-color: rgba(240, 255, 255, 0.8); vertical-align: top; }
 
 /* Ograniczona szerokość wybranych stron */
-#addresses_new #tresc, #addresses_create #tresc, #addresses_edit #tresc, #addresses_update #tresc, #addresses_show #tresc,
-#genotypes_new #tresc, #genotypes_create #tresc, #genotypes_edit #tresc, #genotypes_update #tresc, #genotypes_show #tresc,
-#messages_new #tresc, #messages_create #tresc, #messages_edit #tresc, #messages_update #tresc, #messages_show #tresc,
-#users_new #tresc, #users_create #tresc, #users_edit #tresc, #users_update #tresc, #users_show #tresc,
-#login #tresc, #login_create #tresc, #login_destroy #tresc,
-#sites #tresc, #sites_edit #tresc, #sites_update #tresc,
-#genotypes #tresc, #users #tresc
+#addresses #new, #addresses #create, #addresses #edit, #addresses #update, #addresses #show,
+#genotypes #new, #genotypes #create, #genotypes #edit, #genotypes #update, #genotypes #show,
+#messages #new, #messages #create, #messages #edit, #messages #update, #messages #show,
+#users #new, #users #create, #users #edit, #users #update, #users #show,
+#login #index, #login #create, #login #destroy,
+#sites #index, #sites #edit, #sites #update,
+#genotypes #index, #users #index
 { width: 35em; margin-left: auto; margin-right: auto; }
 
-#rss_web #tresc
+#rss_web .index
 { width: 46em; margin-left: auto; margin-right: auto; }
 
 /* Komunikaty, błędy, ostrzeżenia */
@@ -64,49 +65,50 @@ div.field_with_errors { display: inline; } div.field_with_errors input { border:
 
 
 /* Genotypes */
-#genotypes #tresc div { margin: 5px 0; white-space: nowrap; }
+#genotypes .tresc div { margin: 5px 0; white-space: nowrap; }
 #genotypes input, #genotypy img { vertical-align: middle; }
 
 /* Users */
 #users table tr :nth-child(4) div, #addresses table tr :nth-child(3) div {display:none; position:absolute; padding: 10px 20px; background-color: #FFC0CB;}
 
-#my_addresses li, #subscribed div { margin: 5px 0; border-bottom: 1px solid #9ACEDB; padding: 0 0 10px 0; overflow: hidden}
+#my_addresses li, #subscribed > div { margin: 5px 0; border-bottom: 1px solid #9ACEDB; padding: 0 0 10px 0; overflow: hidden}
 #my_addresses {min-height:32px}
-.field {margin-bottom:15px;}
-label {display:block; margin-bottom:5px;}
+.field { margin-bottom:15px;}
+label { display:block; margin-bottom:5px; }
+#login label { display: inline; }
 #subscribed { margin: 0; overflow: hidden}
 #filter {background-color:#9ACEDB; width:480px; padding:5px; overflow:hidden}
 #filter input[type=text] { float:right; width:420px; margin-left:8px; border: 1px solid white; }
 #filter img {margin-top:7px; margin-left:11px; float:left;}
 #my_addresses ul {overflow: hidden}
 #my_addresses input[type=checkbox], #subscribed input[type=checkbox] { margin: 14px 10px 0px 10px; float: left; }
-#my_addresses p.adres, #subscribed p.adres { font-size: 12px; color: #006666; margin-left:42px}
+#my_addresses .adres, #subscribed .adres { font-size: 12px; color: #006666; margin-left:42px}
 #my_addresses, #subscribed, #rss_web .msg  { background-color: #cfe9ef; padding: 5px 7px 3px 7px;  }
 #my_addresses input[type=text], #subscribed input[type=text] { width: 420px; }
 
 /* RSS */
-#rss_web li { margin: 5px;  }
-#rss_web ins { color: #60B302; } #rss_web del { color: #CE4641; }
-#rss_web #loading { text-align: center;}
-#rss_web #loading p {display:table-cell;}
-#rss_web #loading img { vertical-align:middle; margin-right:15px;}
-#rss_web .boxdate { width:114px; padding:10px 10px 0 10px; text-align:center; margin-left:-50px; margin-right:5px; float:left;}
-#rss_web .box_msg { overflow:hidden; border-left: 1px solid #ddf0ff; padding-left: 10px; margin-bottom:15px;width:420px; position:relative;}
-#rss_web .boxdate span {}
-#rss_web .boxdate .day {font-size:28px;}
-#rss_web .boxdate .month {font-size:28px;}
-#rss_web .boxdate .time { display:block;color:white;}
-#rss_web h1 { font-size:16px; margin:2px 0 2px 0;}
-#rss_web h2 { font-size:12px; margin:0;width:50%}
-#rss_web .switcher { position:absolute; top:5px; right:5px;font-size:12px;}
-#rss_web .msg { margin:15px 0;font-size:12px; clear:right; }
+#rss #web li { margin: 5px;  }
+#rss #web ins { color: #60B302; } #rss_web del { color: #CE4641; }
+#rss #web #loading { text-align: center;}
+#rss #web #loading p {display:table-cell;}
+#rss #web #loading img { vertical-align:middle; margin-right:15px;}
+#rss #web .boxdate { width:114px; padding:10px 10px 0 10px; text-align:center; margin-left:-50px; margin-right:5px; float:left;}
+#rss #web .box_msg { overflow:hidden; border-left: 1px solid #ddf0ff; padding-left: 10px; margin-bottom:15px;width:420px; position:relative;}
+#rss #web .boxdate span {}
+#rss #web .boxdate .day {font-size:28px;}
+#rss #web .boxdate .month {font-size:28px;}
+#rss #web .boxdate .time { display:block;color:white;}
+#rss #web h1 { font-size:16px; margin:2px 0 2px 0;}
+#rss #web h2 { font-size:12px; margin:0;width:50%}
+#rss #web .switcher { position: absolute; top:5px; right:5px;font-size:12px;}
+#rss #web .msg { margin:15px 0;font-size:12px; clear:right; }
 
 /* Login, Wykluj */
-#login #tresc img, .wykluj img { padding: 11% 5%; }
-#login #tresc form, .wykluj form { max-width: 48em; margin: auto; display: block; text-align: center; }
-#login #tresc form input, .inline_form input { max-width: 8em; }
-#login #tresc form input + label, .inline_form input + label { margin-left: 10px; }
-#login #tresc form input[type="submit"] { visibility: hidden; max-width: 0 }
-#login #error, #login #notice { text-align: center; }
+#login .tresc img, .wykluj img { padding: 11% 5%; }
+#login .tresc form, .wykluj form { max-width: 48em; margin: auto; display: block; text-align: center; }
+#login .tresc form input, .inline_form input { max-width: 8em; }
+#login .tresc form input + label, .inline_form input + label { margin-left: 10px; }
+#login .tresc form input[type="submit"] { visibility: hidden; max-width: 0 }
+#login .error, #login #error, #login #notice { text-align: center; }
 .info {background-color: #666; padding: 10px;margin:5px 0; color:white; font-size: 11px; line-height:1.3em;}
 #expert {color:white; background-color: #666; padding: 10px;}

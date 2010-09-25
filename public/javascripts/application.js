@@ -86,7 +86,7 @@ $(document).ready( function() {
 	function filtruj(filter) {
 		var hide_them = new Array();
 		$("#my_addresses li").each(function () {
-			if (($(this).children('p.opis').text().search(new RegExp(filter, "i")) < 0) && ($(this).children('p.adres').text().search(new RegExp(filter, "i")) < 0)) {
+			if (($(this).children('p.opis').text().search(new RegExp(filter, "i")) < 0) && ($(this).children('.adres').text().search(new RegExp(filter, "i")) < 0)) {
 				hide_them.push($(this));
 			} else {
 				$(this).show();
