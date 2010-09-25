@@ -53,6 +53,7 @@ $(document).ready( function() {
 	);
 	
 	// WebRSS
+	
 	function insdel() {
 	$("#rss_web .tog_ins").click( function(){
 		$(this).parent().siblings(".msg").children("ins").toggle();
@@ -70,6 +71,7 @@ $(document).ready( function() {
 	$("#new_addr #update").load("/rss/update", function() {insdel();});
 	
 	// Filtr w user/edit
+	
 	$("#filtr").keydown(function(e) {
 		if (e.which == 27) {	
 			$('#my_addresses li').show();
@@ -108,43 +110,39 @@ $(document).ready( function() {
 	
 	// Karty w Ustawieniach
 	
-	function pokaz_wszystkie_karty() {
-		$('#users #edit #haslo_tab').show();
-		$('#users #edit #inny_adres_tab').show();
-		$('#users #edit #subskrypcja_tab').show();
-	}
-	
 	function ukryj_wszystkie_panele() {
 		$('#users #edit #haslo').hide();
 		$('#users #edit #inny_adres').hide();
 		$('#users #edit #subskrypcja').hide();
 	}
 	
-	// Karty w Ustawieniach: init
+	function odznacz_wszystkie_karty() {
+		$('#users #edit #haslo_tab').removeClass('aktywna');
+		$('#users #edit #inny_adres_tab').removeClass('aktywna');
+		$('#users #edit #subskrypcja_tab').removeClass('aktywna');
+	}
 	
 	ukryj_wszystkie_panele();
-	$('#users #edit #subskrypcja_tab').hide();
+	$('#users #edit #subskrypcja_tab').addClass('aktywna');
 	$('#users #edit #subskrypcja').show();
 	$('#users .karty').show();
 	
-	// Karty w Ustawieniach: przyciski
-	
 	$('#users #edit #haslo_tab').click( function() {
 		ukryj_wszystkie_panele(); $('#users #edit #haslo').show();
-		pokaz_wszystkie_karty(); $(this).hide()
+		odznacz_wszystkie_karty(); $(this).addClass('aktywna');
 	} );
 
 	$('#users #edit .karty #inny_adres_tab').click( function() {
 		ukryj_wszystkie_panele(); $('#users #edit #inny_adres').show();
-		pokaz_wszystkie_karty(); $(this).hide()
+		odznacz_wszystkie_karty(); $(this).addClass('aktywna');
 	} );
 	
 	$('#users #edit .karty #subskrypcja_tab').click( function() {
 		ukryj_wszystkie_panele(); $('#users #edit #subskrypcja').show();
-		pokaz_wszystkie_karty(); $(this).hide()
+		odznacz_wszystkie_karty(); $(this).addClass('aktywna');
 	} );
 	
-	// checkCheckbox.onClick
+	// Checkboxy w subskrypcji
 	
 	$('#my_addresses input[type=text]').attr('disabled', true);
 	

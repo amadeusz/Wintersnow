@@ -117,6 +117,8 @@ label { display:block; margin-bottom:5px; }
 #expert {color:white; background-color: #666; padding: 10px;}
 
 
+.karty .aktywna { background-color: #BD004C; color: white; }
+
 form + form,
 #users #new > div + div, #users #edit > div + div, #users #update > div + div { margin-top: 16px; }
 
