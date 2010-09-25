@@ -106,6 +106,26 @@ $(document).ready( function() {
 		}
 	}
 	
+	// Karty w Ustawieniach
+	
+	$('#users #edit #haslo').hide();
+	$('#users #edit .karty').show();
+	$('#users #edit .karty #subskrypcja_tab').hide();
+	
+	$('#users #edit #haslo_tab').click( function() {
+		$('#users #edit #haslo').show();
+		$('#users #edit #subskrypcja').hide();
+		$('#users #edit #haslo_tab').hide();
+		$('#users #edit #subskrypcja_tab').show();
+	} );
+	
+	$('#users #edit .karty #subskrypcja_tab').click( function() {
+		$('#users #edit #haslo').hide();
+		$('#users #edit #subskrypcja').show();
+		$('#users #edit #haslo_tab').show();
+		$('#users #edit #subskrypcja_tab').hide();
+	} );
+	
 	// checkCheckbox.onClick
 	
 	$('#my_addresses input[type=text]').click( function() {

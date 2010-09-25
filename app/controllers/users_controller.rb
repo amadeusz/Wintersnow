@@ -109,40 +109,52 @@ class UsersController < ApplicationController
 #		else
 #			params[:user][:obserwowane] = nil
 #		end
-		przekierowanie = users_path
-		przekierowanie = root_path if !(admin_logged_in?)
-		params[:user][:address_ids] = [] if out = params[:user][:address_ids].nil?
-		params[:user][:address_opises] = [] if out = params[:user][:address_opises].nil?
+		#przekierowanie = users_path
+		#przekierowanie = root_path if !(admin_logged_in?)
+		przekierowanie = ustawienia_path
 		
-		identyfikatory = params[:user][:address_ids]
-		opisy = params[:user][:address_opises]
+		zmiana_subskrypcji = false
+		if !params[:user][:zmiana_subskrypcji].nil?
+			zmiana_subskrypcji = true 
+			params[:user].delete(:zmiana_subskrypcji)
+		end
 		
-		params[:user].delete(:address_opises)
+		if zmiana_subskrypcji
+			params[:user][:address_ids] = [] if out = params[:user][:address_ids].nil?
+			params[:user][:address_opises] = [] if out = params[:user][:address_opises].nil?
+		
+			identyfikatory = params[:user][:address_ids]
+			opisy = params[:user][:address_opises]
+		
+			params[:user].delete(:address_opises)
+		end
 		
 		respond_to do |format|
 			if @user.update_attributes(params[:user])
 
-				identyfikatory.each do |id|
-					@user.sites.find_by_address_id(id).update_attributes(:opis => opisy[id])
-					@adres = Address.find(id)
-					alternatywy = []
-					@adres.sites.each do |site|
-						alternatywy << site.opis
-					end
-					
-					liczby_alternatyw = (alternatywy.inject(Hash.new(0)) { |h, i| h[i] += 1; h }).to_a
-					max = 0
-					best_opis = ''
-					liczby_alternatyw.each do |opis, liczba|
-						if liczba > max
-							max = liczba
-							( best_opis = opis) if opis != ''
+				if zmiana_subskrypcji
+					identyfikatory.each do |id|
+						@user.sites.find_by_address_id(id).update_attributes(:opis => opisy[id])
+						@adres = Address.find(id)
+						alternatywy = []
+						@adres.sites.each do |site|
+							alternatywy << site.opis
 						end
-					end
+				
+						liczby_alternatyw = (alternatywy.inject(Hash.new(0)) { |h, i| h[i] += 1; h }).to_a
+						max = 0
+						best_opis = ''
+						liczby_alternatyw.each do |opis, liczba|
+							if liczba > max
+								max = liczba
+								( best_opis = opis) if opis != ''
+							end
+						end
 					
-					( best_opis = 'brak opisu' ) if (best_opis == '')
-					poprzedni_opis = @adres.opis
-					@adres.update_attributes(:opis => best_opis) if max != 1 || poprzedni_opis == 'brak_opisu'
+						( best_opis = 'brak opisu' ) if (best_opis == '')
+						poprzedni_opis = @adres.opis
+						@adres.update_attributes(:opis => best_opis) if max != 1 || poprzedni_opis == 'brak_opisu'
+					end
 				end
 
 				format.html { redirect_to(przekierowanie, :notice => 'Ustawienia pomyślnie zapisane') }

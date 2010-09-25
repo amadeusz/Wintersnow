@@ -23,14 +23,17 @@ p:empty { display: none; }
 #nawigacja a { background-color: #666; padding: 16px 16px 7px 16px; margin: 0 2px; color: white; -webkit-border-radius: 0 0 5px 5px; -moz-border-radius: 0 0 5px 5px; border-radius:  0 0 5px 5px; }
 #nawigacja a.aktywny { padding-top: 30px; position: relative; top: 0; background-color: black; }
 
-.actions { text-align: right; margin:10px 0}
-a.button, .actions a, .actions input, input[type="text"], input[type="password"], textarea, #rss_web li, #subscribed, #my_addresses, .rounded { -webkit-border-radius:  5px; -moz-border-radius: 5px; border-radius: 5px; }
-a.button, .actions a, .actions input { background-color: #cfe9ef; margin: 0; padding: 4px 16px; }
+.actions { text-align: right; margin: 10px 0}
+form .actions:last-child { margin-bottom: 0; }
+.karty span, a.button, .actions a, .actions input, input[type="text"], input[type="password"], textarea, #rss_web li, #subscribed, #my_addresses, .rounded { -webkit-border-radius:  5px; -moz-border-radius: 5px; border-radius: 5px; }
+.karty span, a.button, .actions a, .actions input { background-color: #cfe9ef; margin: 0; padding: 4px 16px; }
 
 input[type="text"], input[type="password"], textarea { background-color: #cfe9ef; padding: 5px 7px 3px 7px; width: 97%;  }
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus { background-color: rgba(255, 255, 255, 0.7); }
 
 a.button:focus, .actions a:focus, .actions input:focus, #nawigacja a:focus { color: white; background-color: #BD004C; }
+
+#new form, #create form, #edit form, #update form { display: block; border: 1px solid rgba(255, 255, 255, 0.2); padding: 10px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
 
 /* Tabele, listy */
 table { margin-left: auto; margin-right: auto; margin-top: -20px; }
@@ -44,7 +47,7 @@ table td { padding: 2px 7px; background-color: rgba(240, 255, 255, 0.8); vertica
 #login #index, #login #create, #login #destroy,
 #sites #index, #sites #edit, #sites #update,
 #genotypes #index, #users #index
-{ width: 35em; margin-left: auto; margin-right: auto; }
+{ width: 510px; margin-left: auto; margin-right: auto; }
 
 #rss_web .index
 { width: 46em; margin-left: auto; margin-right: auto; }
@@ -112,3 +115,12 @@ label { display:block; margin-bottom:5px; }
 #login .error, #login #error, #login #notice { text-align: center; }
 .info {background-color: #666; padding: 10px;margin:5px 0; color:white; font-size: 11px; line-height:1.3em;}
 #expert {color:white; background-color: #666; padding: 10px;}
+
+
+form + form { margin-top: 16px; }
+
+/* form .actions:last-child { height: 0; position: relative; top: 24px; right: 20px; margin: 0; }
+form + .actions { text-align: left; position: relative; left: 30px; top: 6px; } */
+
+form + .actions, #subskrypcja + .actions { text-align: left; margin-top: 14px; }
+

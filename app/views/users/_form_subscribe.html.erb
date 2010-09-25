@@ -1,7 +1,9 @@
+<%= form_for(@user) do |f| %>
+
 <div class="field">
-	<label> Subskrybowane: </label>
+	<label> Subskrybowane adresy</label>
 <% if @user.addresses == [] %> 
-		Nic  
+		<div id="notice" style="margin: 2px 20px">brak</div>
 <% else %>
 	<div id="subscribed">
 	<% @user.addresses.each do |address| %>
@@ -13,11 +15,14 @@
 	<% end %>
 	</div>
 <% end %>
-<%= link_to 'Nowy', new_address_path, {:class => 'button'} %>
 </div>
 
+	<div class="actions">
+		<%= link_to 'Dodaj adres spoza listy', new_address_path, {:class => 'button'} %>
+	</div>
+
 <div class="field">
-	<label>Wyszukiwarka: </label>
+	<label>Wyszukiwarka</label>
 	<div id="filter"><%= image_tag "icons/zoom.png" %><input id="filtr" type="text" /></div>
 	<ul id="my_addresses">
 <% @addresses.each do |address| %>
@@ -27,8 +32,16 @@
 			<%= text_field_tag :address_id, get_opis(address, @user.id), :name => "user[address_opises][#{address.id}]" %>
 			<div class="opis" style="visibility: hidden; height: 0; width: 0"><%= get_opis(address, @user.id) %></div>
 			<div class="adres"><%= address.adres %></div>
-		</li> 
+		</li>
 	<% end %>
 <% end %>
+
+<span style="display: none"><%= check_box_tag 'user[zmiana_subskrypcji]', 'yes', true %></span>
+
 	</ul>
 </div>
+
+<div class="actions">
+	<%= f.submit "Zapisz" %>
+</div>
+<% end %>

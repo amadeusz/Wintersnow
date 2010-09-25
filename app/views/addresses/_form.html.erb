@@ -1,17 +1,18 @@
-<%= form_for(@address) do |f| %>
-	<% if @address.errors.any? %>
-		<div id="error_explanation">
-			<h2><%= pluralize(@address.errors.count, "error") %> prohibited this message from being saved:</h2>
+<% if @address.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@address.errors.count, "error") %> prohibited this message from being saved:</h2>
 
-			<ul>
-			<% @address.errors.full_messages.each do |msg| %>
-				<li><%= msg %></li>
-			<% end %>
-			</ul>
-		</div>
-	<% end %>
+		<ul>
+		<% @address.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<%= form_for(@address) do |f| %>
 	<div class="field">
-		<%= f.label "Adres URL" %>
+		<%= f.label "Adres internetowy" %>
 		<%= f.text_field :adres %>
 	</div>
 	<div class="field">
@@ -39,7 +40,7 @@
 	</div>
 	<% end %>
 	<div id="expert" class="rounded">
-		Zaawansowane <%= image_tag 'icons/add.png' %>
+		Zaawansowane <%= image_tag 'icons/go-down.png', :style => 'float: right; margin-top: 2px' %>
 		<div class="info rounded">Uwaga! Dopisywanie tutaj czegokolwiek, bez świadomości co się w ogóle robi grozi nieprawidłowym działaniem kolibra (przedwczesnym wypadaniem piór, ewentualnym brakiem połysku i wyblakłymi kolorami, w skrajnych przypadkach grozi zwyrodnieniem dzioba). Ostrzegaliśmy.</div>
 		<div class="field">
 			<%= f.label :xpath %>

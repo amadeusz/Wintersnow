@@ -1,35 +1,48 @@
-<%= form_for(@user) do |f| %>
-	<% if @user.errors.any? %>
-		<div id="error_explanation">
-			<h2><%= pluralize(@user.errors.count, "error") %> prohibited this message from being saved:</h2>
+<% if @user.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@user.errors.count, "error") %> prohibited this message from being saved:</h2>
 
-			<ul>
-			<% @user.errors.full_messages.each do |msg| %>
-				<li><%= msg %></li>
-			<% end %>
-			</ul>
-		</div>
-	<% end %>
-	
-	<% if controller.admin_logged_in? %>
-	<div class="field">
-		<%= f.label :klucz %>
-		<%= f.text_field :klucz %>
-	</div>
-	<% end %>
-
-	<div class="field">
-		<%= f.label :haslo %>
-		<%= f.password_field :haslo %>
-	</div>
-	<%= render 'form_subscribe' %>
-	<% if controller.admin_logged_in? %>
-	<div class="field">
-		<%= f.label :admin %>
-		<%= f.check_box :admin %>
-	</div>	
-	<% end %>
-	<div class="actions">
-		<%= f.submit "Zapisz" %>
+		<ul>
+		<% @user.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<% end %>
+		</ul>
 	</div>
 <% end %>
+
+
+<div class="actions karty" style="display: none">
+	<span id="subskrypcja_tab">Subskrypcja</span> <span id="haslo_tab">Zmień hasło</span>
+</div>
+
+<div id="haslo">
+	<%= form_for(@user) do |f| %>
+	
+		<% if controller.admin_logged_in? %>
+			<div class="field">
+				<%= f.label "Nazwa" %>
+				<%= f.text_field :klucz %>
+			</div>
+		<% end %>
+
+		<div class="field">
+			<%= f.label "Hasło" %>
+			<%= f.password_field :haslo %>
+		</div>
+	
+		<% if controller.admin_logged_in? %>
+			<div class="field">
+				<label><%= f.check_box :admin %> god mode</label>
+			</div>	
+		<% end %>
+	
+		<div class="actions">
+			<%= f.submit "Zapisz" %>
+		</div>
+	<% end %>
+</div>
+
+
+<div id="subskrypcja">
+	<%= render 'form_subscribe' %>
+</div>
