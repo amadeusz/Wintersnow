@@ -25,14 +25,14 @@ DONE
 : po usunięciu usera, usuwane są pozostałości w Sites
 : fixed:userowi zostaje zawsze jedna subskrybcja
 : kalkulacja opisu z aliasów
-
-TODO
-
 : dodawanie adresów dla usera
 : address: publiczne i prywatne (niewidoczne w wyszukiwarce)
+	
+TODO
+
 : /rss/of/krzak
-: css nie jest interpretowany poprawnie przez Chromium
-: poprawienie bardzo dziwnych przekierowań
+:? css nie jest interpretowany poprawnie przez Chromium 
+:? poprawienie bardzo dziwnych przekierowań
 : instrukcja odbierania rss
 
 Nakarmić kota
@@ -40,5 +40,5 @@ Nakarmić kota
 : zrobienie wersji mobilnej
 : bugtracker?
 : przepisac rss/skroc
-: heurystyka sprawdzania, przewidywanie momentu sprawdzenia i sprawdzanie wcześniej
+:?? heurystyka sprawdzania, przewidywanie momentu sprawdzenia i sprawdzanie wcześniej
 		Delayed::Job.enqueue sprawdz_adres()

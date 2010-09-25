@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100912230124) do
+ActiveRecord::Schema.define(:version => 20100925102031) do
 
   create_table "addresses", :force => true do |t|
     t.string   "klucz"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20100912230124) do
     t.string   "xpath"
     t.string   "regexp"
     t.string   "css"
+    t.boolean  "private"
   end
 
   add_index "addresses", ["klucz"], :name => "index_addresses_on_klucz", :unique => true

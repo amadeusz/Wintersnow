@@ -9,6 +9,7 @@
 		<th></th>
 		<th></th>
 		<th></th>
+		<th></th>
 	</tr>
 <% @addresses.each do |address| %>
 	<tr>
@@ -45,6 +46,7 @@
 		</td>
 		
 		<td><%= skroc_date(address.data_mod) %><br/><span style="color: #999"><%= skroc_date(address.data_spr) %></span></td>
+		<td><% if address.private? %><%= image_tag('icons/lock.png', :width => 16, :height => 16) %><% end %></td> 
 		<td><% if address.blokada %><%= image_tag('icons/exclamation.png', :width => 16, :height => 16) %><% end %></td> 
 		
 		<td><%= link_to image_tag('icons/keyboard.png', :width => 16, :height => 16), edit_address_path(address) %>

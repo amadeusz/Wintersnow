@@ -21,7 +21,7 @@
 	<div id="filter"><%= image_tag "icons/zoom.png" %><input id="filtr" type="text" /></div>
 	<ul id="my_addresses">
 <% @addresses.each do |address| %>
-	<% if !@user.addresses.include?(address) %>
+	<% if !@user.addresses.include?(address) && !address.private? %>
 		<li class="result">
 			<p class="opis"><%= check_box_tag :address_id, address.id, @user.addresses.include?(address), :name => 'user[address_ids][]' %></p>
 			<%= text_field_tag :address_id, get_opis(address, @user.id), :name => "user[address_opises][#{address.id}]" %>

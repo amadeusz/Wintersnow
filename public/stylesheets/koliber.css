@@ -6,7 +6,7 @@ input[type="submit"] { font-size: 14px; color: black; }
 a img { border: none; } a, a:link, a:visited, a:active { text-decoration: none; }
 table, table td, table tr, table th { border: none; }
 li { list-style: none; }
-
+input[type=checkbox] { float:left; margin:2px 7px 2px 5px;}
 /* Globalne */
 
 html, input { color: #333; background: #9ACEDB; font-size: 14px; line-height: 18px; font-family: verdana, arial, helvetica, sans-serif; }
@@ -24,7 +24,7 @@ pre { background-color: #eee; padding: 10px; font-size: 11px; }
 
 .actions { text-align: right; margin:10px 0}
 a.button, .actions a, .actions input, input[type="text"], input[type="password"], textarea, #rss_web li, #subscribed, #my_addresses, .rounded { -webkit-border-radius:  5px; -moz-border-radius: 5px; border-radius: 5px; }
-a.button, .actions a, .actions input { background-color: #cfe9ef; margin: 0 2px; padding: 4px 16px; }
+a.button, .actions a, .actions input { background-color: #cfe9ef; margin: 0; padding: 4px 16px; }
 
 input[type="text"], input[type="password"], textarea { background-color: #cfe9ef; padding: 5px 7px 3px 7px; width: 97%;  }
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus { background-color: rgba(255, 255, 255, 0.7); }
@@ -108,4 +108,5 @@ label {display:block; margin-bottom:5px;}
 #login #tresc form input + label, .inline_form input + label { margin-left: 10px; }
 #login #tresc form input[type="submit"] { visibility: hidden; max-width: 0 }
 #login #error, #login #notice { text-align: center; }
-input[type="checkbox"] { border:1px solid red;}
+.info {background-color: #666; padding: 10px;margin:5px 0; color:white; font-size: 11px; line-height:1.3em;}
+#expert {color:white; background-color: #666; padding: 10px;}
