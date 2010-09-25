@@ -85,7 +85,7 @@ label { display:block; margin-bottom:5px; }
 #filter img {margin-top:7px; margin-left:11px; float:left;}
 #my_addresses ul {overflow: hidden}
 #my_addresses input[type=checkbox], #subscribed input[type=checkbox] { margin: 14px 10px 0px 10px; float: left; }
-#my_addresses .adres, #subscribed .adres { font-size: 12px; color: #006666; margin-left:42px}
+#my_addresses .adres, #subscribed .adres, #my_addresses .adres input[disabled] { font-size: 12px; color: #006666; margin-left: 42px; }
 #my_addresses, #subscribed, #rss_web .msg  { background-color: #cfe9ef; padding: 5px 7px 3px 7px;  }
 #my_addresses input[type=text], #subscribed input[type=text] { width: 420px; }
 
@@ -117,10 +117,11 @@ label { display:block; margin-bottom:5px; }
 #expert {color:white; background-color: #666; padding: 10px;}
 
 
-form + form { margin-top: 16px; }
+form + form,
+#users #new > div + div, #users #edit > div + div, #users #update > div + div { margin-top: 16px; }
 
 /* form .actions:last-child { height: 0; position: relative; top: 24px; right: 20px; margin: 0; }
 form + .actions { text-align: left; position: relative; left: 30px; top: 6px; } */
 
-form + .actions, #subskrypcja + .actions { text-align: left; margin-top: 14px; }
+form + .actions, #inny_adres + .actions { text-align: left; margin-top: 14px; }
 

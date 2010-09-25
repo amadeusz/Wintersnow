@@ -27,18 +27,22 @@ DONE
 : kalkulacja opisu z aliasów
 : dodawanie adresów dla usera
 : address: publiczne i prywatne (niewidoczne w wyszukiwarce)
+: poprawiony 
+: karty w ustawieniach
+: blokada edycji opisu dla niezaznaczonych adresów
 	
 TODO
 
 : /rss/of/krzak
-:? css nie jest interpretowany poprawnie przez Chromium 
-:? poprawienie bardzo dziwnych przekierowań
 : instrukcja odbierania rss
+: publicznosc adresu w sites
+: przechrzcic Site na Alias
+: przechrzcic User.klucz na User.name
 
 Nakarmić kota
 
 : zrobienie wersji mobilnej
 : bugtracker?
 : przepisac rss/skroc
-:?? heurystyka sprawdzania, przewidywanie momentu sprawdzenia i sprawdzanie wcześniej
+: heurystyka sprawdzania, przewidywanie momentu sprawdzenia i sprawdzanie wcześniej
 		Delayed::Job.enqueue sprawdz_adres()

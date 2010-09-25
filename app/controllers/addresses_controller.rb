@@ -5,6 +5,7 @@ end
 
 class AddressesController < ApplicationController
 	skip_before_filter :require_admin_login, :only => [:new, :create]
+	
 	# GET /addresses
 	# GET /addresses.xml
 	def index

@@ -30,6 +30,8 @@ class UsersController < ApplicationController
 	def new
 		@user = User.new
 		@addresses = Address.all
+		@address = Address.new
+		
 		widok = 'new'
 		widok = 'user_new' if !(admin_logged_in?)
 		
@@ -41,6 +43,8 @@ class UsersController < ApplicationController
 	
 	# GET /users/1/edit
 	def edit
+		@address = Address.new
+	
 		if admin_logged_in? and params[:id].nil? == false
 			@user = User.find(params[:id])
 		else

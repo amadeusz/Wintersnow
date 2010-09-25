@@ -108,44 +108,60 @@ $(document).ready( function() {
 	
 	// Karty w Ustawieniach
 	
-	$('#users #edit #haslo').hide();
-	$('#users #edit .karty').show();
-	$('#users #edit .karty #subskrypcja_tab').hide();
+	function pokaz_wszystkie_karty() {
+		$('#users #edit #haslo_tab').show();
+		$('#users #edit #inny_adres_tab').show();
+		$('#users #edit #subskrypcja_tab').show();
+	}
+	
+	function ukryj_wszystkie_panele() {
+		$('#users #edit #haslo').hide();
+		$('#users #edit #inny_adres').hide();
+		$('#users #edit #subskrypcja').hide();
+	}
+	
+	// Karty w Ustawieniach: init
+	
+	ukryj_wszystkie_panele();
+	$('#users #edit #subskrypcja_tab').hide();
+	$('#users #edit #subskrypcja').show();
+	$('#users .karty').show();
+	
+	// Karty w Ustawieniach: przyciski
 	
 	$('#users #edit #haslo_tab').click( function() {
-		$('#users #edit #haslo').show();
-		$('#users #edit #subskrypcja').hide();
-		$('#users #edit #haslo_tab').hide();
-		$('#users #edit #subskrypcja_tab').show();
+		ukryj_wszystkie_panele(); $('#users #edit #haslo').show();
+		pokaz_wszystkie_karty(); $(this).hide()
+	} );
+
+	$('#users #edit .karty #inny_adres_tab').click( function() {
+		ukryj_wszystkie_panele(); $('#users #edit #inny_adres').show();
+		pokaz_wszystkie_karty(); $(this).hide()
 	} );
 	
 	$('#users #edit .karty #subskrypcja_tab').click( function() {
-		$('#users #edit #haslo').hide();
-		$('#users #edit #subskrypcja').show();
-		$('#users #edit #haslo_tab').show();
-		$('#users #edit #subskrypcja_tab').hide();
+		ukryj_wszystkie_panele(); $('#users #edit #subskrypcja').show();
+		pokaz_wszystkie_karty(); $(this).hide()
 	} );
 	
 	// checkCheckbox.onClick
 	
-	$('#my_addresses input[type=text]').click( function() {
-		opis = $(this).val();
-		checkbox = $(this).parent().find('input[type=checkbox]');
-		checkbox.attr('checked', true);
-		if(!checkbox.attr('title')) checkbox.attr('title', opis);
-	} );
-
+	$('#my_addresses input[type=text]').attr('disabled', true);
+	
 	$('#my_addresses input[type=checkbox]').click( function() {
 		
-		if($(this).attr('title') && !$(this).is(':checked'))
-			$(this).parent().parent().find('input[type=text]').attr('value', $(this).attr('title'))
+		pole = $(this).parent().parent().find('input[type=text]')
 		
-//		checkbox.attr('title', opis);
-//		
-//		opis = $(this).val();
-//		checkbox = $(this).parent().find('input[type=checkbox]');
-//		checkbox.attr('checked', true);
-		
+		if ($(this).is(':checked')) {
+			pole.attr('disabled', false);
+			opis = pole.val();
+			$(this).attr('title', opis);
+		}
+		else {
+			pole.attr('disabled', true);
+			opis = $(this).attr('title');
+			pole.val(opis);
+		}
 	} );	
 	
 });
