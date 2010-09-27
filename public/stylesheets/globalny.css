@@ -1,0 +1,51 @@
+/* Fundamenty */
+
+html, body, form, div, p, input, h1, h2, table, th, tr, td, input, ul, ol, li { margin: 0; padding: 0; }
+form, label { display: inline; }
+input[type="text"], input[type="submit"], input[type="password"], input[type="checkbox"], textarea { border: none; background: transparent; }
+input[type="submit"] { font-size: 14px; color: black; }
+a img { border: none; } a, a:link, a:visited, a:active { text-decoration: none; }
+table, table td, table tr, table th { border: none; }
+li { list-style: none; }
+input[type=checkbox] { float:left; margin:2px 7px 2px 5px;}
+
+/* Globalne */
+
+html, input { color: #333; background: #9ACEDB; font-size: 14px; line-height: 18px; font-family: verdana, arial, helvetica, sans-serif; }
+html { background-image:url(/images/tlo.png); background-repeat: no-repeat; height:100% }
+a { color: #000; } a:visited { color: #000; } a > img { vertical-align: text-top; }
+h1 { margin-top: 20px; margin-bottom: 12px; } h1:first-child { margin-top: 0; } h2 { margin-top: 16px; margin-bottom: 10px; } h2:first-child { margin-top: 0; }
+pre { background-color: #eee; padding: 10px; font-size: 11px; }
+.tresc { margin: 10px; padding: 20px; }
+.inline_form { text-align: center; padding: 10px; }
+p:empty { display: none; }
+table { margin-left: auto; margin-right: auto; margin-top: -20px; }
+label { display: block; margin-bottom: 5px; }
+
+/* Nawigacja, przyciski, formularze */
+
+#nawigacja { text-align: center; padding: 10px; border-top: 4px solid #666; }
+#nawigacja a { background-color: #666; padding: 16px 16px 7px 16px; margin: 0 2px; color: white; -webkit-border-radius: 0 0 5px 5px; -moz-border-radius: 0 0 5px 5px; border-radius:  0 0 5px 5px; }
+#nawigacja a.aktywny { padding-top: 30px; position: relative; top: 0; background-color: black; }
+
+.actions { text-align: right; margin: 10px 0}
+form .actions:last-child { margin-bottom: 0; }
+.karty span, a.button, .actions a, .actions input, input[type="text"], input[type="password"], textarea, #rss_web li, #subscribed, #my_addresses, .rounded { -webkit-border-radius:  5px; -moz-border-radius: 5px; border-radius: 5px; }
+.karty span, a.button, .actions a, .actions input { background-color: #cfe9ef; margin: 0; padding: 4px 16px; }
+
+input[type="text"], input[type="password"], textarea { background-color: #cfe9ef; padding: 5px 7px 3px 7px; width: 97%;  }
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus { background-color: rgba(255, 255, 255, 0.7); }
+
+a.button:focus, .actions a:focus, .actions input:focus, #nawigacja a:focus { color: white; background-color: #BD004C; }
+
+#new form, #create form, #edit form, #update form { display: block; border: 1px solid rgba(255, 255, 255, 0.2); padding: 10px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
+
+form + form, #users #new > div + div, #users #edit > div + div, #users #update > div + div { margin-top: 16px; }
+form + .actions, #inny_adres + .actions { text-align: left; margin-top: 14px; }
+
+/* Komunikaty, błędy, ostrzeżenia */
+
+#notice, #error, .public #error_explanation p { font-size: 16px; margin: 20px; margin-bottom: 40px; } #notice { color: green; } #error, #error_explanation { color: red; } #error_explanation h2 { display: none; }
+.admin #error_explanation { background: url(/images/guard.gif) no-repeat 20px 40px; min-height: 80px; padding-left: 130px; padding-top: 70px; }
+div.field_with_errors { display: inline; } div.field_with_errors input { border: 1px solid red; }
+

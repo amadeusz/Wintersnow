@@ -5,6 +5,8 @@ table tr:nth-child(2) td:last-child { -webkit-border-top-right-radius: 5px; -moz
 table tr:last-child td:first-child { -webkit-border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; border-bottom-left-radius: 5px; }
 table tr:last-child td:last-child { -webkit-border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; border-bottom-right-radius: 5px; }
 
+table td { padding: 2px 7px; background-color: rgba(240, 255, 255, 0.8); vertical-align: top; }
+
 #addresses table { width: 100%; }
 #addresses table td { vertical-align: middle; }
 #addresses table a, #addresses table a:visited { color: #999; }
@@ -21,7 +23,7 @@ table tr:last-child td:last-child { -webkit-border-bottom-right-radius: 5px; -mo
 #messages table { width: 100%; }
 #messages tr td:nth-child(1) { width: 1px; text-align: right; }
 #messages tr td:nth-child(2) { width: 1px; text-align: right; }
-#messages tr td:nth-child(3) {  }
+#messages tr td:nth-child(3) { font-size: 12px; }
 #messages tr td:nth-child(4) { white-space: nowrap; width: 1px; text-align: center; }
 #messages tr td:nth-child(5) { white-space: nowrap; width: 1px; text-align: center; }
 
