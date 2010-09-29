@@ -6,6 +6,7 @@ gem 'mongrel'
 gem 'nokogiri'
 gem 'curb'
 gem 'differ'
+gem 'haml'
 
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 # gem 'capistrano'
