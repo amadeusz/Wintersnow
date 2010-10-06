@@ -64,20 +64,30 @@ class AddressesController < ApplicationController
 		przekierowanie = addresses_path
 		przekierowanie = root_path if !(admin_logged_in?)
 		respond_to do |format|
-			if @address.save 
-				if !(admin_logged_in?) 
-					@site = Site.new(
-						:user_id => current_user.id ,
-						:opis => params[:address][:opis],
-						:address_id => @address.id )
+			if !(admin_logged_in?)
+				@site = Site.new(
+					:user_id => current_user.id ,
+					:opis => params[:address][:opis])
+				if (@actual = Address.where(
+											:adres => @address.adres,
+											:xpath => @address.xpath,
+											:css => @address.css,
+											:regexp => @address.regexp).first) != nil
+					if @actual.private and !@address.private
+						@actual.private = false
+					end
+					@site.address_id = @actual.id
+				else 
+					@site.address_id = @address.id
 				end
-				if admin_logged_in? or @site.save
+			end 
+			if (admin_logged_in? and @address.save) or 
+				 (@site.address_id == @address.id and @address.save and @site.save) or
+				 (@site.address_id != @address.id and @actual.save and @site.save)
 					format.html { redirect_to(przekierowanie, :notice => 'Dodano stronę.') }
 					format.xml	{ render :xml => @address, :status => :created, :location => @address }
-				else
-					format.html { render :action => "new" }
-					format.xml	{ render :xml => @site.errors , :status => :unprocessable_entity }
-				end
+			error = false
+			if admin_logged_in? and @site.address_id
 			else
 				format.html { render :action => "new" }
 				format.xml	{ render :xml => @address.errors + @site.errors , :status => :unprocessable_entity }
