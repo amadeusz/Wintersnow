@@ -86,9 +86,9 @@ class AddressesController < ApplicationController
 				 (@site.address_id != @address.id and @actual.save and @site.save)
 					format.html { redirect_to(przekierowanie, :notice => 'Dodano stronę.') }
 					format.xml	{ render :xml => @address, :status => :created, :location => @address }
-			error = false
-			if admin_logged_in? and @site.address_id
-			else
+			end
+			
+			unless admin_logged_in? and @site.address_id
 				format.html { render :action => "new" }
 				format.xml	{ render :xml => @address.errors + @site.errors , :status => :unprocessable_entity }
 			end
@@ -135,3 +135,4 @@ class AddressesController < ApplicationController
 	end
 	
 end
+
