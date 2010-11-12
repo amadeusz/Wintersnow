@@ -1,5 +1,6 @@
 require 'active_record'
 require 'nokogiri'
+require 'mechanize'
 
 # Skrót do liczenia sumy md5
 # @param [String] Ciąg znaków z którego będzie liczona suma
@@ -43,9 +44,16 @@ class Strona
 	
 	# Pobiera plik z podanego adresu, aktualizuje czas w bazie, zapisuje dane do @body, @typ
 	def pobierz
-		temp = Curl::Easy.perform(@adres)
+		agent = Mechanize.new
+		
+		# paskudny hack na IZ
+		if (@adres =~ /eportal\.ii\.pwr\.wroc\.pl\/w08\/board/).nil? == false
+			agent.basic_auth('133133', '133133')
+		end
+		
+		temp = agent.get(@adres)
 		@rekord.data_spr = Time.new
-		@body = temp.body_str
+		@body = temp.body
 		@typ = temp.content_type
 		add_log "[#{@adres}] Pobrano BODY"
 		add_log "[#{@adres}][i] jest binarny \"#{@typ}\"" if binarny?
@@ -116,10 +124,20 @@ class Strona
 			@body = Nokogiri::HTML(@body).css(@rekord.css).text
 		end
 		body_index = @body.index(/<[Bb][Oo][dD][Yy].*/m) -1
-		@body.slice!(0..body_index) if body_index != nil
-		@body.gsub!(/<script[^>]*>.*<\/script>/, "")
-#			pamietana.gsub!(/<(.|\n)*?>/, "")
-		@body.gsub!(/<(.|\n)*?>/, "")
+		fdsa = Nokogiri::HTML(@body)
+		fdsa.search('//script').each do |node|
+			node.remove
+		end
+		fdsa.search('//style').each do |node|
+			node.remove
+		end
+		@body = fdsa.text
+
+		@body = Nokogiri::HTML(@body).xpath("//text()").to_s
+#		@body.slice!(0..body_index) if body_index != nil
+#		@body.gsub!(/<script[^>]*>.*<\/script>/, "")
+##			pamietana.gsub!(/<(.|\n)*?>/, "")
+#		@body.gsub!(/<(.|\n)*?>/, "")
 	end
 	
 	# Porównuje zawartość @body z podanym stringiem

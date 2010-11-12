@@ -68,7 +68,7 @@ $(document).ready( function() {
 	});
 	
 	insdel();
-	$("#new_addr #update").load("/rss/update", function() {insdel();});
+	$("#web").load("/rss/update", function() {insdel();});
 	
 	// Filtr w user/edit
 	

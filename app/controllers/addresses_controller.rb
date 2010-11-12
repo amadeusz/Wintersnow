@@ -49,9 +49,12 @@ class AddressesController < ApplicationController
 	# POST /addresses.xml
 	def create
 		if params[:address][:adres] != ''
-			if(params[:address][:adres] =~ /^http:\/\//) == nil
-				params[:address][:adres] = "http://" + params[:address][:adres]
+			# FIX : Uprościć
+			if(params[:address][:adres] =~ /^http(s)?:\/\//) == nil
+					params[:address][:adres] = "http#{$1}://" + params[:address][:adres]
 			end
+			
+
 			
 			# klucz obliczany na podstawie adresu, xpath'a, css'a oraz regexp'a
 			params[:address][:klucz] = Digest::MD5.hexdigest(sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]))
@@ -100,8 +103,8 @@ class AddressesController < ApplicationController
 	def update
 	
 		if params[:address][:adres] != ''
-			if(params[:address][:adres] =~ /^http:\/\//) == nil
-				params[:address][:adres] = "http://" + params[:address][:adres]
+			if(params[:address][:adres] =~ /^http(s)?:\/\//) == nil
+					params[:address][:adres] = "http#{$1}://" + params[:address][:adres]
 			end
 			
 			# klucz obliczany na podstawie adresu, xpath'a, css'a oraz regexp'a

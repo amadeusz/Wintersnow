@@ -45,6 +45,8 @@ GEM
       activesupport (>= 2.3.6)
       mime-types
       treetop (>= 1.4.5)
+    mechanize (1.0.0)
+      nokogiri (>= 1.2.1)
     mime-types (1.16)
     mongrel (1.1.5)
       cgi_multipart_eof_fix (>= 2.4)
@@ -85,6 +87,7 @@ DEPENDENCIES
   curb
   differ
   haml
+  mechanize
   mongrel
   nokogiri
   rails (= 3.0.0)

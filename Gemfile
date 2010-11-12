@@ -5,6 +5,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'mongrel'
 gem 'nokogiri'
 gem 'curb'
+gem 'mechanize'
 gem 'differ'
 gem 'haml'
 
