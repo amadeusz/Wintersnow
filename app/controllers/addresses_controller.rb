@@ -49,12 +49,10 @@ class AddressesController < ApplicationController
 	# POST /addresses.xml
 	def create
 		if params[:address][:adres] != ''
-			# FIX : Uprościć
-			if(params[:address][:adres] =~ /^http(s)?:\/\//) == nil
-					params[:address][:adres] = "http#{$1}://" + params[:address][:adres]
-			end
-			
 
+			if(params[:address][:adres] =~ /^http(s)?:\/\//) == nil
+				params[:address][:adres] = "http#{$1}://" + params[:address][:adres]
+			end
 			
 			# klucz obliczany na podstawie adresu, xpath'a, css'a oraz regexp'a
 			params[:address][:klucz] = Digest::MD5.hexdigest(sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]))
@@ -64,38 +62,49 @@ class AddressesController < ApplicationController
 		end
 
 		@address = Address.new(params[:address])
+		
 		przekierowanie = addresses_path
-		przekierowanie = root_path if !(admin_logged_in?)
+		przekierowanie = ustawienia_path if !(admin_logged_in?)
+		
+		
 		respond_to do |format|
+		
+			# !!! cały poniższy blok jest skrajnie nielogiczny, oraz nie działa
+			# walidacja działa tylko dla admina
+
+			# użytkownik może dodawać wpisy do sites bez ograniczeń,
+			# w szczególności wiele wpisów dla tego jednego adresu
+		
 			if !(admin_logged_in?)
-				@site = Site.new(
-					:user_id => current_user.id ,
-					:opis => params[:address][:opis])
-				if (@actual = Address.where(
-											:adres => @address.adres,
-											:xpath => @address.xpath,
-											:css => @address.css,
-											:regexp => @address.regexp).first) != nil
-					if @actual.private and !@address.private
-						@actual.private = false
+				@site = Site.new(:user_id => current_user.id, :opis => params[:address][:opis])
+				@previous = Address.where(:adres => @address.adres, :xpath => @address.xpath, :css => @address.css, :regexp => @address.regexp).first
+			
+				if(@previous != nil)
+					if (@previous.private and !@address.private)
+						@previous.private = false
 					end
-					@site.address_id = @actual.id
-				else 
+				
+					@site.address_id = @previous.id
+				else
 					@site.address_id = @address.id
 				end
-			end 
-			if (admin_logged_in? and @address.save) or 
-				 (@site.address_id == @address.id and @address.save and @site.save) or
-				 (@site.address_id != @address.id and @actual.save and @site.save)
-					format.html { redirect_to(przekierowanie, :notice => 'Dodano stronę.') }
-					format.xml	{ render :xml => @address, :status => :created, :location => @address }
 			end
 			
-			unless admin_logged_in? and @site.address_id
+			# Udało się zapisać
+			if (admin_logged_in? and @address.save) or
+				(@site != nil and @site.address_id == @address.id and @address.save and @site.save) or
+				(@site != nil and @site.address_id != @address.id and @previous.save and @site.save)
+					format.html { redirect_to(przekierowanie, :notice => 'Dodano stronę.') }
+					format.xml	{ render :xml => @address, :status => :created, :location => @address }
+			
+			# Nie udało się zapisać
+			else
 				format.html { render :action => "new" }
 				format.xml	{ render :xml => @address.errors + @site.errors , :status => :unprocessable_entity }
 			end
 		end
+		
+		
 	end
 
 	# PUT /addresses/1

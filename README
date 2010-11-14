@@ -33,6 +33,10 @@ DONE
 	
 TODO
 
+: BUG! user może dodawać wpisy do sites bez ograniczeń
+: wyjątek dla biblioteki
+	jeżeli adres http://aleph.bg.pwr.wroc.pl/F/76MDFE5NV4B6M8AIDDDX5XHP31U2C7IBY9D8BMHA9IM457KGN9-00048?func=it...
+	sprawdzić adres http://aleph.bg.pwr.wroc.pl/F/?func=it...
 : /rss/of/krzak
 : instrukcja odbierania rss
 : publicznosc adresu w sites

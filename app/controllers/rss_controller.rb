@@ -69,7 +69,7 @@ class Strona
 
 	# Sprawdza aktualizacje z podanym opóźnieniem
 	def sprawdz_aktualizacje
-		opoznienie = (1.0 / 24 / 60 * 15) * 0# 15 min
+		opoznienie = (1.0 / 24 / 60)   * 5 # minut
 		add_log "[#{@adres}] Rozpoczynam sprawdzanie"
 		if DateTime.now > (DateTime.parse(@rekord.data_spr.to_s) + opoznienie ) 
 			if !@rekord.blokada
@@ -123,17 +123,23 @@ class Strona
 			add_log "[#{@adres}][i] Sprawdzanie css"
 			@body = Nokogiri::HTML(@body).css(@rekord.css).text
 		end
-		body_index = @body.index(/<[Bb][Oo][dD][Yy].*/m) -1
-		fdsa = Nokogiri::HTML(@body)
-		fdsa.search('//script').each do |node|
+		
+		#body_index = @body.index(/<[bB][oO][dD][yY].*/m) -1
+		
+		parsed = Nokogiri::HTML(@body)
+		
+		parsed.search('//script').each do |node|
 			node.remove
 		end
-		fdsa.search('//style').each do |node|
+		
+		parsed.search('//style').each do |node|
 			node.remove
 		end
-		@body = fdsa.text
+		
+		@body = parsed.text
 
 		@body = Nokogiri::HTML(@body).xpath("//text()").to_s
+		
 #		@body.slice!(0..body_index) if body_index != nil
 #		@body.gsub!(/<script[^>]*>.*<\/script>/, "")
 ##			pamietana.gsub!(/<(.|\n)*?>/, "")
