@@ -3,6 +3,19 @@ def sklejenie_warunkowe(elementy)
 	return str = elementy.join(' ')
 end
 
+def popraw_usera(ardes)
+	#hack dla wygody
+	if (adres =~ /^http(s)?:\/\//) == nil
+		adres = "http#{$1}://" + adres
+	end
+	
+	#hack na bibliotekę:
+	if adres =~ /aleph\.bg\.pwr\.wroc\.pl\/F\/([^?]*)/
+		adres.gsub! $1, ''
+	end
+	return adres
+end
+
 class AddressesController < ApplicationController
 	skip_before_filter :require_admin_login, :only => [:new, :create]
 	
@@ -50,9 +63,7 @@ class AddressesController < ApplicationController
 	def create
 		if params[:address][:adres] != ''
 
-			if(params[:address][:adres] =~ /^http(s)?:\/\//) == nil
-				params[:address][:adres] = "http#{$1}://" + params[:address][:adres]
-			end
+			params[:address][:adres] = popraw_usera(params[:address][:adres])
 			
 			# klucz obliczany na podstawie adresu, xpath'a, css'a oraz regexp'a
 			params[:address][:klucz] = Digest::MD5.hexdigest(sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]))
@@ -60,7 +71,9 @@ class AddressesController < ApplicationController
 			params[:address][:data_mod] = Time.new
 			params[:address][:blokada] = false
 		end
-
+		if params[:address][:adres] =~ /(portal|wa|wbliw|wch|weka|weny|wggg|wis|wiz|wme|wm|wppt|wemif)\.pwr\.wroc\.pl\/F\/([^?]*)/
+			# zmien xpath
+		end
 		@address = Address.new(params[:address])
 		
 		przekierowanie = addresses_path
@@ -112,14 +125,15 @@ class AddressesController < ApplicationController
 	def update
 	
 		if params[:address][:adres] != ''
-			if(params[:address][:adres] =~ /^http(s)?:\/\//) == nil
-					params[:address][:adres] = "http#{$1}://" + params[:address][:adres]
-			end
+			
+			params[:address][:adres] = popraw_usera(params[:address][:adres])
 			
 			# klucz obliczany na podstawie adresu, xpath'a, css'a oraz regexp'a
 			params[:address][:klucz] = Digest::MD5.hexdigest(sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]))
 		end
-		
+		if params[:address][:adres] =~ /(portal|wa|wbliw|wch|weka|weny|wggg|wis|wiz|wme|wm|wppt|wemif)\.pwr\.wroc\.pl\/F\/([^?]*)/
+			# zmien xpath
+		end
 		@address = Address.find(params[:id])
 
 		respond_to do |format|
