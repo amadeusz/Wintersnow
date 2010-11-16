@@ -1,4 +1,7 @@
-<% news(controller.current_user).each do |news|  %>
+<% if (actual_news = news(controller.current_user)) == [] %>
+<p style='text-align:center'>Brak zmian.</p>
+<% else %>
+	<% actual_news.each do |news|  %>
 	<li>
 		<div class="boxdate ">
 			<span class="day"><%= news.data.day %></span>
@@ -7,7 +10,7 @@
 		</div>
 		<div class="box_msg">
 		<h1><%= news.address.opis %></h1>
-		<h2><%= news.address.adres %></h2>
+		<%= link_to(news.address.adres,news.address.adres) %>
 		<p class="switcher">
 		<%= image_tag 'icons/add.png', :class => "tog_ins" %>
 		<%= image_tag 'icons/destroy.png', :class => "tog_del" %>
@@ -17,5 +20,5 @@
 		</p>
 		</div>
 	</li>
+	<% end %>
 <% end %>
-

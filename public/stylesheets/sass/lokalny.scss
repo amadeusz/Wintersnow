@@ -52,13 +52,13 @@
 		#loading p {display: table-cell; }
 		#loading img { vertical-align: middle; margin-right: 15px; }
 		.boxdate { width: 114px; padding: 10px 10px 0 10px; text-align: center; margin-left: -50px; margin-right: 5px; float: left; }
-		.box_msg { overflow: hidden; border-left: 1px solid #ddf0ff; padding-left: 10px; margin-bottom: 15px; width: 420px; position: relative;}
+		.box_msg { overflow: hidden; border-left: 1px solid #B3DEE9; padding-left: 10px; margin-bottom: 15px; width: 420px; position: relative;}
 		.boxdate span {}
-		.boxdate .day { font-size: 28px; }
-		.boxdate .month { font-size: 28px; }
+		.boxdate .day { font-size: 28px; color:#5FA6B8 }
+		.boxdate .month { font-size: 28px; color:#DAEEF3; }
 		.boxdate .time { display: block; color: white; }
-		h1 { font-size: 16px; margin: 2px 0 2px 0;}
-		h2 { font-size: 12px; margin: 0; width: 50%; }
+		h1 { font-size: 16px; margin: 2px 0 2px 0; color:#5FA6B8;}
+		a { font-size: 12px; margin: 0; width: 50%; color:#DAEEF3; }
 		.switcher { position: absolute; top: 5px; right: 5px; font-size: 12px; }
 		.msg { margin: 15px 0;font-size: 12px; clear:right; }
 	}
