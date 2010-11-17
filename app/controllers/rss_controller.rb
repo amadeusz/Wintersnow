@@ -229,7 +229,7 @@ def skroc(s)
 		end
 	end
 	out.gsub!(/<del>/, '<del color="#CE4641">') if !out.nil?
-	out.gsub!(/<ins>/, '<ins color="#60B302">') if !out.nil?
+	out.gsub!(/<ins>/, '<ins color="#1C8522">') if !out.nil?
 	out
 end
 
