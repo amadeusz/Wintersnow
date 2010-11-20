@@ -31,7 +31,7 @@ input[type=checkbox] { float:left; margin:2px 7px 2px 5px;}
 
 #nawigacja {
 	text-align: center; padding: 10px; border-top: 4px solid $ciemno_szary;
-	a { background-color: $ciemno_szary; padding: 16px 16px 7px 16px; margin: 0 2px; color: white; -webkit-border-radius: 0 0 5px 5px; -moz-border-radius: 0 0 5px 5px; border-radius:  0 0 5px 5px; }
+	a { background-color: $ciemno_szary; padding: 16px 16px 7px 16px; margin: 0 2px; color: white; -webkit-border-radius: 0 0 5px 5px; -moz-border-radius: 0 0 5px 5px; border-radius:  0 0 5px 5px; white-space:nowrap;}
 	a.aktywny { padding-top: 30px; position: relative; top: 0; background-color: black; }
 }
 

@@ -54,21 +54,21 @@ $(document).ready( function() {
 	
 	// WebRSS
 	
-	function insdel() {
-	$("#rss_web .tog_ins").click( function(){
+
+	$("#rss #web .tog_ins").live('click', function(){
 		$(this).parent().siblings(".msg").children("ins").toggle();
 	});
-	$("#rss_web .tog_del").click( function(){
+	$("#rss #web .tog_del").live('click', function(){
 		$(this).parent().siblings(".msg").children("del").toggle();
 	});
-	}
+
+	// Nowy adres - zaawansowane funkcje
 	$("#new_address #expert").children('div').hide();
-	$("#new_address #expert img").click( function(){
+	$("#new_address #expert img").live('click', function(){
 		$('#new_address #expert').children('div').toggle()
 	});
 	
-	insdel();
-	$("#web").load("/rss/update", function() {insdel();});
+	$("#web").load("/rss/update");
 	
 	// Filtr w user/edit
 	

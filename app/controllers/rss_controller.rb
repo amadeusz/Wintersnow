@@ -69,7 +69,7 @@ class Strona
 
 	# Sprawdza aktualizacje z podanym opóźnieniem
 	def sprawdz_aktualizacje
-		opoznienie = (1.0 / 24 / 60)   * 30 # minut
+		opoznienie = (1.0 / 24 / 60)   * 0 # minut
 		add_log "[#{@adres}] Rozpoczynam sprawdzanie"
 		if DateTime.now > (DateTime.parse(@rekord.data_spr.to_s) + opoznienie ) 
 			if !@rekord.blokada
@@ -198,10 +198,12 @@ def skroc(s)
 				pierwsza_spacja = string[0..start-1].index(/ /)
 				#string = string[pierwsza_spacja..string.length]
 				if !pierwsza_spacja.nil?
-					string.slice!(0..pierwsza_spacja) 
+					string.slice!(0..pierwsza_spacja)
+					string = "..." + string 
 					start = string.index(/<(ins|del)>/)
 				end
 			end
+			out += "<div>"
 			start = string.index(/<(ins|del)>/)
 			koniec = string.index(/<\/(ins|del)>/)
 			if koniec != nil
@@ -215,7 +217,7 @@ def skroc(s)
 				out += string[0..koniec+limit]
 				szukaj = false
 			elsif nastepny > 2*limit #		[0___s####k_ (>2l) _n]
-				out += string[0..(koniec + limit)] + '...'
+				out += (string[0..(koniec + limit)] + '...')
 				string.slice!(0..(koniec + nastepny)-limit)
 				nastepny = limit
 			elsif
@@ -223,6 +225,7 @@ def skroc(s)
 				string.slice!(0..(koniec + nastepny))
 				nastepny = 0
 			end
+			out += "</div>"
 		else 
 			szukaj = false
 			out = nil

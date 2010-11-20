@@ -60,7 +60,11 @@
 		h1 { font-size: 16px; margin: 2px 0 2px 0; color:#5FA6B8;}
 		a { font-size: 12px; margin: 0; width: 50%; color:#DAEEF3; }
 		.switcher { position: absolute; top: 5px; right: 5px; font-size: 12px; }
-		.msg { margin: 15px 0;font-size: 12px; clear:right; }
+		.msg {
+			margin: 15px 0; font-size: 12px; clear: right; 
+			div { background: #deeff7; padding: 3px 5px; margin-bottom: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+			div:last-child { margin-bottom: 0; }
+		}
 	}
 }
 
