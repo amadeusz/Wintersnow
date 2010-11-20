@@ -1,6 +1,7 @@
 <% if (actual_news = news(controller.current_user)) == [] %>
 <p style='text-align:center'>Brak zmian.</p>
 <% else %>
+	<% puts actual_news %>
 	<% actual_news.each do |news|  %>
 	<li>
 		<div class="boxdate">
