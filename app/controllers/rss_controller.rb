@@ -48,7 +48,7 @@ class Strona
 		
 		# paskudny hack na IZ
 		if not (@adres =~ /eportal\.ii\.pwr\.wroc\.pl\/w08\/board/).nil? 
-			agent.basic_auth('133133', '133133')
+			agent.basic_auth(current_user.pwr_index, current_user.pwr_password)
 		end
 		
 		temp = agent.get(@adres)

@@ -14,7 +14,7 @@
 
 <div class="actions karty" style="display: none; text-align: center">
 	<span id="subskrypcja_tab">Twoje strony</span>
-	<span id="haslo_tab">Zmień hasło</span>
+	<span id="haslo_tab">Hasła</span>
 </div>
 
 <div id="subskrypcja" style="display: none">
@@ -42,7 +42,22 @@
 				<label><%= f.check_box :admin %> god mode</label>
 			</div>	
 		<% end %>
-	
+		
+		<div class="gallery"><img src="images/eportal-ch.png" /><img src="images/eportal.png" /><img src="images/eportal-iz.png" /><img src="images/eportal-ii.png" /></div>
+		
+		<p>Poniższe dane, służą Kolibrowi do logowania na boardy i eportale.</p>
+		<p>Koliber użyje ich automatycznie, jeżeli dodasz do swoich stron którykolwiek z nich.</p>
+
+		<div class="field">
+			<%= f.label "Numer indeksu" %>
+			<%= f.text_field :pwr_index %>
+		</div>
+
+		<div class="field">
+			<%= f.label "Hasło do poczty studenckiej" %>
+			<%= f.password_field :pwr_password %>
+		</div>
+
 		<div class="actions">
 			<%= f.submit "Zapisz" %>
 		</div>

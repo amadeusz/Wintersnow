@@ -82,6 +82,24 @@ class AddressesController < ApplicationController
 		przekierowanie = ustawienia_path
 		
 		respond_to do |format|
+		
+			adres = params[:address][:adres]
+			if (adres =~ /^http(s)?:\/\//) == nil
+				adres = "http#{$1}://" + adres
+			end
+	
+			spersonalizowane = [
+				"eportal.pwr.wroc.pl",
+				"eportal-iz.pwr.wroc.pl",
+				"eportal-ch.pwr.wroc.pl",
+				"eportal.ii.pwr.wroc.pl/w08"
+			]
+			
+			unless spersonalizowane.find do |element| adres.include? element end
+				params[:address][:adres] = (adres + "#" + current_user.klucz)
+				params[:address][:private] = true
+			end
+		
 			@previous = Address.where(:adres => params[:address][:adres], :xpath => params[:address][:xpath], :css => params[:address][:css], :regexp => params[:address][:regexp]).first
 			
 			if(@previous == nil)
