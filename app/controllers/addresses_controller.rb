@@ -95,7 +95,7 @@ class AddressesController < ApplicationController
 				"eportal.ii.pwr.wroc.pl/w08"
 			]
 			
-			unless spersonalizowane.find do |element| adres.include? element end
+			if spersonalizowane.find do |element| adres.include? element end
 				params[:address][:adres] = (adres + "#" + current_user.klucz)
 				params[:address][:private] = true
 			end
