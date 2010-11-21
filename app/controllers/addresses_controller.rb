@@ -72,22 +72,9 @@ class AddressesController < ApplicationController
 			if params[:address][:adres] =~ /(portal|wa|wbliw|wch|weka|weny|wggg|wis|wiz|wme|wm|wppt|wemif)\.pwr\.wroc\.pl/ and params[:address][:xpath] == '' and params[:address][:css] == '' and params[:address][:regexp] == ''
 				params[:address][:css] = '#cwrapper table .ccol4' 
 			end
-
-			params[:address][:klucz] = Digest::MD5.hexdigest(sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]))
-			params[:address][:data_spr] = Time.new
-			params[:address][:data_mod] = Time.new
-			params[:address][:blokada] = false
-		end
-
-		przekierowanie = ustawienia_path
-		
-		respond_to do |format|
-		
+			
 			adres = params[:address][:adres]
-			if (adres =~ /^http(s)?:\/\//) == nil
-				adres = "http#{$1}://" + adres
-			end
-	
+			
 			spersonalizowane = [
 				"eportal.pwr.wroc.pl",
 				"eportal-iz.pwr.wroc.pl",
@@ -99,7 +86,16 @@ class AddressesController < ApplicationController
 				params[:address][:adres] = (adres + "#" + current_user.klucz)
 				params[:address][:private] = true
 			end
+
+			params[:address][:klucz] = Digest::MD5.hexdigest(sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]))
+			params[:address][:data_spr] = Time.new
+			params[:address][:data_mod] = Time.new
+			params[:address][:blokada] = false
+		end
+
+		przekierowanie = ustawienia_path
 		
+		respond_to do |format|	
 			@previous = Address.where(:adres => params[:address][:adres], :xpath => params[:address][:xpath], :css => params[:address][:css], :regexp => params[:address][:regexp]).first
 			
 			if(@previous == nil)
