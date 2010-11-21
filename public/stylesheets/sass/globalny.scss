@@ -6,6 +6,7 @@ input[type="text"], input[type="submit"], input[type="password"], input[type="ch
 a, a:link, a:visited, a:active { text-decoration: none; } a img { border: none; }
 table, table td, table tr, table th { border: none; }
 li { list-style: none; }
+html { overflow-y: scroll; }
 
 /* Ustawienia */
 

@@ -167,7 +167,7 @@ class UsersController < ApplicationController
 					end
 				end
 
-				format.html { redirect_to(przekierowanie, :notice => 'Ustawienia pomyślnie zapisane') }
+				format.html { redirect_to(przekierowanie, :notice => 'Ustawienia zapisane') }
 				format.xml	{ head :ok }
 			else
 				format.html { render :action => "edit" }

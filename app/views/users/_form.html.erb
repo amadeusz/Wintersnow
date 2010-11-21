@@ -13,9 +13,13 @@
 <p id="notice"><%= notice %></p>
 
 <div class="actions karty" style="display: none; text-align: center">
-	<span id="subskrypcja_tab">Subskrypcja</span>
+	<span id="subskrypcja_tab">Twoje strony</span>
 	<span id="haslo_tab">Zmień hasło</span>
-	<span id="inny_adres_tab">Dodaj adres spoza listy</span>
+</div>
+
+<div id="subskrypcja">
+	<%= render 'addresses/form' %>
+	<%= render 'form_subscribe' %>
 </div>
 
 <div id="haslo">
@@ -45,11 +49,5 @@
 	<% end %>
 </div>
 
-<div id="subskrypcja">
-	<%= render 'form_subscribe' %>
-</div>
 
-<div id="inny_adres">
-	<%= render 'addresses/form' %>
-</div>
 

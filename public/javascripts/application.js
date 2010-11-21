@@ -62,9 +62,13 @@ $(document).ready( function() {
 	});
 
 	// Nowy adres - zaawansowane funkcje
-	$("#new_address #expert").children('div').hide();
-	$("#new_address #expert img").live('click', function() {
-		$('#new_address #expert').children('div').toggle()
+	
+	$("#users #expert").hide();
+	$("#users #expert_toggle").live('click', function() {
+		$('#users #expert').show()
+	});
+	$("#users #expert img").live('click', function() {
+		$('#users #expert').hide()
 	});
 	
 	$("#web").load("/rss/update");
@@ -83,6 +87,12 @@ $(document).ready( function() {
 			}, 1000);
 		}
 	});
+	
+	var subskrybowane = ($("#subskrybowane input[type=checkbox]").length > 0);
+
+	$('#my_addresses').parent().hide();
+	if(!subskrybowane) $('#my_addresses').parent().parent().hide();
+	
 
 	function filtruj(filter) {
 		var hide_them = new Array();
@@ -93,17 +103,21 @@ $(document).ready( function() {
 				$(this).show();
 			}
 		});
-		if ( hide_them.length == $("#my_addresses li").length) {
-			$("#my_addresses li").each(function () {
-				$(this).show();
-			});
-			$('#filtr').css({color:"red"});
+		if ( hide_them.length == $("#my_addresses li").length || hide_them.length == 0) {
+//			$("#my_addresses li").each(function () {
+//				$(this).show();
+//			});
+//			$('#my_addresses').parent().parent().hide(); //$('#filtr').css({color:"red"});
+			$('#my_addresses').parent().hide();
+			if(!subskrybowane) $('#my_addresses').parent().parent().hide();
 		}
 		else {
 			$.each(hide_them, function (index,value) {
 				value.fadeOut();
 			});
-			$('#filtr').css({color:"black"});
+			
+			if(!subskrybowane) $('#my_addresses').parent().parent().show();
+			$('#my_addresses').parent().show(); //$('#filtr').css({color:"black"});
 		}
 	}
 	
@@ -111,13 +125,11 @@ $(document).ready( function() {
 	
 	function ukryj_wszystkie_panele() {
 		$('#users #edit #haslo').hide();
-		$('#users #edit #inny_adres').hide();
 		$('#users #edit #subskrypcja').hide();
 	}
 	
 	function odznacz_wszystkie_karty() {
 		$('#users #edit #haslo_tab').removeClass('aktywna');
-		$('#users #edit #inny_adres_tab').removeClass('aktywna');
 		$('#users #edit #subskrypcja_tab').removeClass('aktywna');
 	}
 	
@@ -131,11 +143,6 @@ $(document).ready( function() {
 		odznacz_wszystkie_karty(); $(this).addClass('aktywna');
 	} );
 
-	$('#users #edit .karty #inny_adres_tab').click( function() {
-		ukryj_wszystkie_panele(); $('#users #edit #inny_adres').show();
-		odznacz_wszystkie_karty(); $(this).addClass('aktywna');
-	} );
-	
 	$('#users #edit .karty #subskrypcja_tab').click( function() {
 		ukryj_wszystkie_panele(); $('#users #edit #subskrypcja').show();
 		odznacz_wszystkie_karty(); $(this).addClass('aktywna');
