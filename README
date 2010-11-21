@@ -32,6 +32,9 @@ DONE
 : blokada edycji opisu dla niezaznaczonych adresów
 : wyjątek dla biblioteki
 : bycie mądrzejszym od usera przy stronach instytutu
+: wiele drobnych zmian wczoraj ;P
+: user dostaje wiadomości z datą po wykluciu kolibra
+: poprawiona czytelność i dopisywanie divów w skróć@rss_controller
 
 TODO
 
@@ -39,7 +42,7 @@ TODO
 : /rss/of/krzak
 : instrukcja odbierania rss
 : publicznosc adresu w sites 
-	// (a to nie jest przypadkiem gotowe?)
+	ASSIGNED TO Maciek :P
 : przechrzcic Site na Alias
 : przechrzcic User.klucz na User.name
 

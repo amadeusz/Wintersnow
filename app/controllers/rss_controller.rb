@@ -47,7 +47,7 @@ class Strona
 		agent = Mechanize.new
 		
 		# paskudny hack na IZ
-		if (@adres =~ /eportal\.ii\.pwr\.wroc\.pl\/w08\/board/).nil? == false
+		if not (@adres =~ /eportal\.ii\.pwr\.wroc\.pl\/w08\/board/).nil? 
 			agent.basic_auth('133133', '133133')
 		end
 		
@@ -159,8 +159,8 @@ class Strona
 			zapisz_tymczasowo(@body,@id)
 			diff = os_wdiff(@id)
 			add_log diff
-			start = diff =~ /<(ins|del)/ 
-			if (start != nil) # są różnice
+			pozycja_startowa = diff =~ /<(ins|del)/ 
+			if (pozycja_startowa != nil) # są różnice
 				return skroc(diff)
 			else 
 				#Strona się nie zmieniła
@@ -183,56 +183,56 @@ def skroc(s)
 	out 			= ""
 	limit 		= 50
 	szukaj 		= true
-	nastepny 	= nil
+	nastepny_tag_zmiany 	= nil
 	
 	while szukaj
-		if nastepny == nil
-			start = string.index(/<(ins|del)>/)
+		if nastepny_tag_zmiany == nil
+			pozycja_startowa = string.index(/<(ins|del)>/)
 		else 
-			start = nastepny 
+			pozycja_startowa = nastepny_tag_zmiany 
 		end
 		# koniec = string.to_s =~ /<\/(ins|del)/
-		if start != nil
+		if pozycja_startowa != nil
 			pierwsza_spacja = string.index(/ /)
-			until start - limit < 0 or pierwsza_spacja == nil
-				pierwsza_spacja = string[0..start-1].index(/ /)
-				#string = string[pierwsza_spacja..string.length]
+			until pozycja_startowa < limit or pierwsza_spacja == nil 
+				pierwsza_spacja = string[0..pozycja_startowa-1].index(/ /)
 				if !pierwsza_spacja.nil?
 					string.slice!(0..pierwsza_spacja)
 					string = "..." + string 
-					start = string.index(/<(ins|del)>/)
+					pozycja_startowa = string.index(/<(ins|del)>/)
 				end
 			end
 			out += "<div>"
-			start = string.index(/<(ins|del)>/)
-			koniec = string.index(/<\/(ins|del)>/)
-			if koniec != nil
-				koniec += 6
-				nastepny = string[koniec..-1].index(/<(ins|del)>/)
+			pozycja_startowa = string.index(/<(ins|del)>/) 			# to nie jest chyba potrzebne
+			pozycja_koncowa = string.index(/<\/(ins|del)>/)
+			if pozycja_koncowa != nil
+				pozycja_koncowa += 6 # trzeba sie przesunąć za </ins>
+				nastepny_tag_zmiany = string[pozycja_koncowa..-1].index(/<(ins|del)>/)
 			else
 				puts "add_log 'error!'"
 				break
 			end
-			if nastepny == nil
-				out += string[0..koniec+limit]
+			if nastepny_tag_zmiany == nil
+				out += string[0..pozycja_koncowa+limit] + "</div>"
 				szukaj = false
-			elsif nastepny > 2*limit #		[0___s####k_ (>2l) _n]
-				out += (string[0..(koniec + limit)] + '...')
-				string.slice!(0..(koniec + nastepny)-limit)
-				nastepny = limit
+			elsif nastepny_tag_zmiany > 2*limit #		[0___s####k_ (>2l) _n]
+				out += (string[0..(pozycja_koncowa + limit)] + '...' + "</div>")
+				string.slice!(0..(pozycja_koncowa + nastepny_tag_zmiany)-limit)
+				nastepny_tag_zmiany = limit
 			elsif
-				out += string[0..(koniec + nastepny)]
-				string.slice!(0..(koniec + nastepny))
-				nastepny = 0
+				out += string[0..(pozycja_koncowa + nastepny_tag_zmiany)]
+				string.slice!(0..(pozycja_koncowa + nastepny_tag_zmiany))
+				nastepny_tag_zmiany = 0
 			end
-			out += "</div>"
 		else 
 			szukaj = false
 			out = nil
 		end
 	end
-	out.gsub!(/<del>/, '<del color="#CE4641">') if !out.nil?
-	out.gsub!(/<ins>/, '<ins color="#1C8522">') if !out.nil?
+	if not out.nil?
+		out.gsub!(/<del>/, '<del color="#CE4641">') 
+		out.gsub!(/<ins>/, '<ins color="#1C8522">') 
+	end
 	out
 end
 
@@ -277,7 +277,7 @@ end
 def sprawdz_zawartosc_rss(user)
 	user.addresses.each { |strona_w_db|
 		polecenie_aktualizacji = Strona.new(strona_w_db)
-	} if user.addresses.empty? == false
+	} if not user.addresses.empty? 
 end
 
 class RssController < ApplicationController
