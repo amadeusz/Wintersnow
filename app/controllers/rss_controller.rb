@@ -69,7 +69,7 @@ class Strona
 
 	# Sprawdza aktualizacje z podanym opóźnieniem
 	def sprawdz_aktualizacje
-		opoznienie = (1.0 / 24 / 60)   * 0 # minut
+		opoznienie = (1.0 / 24 / 60)   * 28 # minut
 		add_log "[#{@adres}] Rozpoczynam sprawdzanie"
 		if DateTime.now > (DateTime.parse(@rekord.data_spr.to_s) + opoznienie ) 
 			if !@rekord.blokada
