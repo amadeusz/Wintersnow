@@ -66,9 +66,11 @@ $(document).ready( function() {
 	$("#users #expert").hide();
 	$("#users #expert_toggle").live('click', function() {
 		$('#users #expert').show()
+		$('#users #expert_toggle').hide()
 	});
 	$("#users #expert img").live('click', function() {
 		$('#users #expert').hide()
+		$('#users #expert_toggle').show()
 	});
 	
 	$("#web").load("/rss/update");
