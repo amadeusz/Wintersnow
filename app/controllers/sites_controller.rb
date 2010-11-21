@@ -59,13 +59,13 @@ class SitesController < ApplicationController
 		end
 	end
 
-#	def destroy
-#		@genotype = Genotype.find(params[:id])
-#		@genotype.destroy
+	def destroy
+		@site = Site.find(params[:id])
+		@site.destroy
 
-#		respond_to do |format|
-#			format.html { redirect_to(genotypes_url) }
-#			format.xml	{ head :ok }
-#		end
-#	end
+		respond_to do |format|
+			format.html { redirect_to(sites_url) }
+			format.xml	{ head :ok }
+		end
+	end
 end

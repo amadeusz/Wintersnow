@@ -46,7 +46,7 @@ class AddressesController < ApplicationController
 	# GET /addresses/new.xml
 	def new
 		@address = Address.new
-
+		
 		respond_to do |format|
 			format.html # new.html.erb
 			format.xml	{ render :xml => @address }
@@ -60,64 +60,56 @@ class AddressesController < ApplicationController
 
 	# POST /addresses
 	# POST /addresses.xml
+	
+	# if (@previous.private and !@address.private) @previous.private = false end
+	
 	def create
+		dobrze = false
+	
 		if params[:address][:adres] != ''
-
 			params[:address][:adres] = popraw_usera(params[:address][:adres])
-			#hack na polibude
+
 			if params[:address][:adres] =~ /(portal|wa|wbliw|wch|weka|weny|wggg|wis|wiz|wme|wm|wppt|wemif)\.pwr\.wroc\.pl/ and params[:address][:xpath] == '' and params[:address][:css] == '' and params[:address][:regexp] == ''
 				params[:address][:css] = '#cwrapper table .ccol4' 
 			end
-			# klucz obliczany na podstawie adresu, xpath'a, css'a oraz regexp'a
+
 			params[:address][:klucz] = Digest::MD5.hexdigest(sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]))
 			params[:address][:data_spr] = Time.new
 			params[:address][:data_mod] = Time.new
 			params[:address][:blokada] = false
 		end
 
-		@address = Address.new(params[:address])
-		
-		przekierowanie = addresses_path
-		przekierowanie = ustawienia_path if !(admin_logged_in?)
-		
+		przekierowanie = ustawienia_path
 		
 		respond_to do |format|
-		
-			# !!! cały poniższy blok jest skrajnie nielogiczny, oraz nie działa
-			# walidacja działa tylko dla admina
-
-			# użytkownik może dodawać wpisy do sites bez ograniczeń,
-			# w szczególności wiele wpisów dla tego jednego adresu
-		
-			if !(admin_logged_in?)
-				@site = Site.new(:user_id => current_user.id, :opis => params[:address][:opis])
-				@previous = Address.where(:adres => @address.adres, :xpath => @address.xpath, :css => @address.css, :regexp => @address.regexp).first
+			@previous = Address.where(:adres => params[:address][:adres], :xpath => params[:address][:xpath], :css => params[:address][:css], :regexp => params[:address][:regexp]).first
 			
-				if(@previous != nil)
-					if (@previous.private and !@address.private)
-						@previous.private = false
+			if(@previous == nil)
+				@address = Address.new(params[:address])
+				if @address.save
+					dobrze = true if Site.new(:user_id => current_user.id, :opis => params[:address][:opis], :address_id => @address.id).save
+				end
+			else
+				@previous_site = Site.where(:user_id => current_user.id, :address_id => @previous.id).first
+				if @previous_site == nil
+					if Site.new(:user_id => current_user.id, :opis => params[:address][:opis], :address_id => @previous.id).save
+						dobrze = true
+					else
+						dobrze = false
 					end
-				
-					@site.address_id = @previous.id
 				else
-					@site.address_id = @address.id
+					dobrze = true;
 				end
 			end
 			
-			# Udało się zapisać
-			if (admin_logged_in? and @address.save) or
-				(@site != nil and @site.address_id == @address.id and @address.save and @site.save) or
-				(@site != nil and @site.address_id != @address.id and @previous.save and @site.save)
-					format.html { redirect_to(przekierowanie, :notice => 'Dodano stronę.') }
-					format.xml	{ render :xml => @address, :status => :created, :location => @address }
-			
-			# Nie udało się zapisać
+			if (dobrze)
+				format.html { redirect_to(przekierowanie, :notice => 'Dodano stronę.') }
+				format.xml	{ render :xml => @address, :status => :created, :location => @address }
 			else
 				format.html { render :action => "new" }
 				format.xml	{ render :xml => @address.errors + @site.errors , :status => :unprocessable_entity }
 			end
 		end
-		
 		
 	end
 

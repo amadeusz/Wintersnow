@@ -11,7 +11,8 @@
 		<td><%= site.address_id %>.</td>
 		<td><%= site.opis %></td>
 		<td><%= site.user_id %>.</td>
-		<td><%= link_to image_tag('icons/keyboard.png', :width => 16, :height => 16), edit_site_path(site) %></td>
+		<td><%= link_to image_tag('icons/keyboard.png', :width => 16, :height => 16), edit_site_path(site) %>
+		<%= link_to image_tag('icons/destroy.png', :width => 16, :height => 16), site, :confirm => 'Are you sure?', :method => :delete %></td>
 	</tr>
 <% end %>
 </table>

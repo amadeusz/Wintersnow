@@ -17,12 +17,12 @@
 	<span id="haslo_tab">Zmień hasło</span>
 </div>
 
-<div id="subskrypcja">
+<div id="subskrypcja" style="display: none">
 	<%= render 'addresses/form' %>
 	<%= render 'form_subscribe' %>
 </div>
 
-<div id="haslo">
+<div id="haslo" style="display: none">
 	<%= form_for(@user) do |f| %>
 	
 		<% if controller.admin_logged_in? %>
