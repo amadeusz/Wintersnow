@@ -70,7 +70,7 @@
 
 /* Login, Wykluj */
 
-#login label, #users #new label { display: inline; }
+#login label, #users #new label, #users #create label { display: inline; }
 #login .tresc img, .wykluj img { padding: 11% 5%; }
 #login .tresc form, .wykluj form { max-width: 48em; margin: auto; display: block; text-align: center; }
 #login .tresc form input, .inline_form input { max-width: 8em; }

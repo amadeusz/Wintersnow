@@ -76,12 +76,13 @@ class UsersController < ApplicationController
 		przekierowanie = root_path if !(admin_logged_in?)
 		
 		if !admin_logged_in? && !genotyp
-			flash[:error] = "Nieprawidłowy genotyp."
+			flash[:error] = "Nieprawidłowa fraza"
 		else
 			flash[:error] = nil
 		end
 		
 		params[:user].delete(:address_opises)
+		
 		@user = User.new(params[:user])
 		@addresses = Address.all
 
@@ -138,14 +139,19 @@ class UsersController < ApplicationController
 
 				if zmiana_subskrypcji
 					identyfikatory.each do |id|
+						
+						# Zapisanie opisu użytkownika
 						@user.sites.find_by_address_id(id).update_attributes(:opis => opisy[id])
+						
+						# Zapisanie opisu globalnego (w addresses, rodzaj cache)
 						@adres = Address.find(id)
 						alternatywy = []
 						@adres.sites.each do |site|
 							alternatywy << site.opis
 						end
-				
 						liczby_alternatyw = (alternatywy.inject(Hash.new(0)) { |h, i| h[i] += 1; h }).to_a
+						liczba_uzytkownikow = Address.find(id).sites.length
+
 						max = 0
 						best_opis = ''
 						liczby_alternatyw.each do |opis, liczba|
@@ -157,7 +163,7 @@ class UsersController < ApplicationController
 					
 						( best_opis = 'brak opisu' ) if (best_opis == '')
 						poprzedni_opis = @adres.opis
-						@adres.update_attributes(:opis => best_opis) if max != 1 || poprzedni_opis == 'brak_opisu'
+						@adres.update_attributes(:opis => best_opis)
 					end
 				end
 

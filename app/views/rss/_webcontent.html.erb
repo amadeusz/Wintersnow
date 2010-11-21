@@ -1,5 +1,7 @@
 <% if (actual_news = news(controller.current_user)) == [] %>
-<p style='text-align:center'>Brak zmian.</p>
+
+<p id="notice" style="text-align: center">Na wybranych stronach nie pojawiły się jeszcze żadne zmiany.</p>
+
 <% else %>
 	<% puts actual_news %>
 	<% actual_news.each do |news|  %>
@@ -13,8 +15,8 @@
 		<h1><%= news.address.opis %></h1>
 		<%= link_to(news.address.adres,news.address.adres) %>
 		<p class="switcher">
-		<%= image_tag 'icons/add.png', :class => "tog_ins" %>
-		<%= image_tag 'icons/destroy.png', :class => "tog_del" %>
+			<%= image_tag 'icons/add.png', :class => "tog_ins" %>
+			<%= image_tag 'icons/destroy.png', :class => "tog_del" %>
 		</p>
 		<div class="msg rounded">
 			<%= news.tresc.html_safe %> 

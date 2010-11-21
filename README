@@ -1,3 +1,26 @@
+TODO
+
+: user może dodawać wpisy do sites bez ograniczeń
+: rss/of/:klucz!:rss_pass wykorzystać :rss_pass do weryfikacji
+: publicznosc adresu w sites 
+: oddczielić wyszukiwanie (wyszukiwanie przy dodawaniu)
+: zunifikować popupy
+: wygenerować frazy wykluwające
+: dodać w wyszukiwarce ikonę adres, css, regexp
+: lista sugerowanych opisów
+: naprawić wyszukiwanie, po skróconych adresach
+: przechrzcic Site na Alias
+: przechrzcic User.klucz na User.name
+
+Nakarmić kota
+
+: zrobienie wersji mobilnej
+: bugtracker?
+: przepisac rss/skroc
+: heurystyka sprawdzania, przewidywanie momentu sprawdzenia i sprawdzanie wcześniej
+		Delayed::Job.enqueue sprawdz_adres()
+: przeniesienie dużej części logiki do modeli
+
 DONE
 
 : dodanie regexpów i xpath do wpisów z adresami
@@ -35,21 +58,9 @@ DONE
 : wiele drobnych zmian wczoraj ;P
 : user dostaje wiadomości z datą po wykluciu kolibra
 : poprawiona czytelność i dopisywanie divów w skróć@rss_controller
-
-TODO
-
-: BUG! user może dodawać wpisy do sites bez ograniczeń
-: /rss/of/krzak
-: instrukcja odbierania rss
-: publicznosc adresu w sites 
-	ASSIGNED TO Maciek :P
-: przechrzcic Site na Alias
-: przechrzcic User.klucz na User.name
-
-Nakarmić kota
-
-: zrobienie wersji mobilnej
-: bugtracker?
-: przepisac rss/skroc
-: heurystyka sprawdzania, przewidywanie momentu sprawdzenia i sprawdzanie wcześniej
-		Delayed::Job.enqueue sprawdz_adres()
+: (rss/webrss) każda zmiana w oddzielnym div'ie
+: nie wyświetlanie wiadomości sprzed utworzenia konta, obsługa userów sprzed początku czasu
+: nie ucinanie adresów w adresach, skracanie adresów w wyszukiwarce
+: pamietanie zalogowania do wylogowania, przez rok
+: zmiana komunikatów, poprawienie błędów css
+: rss/of/:klucz!:rss_pass

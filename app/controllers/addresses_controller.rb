@@ -4,12 +4,12 @@ def sklejenie_warunkowe(elementy)
 end
 
 def popraw_usera(adres)
-	#hack dla wygody
+	# hack dla wygody
 	if (adres =~ /^http(s)?:\/\//) == nil
 		adres = "http#{$1}://" + adres
 	end
 	
-	#hack na bibliotekę:
+	# hack na bibliotekę:
 	if adres =~ /aleph\.bg\.pwr\.wroc\.pl\/F\/([^?]*)/
 		adres.gsub! $1, ''
 	end
@@ -22,7 +22,7 @@ class AddressesController < ApplicationController
 	# GET /addresses
 	# GET /addresses.xml
 	def index
-		@addresses = Address.all
+		@addresses = Address.order("opis ASC")
 		#@messages = Message.all
 		
 		respond_to do |format|
@@ -129,7 +129,7 @@ class AddressesController < ApplicationController
 			
 			params[:address][:adres] = popraw_usera(params[:address][:adres])
 			
-			#hack na polibude
+			# hack na polibude
 			if params[:address][:adres] =~ /(portal|wa|wbliw|wch|weka|weny|wggg|wis|wiz|wme|wm|wppt|wemif)\.pwr\.wroc\.pl/ and params[:address][:xpath] == '' and params[:address][:css] == '' and params[:address][:regexp] == ''
 				params[:address][:css] = '#cwrapper table .ccol4' 
 			end

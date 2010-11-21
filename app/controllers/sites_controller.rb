@@ -9,8 +9,6 @@ class SitesController < ApplicationController
 		end
 	end
 
-#	# GET /genotypes/1
-#	# GET /genotypes/1.xml
 #	def show
 #		@genotype = Genotype.find(params[:id])
 
@@ -20,8 +18,6 @@ class SitesController < ApplicationController
 #		end
 #	end
 
-#	# GET /genotypes/new
-#	# GET /genotypes/new.xml
 #	def new
 #		@genotype = Genotype.new
 
@@ -35,8 +31,6 @@ class SitesController < ApplicationController
 		@site = Site.find(params[:id])
 	end
 
-#	# POST /genotypes
-#	# POST /genotypes.xml
 #	def create
 #		@genotype = Genotype.new(params[:genotype])
 
@@ -65,8 +59,6 @@ class SitesController < ApplicationController
 		end
 	end
 
-#	# DELETE /genotypes/1
-#	# DELETE /genotypes/1.xml
 #	def destroy
 #		@genotype = Genotype.find(params[:id])
 #		@genotype.destroy

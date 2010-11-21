@@ -19,11 +19,11 @@
 			opis = nil, dodatki = nil
 			opis = address.opis.limit(50) if address.opis != ''
 			dodatki = [address.xpath, address.css, address.regexp].join(" ").limit(50)
-			adres = address.adres.limit(50)
+			adres = address.adres
 		
 		%>
 			<% if opis %><p><strong><%= opis %></strong></p><% end %>
-			<p><a href="<%= adres %>"><%= adres  %></a></p>
+			<p><a href="<%= adres %>"><%= adres.limit(60)  %></a></p>
 			<% if dodatki %><p class="dodatki"><%= dodatki  %></p><% end %>
 		</td>
 

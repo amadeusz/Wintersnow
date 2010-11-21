@@ -5,7 +5,7 @@
 	<%= csrf_meta_tag %>
 	
 	<% if (controller.logged_in? && controller.current_user.addresses.length != 0) %>
-		<%= auto_discovery_link_tag(:rss, '/rss/of/'+ controller.current_user.klucz, {:title => controller.current_user.klucz.camelize}) %>
+		<%= auto_discovery_link_tag(:rss, '/rss/of/'+ controller.current_user.klucz + "!" + controller.current_user.rss_pass, {:title => controller.current_user.klucz.camelize}) %>
 	<% end %>
 	
 	<%= javascript_include_tag :defaults %>
@@ -33,7 +33,7 @@
 				nawigacja << ['Ustawienia', ustawienia_path]
 
 				if (controller.current_user.addresses.length != 0)
-					nawigacja << ['WebRSS', '/rss/web']
+					nawigacja << ['Wiadomości', '/rss/web']
 				end
 
 				nawigacja << ['Wyloguj ('+ controller.current_user.klucz + ')', login_destroy_path]

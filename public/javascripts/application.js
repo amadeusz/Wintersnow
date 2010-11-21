@@ -53,7 +53,6 @@ $(document).ready( function() {
 	);
 	
 	// WebRSS
-	
 
 	$("#rss #web .tog_ins").live('click', function(){
 		$(this).parent().siblings(".msg").children("ins").toggle();
@@ -64,7 +63,7 @@ $(document).ready( function() {
 
 	// Nowy adres - zaawansowane funkcje
 	$("#new_address #expert").children('div').hide();
-	$("#new_address #expert img").live('click', function(){
+	$("#new_address #expert img").live('click', function() {
 		$('#new_address #expert').children('div').toggle()
 	});
 	
