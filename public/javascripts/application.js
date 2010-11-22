@@ -51,15 +51,6 @@ $(document).ready( function() {
 			$(this).children("div").toggle();
 		}
 	);
-	
-	// WebRSS
-
-	$("#rss #web .tog_ins").live('click', function(){
-		$(this).parent().siblings(".msg").children("ins").toggle();
-	});
-	$("#rss #web .tog_del").live('click', function(){
-		$(this).parent().siblings(".msg").children("del").toggle();
-	});
 
 	// Nowy adres - zaawansowane funkcje
 	
