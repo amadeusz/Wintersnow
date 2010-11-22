@@ -213,10 +213,10 @@ def skroc(s)
 				break
 			end
 			if nastepny_tag_zmiany == nil
-				out += string[0..pozycja_koncowa+limit] + "</div>"
+				out += string[0..pozycja_koncowa+limit]
 				szukaj = false
 			elsif nastepny_tag_zmiany > 2*limit #		[0___s####k_ (>2l) _n]
-				out += (string[0..(pozycja_koncowa + limit)] + '...' + "</div>")
+				out += (string[0..(pozycja_koncowa + limit)] + '...')
 				string.slice!(0..(pozycja_koncowa + nastepny_tag_zmiany-1)-limit)
 				nastepny_tag_zmiany = limit
 			elsif
@@ -224,6 +224,7 @@ def skroc(s)
 				string.slice!(0..(pozycja_koncowa + nastepny_tag_zmiany-1))
 				nastepny_tag_zmiany = 0
 			end
+			out += "</div>"
 		else 
 			szukaj = false
 			out = nil
