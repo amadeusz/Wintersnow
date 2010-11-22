@@ -217,11 +217,11 @@ def skroc(s)
 				szukaj = false
 			elsif nastepny_tag_zmiany > 2*limit #		[0___s####k_ (>2l) _n]
 				out += (string[0..(pozycja_koncowa + limit)] + '...' + "</div>")
-				string.slice!(0..(pozycja_koncowa + nastepny_tag_zmiany)-limit)
+				string.slice!(0..(pozycja_koncowa + nastepny_tag_zmiany-1)-limit)
 				nastepny_tag_zmiany = limit
 			elsif
-				out += string[0..(pozycja_koncowa + nastepny_tag_zmiany)]
-				string.slice!(0..(pozycja_koncowa + nastepny_tag_zmiany))
+				out += string[0..(pozycja_koncowa + nastepny_tag_zmiany-1)]
+				string.slice!(0..(pozycja_koncowa + nastepny_tag_zmiany-1))
 				nastepny_tag_zmiany = 0
 			end
 		else 
