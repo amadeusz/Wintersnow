@@ -1,45 +1,37 @@
 class GenotypesController < ApplicationController
-	# GET /genotypes
-	# GET /genotypes.xml
+
 	def index
 		@new_genotype = Genotype.new
 		@genotypes = Genotype.all
 
 		respond_to do |format|
-			format.html # index.html.erb
+			format.html
 			format.xml	{ render :xml => @genotypes }
 		end
 	end
 
-	# GET /genotypes/1
-	# GET /genotypes/1.xml
 	def show
 		@genotype = Genotype.find(params[:id])
 
 		respond_to do |format|
-			format.html # show.html.erb
+			format.html
 			format.xml	{ render :xml => @genotype }
 		end
 	end
 
-	# GET /genotypes/new
-	# GET /genotypes/new.xml
 	def new
 		@genotype = Genotype.new
 
 		respond_to do |format|
-			format.html # new.html.erb
+			format.html
 			format.xml	{ render :xml => @genotype }
 		end
 	end
 
-	# GET /genotypes/1/edit
 	def edit
 		@genotype = Genotype.find(params[:id])
 	end
 
-	# POST /genotypes
-	# POST /genotypes.xml
 	def create
 		@genotype = Genotype.new(params[:genotype])
 
@@ -54,8 +46,6 @@ class GenotypesController < ApplicationController
 		end
 	end
 
-	# PUT /genotypes/1
-	# PUT /genotypes/1.xml
 	def update
 		@genotype = Genotype.find(params[:id])
 
@@ -70,8 +60,6 @@ class GenotypesController < ApplicationController
 		end
 	end
 
-	# DELETE /genotypes/1
-	# DELETE /genotypes/1.xml
 	def destroy
 		@genotype = Genotype.find(params[:id])
 		@genotype.destroy
@@ -81,4 +69,5 @@ class GenotypesController < ApplicationController
 			format.xml	{ head :ok }
 		end
 	end
+	
 end

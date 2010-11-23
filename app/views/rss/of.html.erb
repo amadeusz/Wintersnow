@@ -5,7 +5,7 @@
 		<language>pl-pl</language>
 	
 	<% puts User.find_by_klucz(params[:id]).inspect %>
-	<% news(User.find_by_klucz(params[:id])).each do |news| %>
+	<% User.find_by_klucz(params[:id]).messages.each do |news| %>
 	
 		<item>
 			<title><%= news.address.opis %></title>
