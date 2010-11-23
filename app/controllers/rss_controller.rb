@@ -179,56 +179,84 @@ end # Strona.class
 # @param [String] String do skrócenia
 # @return [String] Skrócony string 
 def skroc(s)
-	string = s
-	out 			= ""
+#	string = s
+#	out 			= ""
+#	limit 		= 50
+#	szukaj 		= true
+#	nastepny_tag_zmiany 	= nil
+#	
+#	while szukaj
+#		if nastepny_tag_zmiany == nil
+#			pozycja_startowa = string.index(/<(ins|del)>/)
+#		else 
+#			pozycja_startowa = nastepny_tag_zmiany 
+#		end
+#		# koniec = string.to_s =~ /<\/(ins|del)/
+#		if pozycja_startowa != nil
+#			pierwsza_spacja = string.index(/ /)
+#			until pozycja_startowa < limit or pierwsza_spacja == nil 
+#				pierwsza_spacja = string[0..pozycja_startowa-1].index(/ /)
+#				if !pierwsza_spacja.nil?
+#					string.slice!(0..pierwsza_spacja)
+#					string = "..." + string 
+#					pozycja_startowa = string.index(/<(ins|del)>/)
+#				end
+#			end
+#			out += "<div>"
+#			pozycja_startowa = string.index(/<(ins|del)>/) 			# to nie jest chyba potrzebne
+#			pozycja_koncowa = string.index(/<\/(ins|del)>/)
+#			if pozycja_koncowa != nil
+#				pozycja_koncowa += 6 # trzeba sie przesunąć za </ins>
+#				nastepny_tag_zmiany = string[pozycja_koncowa..-1].index(/<(ins|del)>/)
+#			else
+#				puts "add_log 'error!'"
+#				break
+#			end
+#			if nastepny_tag_zmiany == nil
+#				out += string[0..pozycja_koncowa+limit]
+#				szukaj = false
+#			elsif nastepny_tag_zmiany > 2*limit #		[0___s####k_ (>2l) _n]
+#				out += (string[0..(pozycja_koncowa + limit)] + '...')
+#				string.slice!(0..(pozycja_koncowa + nastepny_tag_zmiany-1)-limit)
+#				nastepny_tag_zmiany = limit
+#			elsif
+#				out += string[0..(pozycja_koncowa + nastepny_tag_zmiany-1)]
+#				string.slice!(0..(pozycja_koncowa + nastepny_tag_zmiany-1))
+#				nastepny_tag_zmiany = 0
+#			end
+#			out += "</div>"
+#		else 
+#			szukaj = false
+#			out = nil
+#		end
+	string 		= s
 	limit 		= 50
-	szukaj 		= true
-	nastepny_tag_zmiany 	= nil
-	
-	while szukaj
-		if nastepny_tag_zmiany == nil
-			pozycja_startowa = string.index(/<(ins|del)>/)
-		else 
-			pozycja_startowa = nastepny_tag_zmiany 
+	zmiana		= []
+	pointer 	= 0
+	while pozycja = string.index(/<(ins|del)>/)
+		typ = $1
+		koniec = string.index(/<\/#{$1}>/)
+		#puts "# " + string[pozycja..koniec+5]
+		zmiana += [{:typ => typ, :start => pozycja+pointer, :koniec => koniec+5+pointer}]
+		pointer += koniec+6
+		string = string[koniec+6..string.length]
+		#puts string
+	end
+
+	i = 0
+	out = ""
+	while i < zmiana.length
+		out += "<div>\n"
+		out += "..." if zmiana[i][:start]-25 > 0
+		out += ""+s[zmiana[i][:start]-limit/2..zmiana[i][:koniec]]
+		if i+1 < zmiana.length and (zmiana[i+1][:start] - zmiana[i][:koniec]) < limit   
+			out += s[zmiana[i][:koniec]+1..zmiana[i+1][:koniec]]
+			i += 1
 		end
-		# koniec = string.to_s =~ /<\/(ins|del)/
-		if pozycja_startowa != nil
-			pierwsza_spacja = string.index(/ /)
-			until pozycja_startowa < limit or pierwsza_spacja == nil 
-				pierwsza_spacja = string[0..pozycja_startowa-1].index(/ /)
-				if !pierwsza_spacja.nil?
-					string.slice!(0..pierwsza_spacja)
-					string = "..." + string 
-					pozycja_startowa = string.index(/<(ins|del)>/)
-				end
-			end
-			out += "<div>"
-			pozycja_startowa = string.index(/<(ins|del)>/) 			# to nie jest chyba potrzebne
-			pozycja_koncowa = string.index(/<\/(ins|del)>/)
-			if pozycja_koncowa != nil
-				pozycja_koncowa += 6 # trzeba sie przesunąć za </ins>
-				nastepny_tag_zmiany = string[pozycja_koncowa..-1].index(/<(ins|del)>/)
-			else
-				puts "add_log 'error!'"
-				break
-			end
-			if nastepny_tag_zmiany == nil
-				out += string[0..pozycja_koncowa+limit]
-				szukaj = false
-			elsif nastepny_tag_zmiany > 2*limit #		[0___s####k_ (>2l) _n]
-				out += (string[0..(pozycja_koncowa + limit)] + '...')
-				string.slice!(0..(pozycja_koncowa + nastepny_tag_zmiany-1)-limit)
-				nastepny_tag_zmiany = limit
-			elsif
-				out += string[0..(pozycja_koncowa + nastepny_tag_zmiany-1)]
-				string.slice!(0..(pozycja_koncowa + nastepny_tag_zmiany-1))
-				nastepny_tag_zmiany = 0
-			end
-			out += "</div>"
-		else 
-			szukaj = false
-			out = nil
-		end
+		out += s[zmiana[i][:koniec]+1..zmiana[i][:koniec]+25]
+		out += "..." if zmiana[i][:koniec]+25 < s.length
+		out += "\n</div>\n"
+		i += 1
 	end
 	if not out.nil?
 		out.gsub!(/<del>/, '<del color="#CE4641">') 
