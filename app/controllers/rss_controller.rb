@@ -309,9 +309,8 @@ class RssController < ApplicationController
 	
 	def update
 		sprawdz_zawartosc_rss(current_user)
-		render :layout => false
 		respond_to do |format|
-			format.html
+			format.html { render :layout => false }
 			format.xml	{ head :ok }
 		end
 	end
