@@ -2,13 +2,6 @@ require 'active_record'
 require 'nokogiri'
 require 'mechanize'
 
-# Skrót do liczenia sumy md5
-# @param [String] Ciąg znaków z którego będzie liczona suma
-# @return [String] suma md5
-def md5(var)
-	return Digest::MD5.hexdigest(var)
-end
-
 # Dopisuje string poprzedzony timestampem do logu w Rails.root.to_s/log/log
 # @param [String] Ciąg znaków zawierający komunikat dopisywany do logu
 def add_log(tresc)
@@ -151,7 +144,7 @@ class Strona
 	# @return [String,nil] różnica między @body a stringiem
 	def porownaj_z(pamietana)
 		if binarny?
-			if (md5(@body) != md5(pamietana))
+			if (@body.md5 != pamietana.md5)
 				return "Pojawiły się zmiany w pliku"
 			end
 		else
@@ -168,12 +161,7 @@ class Strona
 			end
 		end
 	end
-end # Strona.class
-
-#def pobierz(adres)
-#	Address.update(md5(adres), :data_spr => Time.new )
-#	return Curl::Easy.perform(adres).body_str
-#end
+end
 
 # Funkcja skraca output diffa (obcina przerwy między <del>/<ins> dłuższe niż 50 znaków) 
 # @param [String] String do skrócenia
@@ -312,6 +300,7 @@ end
 class RssController < ApplicationController
 	skip_before_filter :require_admin_login, :only => [:web, :of, :update]
 	skip_before_filter :require_login, :only => [:of]
+	
 	def of
 		headers['Content-type'] = 'text/xml'
 		sprawdz_zawartosc_rss(User.find_by_klucz(params[:id]))
@@ -322,16 +311,17 @@ class RssController < ApplicationController
 		sprawdz_zawartosc_rss(current_user)
 		render :layout => false
 		respond_to do |format|
-			format.html {}
+			format.html
 			format.xml	{ head :ok }
 		end
 	end
 	
 	def web
 		respond_to do |format|
-			format.html {}
+			format.html
 			format.xml	{ head :ok }
 		end
 	end
+	
 end
 

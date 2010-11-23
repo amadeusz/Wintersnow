@@ -1,4 +1,4 @@
-<% if (actual_news = news(controller.current_user)) == [] %>
+<% if (actual_news = controller.current_user.messages) == [] %>
 
 <p id="notice" style="text-align: center">Na wybranych stronach nie pojawiły się jeszcze żadne zmiany.</p>
 

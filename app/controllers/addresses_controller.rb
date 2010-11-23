@@ -1,6 +1,6 @@
 def sklejenie_warunkowe(elementy)
 	elementy = elementy.find_all{ |element| element != '' }
-	return str = elementy.join(' ')
+	elementy.join(' ').to_s
 end
 
 def popraw_usera(adres)
@@ -87,7 +87,7 @@ class AddressesController < ApplicationController
 				params[:address][:private] = true
 			end
 
-			params[:address][:klucz] = Digest::MD5.hexdigest(sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]))
+			params[:address][:klucz] = sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]).md5
 			params[:address][:data_spr] = Time.new
 			params[:address][:data_mod] = Time.new
 			params[:address][:blokada] = false
@@ -141,7 +141,7 @@ class AddressesController < ApplicationController
 			end
 			
 			# klucz obliczany na podstawie adresu, xpath'a, css'a oraz regexp'a
-			params[:address][:klucz] = Digest::MD5.hexdigest(sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]))
+			params[:address][:klucz] = sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]).md5
 		end
 		@address = Address.find(params[:id])
 

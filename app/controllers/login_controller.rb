@@ -10,17 +10,17 @@ class LoginController < ApplicationController
 	def create
 		if user = authenticate(params[:nazwa], params[:haslo])
 			session[:current_user_id] = user.id
-			flash[:notice] = "Zalogowano" #"Zalogowano"
+			flash[:notice] = "Zalogowano"
 			redirect_to root_url
 		else
-			flash[:error] = 'Logowanie nie powiodło się, spróbuj ponownie.' #"Logowanie nie powiodło się, spróbuj ponownie"
+			flash[:error] = 'Logowanie nie powiodło się, spróbuj ponownie'
 			redirect_to root_url
 		end
 	end
 	
 	def destroy
 		session[:current_user_id] = nil
-		flash[:notice] = "Wylogowano" #"Wylogowano"
+		flash[:notice] = "Wylogowano"
 		redirect_to root_url
 		# reset_session
 	end

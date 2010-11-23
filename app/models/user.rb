@@ -13,7 +13,10 @@ class User < ActiveRecord::Base
 	end
 	
 	private
-		def generate_rss_pass
-			self.rss_pass = (Digest::SHA2.new() << (self.klucz + rand(100).to_s)).to_s[1..20]
-		end
+	
+	def generate_rss_pass
+		key = self.klucz + rand(100).to_s
+		self.rss_pass = key.sha[1..20]
+	end
+	
 end
