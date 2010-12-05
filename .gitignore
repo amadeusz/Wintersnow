@@ -3,4 +3,5 @@ log/log
 tmp/**/*
 db/pobrane/*
 db/development.sqlite3
+db/production.sqlite3
 public/stylesheets/*.css
