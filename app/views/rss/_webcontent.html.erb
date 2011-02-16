@@ -8,7 +8,7 @@
 	<li>
 		<div class="boxdate">
 			<span class="day"><%= news.data.day %></span>
-			<span class="month"><%= Time::RFC2822_MONTH_NAME[news.data.month] %></span>
+			<span class="month"><%= Time::RFC2822_MONTH_NAME[news.data.month-1] %></span>
 			<span class="time"><%= news.data.strftime("%I:%M") %></span>
 		</div>
 		<div class="box_msg">

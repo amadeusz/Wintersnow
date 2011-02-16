@@ -62,7 +62,7 @@ class Strona
 
 	# Sprawdza aktualizacje z podanym opóźnieniem
 	def sprawdz_aktualizacje
-		opoznienie = (1.0 / 24 / 60)   * 28 # minut
+		opoznienie = (1.0 / 24 / 60)   * 0 # minut
 		add_log "[#{@adres}] Rozpoczynam sprawdzanie"
 		if DateTime.now > (DateTime.parse(@rekord.data_spr.to_s) + opoznienie ) 
 			if !@rekord.blokada
@@ -151,7 +151,6 @@ class Strona
 			okroj
 			zapisz_tymczasowo(@body,@id)
 			diff = os_wdiff(@id)
-			add_log diff
 			pozycja_startowa = diff =~ /<(ins|del)/ 
 			if (pozycja_startowa != nil) # są różnice
 				return skroc(diff)
@@ -233,10 +232,22 @@ def skroc(s)
 
 	i = 0
 	out = ""
-	while i < zmiana.length
+	liczba_zmian = zmiana.length
+	while i < liczba_zmian
 		out += "<div>\n"
 		out += "..." if zmiana[i][:start]-25 > 0
-		out += ""+s[zmiana[i][:start]-limit/2..zmiana[i][:koniec]]
+		if zmiana[i][:start] > limit/2
+			from = zmiana[i][:start]-limit/2
+		else 
+			from = 0
+		end
+		to = zmiana[i][:koniec]
+		
+		add_log zmiana[i].inspect
+		add_log "from: #{from} to: #{to}"
+		add_log s[from..to]
+		
+		out += ""+s[from..to]
 		if i+1 < zmiana.length and (zmiana[i+1][:start] - zmiana[i][:koniec]) < limit   
 			out += s[zmiana[i][:koniec]+1..zmiana[i+1][:koniec]]
 			i += 1
