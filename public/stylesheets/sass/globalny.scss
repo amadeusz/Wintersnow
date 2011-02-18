@@ -16,8 +16,8 @@ $prawie_czarny: #333;
 
 /* Globalne */
 
-html { background-image:url(/images/tlo.png); background-repeat: no-repeat; height: 100% }
 html, input { color: $prawie_czarny; background: $blekit; font-size: 14px; line-height: 18px; font-family: verdana, arial, helvetica, sans-serif; }
+html { background-image: url(/images/tlo.png); background-repeat: no-repeat; height: 100% }
 a { color: black; } a:visited { color: black; } a > img { vertical-align: text-top; }
 h1 { margin-top: 20px; margin-bottom: 12px; } h1:first-child { margin-top: 0; } h2 { margin-top: 16px; margin-bottom: 10px; } h2:first-child { margin-top: 0; }
 pre { background-color: #eee; padding: 10px; font-size: 11px; }
@@ -57,3 +57,4 @@ form + .actions, #inny_adres + .actions { text-align: left; margin-top: 14px; }
 .admin #error_explanation { background: url(/images/guard.gif) no-repeat 20px 40px; min-height: 80px; padding-left: 130px; padding-top: 70px; }
 div.field_with_errors { display: inline; } div.field_with_errors input { border: 1px solid red; }
 
+.disabled * { color: #999 !important; }

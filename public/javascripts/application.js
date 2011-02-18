@@ -52,16 +52,36 @@ $(document).ready( function() {
 		}
 	);
 
-	// Nowy adres - zaawansowane funkcje
+	// Nowy adres, zaawansowane
 	
 	$("#users #expert").hide();
 	$("#users #expert_toggle").live('click', function() {
-		$('#users #expert').show()
-		$('#users #expert_toggle').hide()
+		if(!$('#users #new_address').haveClass('disabled')) {
+			$('#users #expert').show()
+			$('#users #expert_toggle').hide()
+		}
 	});
 	$("#users #expert img").live('click', function() {
 		$('#users #expert').hide()
 		$('#users #expert_toggle').show()
+	});
+	
+	// Zaznaczenie sugerowanego adresu wyłącza ręczne dodawanie
+	
+	$("#users #sugerowane input[type=checkbox]").change( function() {
+		var count = 0;
+		$("#users #sugerowane input[type=checkbox]").each( function() {
+			if($(this).is(':checked') && $(this).is(':visible')) count++;
+		});
+		
+		if(count > 0) {
+			$("#users #new_address input").attr('disabled', 'true');
+			$("#users #new_address").addClass('disabled');
+		}
+		else {
+			$("#users #new_address input").removeAttr('disabled');
+			$("#users #new_address").removeClass('disabled');
+		}
 	});
 	
 	$("#web").load("/rss/update");

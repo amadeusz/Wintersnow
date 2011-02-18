@@ -18,9 +18,7 @@ end
 
 class AddressesController < ApplicationController
 	skip_before_filter :require_admin_login, :only => [:new, :create]
-	
-	# GET /addresses
-	# GET /addresses.xml
+
 	def index
 		@addresses = Address.order("opis ASC")
 		#@messages = Message.all
@@ -30,9 +28,7 @@ class AddressesController < ApplicationController
 			format.xml	{ render :xml => @addresses }
 		end
 	end
-
-	# GET /addresses/1
-	# GET /addresses/1.xml
+	
 	def show
 		@address = Address.find(params[:id])
 
@@ -42,8 +38,6 @@ class AddressesController < ApplicationController
 		end
 	end
 
-	# GET /addresses/new
-	# GET /addresses/new.xml
 	def new
 		@address = Address.new
 		
@@ -53,13 +47,9 @@ class AddressesController < ApplicationController
 		end
 	end
 
-	# GET /addresses/1/edit
 	def edit
 		@address = Address.find(params[:id])
 	end
-
-	# POST /addresses
-	# POST /addresses.xml
 	
 	# if (@previous.private and !@address.private) @previous.private = false end
 	
@@ -127,8 +117,6 @@ class AddressesController < ApplicationController
 		
 	end
 
-	# PUT /addresses/1
-	# PUT /addresses/1.xml
 	def update
 	
 		if params[:address][:adres] != ''
@@ -156,9 +144,7 @@ class AddressesController < ApplicationController
 			end
 		end
 	end
-
-	# DELETE /addresses/1
-	# DELETE /addresses/1.xml
+	
 	def destroy		
 		@address = Address.find(params[:id])
 		@address.destroy

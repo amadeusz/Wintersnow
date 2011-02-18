@@ -1,6 +1,6 @@
 <%= form_for(@user) do |f| %>
 
-<div class="field">
+<div class="field" id="sugerowane">
 	<label><%= image_tag "icons/zoom.png" %> Sugestie</label>
 	<ul id="my_addresses">
 <% (@addresses.sort_by {|a| a.opis}).each do |address| %>
