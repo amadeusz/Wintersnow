@@ -21,7 +21,7 @@ class AddBlueLoginToUsers < ActiveRecord::Migration
     remove_column :users, :air_password, :string
     remove_column :users, :earth_login, :string
     remove_column :users, :earth_password, :string
-    add_column :users, :pwr_index
-    add_column :users, :pwr_password
+    add_column :users, :pwr_index, :string
+    add_column :users, :pwr_password, :string
   end
 end
