@@ -33,7 +33,7 @@
 		<% end %>
 
 		<div class="field">
-			<%= f.label "Hasło" %>
+			<%= f.label "Hasło do programu" %>
 			<%= f.password_field :haslo %>
 		</div>
 	
@@ -43,21 +43,42 @@
 			</div>	
 		<% end %>
 		
-		<div class="gallery"><img src="images/eportal-ch.png" /><img src="images/eportal.png" /><img src="images/eportal-iz.png" /><img src="images/eportal-ii.png" /></div>
+		<h3 style="margin-top: 30px">Strony wymagające logowania</h3>
 		
 		<p>Poniższe dane, służą Kolibrowi do logowania na boardy i eportale.</p>
-		<p>Koliber użyje ich automatycznie, jeżeli dodasz do swoich stron którykolwiek z nich.</p>
-
-		<div class="field">
-			<%= f.label "Numer indeksu" %>
-			<%= f.text_field :pwr_index %>
+		<p>Koliber użyje ich automatycznie, jeżeli dodasz do swoich stron którykolwiek z nich.</p>		
+		
+		<div id="spersonalizowane">
+			<div>
+				<p>http://eportal-ch.pwr.wroc.pl</p>
+				<img src="images/eportal-ch.png" />
+				<label>login <%= f.text_field :fire_login %></label>
+				<label>hasło <%= f.password_field :fire_password %></label>
+				<div style="clear: both"></div>
+			</div>
+			<div>
+				<p>http://eportal-iz.pwr.wroc.pl</p>
+				<img src="images/eportal-iz.png" />
+				<label>login <%= f.text_field :air_login %></label>
+				<label>hasło <%= f.password_field :air_password %></label>
+				<div style="clear: both"></div>
+			</div>
+			<div>
+				<p>http://eportal.pwr.wroc.pl</p>
+				<img src="images/eportal.png" />
+				<label>login <%= f.text_field :earth_login %></label>
+				<label>hasło <%= f.password_field :earth_password %></label>
+				<div style="clear: both"></div>
+			</div>
+			<div>
+				<p>https://eportal.ii.pwr.wroc.pl/w08</p>
+				<img src="images/eportal-ii.png" />
+				<label>login <%= f.text_field :water_login %></label>
+				<label>hasło <%= f.password_field :water_password %></label>
+				<div style="clear: both"></div>
+			</div>
 		</div>
-
-		<div class="field">
-			<%= f.label "Hasło do poczty studenckiej" %>
-			<%= f.password_field :pwr_password %>
-		</div>
-
+		
 		<div class="actions">
 			<%= f.submit "Zapisz" %>
 		</div>

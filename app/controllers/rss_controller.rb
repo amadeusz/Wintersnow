@@ -41,7 +41,7 @@ class Strona
 		
 		# paskudny hack na IZ
 		if not (@adres =~ /eportal\.ii\.pwr\.wroc\.pl\/w08\/board/).nil? 
-			agent.basic_auth(current_user.pwr_index, current_user.pwr_password)
+			agent.basic_auth(current_user.water_login, current_user.water_password)
 		end
 		
 		temp = agent.get(@adres)
