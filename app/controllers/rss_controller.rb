@@ -80,6 +80,7 @@ class Strona
 						zapisz
 						Address.update(@rekord.id, :blokada => false)
 					else
+						Dir.mkdir('#{Rails.root.to_s}/db/pobrane') if not File.directory? '#{Rails.root.to_s}/db/pobrane'
 						roznica = porownaj_z(pamietana)
 						if roznica == nil	# nie ma nic nowego
 							add_log "[#{@adres}] Nie znaleziono roznic"
