@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
 	skip_before_filter :require_login, :only => [:new, :create]
-	skip_before_filter :require_admin_login, :only => [:new, :create, :edit, :update]
+	skip_before_filter :require_admin_login, :only => [:new, :create, :edit, :update, :configuration]
 
 	# GET /users
 	# GET /users.xml
@@ -115,8 +115,9 @@ class UsersController < ApplicationController
 #			params[:user][:obserwowane] = nil
 #		end
 		#przekierowanie = users_path
-		#przekierowanie = root_path if !(admin_logged_in?)
-		przekierowanie = ustawienia_path
+		przekierowanie = users_path
+		przekierowanie = root_path if !(admin_logged_in?)
+
 		
 		zmiana_subskrypcji = false
 		if !params[:user][:zmiana_subskrypcji].nil?
@@ -188,5 +189,13 @@ class UsersController < ApplicationController
 			format.xml	{ head :ok }
 		end
 	end
-
+	def configuration
+		@address = Address.new
+		@user = current_user
+		@addresses = Address.all
+		respond_to do |format|
+			format.html 
+			format.js {render :layout => false}
+		end
+	end
 end

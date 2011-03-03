@@ -15,7 +15,8 @@ Koliber::Application.routes.draw do
 	match 'rss/web' => 'rss#web'
 	match 'rss/update' => 'rss#update'
 	match 'rss' => 'rss#index'
-	match 'ustawienia' => 'users#edit'
+#	match 'ustawienia' => 'users#edit'
+	match 'ustawienia' => 'users#configuration'
 #	match 'instrukcja' => 'users#manual'
 	
 	match '/sites(.:format)' => 'sites#index', :as => 'sites', :via => 'get'

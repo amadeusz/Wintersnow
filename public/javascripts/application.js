@@ -137,27 +137,27 @@ $(document).ready( function() {
 	// Karty w Ustawieniach
 	
 	function ukryj_wszystkie_panele() {
-		$('#users #edit #haslo').hide();
-		$('#users #edit #subskrypcja').hide();
+		$('#users #configuration #haslo').hide();
+		$('#users #configuration #subskrypcja').hide();
 	}
 	
 	function odznacz_wszystkie_karty() {
-		$('#users #edit #haslo_tab').removeClass('aktywna');
-		$('#users #edit #subskrypcja_tab').removeClass('aktywna');
+		$('#users #configuration #haslo_tab').removeClass('aktywna');
+		$('#users #configuration #subskrypcja_tab').removeClass('aktywna');
 	}
 	
 	ukryj_wszystkie_panele();
-	$('#users #edit #subskrypcja_tab').addClass('aktywna');
-	$('#users #edit #subskrypcja').show();
+	$('#users #configuration #subskrypcja_tab').addClass('aktywna');
+	$('#users #configuration #subskrypcja').show();
 	$('#users .karty').show();
 	
-	$('#users #edit #haslo_tab').click( function() {
-		ukryj_wszystkie_panele(); $('#users #edit #haslo').show();
+	$('#users #configuration #haslo_tab').click( function() {
+		ukryj_wszystkie_panele(); $('#users #configuration #haslo').show();
 		odznacz_wszystkie_karty(); $(this).addClass('aktywna');
 	} );
 
-	$('#users #edit .karty #subskrypcja_tab').click( function() {
-		ukryj_wszystkie_panele(); $('#users #edit #subskrypcja').show();
+	$('#users #configuration .karty #subskrypcja_tab').click( function() {
+		ukryj_wszystkie_panele(); $('#users #configuration #subskrypcja').show();
 		odznacz_wszystkie_karty(); $(this).addClass('aktywna');
 	} );
 	

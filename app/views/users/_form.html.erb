@@ -12,73 +12,35 @@
 
 <p id="notice"><%= notice %></p>
 
-<div class="actions karty" style="display: none; text-align: center">
-	<span id="subskrypcja_tab">Twoje strony</span>
-	<span id="haslo_tab">Hasła</span>
+<%= form_for(@user) do |f| %>
+	<div class="field">
+		<%= f.label "Nazwa" %>
+		<%= f.text_field :klucz %>
+	</div>
+	<div class="field">
+		<%= f.label "Hasło do programu" %>
+		<%= f.password_field :haslo %>
+	</div>
+	<div class="field">
+		<label><%= f.check_box :admin %> god mode</label>
+	</div>	
+	<div class="field">
+<%= image_tag 'icons/elem/fire.png' %>
+		<label >Fire login <%= f.text_field :fire_login %></label>
+		<label>Fire hasło <%= f.password_field :fire_password %></label>
+
+<%= image_tag 'icons/elem/air.png' %>
+		<label>Air login <%= f.text_field :air_login %></label>
+		<label>Air hasło <%= f.password_field :air_password %></label>
+
+<%= image_tag 'icons/elem/earth.png'%>
+		<label>Earth login <%= f.text_field :earth_login %></label>
+		<label>Earth hasło <%= f.password_field :earth_password %></label>
+
+<%= image_tag 'icons/elem/water.png' %>
+		<label>Water login <%= f.text_field :water_login %></label>
+		<label>Water hasło <%= f.password_field :water_password %></label>
 </div>
-
-<div id="subskrypcja" style="display: none">
-	<%= render 'addresses/form' %>
-	<%= render 'form_subscribe' %>
-</div>
-
-<div id="haslo" style="display: none">
-	<%= form_for(@user) do |f| %>
-	
-		<% if controller.admin_logged_in? %>
-			<div class="field">
-				<%= f.label "Nazwa" %>
-				<%= f.text_field :klucz %>
-			</div>
-		<% end %>
-
-		<div class="field">
-			<%= f.label "Hasło do programu" %>
-			<%= f.password_field :haslo %>
-		</div>
-	
-		<% if controller.admin_logged_in? %>
-			<div class="field">
-				<label><%= f.check_box :admin %> god mode</label>
-			</div>	
-		<% end %>
-		
-		<h3 style="margin-top: 30px">Strony wymagające logowania</h3>
-		
-		<p>Poniższe dane, służą Kolibrowi do logowania na boardy i eportale.</p>
-		<p>Koliber użyje ich automatycznie, jeżeli dodasz do swoich stron którykolwiek z nich.</p>		
-		
-		<div id="spersonalizowane">
-			<div>
-				<p>http://eportal-ch.pwr.wroc.pl</p>
-				<img src="images/eportal-ch.png" />
-				<label>login <%= f.text_field :fire_login %></label>
-				<label>hasło <%= f.password_field :fire_password %></label>
-				<div style="clear: both"></div>
-			</div>
-			<div>
-				<p>http://eportal-iz.pwr.wroc.pl</p>
-				<img src="images/eportal-iz.png" />
-				<label>login <%= f.text_field :air_login %></label>
-				<label>hasło <%= f.password_field :air_password %></label>
-				<div style="clear: both"></div>
-			</div>
-			<div>
-				<p>http://eportal.pwr.wroc.pl</p>
-				<img src="images/eportal.png" />
-				<label>login <%= f.text_field :earth_login %></label>
-				<label>hasło <%= f.password_field :earth_password %></label>
-				<div style="clear: both"></div>
-			</div>
-			<div>
-				<p>https://eportal.ii.pwr.wroc.pl/w08</p>
-				<img src="images/eportal-ii.png" />
-				<label>login <%= f.text_field :water_login %></label>
-				<label>hasło <%= f.password_field :water_password %></label>
-				<div style="clear: both"></div>
-			</div>
-		</div>
-		
 		<div class="actions">
 			<%= f.submit "Zapisz" %>
 		</div>
