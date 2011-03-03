@@ -59,6 +59,7 @@ class AddressesController < ApplicationController
 		if params[:address][:adres] != ''
 			params[:address][:adres] = popraw_usera(params[:address][:adres])
 
+			# portal matchuje eportal, co nie jest dobre
 			if params[:address][:adres] =~ /(portal|wa|wbliw|wch|weka|weny|wggg|wis|wiz|wme|wm|wppt|wemif)\.pwr\.wroc\.pl/ and params[:address][:xpath] == '' and params[:address][:css] == '' and params[:address][:regexp] == ''
 				params[:address][:css] = '#cwrapper table .ccol4' 
 			end
@@ -75,6 +76,16 @@ class AddressesController < ApplicationController
 			if spersonalizowane.find do |element| adres.include? element end
 				params[:address][:adres] = (adres + "#" + current_user.klucz)
 				params[:address][:private] = true
+			end
+			
+			zywiolowe_portale = [
+				"eportal.pwr.wroc.pl",
+				"eportal-iz.pwr.wroc.pl",
+				"eportal-ch.pwr.wroc.pl"		
+			]
+
+			if zywiolowe_portale.find do |element| adres.include? element end
+				params[:address][:css] = '#middle-column'
 			end
 
 			params[:address][:klucz] = sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]).md5

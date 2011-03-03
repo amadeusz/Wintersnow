@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101121221256) do
+ActiveRecord::Schema.define(:version => 20110301224115) do
 
   create_table "addresses", :force => true do |t|
     t.string   "klucz"
@@ -68,8 +68,14 @@ ActiveRecord::Schema.define(:version => 20101121221256) do
     t.string   "haslo"
     t.boolean  "admin"
     t.string   "rss_pass"
-    t.string   "pwr_index"
-    t.string   "pwr_password"
+    t.string   "fire_login"
+    t.string   "fire_password"
+    t.string   "water_login"
+    t.string   "water_password"
+    t.string   "air_login"
+    t.string   "air_password"
+    t.string   "earth_login"
+    t.string   "earth_password"
   end
 
   add_index "users", ["id"], :name => "index_users_on_id", :unique => true

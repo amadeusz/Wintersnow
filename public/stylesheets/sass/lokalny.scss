@@ -42,6 +42,29 @@
 	#my_addresses input[type=text], #subscribed input[type=text] { width: 420px; }
 
 	.karty .aktywna { background-color: #BD004C; color: white; }
+	#spersonalizowane {
+		div {
+			margin: 20px 10px;
+		}
+		img {
+			float: left;
+			margin: 4px; margin-right: 10px; margin-left: 10px;
+		}
+		p {
+			text-align: left;
+			font-weight: bold;
+		}
+		label {
+			position: relative;
+			top: 10px;
+			margin-left: 150px;
+			input {
+				display: inline;
+				width: 250px;
+			}
+			text-align: right;
+		}
+	}
 }
 
 #rss {
