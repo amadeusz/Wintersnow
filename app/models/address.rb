@@ -130,15 +130,15 @@ class Address < ActiveRecord::Base
 			elsif adres.include? 'eportal-iz.pwr.wroc.pl'
 
 				page = page.form_with(:action => 'https://eportal-iz.pwr.wroc.pl/login/index.php') do |form|
-					f.username = current_user.air_login
-					f.password = current_user.air_password
+					form.username = current_user.air_login
+					form.password = current_user.air_password
 				end.click_button
 	
 			elsif adres.include? 'eportal.pwr.wroc.pl'
 
 				page = page.form_with(:action => 'https://eportal.pwr.wroc.pl/login/index.php') do |form|
-					f.username = current_user.earth_login
-					f.password = current_user.earth_password
+					form.username = current_user.earth_login
+					form.password = current_user.earth_password
 				end.click_button
 	
 			end
