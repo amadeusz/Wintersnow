@@ -19,10 +19,16 @@ end
 class AddressesController < ApplicationController
 	skip_before_filter :require_admin_login, :only => [:new, :create]
 
+	def unlock
+		Address.where(:blokada => true).each do |address| 
+			address.blokada = false; address.save
+		end
+		redirect_to(addresses_path, :notice => 'Zdjęto wszystkie blokady.')
+	end
+
 	def index
 		@addresses = Address.order("opis ASC")
-		#@messages = Message.all
-		
+
 		respond_to do |format|
 			format.html # index.html.erb
 			format.xml	{ render :xml => @addresses }

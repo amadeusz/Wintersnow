@@ -8,7 +8,7 @@
 		<th><%= image_tag 'icons/comments.png', :width => 16, :height => 16 %></th>
 		<th></th>
 		<th></th>
-		<th></th>
+		<th><%= link_to image_tag('icons/bug.png', :width => 16, :height => 16), unlock_addresses_path %></th>
 		<th></th>
 	</tr>
 <% @addresses.each do |address| %>

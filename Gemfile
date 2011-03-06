@@ -8,6 +8,7 @@ gem 'curb'
 gem 'mechanize'
 gem 'differ'
 gem 'haml'
+gem 'wdiff'
 
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 # gem 'capistrano'

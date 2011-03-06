@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  data: 2011-03-03 01:39:53
+  type: 1
+  message: MyString
+
+two:
+  data: 2011-03-03 01:39:53
+  type: 1
+  message: MyString

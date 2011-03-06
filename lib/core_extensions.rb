@@ -12,5 +12,4 @@ class String
 	def sha
 		(Digest::SHA2.new() << self).to_s
 	end
-		
 end
