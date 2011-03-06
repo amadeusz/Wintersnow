@@ -11,17 +11,17 @@ class Address < ActiveRecord::Base
 			html.gsub!(/\s+/, " ")
 		
 			if regexp != ""
-				puts "[#{self}][i] Wykonywanie regexpa."
+				logger.info "[#{self}][i] Wykonywanie regexpa."
 				html = html.scan(regexp).join(" ... ")
 			end
 		
 			if xpath != ""
-				puts "[#{self}][i] Wykonywanie xpatha."
+				logger.info "[#{self}][i] Wykonywanie xpatha."
 				html = Nokogiri::HTML(html).xpath(xpath).text
 			end
 		
 			if css != ""
-				puts "[#{self}][i] Wykonywanie css"
+				logger.info "[#{self}][i] Wykonywanie css"
 				html = Nokogiri::HTML(html).css(css).text
 			end
 	
@@ -63,7 +63,7 @@ class Address < ActiveRecord::Base
 					end
 					to = zmiana[i][:koniec]
 		
-					puts "#{zmiana[i].inspect} from: #{from} to: #{to} #{s[from..to]}"
+					logger.info "#{zmiana[i].inspect} from: #{from} to: #{to} #{s[from..to]}"
 		
 					out += ""+s[from..to]
 					if i+1 < zmiana.length and (zmiana[i+1][:start] - zmiana[i][:koniec]) < limit   
@@ -88,16 +88,16 @@ class Address < ActiveRecord::Base
 		
 		# Pobierz
 		
-		puts "[#{self.adres}] Rozpoczynam sprawdzanie adresu."
+		logger.info "[#{self.adres}] Rozpoczynam sprawdzanie adresu."
 		
 		suspend_time = (1.0/24/60) * 28		# minut
 		if self.data_spr && DateTime.now < (DateTime.parse(self.data_spr.to_s) + suspend_time)
-			puts "[#{self.adres}] Niedawno sprawdzałem, pomijam."
+			logger.info "[#{self.adres}] Niedawno sprawdzałem, pomijam."
 			return
 		end
 		
 		if self.blokada
-			puts "[#{self.adres}] Adres oznaczony jako zablokowany, pomijam."
+			logger.info "[#{self.adres}] Adres oznaczony jako zablokowany, pomijam."
 			return
 		end
 		
@@ -144,7 +144,7 @@ class Address < ActiveRecord::Base
 			end
 
 		rescue Exception => e
-			puts "[#{self.adres}] Nie udało się pobrać pliku, #{e.message}."
+			logger.info "[#{self.adres}] Nie udało się pobrać pliku, #{e.message}."
 			
 		else
 			self.data_spr = Time.new
@@ -170,20 +170,20 @@ class Address < ActiveRecord::Base
 			end
 		
 			if !content_changed && !first_time
-				puts "[#{self.adres}] Nie znaleziono różnic."
+				logger.info "[#{self.adres}] Nie znaleziono różnic."
 			else
 				self.data_mod = Time.now
 			
 				if !first_time
 					message = 'Pod wybranym adresem pojawiły się zmiany.'
 					if !binary(page.content_type)
-						puts self.last_content
-						puts simplified
+						logger.info self.last_content
+						logger.info simplified
 						message = compare(self.last_content, simplified)
 					end
 			
 					self.messages.create(:tresc => message, :data => Time.now)
-					puts "[#{self.adres}] Dodano komunikat"
+					logger.info "[#{self.adres}] Dodano komunikat"
 				end
 			
 				if !binary(page.content_type)
@@ -199,7 +199,7 @@ class Address < ActiveRecord::Base
 		
 			self.blokada = false; save
 
-			puts "[#{self.adres}] Pobrano plik typu #{self.last_content_type}"
+			logger.info "[#{self.adres}] Pobrano plik typu #{self.last_content_type}"
 
 		end
 	end
