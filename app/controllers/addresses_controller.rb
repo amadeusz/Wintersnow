@@ -65,7 +65,7 @@ class AddressesController < ApplicationController
 		if params[:address][:adres] != ''
 			params[:address][:adres] = popraw_usera(params[:address][:adres])
 
-			# portal matchuje eportal, co nie jest dobre
+			# portal match'uje eportal, co nie jest dobre
 			if params[:address][:adres] =~ /(portal|wa|wbliw|wch|weka|weny|wggg|wis|wiz|wme|wm|wppt|wemif)\.pwr\.wroc\.pl/ and params[:address][:xpath] == '' and params[:address][:css] == '' and params[:address][:regexp] == ''
 				params[:address][:css] = '#cwrapper table .ccol4' 
 			end
@@ -80,7 +80,7 @@ class AddressesController < ApplicationController
 			]
 			
 			if spersonalizowane.find do |element| adres.include? element end
-				params[:address][:adres] = (adres + "#" + current_user.klucz)
+				params[:address][:one_user] = true
 				params[:address][:private] = true
 			end
 			
@@ -94,7 +94,7 @@ class AddressesController < ApplicationController
 				params[:address][:css] = '#middle-column'
 			end
 
-			params[:address][:klucz] = sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]).md5
+			#params[:address][:klucz] = sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]).md5
 			params[:address][:data_spr] = Time.new
 			params[:address][:data_mod] = Time.new
 			params[:address][:blokada] = false
@@ -145,9 +145,11 @@ class AddressesController < ApplicationController
 				params[:address][:css] = '#cwrapper table .ccol4' 
 			end
 			
-			# klucz obliczany na podstawie adresu, xpath'a, css'a oraz regexp'a
-			params[:address][:klucz] = sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]).md5
+#			 klucz obliczany na podstawie adresu, xpath'a, css'a oraz regexp'a
+#			params[:address][:klucz] = sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]).md5
+
 		end
+		
 		@address = Address.find(params[:id])
 
 		respond_to do |format|

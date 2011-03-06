@@ -27,7 +27,7 @@
 			<% if dodatki %><p class="dodatki"><%= dodatki  %></p><% end %>
 		</td>
 
-		<td> <%= address.users.length %>
+		<td> <%= address.users.length %><% if address.one_user %><span style="color: red"><%= '!' %></span><% end %>
 			<div>
 				<% address.users.each do |user| %>
 				<p> <%= user.klucz %> </p>

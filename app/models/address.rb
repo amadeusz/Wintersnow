@@ -2,8 +2,9 @@ class Address < ActiveRecord::Base
 	has_many :messages
 	has_many :sites
 	has_many :users, :through => :sites
+	
 	# validates :klucz, :presence => true
-	validates :adres, :presence => true,  :uniqueness =>  { :scope => [:xpath, :css, :regexp] }
+	validates :adres, :presence => true,  :uniqueness =>  { :scope => [:xpath, :css, :regexp, :one_user] }
 	
 	def look_for_changes
 		
@@ -111,6 +112,12 @@ class Address < ActiveRecord::Base
 		
 			agent = Mechanize.new
 
+			if self.one_user
+				def current_user
+					self.users.first
+				end
+			end
+
 			if adres =~ /eportal\.ii\.pwr\.wroc\.pl\/w08\/board/
 				agent.basic_auth(current_user.water_login, current_user.water_password)
 			end
@@ -147,6 +154,9 @@ class Address < ActiveRecord::Base
 			logger.info "[#{self.adres}] Nie udało się pobrać pliku, #{e.message}."
 			
 		else
+		
+			# Po pomyślnym pobraniu
+			
 			self.data_spr = Time.new
 			first_time = self.last_content_checksum.nil?
 			
