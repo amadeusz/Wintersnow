@@ -1,27 +1,29 @@
-<h1>Listing logs</h1>
+<pre style="overflow: scroll"><%= `tail -n 300 #{Rails.root}/log/#{Rails.env}.log` + "\n" %></pre>
 
-<table>
-  <tr>
-    <th>Data</th>
-    <th>Type</th>
-    <th>Message</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<!--<h1>Listing logs</h1>-->
 
-<% @logs.each do |log| %>
-  <tr>
-    <td><%= log.data %></td>
-    <td><%= log.type %></td>
-    <td><%= log.message %></td>
-    <td><%= link_to 'Show', log %></td>
-    <td><%= link_to 'Edit', edit_log_path(log) %></td>
-    <td><%= link_to 'Destroy', log, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<!--<table>-->
+<!--  <tr>-->
+<!--    <th>Data</th>-->
+<!--    <th>Type</th>-->
+<!--    <th>Message</th>-->
+<!--    <th></th>-->
+<!--    <th></th>-->
+<!--    <th></th>-->
+<!--  </tr>-->
 
-<br />
+<!--<% @logs.each do |log| %>-->
+<!--  <tr>-->
+<!--    <td><%= log.data %></td>-->
+<!--    <td><%= log.type %></td>-->
+<!--    <td><%= log.message %></td>-->
+<!--    <td><%= link_to 'Show', log %></td>-->
+<!--    <td><%= link_to 'Edit', edit_log_path(log) %></td>-->
+<!--    <td><%= link_to 'Destroy', log, :confirm => 'Are you sure?', :method => :delete %></td>-->
+<!--  </tr>-->
+<!--<% end %>-->
+<!--</table>-->
 
-<%= link_to 'New Log', new_log_path %>
+<!--<br />-->
+
+<!--<%= link_to 'New Log', new_log_path %>-->

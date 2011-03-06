@@ -181,5 +181,12 @@ $(document).ready( function() {
 		}
 	} );	
 	
+	$("#logs pre").height(window.innerHeight - $("#nawigacja").outerHeight() - 110);
+	$("#logs pre").scrollTop($("#logs pre").attr("scrollHeight"));
+	
 });
 
+$(window).resize( function() {
+	$("#logs pre").height(window.innerHeight - $("#nawigacja").outerHeight() - 110);
+	$("#logs pre").scrollTop($("#logs pre").attr("scrollHeight"));
+} );
