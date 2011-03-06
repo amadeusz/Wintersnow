@@ -91,7 +91,7 @@ class Address < ActiveRecord::Base
 		
 		logger.info "[#{self.adres}] Rozpoczynam sprawdzanie adresu."
 		
-		suspend_time = (1.0/24/60) * 28		# minut
+		suspend_time = (1.0/24/60) * 28	# minut
 		if self.data_spr && DateTime.now < (DateTime.parse(self.data_spr.to_s) + suspend_time)
 			logger.info "[#{self.adres}] Niedawno sprawdzałem, pomijam."
 			return

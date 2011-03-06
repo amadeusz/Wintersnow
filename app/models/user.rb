@@ -5,10 +5,12 @@ class User < ActiveRecord::Base
 	
 	before_create :generate_rss_pass
 	
+#	WHERE s.user_id = #{id} AND s.address_id = a.id AND m.address_id = a.id AND m.data <= \"#{created_at}\"
+	
 	def messages
 		Message.find_by_sql("SELECT m.*
 		FROM sites s, addresses a, messages m
-		WHERE s.user_id = #{id} AND s.address_id = a.id AND m.address_id = a.id AND m.data >= \"#{created_at}\"
+		WHERE s.user_id = #{id} AND s.address_id = a.id AND m.address_id = a.id
 		ORDER BY m.data DESC")
 	end
 	
