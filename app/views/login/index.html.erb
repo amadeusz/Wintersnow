@@ -2,17 +2,18 @@
 	<img src="images/koliber.png" />
 
 </div>
-<% if not controller.current_user.nil? %>
-	<% d = Date.today %>
-	<div class="rounded datebox"><p>Dzisiaj jest:</p>
-	<p><%= " #{PL_DAYS[d.cwday]}, #{d.day} #{PL_MONTHS[d.month]} #{d.year} roku, tydzień #{"nie" if d.cweek.odd?}parzysty" %></p>
-	</div>
-<% end %>
 
 <% if controller.current_user.nil? %>
 	<%= form_tag(login_create_path, :method => "post") do %>
 		<%= label_tag(:nazwa, "Nazwa:") %> <%= text_field_tag(:nazwa) %> <%= label_tag(:haslo, "Hasło:") %> <%= password_field_tag(:haslo) %> <%= submit_tag("Zaloguj") %>
 	<% end %>
+<% end %>
+
+<% if (not controller.current_user.nil? and controller.current_user.admin == true) %>
+
+<% d = Date.today %>
+<p style="text-align: center; color: #ffffff; padding: 2px"><%= " #{PL_DAYS[d.cwday]}, #{d.day} #{PL_MONTHS[d.month]}, tydzień #{"nie" if d.cweek.odd?}parzysty" %></p>
+
 <% end %>
 
 <% if flash[:notice] %>
@@ -22,3 +23,5 @@
 <% if flash[:error] %>
 	<div id="error"><%= flash[:error] %></div>
 <% end %>
+
+
