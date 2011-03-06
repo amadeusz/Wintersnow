@@ -118,36 +118,52 @@ class Address < ActiveRecord::Base
 				end
 			end
 
-			if adres =~ /eportal\.ii\.pwr\.wroc\.pl\/w08\/board/
-				agent.basic_auth(current_user.water_login, current_user.water_password)
+			if self.one_user
+				if adres =~ /eportal\.ii\.pwr\.wroc\.pl\/w08\/board/
+					agent.basic_auth(current_user.water_login, current_user.water_password)
+				end
 			end
 
 			page = agent.get(adres)
+			
+			logger.info adres
 
 
 			# Obsługa niektórych stron
 
-			if adres.include? 'eportal-ch.pwr.wroc.pl'
+			if self.one_user
+				if adres.include? 'eportal-ch.pwr.wroc.pl'
+			
+					login = page.form_with(:action => 'https://eportal-ch.pwr.wroc.pl/login/index.php') do |form|
+						if (form)
+							form.username = '166228'
+							form.password = 'kupa666'
+						end
+					end
 
-				page = page.form_with(:action => 'https://eportal-ch.pwr.wroc.pl/login/index.php') do |form|
-					form.username = current_user.fire_login
-					form.password = current_user.fire_password
-				end.click_button
+					page = login.click_button if login
 	
-			elsif adres.include? 'eportal-iz.pwr.wroc.pl'
+				elsif adres.include? 'eportal-iz.pwr.wroc.pl'
 
-				page = page.form_with(:action => 'https://eportal-iz.pwr.wroc.pl/login/index.php') do |form|
-					form.username = current_user.air_login
-					form.password = current_user.air_password
-				end.click_button
-	
-			elsif adres.include? 'eportal.pwr.wroc.pl'
+					login = page.form_with(:action => 'https://eportal-iz.pwr.wroc.pl/login/index.php') do |form|
+						if (form)
+							form.username = '166228'
+							form.password = 'kupa666'
+						end
+					end
 
-				page = page.form_with(:action => 'https://eportal.pwr.wroc.pl/login/index.php') do |form|
-					form.username = current_user.earth_login
-					form.password = current_user.earth_password
-				end.click_button
+					page = login.click_button if login
 	
+				elsif adres.include? 'eportal.pwr.wroc.pl'
+
+					login = page.form_with(:action => 'https://eportal.pwr.wroc.pl/login/index.php') do |form|
+						if (form)
+							form.username = '166228'
+							form.password = 'kupa666'
+						end
+					end
+	
+				end
 			end
 
 		rescue Exception => e
