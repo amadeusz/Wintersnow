@@ -22,6 +22,7 @@
 	<div class="field">
 	<%= f.check_box :private %> <%= f.label "Nie pokazuj w wyszukiwarce" %>
 	</div>
+	
 	<% if controller.admin_logged_in? %>
 	<div class="field">
 		<%= f.label :data_mod %>

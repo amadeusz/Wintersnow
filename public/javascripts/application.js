@@ -56,7 +56,7 @@ $(document).ready( function() {
 	
 	$("#users #expert").hide();
 	$("#users #expert_toggle").live('click', function() {
-		if(!$('#users #new_address').haveClass('disabled')) {
+		if(!$('#users #new_address').hasClass('disabled')) {
 			$('#users #expert').show()
 			$('#users #expert_toggle').hide()
 		}
