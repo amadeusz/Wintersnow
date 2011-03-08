@@ -103,7 +103,23 @@ class AddressesController < ApplicationController
 		przekierowanie = ustawienia_path
 		
 		respond_to do |format|	
-			@previous = Address.where(:adres => params[:address][:adres], :xpath => params[:address][:xpath], :css => params[:address][:css], :regexp => params[:address][:regexp]).first
+			@previouses = Address.where(:adres => params[:address][:adres], :xpath => params[:address][:xpath], :css => params[:address][:css], :regexp => params[:address][:regexp], :one_user => params[:address][:one_user])		
+			
+			@previous = nil
+			
+			if (params[:address][:one_user])
+				@previouses.each do |@addr|
+					if (@addr.users.length > 1)
+						raise "Liczba użytkowników większa niż jeden"
+					end
+					if (@addr.users.first.id == current_user.id)
+						@previous = @addr
+						break
+					end
+				end
+			else
+				@previous = @previouses.first
+			end
 			
 			if(@previous == nil)
 				@address = Address.new(params[:address])

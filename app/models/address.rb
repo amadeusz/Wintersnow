@@ -4,7 +4,7 @@ class Address < ActiveRecord::Base
 	has_many :users, :through => :sites
 	
 	# validates :klucz, :presence => true
-	validates :adres, :presence => true,  :uniqueness =>  { :scope => [:xpath, :css, :regexp, :one_user] }
+	validates :adres, :presence => true #,  :uniqueness =>  { :scope => [:xpath, :css, :regexp] }
 	
 	def look_for_changes
 		
