@@ -107,6 +107,7 @@ class UsersController < ApplicationController
 	# PUT /users/1.xml
 	def update
 		@user = User.find(params[:id])
+<<<<<<< HEAD
 		
 #		@filtry = params[:filters]
 #		if @filtry != nil
@@ -118,6 +119,9 @@ class UsersController < ApplicationController
 		przekierowanie = users_path
 		przekierowanie = root_path if !(admin_logged_in?)
 
+=======
+		przekierowanie = ustawienia_path
+>>>>>>> be48694c74280cdbf21e962e3193a33fb06def6f
 		
 		zmiana_subskrypcji = false
 		if !params[:user][:zmiana_subskrypcji].nil?

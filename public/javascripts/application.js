@@ -56,7 +56,7 @@ $(document).ready( function() {
 	
 	$("#users #expert").hide();
 	$("#users #expert_toggle").live('click', function() {
-		if(!$('#users #new_address').haveClass('disabled')) {
+		if(!$('#users #new_address').hasClass('disabled')) {
 			$('#users #expert').show()
 			$('#users #expert_toggle').hide()
 		}
@@ -181,5 +181,12 @@ $(document).ready( function() {
 		}
 	} );	
 	
+	$("#logs pre").height(window.innerHeight - $("#nawigacja").outerHeight() - 110);
+	$("#logs pre").scrollTop($("#logs pre").attr("scrollHeight"));
+	
 });
 
+$(window).resize( function() {
+	$("#logs pre").height(window.innerHeight - $("#nawigacja").outerHeight() - 110);
+	$("#logs pre").scrollTop($("#logs pre").attr("scrollHeight"));
+} );

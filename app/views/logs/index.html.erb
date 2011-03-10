@@ -1,0 +1,29 @@
+<pre style="overflow: scroll"><%= `tail -n 300 #{Rails.root}/log/#{Rails.env}.log` + "\n" %></pre>
+
+<!--<h1>Listing logs</h1>-->
+
+<!--<table>-->
+<!--  <tr>-->
+<!--    <th>Data</th>-->
+<!--    <th>Type</th>-->
+<!--    <th>Message</th>-->
+<!--    <th></th>-->
+<!--    <th></th>-->
+<!--    <th></th>-->
+<!--  </tr>-->
+
+<!--<% @logs.each do |log| %>-->
+<!--  <tr>-->
+<!--    <td><%= log.data %></td>-->
+<!--    <td><%= log.type %></td>-->
+<!--    <td><%= log.message %></td>-->
+<!--    <td><%= link_to 'Show', log %></td>-->
+<!--    <td><%= link_to 'Edit', edit_log_path(log) %></td>-->
+<!--    <td><%= link_to 'Destroy', log, :confirm => 'Are you sure?', :method => :delete %></td>-->
+<!--  </tr>-->
+<!--<% end %>-->
+<!--</table>-->
+
+<!--<br />-->
+
+<!--<%= link_to 'New Log', new_log_path %>-->

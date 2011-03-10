@@ -1,6 +1,10 @@
 Koliber::Application.routes.draw do
 
+  resources :logs
+
 	# najwyższy priorytet mają wpisy umieszczone od góry
+
+	match '/addresses/unlock' => 'addresses#unlock', :as => 'unlock_addresses', :via => 'get'
 
 	match '/login/create(.:format)' => 'login#create', :via => 'post'
 	match '/login/destroy(.:format)' => 'login#destroy', :via => 'get'

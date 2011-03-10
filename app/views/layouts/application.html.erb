@@ -23,11 +23,12 @@
 				nawigacja = []
 		
 				if controller.admin_logged_in?
-					nawigacja << ['Adresy', addresses_path]
-					nawigacja << ['Aliasy', sites_path]
-					nawigacja << ['Genotypy', genotypes_path]
-					nawigacja << ['Użytkownicy', users_path]
-					nawigacja << ['Wiadomości', messages_path]
+					nawigacja << ['Flappers', genotypes_path]
+					nawigacja << ['Users', users_path]
+					nawigacja << ['Items', addresses_path]
+					nawigacja << ['Aliases', sites_path]
+					nawigacja << ['Messages', messages_path]
+					nawigacja << ['Log', logs_path]
 				end
 				
 				nawigacja << ['Ustawienia', ustawienia_path]

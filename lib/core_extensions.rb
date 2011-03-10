@@ -12,5 +12,9 @@ class String
 	def sha
 		(Digest::SHA2.new() << self).to_s
 	end
-		
 end
+
+#	def sklejenie_warunkowe(elementy)
+#		elementy = elementy.find_all{ |element| element != '' }
+#		elementy.join(' ').to_s
+#	end

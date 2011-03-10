@@ -1,6 +1,6 @@
 <% if (actual_news = controller.current_user.messages) == [] %>
 
-<p id="notice" style="text-align: center">Na wybranych stronach nie pojawiły się jeszcze żadne zmiany.</p>
+<p id="notice" style="text-align: center">Na wybranych stronach nie pojawiły się jeszcze żadne zmiany.<br /></p>
 
 <% else %>
 	<% puts actual_news %>
@@ -25,3 +25,8 @@
 	</li>
 	<% end %>
 <% end %>
+
+<p id="notice" style="text-align: center">Wiadomości wygodnie jest odbierać przez <%= link_to 'kanał rss', '/rss/of/'+ controller.current_user.klucz + "!" + controller.current_user.rss_pass %> <%= link_to image_tag('icons/feed.png', :width => 16, :height => 16), '/rss/of/'+ controller.current_user.klucz + "!" + controller.current_user.rss_pass %></p>
+<p id="notice" style="text-align: center; margin-top: -30px">Nie trzeba wtedy tutaj zaglądać.</p>
+<p id="notice" style="text-align: center; margin-top: -30px">Do odbierania rss w Firefox służy wtyczka <%= link_to "Brief", 'https://addons.mozilla.org/en-us/firefox/addon/brief/' %>.
+<p id="notice" style="text-align: center; margin-top: -30px">W Operze funkcja rss jest wbudowana.</p>

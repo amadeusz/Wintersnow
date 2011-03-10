@@ -79,6 +79,7 @@ GEM
     treetop (1.4.8)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
+    wdiff (0.1.2)
 
 PLATFORMS
   ruby
@@ -92,3 +93,4 @@ DEPENDENCIES
   nokogiri
   rails (= 3.0.0)
   sqlite3-ruby
+  wdiff
