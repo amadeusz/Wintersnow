@@ -7,6 +7,7 @@
 
 #addresses, #genotypes, #messages, #users, #sites { #new, #create, #edit, #update, #show { @include szerokosc(510px); } }
 #sites, #users, #genotypes { #index { @include szerokosc(510px); } }
+#users { #configuration { @include szerokosc(510px); } }
 #login { #index, #create, #destroy { @include szerokosc(510px); } }
 #rss #web { @include szerokosc(560px); }
 
