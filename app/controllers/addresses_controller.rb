@@ -86,8 +86,7 @@ class AddressesController < ApplicationController
 			# Poszukiwanie istniejących wpisów
 		
 			@items_matching = Address.where(:adres => params[:address][:adres], :xpath => params[:address][:xpath], :css => params[:address][:css], :regexp => params[:address][:regexp], :one_user => params[:address][:one_user])
-			existing_item = nil; existing_alias = nil
-			success = false; message = '';
+			existing_item = nil; existing_alias = nil; success = false; message = '';
 			
 			unless (@items_matching.empty?)
 								
@@ -119,14 +118,13 @@ class AddressesController < ApplicationController
 			
 			if (existing_item)
 				
-				message = "Adres znajduje się już na liście."
-				
 				# Ewentualnie dowiąż
-				unless existing_alias
+				if existing_alias
+					success = true
+					message = "Adres znajduje się już na liście."
+				else
 					success = true if Site.new(:user_id => current_user.id, :opis => params[:address][:opis], :address_id => existing_item.id).save
 					message = "Dodano adres do listy obserwowanych."
-				else
-					success = true
 				end
 				
 			else
