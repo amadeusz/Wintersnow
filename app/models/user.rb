@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-	validates :klucz, :uniqueness => true, :presence => true
+	validates :klucz, :uniqueness => true
+	validates :klucz, :presence => true
 	has_many :sites
 	has_many :addresses, :through => :sites
 	

@@ -23,27 +23,6 @@
 	<%= f.check_box :private %> <%= f.label "Nie pokazuj w wyszukiwarce" %>
 	</div>
 	
-	<% if controller.admin_logged_in? %>
-	<div class="field">
-		<%= f.label :data_mod %>
-		<%= f.datetime_select :data_mod %>
-	</div>
-	<div class="field">
-		<%= f.label :data_spr %>
-		<%= f.datetime_select :data_spr %>
-	</div>
-	<div class="field">
-		<%= f.label :komunikaty %>
-		<%= f.text_field :komunikaty %>
-	</div>
-	<div class="field">
-		<%= f.check_box :blokada %> <%= f.label :blokada %>
-	</div>
-	<div class="field">
-		<%= f.check_box :one_user %> <%= f.label :one_user %>
-	</div>
-	<% end %>
-	
 	<div id="expert" class="rounded">
 		Zaawansowane <%= image_tag 'icons/cross.png', :style => 'float: right; margin-top: 2px' %>
 		<div class="info rounded">Uwaga! Dopisywanie tutaj czegokolwiek, bez świadomości co się w ogóle robi grozi nieprawidłowym działaniem kolibra (przedwczesnym wypadaniem piór, ewentualnym brakiem połysku i wyblakłymi kolorami, w skrajnych przypadkach grozi zwyrodnieniem dzioba). Ostrzegaliśmy.</div>
@@ -59,6 +38,27 @@
 			<%= f.label :regexp %>
 			<%= f.text_field :regexp %>
 		</div>
+		
+		<% if controller.admin_logged_in? %>
+		<div class="field">
+			<%= f.label :data_mod %>
+			<%= f.datetime_select :data_mod %>
+		</div>
+		<div class="field">
+			<%= f.label :data_spr %>
+			<%= f.datetime_select :data_spr %>
+		</div>
+		<div class="field">
+			<%= f.label :komunikaty %>
+			<%= f.text_field :komunikaty %>
+		</div>
+		<div class="field">
+			<%= f.check_box :blokada %> <%= f.label :blokada %>
+		</div>
+		<div class="field">
+			<%= f.check_box :one_user %> <%= f.label :one_user %>
+		</div>
+		<% end %>
 	</div>
 	
 	
