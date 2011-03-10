@@ -1,19 +1,14 @@
-def sklejenie_warunkowe(elementy)
-	elementy = elementy.find_all{ |element| element != '' }
-	elementy.join(' ').to_s
-end
-
-def popraw_usera(adres)
-	# hack dla wygody
-	if (adres =~ /^http(s)?:\/\//) == nil
-		adres = "http#{$1}://" + adres
+def popraw_usera(params)
+	
+	if (params[:adres] =~ /^http(s)?:\/\//) == nil
+		params[:adres] = "http#{$1}://" + params[:adres]
 	end
 	
-	# hack na bibliotekę:
-	if adres =~ /aleph\.bg\.pwr\.wroc\.pl\/F\/([^?]*)/
-		adres.gsub! $1, ''
+	if params[:adres] =~ /aleph\.bg\.pwr\.wroc\.pl\/F\/([^?]*)/
+		params[:adres].gsub! $1, ''
 	end
-	return adres
+	
+	return params
 end
 
 class AddressesController < ApplicationController
@@ -57,90 +52,96 @@ class AddressesController < ApplicationController
 		@address = Address.find(params[:id])
 	end
 	
-	# if (@previous.private and !@address.private) @previous.private = false end
-	
 	def create
-		dobrze = false
+		sukces = false
 	
 		if params[:address][:adres] != ''
-			params[:address][:adres] = popraw_usera(params[:address][:adres])
-
-			# portal match'uje eportal, co nie jest dobre
+		
+			params[:address] = popraw_usera(params[:address])
+			
 			if params[:address][:adres] =~ /(portal|wa|wbliw|wch|weka|weny|wggg|wis|wiz|wme|wm|wppt|wemif)\.pwr\.wroc\.pl/ and params[:address][:xpath] == '' and params[:address][:css] == '' and params[:address][:regexp] == ''
 				params[:address][:css] = '#cwrapper table .ccol4' 
 			end
-			
-			adres = params[:address][:adres]
-			
-			spersonalizowane = [
-				"eportal.pwr.wroc.pl",
-				"eportal-iz.pwr.wroc.pl",
-				"eportal-ch.pwr.wroc.pl",
-				"eportal.ii.pwr.wroc.pl/w08"
-			]
-			
-			if spersonalizowane.find do |element| adres.include? element end
-				params[:address][:one_user] = true
-				params[:address][:private] = true
-			end
-			
-			zywiolowe_portale = [
-				"eportal.pwr.wroc.pl",
-				"eportal-iz.pwr.wroc.pl",
-				"eportal-ch.pwr.wroc.pl"		
-			]
 
-			if zywiolowe_portale.find do |element| adres.include? element end
+			if ["eportal.pwr.wroc.pl", "eportal-iz.pwr.wroc.pl", "eportal-ch.pwr.wroc.pl"].find do |element| params[:address][:adres].include? element end
 				params[:address][:css] = '#middle-column'
 			end
-
-			#params[:address][:klucz] = sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]).md5
-			params[:address][:data_spr] = Time.new
+			
+			if ["eportal.pwr.wroc.pl", "eportal-iz.pwr.wroc.pl", "eportal-ch.pwr.wroc.pl", "eportal.ii.pwr.wroc.pl/w08"].find do |element| params[:address][:adres].include? element end
+				params[:address][:one_user] = true
+				params[:address][:private] = true
+			else
+				params[:address][:one_user] = false
+			end
+			
+			params[:address][:data_spr] = Time.new - (1.0/24/60) * 60
 			params[:address][:data_mod] = Time.new
 			params[:address][:blokada] = false
 		end
 
 		przekierowanie = ustawienia_path
 		
-		respond_to do |format|	
-			@previouses = Address.where(:adres => params[:address][:adres], :xpath => params[:address][:xpath], :css => params[:address][:css], :regexp => params[:address][:regexp], :one_user => params[:address][:one_user])		
+		respond_to do |format|
 			
-			@previous = nil
+			# Poszukiwanie istniejących wpisów
+		
+			@items_matching = Address.where(:adres => params[:address][:adres], :xpath => params[:address][:xpath], :css => params[:address][:css], :regexp => params[:address][:regexp], :one_user => params[:address][:one_user])
+			existing_item = nil; existing_alias = nil
+			success = false; message = '';
 			
-			if (params[:address][:one_user])
-				@previouses.each do |@addr|
-					if (@addr.users.length > 1)
-						raise "Liczba użytkowników większa niż jeden"
+			unless (@items_matching.empty?)
+								
+				if (params[:address][:one_user])
+				
+					@items_matching.each do |item|
+					
+						unless (item.users.empty?)
+							if (item.users.first.id == current_user.id)
+								existing_item = item
+								existing_alias = true
+							end
+						end
+						
 					end
-					if (@addr.users.first.id == current_user.id)
-						@previous = @addr
-						break
+					
+				else
+				
+					existing_item = @items_matching.first
+					@items_matching.first.users.each do |user|
+						existing_alias = true if (user.id == current_user.id)
 					end
+					
 				end
-			else
-				@previous = @previouses.first
 			end
 			
-			if(@previous == nil)
+			
+			# Tworzenie brakujących wpisów
+			
+			if (existing_item)
+				
+				message = "Adres znajduje się już na liście."
+				
+				# Ewentualnie dowiąż
+				unless existing_alias
+					success = true if Site.new(:user_id => current_user.id, :opis => params[:address][:opis], :address_id => existing_item.id).save
+					message = "Dodano adres do listy obserwowanych."
+				else
+					success = true
+				end
+				
+			else
+			
+				# Utwórz i dowiąż
 				@address = Address.new(params[:address])
 				if @address.save
-					dobrze = true if Site.new(:user_id => current_user.id, :opis => params[:address][:opis], :address_id => @address.id).save
+					success = true if Site.new(:user_id => current_user.id, :opis => params[:address][:opis], :address_id => @address.id).save
+					message = "Dodano adres do listy obserwowanych."
 				end
-			else
-				@previous_site = Site.where(:user_id => current_user.id, :address_id => @previous.id).first
-				if @previous_site == nil
-					if Site.new(:user_id => current_user.id, :opis => params[:address][:opis], :address_id => @previous.id).save
-						dobrze = true
-					else
-						dobrze = false
-					end
-				else
-					dobrze = true;
-				end
+				
 			end
-			
-			if (dobrze)
-				format.html { redirect_to(przekierowanie, :notice => 'Dodano stronę.') }
+
+			if (success)
+				format.html { redirect_to(przekierowanie, :notice => message) }
 				format.xml	{ render :xml => @address, :status => :created, :location => @address }
 			else
 				format.html { render :action => "new" }
@@ -153,17 +154,7 @@ class AddressesController < ApplicationController
 	def update
 	
 		if params[:address][:adres] != ''
-			
-			params[:address][:adres] = popraw_usera(params[:address][:adres])
-			
-			# hack na polibude
-			if params[:address][:adres] =~ /(portal|wa|wbliw|wch|weka|weny|wggg|wis|wiz|wme|wm|wppt|wemif)\.pwr\.wroc\.pl/ and params[:address][:xpath] == '' and params[:address][:css] == '' and params[:address][:regexp] == ''
-				params[:address][:css] = '#cwrapper table .ccol4' 
-			end
-			
-#			 klucz obliczany na podstawie adresu, xpath'a, css'a oraz regexp'a
-#			params[:address][:klucz] = sklejenie_warunkowe([params[:address][:adres], params[:address][:xpath], params[:address][:css], params[:address][:regexp]]).md5
-
+			params[:address] = popraw_usera(params[:address])
 		end
 		
 		@address = Address.find(params[:id])
