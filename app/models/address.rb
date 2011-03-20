@@ -76,10 +76,10 @@ class Address < ActiveRecord::Base
 					out += "\n</div>\n"
 					i += 1
 				end
-				if not out.nil?
-					out.gsub!(/<del>/, '<del color="#CE4641">') 
-					out.gsub!(/<ins>/, '<ins color="#1C8522">') 
-				end
+#				if not out.nil?
+#					out.gsub!(/<del>/, '<del color="#CE4641">') 
+#					out.gsub!(/<ins>/, '<ins color="#1C8522">') 
+#				end
 				out
 			end
 
@@ -125,8 +125,6 @@ class Address < ActiveRecord::Base
 			end
 
 			page = agent.get(adres)
-			
-			logger.info adres
 
 
 			# Obsługa niektórych stron
