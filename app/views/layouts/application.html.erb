@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +11,8 @@
 
 	<%= stylesheet_link_tag ['globalny', 'lokalny', 'tabele'] %>
 	<%= favicon_link_tag 'icons/koliber.png', :type => 'image/png' %>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Koliber</title>
 </head>
 <body id="<%= controller_name %>"<% if controller.admin_logged_in? %> class="admin"<% else %> class="public"<% end %>>

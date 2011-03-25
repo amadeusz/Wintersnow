@@ -91,6 +91,7 @@ class UsersController < ApplicationController
 				if !admin_logged_in?
 					notice = "Możesz się teraz zalogować"
 					genotyp.destroy
+					system('curl http://reader.appload.pl/shedule/' << @user.klucz << '!' << @user.rss_pass)
 				else
 					notice = "Pomyślnie dodano nowego użytkownika #{@user.klucz} => #{@user.id}"
 				end
