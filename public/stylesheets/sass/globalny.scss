@@ -46,7 +46,7 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus { backgro
 
 a.button:focus, .actions a:focus, .actions input:focus, #nawigacja a:focus { color: white; background-color: #BD004C; }
 
-#new form, #create form, #edit form, #update form { display: block; border: 1px solid rgba(255, 255, 255, 0.2); padding: 10px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
+#new form, #create form, #edit form, #update form, #new_address, .edit_user { display: block; border: 1px solid rgba(255, 255, 255, 0.2); padding: 10px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
 
 form + form, #users #new > div + div, #users #edit > div + div, #users #update > div + div { margin-top: 16px; }
 form + .actions, #inny_adres + .actions { text-align: left; margin-top: 14px; }
