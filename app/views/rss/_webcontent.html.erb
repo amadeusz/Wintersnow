@@ -26,7 +26,7 @@
 	<% end %>
 <% end %>
 
-<p id="notice" style="text-align: center">Wiadomości wygodnie jest odbierać przez <%= link_to 'kanał rss', '/rss/of/'+ controller.current_user.klucz + "!" + controller.current_user.rss_pass %> <%= link_to image_tag('icons/feed.png', :width => 16, :height => 16), '/rss/of/'+ controller.current_user.klucz + "!" + controller.current_user.rss_pass %><br />lub za pomocą <a href="http://reader.appload.pl/get/<%= controller.current_user.klucz %>!<%= controller.current_user.rss_pass %>">czytnika Kolibra</a>.</p>
+<p id="notice" style="text-align: center">Wiadomości wygodnie jest odbierać przez <%= link_to 'kanał rss', '/rss/of/'+ controller.current_user.klucz + "!" + controller.current_user.rss_pass %> <%= link_to image_tag('icons/feed.png', :width => 16, :height => 16), '/rss/of/'+ controller.current_user.klucz + "!" + controller.current_user.rss_pass %><br />lub za pomocą <a href="http://reader.appload.pl/get/<%= controller.current_user.klucz %>!<%= controller.current_user.rss_pass %>">czytnika Kolibra <%= image_tag('arrow.down.png', :width => 16, :height => 16) %></a>.</p>
 <p id="notice" style="text-align: center; margin-top: -30px">Nie trzeba wtedy tutaj zaglądać.</p>
 
 

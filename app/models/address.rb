@@ -134,8 +134,8 @@ class Address < ActiveRecord::Base
 			
 					login = page.form_with(:action => 'https://eportal-ch.pwr.wroc.pl/login/index.php') do |form|
 						if (form)
-							form.username = '166228'
-							form.password = 'kupa666'
+							form.username = current_user.fire_login
+							form.password = current_user.fire_password
 						end
 					end
 
@@ -145,8 +145,8 @@ class Address < ActiveRecord::Base
 
 					login = page.form_with(:action => 'https://eportal-iz.pwr.wroc.pl/login/index.php') do |form|
 						if (form)
-							form.username = '166228'
-							form.password = 'kupa666'
+							form.username = current_user.air_login
+							form.password = current_user.air_password
 						end
 					end
 
@@ -156,8 +156,8 @@ class Address < ActiveRecord::Base
 
 					login = page.form_with(:action => 'https://eportal.pwr.wroc.pl/login/index.php') do |form|
 						if (form)
-							form.username = '166228'
-							form.password = 'kupa666'
+							form.username = current_user.earth_login
+							form.password = current_user.earth_password
 						end
 					end
 	

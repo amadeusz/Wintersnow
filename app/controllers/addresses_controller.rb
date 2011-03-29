@@ -59,6 +59,8 @@ class AddressesController < ApplicationController
 		
 			params[:address] = popraw_usera(params[:address])
 			
+			params[:address][:opis] ||= "-"
+			
 			if params[:address][:adres] =~ /(portal|wa|wbliw|wch|weka|weny|wggg|wis|wiz|wme|wm|wppt|wemif)\.pwr\.wroc\.pl/ and params[:address][:xpath] == '' and params[:address][:css] == '' and params[:address][:regexp] == ''
 				params[:address][:css] = '#cwrapper table .ccol4' 
 			end
