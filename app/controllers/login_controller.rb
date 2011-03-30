@@ -13,7 +13,10 @@ class LoginController < ApplicationController
 			flash[:notice] = "Zalogowano"
 			if ENV['RAILS_ENV'] = 'production'
 				if File.exists?('/home/appload/sounds/blip.mp3')
-					`mpg123 /home/appload/sounds/blip.mp3`
+					job1 = fork do
+						exec 'mpg123 /home/appload/sounds/blip.mp3'
+					end
+					Process.detach(job1)
 				end
 			end
 			redirect_to root_url
