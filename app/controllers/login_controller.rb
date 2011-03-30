@@ -11,6 +11,11 @@ class LoginController < ApplicationController
 		if user = authenticate(params[:nazwa], params[:haslo])
 			session[:current_user_id] = user.id
 			flash[:notice] = "Zalogowano"
+			if ENV['RAILS_ENV'] = 'production'
+				if File.exists?('/home/appload/sounds/blip.mp3')
+					`mpg123 /home/appload/sounds/blip.mp3`
+				end
+			end
 			redirect_to root_url
 		else
 			flash[:error] = 'Logowanie nie powiodło się, spróbuj ponownie'
