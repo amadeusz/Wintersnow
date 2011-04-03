@@ -6,6 +6,52 @@ class Address < ActiveRecord::Base
 	# validates :klucz, :presence => true
 	validates :adres, :presence => true #,  :uniqueness =>  { :scope => [:xpath, :css, :regexp] }
 	
+	def self.get_subscribed(eportal, user)
+		agent = Mechanize.new
+		agent.get("http://#{eportal}") do |main_page|
+			logged = main_page.form_with(:action => "https://#{eportal}/login/index.php") do |f|
+				if eportal == 'eportal-ch.pwr.wroc.pl'
+					f.username	= user.fire_login
+					f.password	= user.fire_password
+				end
+				
+				if eportal == 'eportal-iz.pwr.wroc.pl'
+					f.username	= user.air_login
+					f.password	= user.air_password
+				end
+				
+				if eportal == 'eportal.pwr.wroc.pl'
+					f.username	= user.earth_login
+					f.password	= user.earth_password
+				end
+				
+			end.click_button
+
+			verified = false
+			Nokogiri::HTML(logged.body).css('.headermenu a').each do |link|
+				if link.content == 'Wyloguj'
+					verified = true
+				end
+			end
+
+			if verified
+				address_fork = []
+			
+				agent.get("http://#{eportal}/my/") do |personal_page|
+					Nokogiri::HTML(personal_page.body).css('#layout-table a').each do |link|
+						if link.content != "Forum aktualności" and link.content != "Aktualności"
+							address_fork << {:href => link['href'].clone, :content => link.content.clone }
+						end
+					end
+				end
+
+				return address_fork
+			else
+				return nil
+			end
+		end
+	end
+	
 	def look_for_changes
 		
 		def simplify(html)

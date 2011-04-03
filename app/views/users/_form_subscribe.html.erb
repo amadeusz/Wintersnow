@@ -28,7 +28,7 @@
 		<div>
 			<%= check_box_tag :address_id, address.id, true, :name => 'user[address_ids][]' %>
 			<div class="opis"><%= text_field_tag :address_id, get_opis(address, @user.id), :name => "user[address_opises][#{address.id}]" %></div>
-			<div class="adres"><%= label_tag :address_ids, address.adres.limit(60) %></div>
+			<div class="adres"><a style="float: right" href="<%= address.adres %>"><img src="images/icons/zoom.png" /></a><%= label_tag :address_ids, address.adres.limit(60) %></div>
 		</div>
 	<% end %>
 	</div>

@@ -181,7 +181,11 @@ class UsersController < ApplicationController
 	def destroy
 		@user = User.find(params[:id])
 		@user.destroy
-		Site.where(:user_id => params[:id]).each {|site| site.destroy}
+		Site.where(:user_id => params[:id]).each do |site|
+			site.destroy
+			puts "chciałbym usunąć adres #{site.adres.to_yaml}"
+		
+		end
 
 		respond_to do |format|
 			format.html { redirect_to(users_url) }

@@ -53,102 +53,167 @@ class AddressesController < ApplicationController
 	end
 	
 	def create
-		sukces = false
+		eportal = false
+		przekierowanie = ustawienia_path
+		success = 0; failed = 0; message = '';
+		addresses_pending = []
 	
 		if params[:address][:adres] != ''
 		
 			params[:address] = popraw_usera(params[:address])
-			
-			params[:address][:opis] ||= "-"
-			
-			if params[:address][:adres] =~ /(portal|wa|wbliw|wch|weka|weny|wggg|wis|wiz|wme|wm|wppt|wemif)\.pwr\.wroc\.pl/ and params[:address][:xpath] == '' and params[:address][:css] == '' and params[:address][:regexp] == ''
-				params[:address][:css] = '#cwrapper table .ccol4' 
-			end
+			params[:address][:opis] ||= ""
 
-			if ["eportal.pwr.wroc.pl", "eportal-iz.pwr.wroc.pl", "eportal-ch.pwr.wroc.pl"].find do |element| params[:address][:adres].include? element end
+			if eportal = (params[:address][:adres] =~ /^http:\/\/(eportal(-iz|-ch)?.pwr.wroc.pl)(\/|\/index.php)?$/)
+				subscribed = Address.get_subscribed($1, current_user)
+				
 				params[:address][:css] = '#middle-column'
-			end
-			
-			if ["eportal.pwr.wroc.pl", "eportal-iz.pwr.wroc.pl", "eportal-ch.pwr.wroc.pl", "eportal.ii.pwr.wroc.pl/w08"].find do |element| params[:address][:adres].include? element end
 				params[:address][:one_user] = true
 				params[:address][:private] = true
+				
+				if subscribed
+					new_params = Marshal.load(Marshal.dump(params.dup()))
+					description = params[:address][:opis]
+					description = 'ePortal' if description == ''
+					subscribed.each do |address|
+						new_params[:address][:adres] = address[:href]
+						new_params[:address][:opis] = "#{description} : #{address[:content]}"
+						addresses_pending << new_params.dup()
+					end	
+				end
+				
 			else
-				params[:address][:one_user] = false
+				if params[:address][:adres] =~ /(portal|wa|wbliw|wch|weka|weny|wggg|wis|wiz|wme|wm|wppt|wemif)\.pwr\.wroc\.pl/ and params[:address][:xpath] == '' and params[:address][:css] == '' and params[:address][:regexp] == ''
+					params[:address][:css] = '#cwrapper table .ccol4' 
+				end
+
+				if ["eportal.pwr.wroc.pl", "eportal-iz.pwr.wroc.pl", "eportal-ch.pwr.wroc.pl"].find do |element| params[:address][:adres].include? element end
+					params[:address][:css] = '#middle-column'
+				end
+			
+				if ["eportal.pwr.wroc.pl", "eportal-iz.pwr.wroc.pl", "eportal-ch.pwr.wroc.pl", "eportal.ii.pwr.wroc.pl/w08"].find do |element| params[:address][:adres].include? element end
+					params[:address][:one_user] = true
+					params[:address][:private] = true
+				else
+					params[:address][:one_user] = false
+				end
+			
+				params[:address][:data_spr] = Time.new - (1.0/24/60) * 60
+				params[:address][:data_mod] = Time.new
+				params[:address][:blokada] = false
+				
+				params[:address][:opis] == 'twój opis' if params[:address][:opis] == ''
+				
+				new_params = Marshal.load(Marshal.dump(params.dup()))
+				addresses_pending << new_params
+			end
+
+			puts addresses_pending.to_yaml
+
+			addresses_pending.each do |params|
+
+				# Poszukiwanie istniejących wpisów
+				
+				@items_matching = Address.where(:adres => params[:address][:adres], :xpath => params[:address][:xpath], :css => params[:address][:css], :regexp => params[:address][:regexp], :one_user => params[:address][:one_user])
+				existing_item = nil; existing_alias = nil;
+	
+				unless (@items_matching.empty?)
+					
+					if (params[:address][:one_user])
+	
+						@items_matching.each do |item|
+		
+							unless (item.users.empty?)
+								if (item.users.first.id == current_user.id)
+									existing_item = item
+									existing_alias = true
+								end
+							end
+			
+						end
+		
+					else
+	
+						existing_item = @items_matching.first
+						@items_matching.first.users.each do |user|
+							existing_alias = true if (user.id == current_user.id)
+						end
+		
+					end
+				end
+
+
+				# Tworzenie brakujących wpisów
+
+				if (existing_item)
+	
+					# Ewentualnie dowiąż
+					if existing_alias
+						message += "Adres znajduje się już na liście. \n"
+					else
+						if Site.new(:user_id => current_user.id, :opis => params[:address][:opis], :address_id => existing_item.id).save
+							success += 1
+							message += "Dodano adres do listy obserwowanych. \n"
+						else
+							failed += 1
+							message += "Wystąpił błąd podczas dodawania adresu."
+						end
+					end
+	
+				else
+
+					# Utwórz i dowiąż
+					@address = Address.new(params[:address])
+					if @address.save
+						if Site.new(:user_id => current_user.id, :opis => params[:address][:opis], :address_id => @address.id).save
+							success += 1
+							message += "Dodano adres do listy obserwowanych. \n"
+						else
+							failed += 1
+							message += "Wystąpił błąd podczas dodawania adresu"
+						end
+					end
+
+				end
+
 			end
 			
-			params[:address][:data_spr] = Time.new - (1.0/24/60) * 60
-			params[:address][:data_mod] = Time.new
-			params[:address][:blokada] = false
+			if (eportal != nil)
+				not_added = addresses_pending.count - success;
+				messages = []
+
+				messages << "Dodano adres do listy obserwowanych." if (success == 1)
+				messages << "Dodano #{success} adresy do listy obserwowanych." if (success > 1 and success < 5)
+				messages << "Dodano #{success} adresów do listy obserwowanych." if (success > 4)
+		
+				if not_added > 0
+					messages << "Adres znajduje się już na liście." if (not_added == 1)
+					messages << "#{not_added} adresy znajdują się już na liście." if (not_added > 1 and not_added < 5)
+					messages << "#{not_added} adresów znajduje się już na liście." if (not_added > 4)
+				end
+		
+				messages << "Nie udało się dodać (#{failed}) adresów." if (failed > 0)
+				message = messages.join("\n")
+			end
 		end
 
-		przekierowanie = ustawienia_path
-		
 		respond_to do |format|
+			if success > 0 or eportal
 			
-			# Poszukiwanie istniejących wpisów
-		
-			@items_matching = Address.where(:adres => params[:address][:adres], :xpath => params[:address][:xpath], :css => params[:address][:css], :regexp => params[:address][:regexp], :one_user => params[:address][:one_user])
-			existing_item = nil; existing_alias = nil; success = false; message = '';
-			
-			unless (@items_matching.empty?)
-								
-				if (params[:address][:one_user])
+				if eportal and subscribed == nil
+					message = "Koliber nie jest w stanie zalogować się na wybrany przez Ciebie ePortal.\n"
 				
-					@items_matching.each do |item|
-					
-						unless (item.users.empty?)
-							if (item.users.first.id == current_user.id)
-								existing_item = item
-								existing_alias = true
-							end
-						end
-						
+					if (eportal == 'eportal-ch.pwr.wroc.pl' and not user.fire_login.empty? and not user.fire_password.empty?) or (eportal == 'eportal-iz.pwr.wroc.pl' and not user.air_login.empty? and not user.air_password.empty?) or (eportal == 'eportal.pwr.wroc.pl' and not user.earth_login.empty? and not user.earth_password.empty?)
+						message += "Upewnij się, że podane przez Ciebie hasło jest prawidłowe.\n" 
+					else
+						message += "Konieczne jest podanie loginu i hasła."
 					end
-					
-				else
-				
-					existing_item = @items_matching.first
-					@items_matching.first.users.each do |user|
-						existing_alias = true if (user.id == current_user.id)
-					end
-					
-				end
-			end
-			
-			
-			# Tworzenie brakujących wpisów
-			
-			if (existing_item)
-				
-				# Ewentualnie dowiąż
-				if existing_alias
-					success = true
-					message = "Adres znajduje się już na liście."
-				else
-					success = true if Site.new(:user_id => current_user.id, :opis => params[:address][:opis], :address_id => existing_item.id).save
-					message = "Dodano adres do listy obserwowanych."
 				end
 				
-			else
-			
-				# Utwórz i dowiąż
-				@address = Address.new(params[:address])
-				if @address.save
-					success = true if Site.new(:user_id => current_user.id, :opis => params[:address][:opis], :address_id => @address.id).save
-					message = "Dodano adres do listy obserwowanych."
-				end
-				
-			end
-
-			if (success)
 				format.html { redirect_to(przekierowanie, :notice => message) }
-				format.xml	{ render :xml => @address, :status => :created, :location => @address }
 			else
 				format.html { render :action => "new" }
-				format.xml	{ render :xml => @address.errors + @site.errors , :status => :unprocessable_entity }
 			end
 		end
-		
 	end
 
 	def update
