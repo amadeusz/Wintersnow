@@ -209,9 +209,11 @@ class AddressesController < ApplicationController
 					end
 				end
 				
+				
 				format.html { redirect_to(przekierowanie, :notice => message) }
 			else
-				format.html { render :action => "new" }
+				@address = Address.new(params[:address])
+				format.html { render :action => "new", :notice => "Podany adres znajduje się już na liście"}
 			end
 		end
 	end
