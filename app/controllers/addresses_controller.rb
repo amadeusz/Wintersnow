@@ -202,10 +202,10 @@ class AddressesController < ApplicationController
 				if eportal and subscribed == nil
 					message = "Koliber nie jest w stanie zalogować się na wybrany przez Ciebie ePortal.\n"
 				
-					if (eportal == 'eportal-ch.pwr.wroc.pl' and not user.fire_login.empty? and not user.fire_password.empty?) or (eportal == 'eportal-iz.pwr.wroc.pl' and not user.air_login.empty? and not user.air_password.empty?) or (eportal == 'eportal.pwr.wroc.pl' and not user.earth_login.empty? and not user.earth_password.empty?)
+					if (eportal == 'eportal-ch.pwr.wroc.pl' and not current_user.fire_login.empty? and not current_user.fire_password.empty?) or (eportal == 'eportal-iz.pwr.wroc.pl' and not current_user.air_login.empty? and not current_user.air_password.empty?) or (eportal == 'eportal.pwr.wroc.pl' and not current_user.earth_login.empty? and not current_user.earth_password.empty?)
 						message += "Upewnij się, że podane przez Ciebie hasło jest prawidłowe.\n" 
 					else
-						message += "Konieczne jest podanie loginu i hasła."
+						message += "Konieczne jest podanie właściwego loginu i hasła."
 					end
 				end
 				

@@ -1,6 +1,6 @@
 task :get_db do
-	if (`hostname` == 'satan')
-		puts `rsync koliber@appload:/home/koliber/db/production.sqlite3 /home/maciek/quests/koliber/db/development.sqlite3`
+	if (`hostname` == "satan\n")
+		puts `rsync koliber@appload.pl:/home/koliber/db/production.sqlite3 /home/maciek/quests/koliber/db/development.sqlite3`
 	end
 	
 	if (`hostname` == '')
