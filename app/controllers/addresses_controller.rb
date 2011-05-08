@@ -8,6 +8,32 @@ def popraw_usera(params)
 		params[:adres].gsub! $1, ''
 	end
 	
+	if params[:adres] =~ /(bte\.boo\.pl\/viewtopic\.php\?(p|t)=[0-9]+)/
+
+		def get_topic(page)
+			topic = Nokogiri::HTML(page.body).css('.forumline .catHead a.nav').first
+			return topic['href']
+		end
+
+		agent = Mechanize.new
+
+		params[:adres] = "http://#{$1}"
+
+		agent.get('http://bte.boo.pl/login.php').form_with(:action => /^login.php/) do |form|
+			form.username	= 'maciek'
+			form.password	= 'pieklo555'
+		end.click_button
+
+		if params[:adres] =~ /(bte\.boo\.pl\/viewtopic\.php\?p=[0-9]+)/
+			params[:adres] = "http://bte.boo.pl/#{get_topic(agent.get(params[:adres]))}"
+		end
+
+		if params[:adres] =~ /(bte\.boo\.pl\/viewtopic\.php\?t=[0-9]+)/
+			params[:adres] = "http://#{$1}"
+		end
+		
+	end
+	
 	return params
 end
 

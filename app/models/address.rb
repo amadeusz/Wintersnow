@@ -7,6 +7,7 @@ class Address < ActiveRecord::Base
 	validates :adres, :presence => true #,  :uniqueness =>  { :scope => [:xpath, :css, :regexp] }
 	
 	def self.get_subscribed(eportal, user)
+
 		agent = Mechanize.new
 		agent.get("http://#{eportal}") do |main_page|
 			logged = main_page.form_with(:action => "https://#{eportal}/login/index.php") do |f|
@@ -132,12 +133,47 @@ class Address < ActiveRecord::Base
 			splice(Wdiff::Helper.to_html(str1.wdiff(str2)))
 		end
 		
+		# Tylko do obserwowania forum bte.boo.pl
 		
-		# Pobierz
+		def get_posts(page)
+			even_posts = []
+			odd_posts = []
+	
+			parsed = Nokogiri::HTML(page.body)
+	
+			parsed.css('table.forumline td.row1 .postbody').each do |element|
+				even_posts << element.content if not element.content =~ /^_________________/
+			end
+	
+			parsed.css('table.forumline td.row2 .postbody').each do |element|
+				odd_posts << element.content if not element.content =~ /^_________________/
+			end
+	
+			return even_posts.zip(odd_posts).flatten
+		end
+
+		def get_next(page)
+			if not (links = Nokogiri::HTML(page.body).css('.pagination a[title="Dalej"]')).empty?
+				"http://bte.boo.pl/#{links.first()['href']}"
+			else
+				nil
+			end
+		end
+		
+		def get_previous(page)
+			if not (links = Nokogiri::HTML(page.body).css('.pagination a[title="Wstecz"]')).empty?
+				"http://bte.boo.pl/#{links.first()['href']}"
+			else
+				nil
+			end
+		end
+		
+		
+		# Pobieranie
 		
 		logger.info "[#{self.adres}] Rozpoczynam sprawdzanie adresu."
 		
-		suspend_time = (1.0/24/60) * 28	# minut
+		suspend_time = (1.0/24/60) * 0	# minut
 		if self.data_spr && DateTime.now < (DateTime.parse(self.data_spr.to_s) + suspend_time)
 			logger.info "[#{self.adres}] Niedawno sprawdzałem, pomijam."
 			return
@@ -174,6 +210,17 @@ class Address < ActiveRecord::Base
 
 
 			# Obsługa niektórych stron
+
+			if adres =~ /(bte\.boo\.pl\/viewtopic\.php\?(p|t)=[0-9]+)/
+				adres = "http://#{$1}"
+
+				agent.get('http://bte.boo.pl/login.php').form_with(:action => /^login.php/) do |form|
+					form.username	= 'maciek'
+					form.password	= 'pieklo555'
+				end.click_button
+				
+				page = agent.get(adres)
+			end
 
 			if self.one_user
 				if adres.include? 'eportal-ch.pwr.wroc.pl'
@@ -242,29 +289,74 @@ class Address < ActiveRecord::Base
 			if !content_changed && !first_time
 				logger.info "[#{self.adres}] Nie znaleziono różnic."
 			else
+				forum_bte = false;
+				forum_bte = true if self.adres =~ /(bte\.boo\.pl\/viewtopic\.php\?(p|t)=[0-9]+)/
+				
 				self.data_mod = Time.now
-			
-				if !first_time
-					message = 'Pod wybranym adresem pojawiły się zmiany.'
-					if !binary(page.content_type)
-						logger.info self.last_content
-						logger.info simplified
-						message = compare(self.last_content, simplified)
+		
+				if first_time and forum_bte
+					page = agent.get("#{self.adres}&start=0")
+					posts = get_posts(page)
+
+					while (more = get_next(page))
+						page = agent.get(more)
+						posts.concat(get_posts(page))
 					end
-			
-					self.messages.create(:tresc => message, :data => Time.now)
+
+					posts = posts.delete_if { |post| post.nil? || post.empty? }
+					hash = posts.collect { |post| post.sha }
+				end
+				
+				if !first_time
+					if not forum_bte
+						message = 'Pod wybranym adresem pojawiły się zmiany.'
+						if !binary(page.content_type)
+							message = compare(self.last_content, simplified)
+						end
+						self.messages.create(:tresc => message, :data => Time.now)
+					else
+						previous = YAML.load(self.last_content)
+						previous_hash = previous[:posts_hash]
+						
+						logger.info "TOPIC.TAIL #{previous[:topic_tail]}"
+						
+						page = agent.get(previous[:topic_tail])
+						posts = get_posts(page)
+
+						while (more = get_next(page))
+							page = agent.get(more)
+							posts.concat(get_posts(page))
+						end
+
+						posts = posts.delete_if { |post| post.nil? || post.empty? }
+						hash = posts.collect { |post| post.sha }
+						post_map = {}
+							
+						posts.each do |post|
+							post_map[post.sha] = post
+						end
+						
+						new_posts_hash = hash - previous_hash
+						
+						new_posts_hash.each do |hash|
+							self.messages.create(:tresc => post_map[hash], :data => Time.now)
+						end
+					end
+		
 					logger.info "[#{self.adres}] Dodano komunikat"
 				end
-			
+		
 				if !binary(page.content_type)
 					self.last_content = simplified
+					self.last_content = YAML.dump({:topic_tail => agent.page.uri.to_s, :posts_hash => hash}) if forum_bte
 					self.last_content_checksum = simplified.sha
 				else
 					self.last_content = ''
 					self.last_content_checksum = page.body.sha
 				end
-			
+		
 				self.last_content_type = page.content_type
+
 			end
 		
 			self.blokada = false; save
