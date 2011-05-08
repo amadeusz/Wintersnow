@@ -173,7 +173,7 @@ class Address < ActiveRecord::Base
 		
 		logger.info "[#{self.adres}] Rozpoczynam sprawdzanie adresu."
 		
-		suspend_time = (1.0/24/60) * 0	# minut
+		suspend_time = (1.0/24/60) * 28	# minut
 		if self.data_spr && DateTime.now < (DateTime.parse(self.data_spr.to_s) + suspend_time)
 			logger.info "[#{self.adres}] Niedawno sprawdzałem, pomijam."
 			return
@@ -317,6 +317,7 @@ class Address < ActiveRecord::Base
 							message = compare(self.last_content, simplified)
 						end
 						self.messages.create(:tresc => message, :data => Time.now)
+						logger.info "[#{self.adres}] Dodano komunikat"
 					else
 						previous = YAML.load(self.last_content)
 						previous_hash = previous[:posts_hash]
@@ -343,10 +344,11 @@ class Address < ActiveRecord::Base
 						
 						new_posts_hash.each do |hash|
 							self.messages.create(:tresc => post_map[hash], :data => Time.now)
+							logger.info "[#{self.adres}] Dodano komunikat"
 						end
 					end
 		
-					logger.info "[#{self.adres}] Dodano komunikat"
+					
 				end
 		
 				if !binary(page.content_type)
