@@ -343,7 +343,7 @@ class Address < ActiveRecord::Base
 						new_posts_hash = hash - previous_hash
 						
 						new_posts_hash.each do |hash|
-							self.messages.create(:tresc => post_map[hash], :data => Time.now)
+							self.messages.create(:tresc => "<div>#{post_map[hash]}</div>", :data => Time.now)
 							logger.info "[#{self.adres}] Dodano komunikat"
 						end
 					end
