@@ -40,7 +40,7 @@ def popraw_usera(params)
 		end
 		
 		if params[:opis] == ''
-			params[:opis] = get_topic_str(page)
+			params[:opis] = "Forum bte : #{get_topic_str(page)}"
 		end
 		
 	end
