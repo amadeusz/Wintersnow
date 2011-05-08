@@ -14,6 +14,11 @@ def popraw_usera(params)
 			topic = Nokogiri::HTML(page.body).css('.forumline .catHead a.nav').first
 			return topic['href']
 		end
+		
+		def get_topic_str(page)
+			topic = Nokogiri::HTML(page.body).css('.forumline .catHead a.nav').first
+			return topic.text
+		end
 
 		agent = Mechanize.new
 
@@ -24,12 +29,18 @@ def popraw_usera(params)
 			form.password	= 'pieklo555'
 		end.click_button
 
+		page = agent.get(params[:adres])
+
 		if params[:adres] =~ /(bte\.boo\.pl\/viewtopic\.php\?p=[0-9]+)/
-			params[:adres] = "http://bte.boo.pl/#{get_topic(agent.get(params[:adres]))}"
+			params[:adres] = "http://bte.boo.pl/#{get_topic(page)}"
 		end
 
 		if params[:adres] =~ /(bte\.boo\.pl\/viewtopic\.php\?t=[0-9]+)/
 			params[:adres] = "http://#{$1}"
+		end
+		
+		if params[:opis] == ''
+			params[:opis] = get_topic_str(page)
 		end
 		
 	end
