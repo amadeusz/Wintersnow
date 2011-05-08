@@ -173,7 +173,7 @@ class Address < ActiveRecord::Base
 		
 		logger.info "[#{self.adres}] Rozpoczynam sprawdzanie adresu."
 		
-		suspend_time = (1.0/24/60) * 28	# minut
+		suspend_time = (1.0/24/60) * 0	# minut
 		if self.data_spr && DateTime.now < (DateTime.parse(self.data_spr.to_s) + suspend_time)
 			logger.info "[#{self.adres}] Niedawno sprawdzałem, pomijam."
 			return
@@ -200,6 +200,8 @@ class Address < ActiveRecord::Base
 				end
 			end
 
+			logger.info "ADRES : #{adres.inspect.to_yaml}"
+
 			if self.one_user
 				if adres =~ /eportal\.ii\.pwr\.wroc\.pl\/w08\/board/
 					agent.basic_auth(current_user.water_login, current_user.water_password)
@@ -212,6 +214,7 @@ class Address < ActiveRecord::Base
 			# Obsługa niektórych stron
 
 			if self.one_user
+			
 				if adres.include? 'eportal-ch.pwr.wroc.pl'
 			
 					login = page.form_with(:action => 'https://eportal-ch.pwr.wroc.pl/login/index.php') do |form|
