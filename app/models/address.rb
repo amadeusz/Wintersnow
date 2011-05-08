@@ -211,17 +211,6 @@ class Address < ActiveRecord::Base
 
 			# Obsługa niektórych stron
 
-			if adres =~ /(bte\.boo\.pl\/viewtopic\.php\?(p|t)=[0-9]+)/
-				adres = "http://#{$1}"
-
-				agent.get('http://bte.boo.pl/login.php').form_with(:action => /^login.php/) do |form|
-					form.username	= 'maciek'
-					form.password	= 'pieklo555'
-				end.click_button
-				
-				page = agent.get(adres)
-			end
-
 			if self.one_user
 				if adres.include? 'eportal-ch.pwr.wroc.pl'
 			
@@ -255,6 +244,17 @@ class Address < ActiveRecord::Base
 					end
 	
 				end
+			end
+			
+			if adres =~ /(bte\.boo\.pl\/viewtopic\.php\?(p|t)=[0-9]+)/
+				adres = "http://#{$1}"
+
+				agent.get('http://bte.boo.pl/login.php').form_with(:action => /^login.php/) do |form|
+					form.username	= 'maciek'
+					form.password	= 'pieklo555'
+				end.click_button
+				
+				page = agent.get(adres)
 			end
 
 		rescue Exception => e
