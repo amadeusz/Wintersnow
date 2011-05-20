@@ -1,5 +1,3 @@
-require File.expand_path('../../../lib/calendar_const', __FILE__)
-
 module LoginHelper
 
 def today_event
