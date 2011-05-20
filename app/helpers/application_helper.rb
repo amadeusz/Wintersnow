@@ -1,5 +1,13 @@
 module ApplicationHelper
-
+	PL_DAYS = [nil,'poniedziałek','wtorek','środa','czwartek','piatek','sobota','niedziela']
+	PL_MONTHS = [nil,'stycznia','lutego','marca','kwietnia','maja','czerwca','lipca','sierpnia','września','października','listopada','grudnia']
+	Calendar_Polibuda = {
+		"20-04-2011" => "zajęcia jak w piątek parzysty",
+		"16-05-2011" => "zajęcia jak w piątek nieparzysty",
+		}
+	Calendar_Inne = {
+		"18-05-2011" => "Pomyślnie dodano kalendarz :)" 
+		}
 	def skroc_date(data)
 		return data.to_s[2, data.to_s.length-11]
 	end

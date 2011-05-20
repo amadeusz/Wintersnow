@@ -11,8 +11,7 @@
 
 <% if (not controller.current_user.nil? and controller.current_user.admin == true) %>
 
-<% d = Date.today %>
-<p style="text-align: center; color: #ffffff; padding: 2px"><%= " #{PL_DAYS[d.cwday]}, #{d.day} #{PL_MONTHS[d.month]}, tydzień #{"nie" if d.cweek.odd?}parzysty" %></p>
+<p style="text-align: center; color: #ffffff; padding: 2px"><%= today_event %></p>
 
 <% end %>
 
