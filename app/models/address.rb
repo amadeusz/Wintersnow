@@ -340,8 +340,10 @@ class Address < ActiveRecord::Base
 							post_map[post.sha] = post
 						end
 						
-						new_posts_hash = hash - previous_hash
-						
+						if previous_hash.kind_of? String
+							previous_hash = []
+						end
+												
 						new_posts_hash.each do |hash|
 							self.messages.create(:tresc => "<div>#{post_map[hash]}</div>", :data => Time.now)
 							logger.info "[#{self.adres}] Dodano komunikat"
